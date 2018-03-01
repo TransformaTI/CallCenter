@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="dsLlamada" targetNamespace="http://www.tempuri.org/dsLlamada.xsd" xmlns:mstns="http://www.tempuri.org/dsLlamada.xsd" xmlns="http://www.tempuri.org/dsLlamada.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="dsLlamada" msdata:IsDataSet="true" msdata:Locale="es-MX">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Autotanque">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Autotanque" type="xs:short" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Motivo">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="MotivoLlamada" type="xs:short" />
+							<xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+							<xs:element name="TipoLlamada" type="xs:short" minOccurs="0" />
+							<xs:element name="SentidoLlamada" type="xs:unsignedByte" minOccurs="0" />
+							<xs:element name="DesTipoLlamada" type="xs:string" minOccurs="0" />
+							<xs:element name="DesSentidoLlamada" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Operador">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Autotanque" type="xs:short" />
+							<xs:element name="Operador" type="xs:short" />
+							<xs:element name="Nombre" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="Constraint1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Autotanque" />
+			<xs:field xpath="mstns:Autotanque" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>

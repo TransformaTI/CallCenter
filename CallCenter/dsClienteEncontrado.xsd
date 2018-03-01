@@ -1,0 +1,56 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="dsClienteEncontrado" targetNamespace="http://www.tempuri.org/dsClienteEncontrado.xsd" xmlns:mstns="http://www.tempuri.org/dsClienteEncontrado.xsd" xmlns="http://www.tempuri.org/dsClienteEncontrado.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="dsClienteEncontrado" msdata:IsDataSet="true" msdata:Locale="es-MX">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Cliente">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Cliente" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="Celula" type="xs:unsignedByte" minOccurs="0" />
+							<xs:element name="Siglas" type="xs:string" minOccurs="0" />
+							<xs:element name="DigitoVerificador" type="xs:short" minOccurs="0" />
+							<xs:element name="Nombre" type="xs:string" minOccurs="0" />
+							<xs:element name="Calle" type="xs:int" minOccurs="0" />
+							<xs:element name="DesCalle" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="Entrecalle1" type="xs:int" minOccurs="0" />
+							<xs:element name="DesEntreCalle1" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="Entrecalle2" type="xs:int" minOccurs="0" />
+							<xs:element name="DesEntreCalle2" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="NumExterior" msdata:ReadOnly="true" type="xs:int" minOccurs="0" />
+							<xs:element name="NumInterior" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="Ruta" type="xs:short" minOccurs="0" />
+							<xs:element name="DesRuta" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="RamoCliente" type="xs:short" minOccurs="0" />
+							<xs:element name="DesRamo" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="Status" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="ClasificacionCliente" type="xs:short" minOccurs="0" />
+							<xs:element name="DesClasificacion" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="TipoCliente" type="xs:unsignedByte" minOccurs="0" />
+							<xs:element name="DesTipoCliente" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="FormaPago" type="xs:unsignedByte" minOccurs="0" />
+							<xs:element name="DesFormaPago" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="TipoCredito" type="xs:short" minOccurs="0" />
+							<xs:element name="DesTipoCredito" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="DiasCredito" msdata:ReadOnly="true" type="xs:int" minOccurs="0" />
+							<xs:element name="FAlta" msdata:ReadOnly="true" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="FActualizacion" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="StatusCalidad" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="Colonia" type="xs:int" minOccurs="0" />
+							<xs:element name="DesColonia" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="Municipio" type="xs:int" minOccurs="0" />
+							<xs:element name="CP" type="xs:string" minOccurs="0" />
+							<xs:element name="Estado" type="xs:unsignedByte" minOccurs="0" />
+							<xs:element name="DesMunicipio" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="StatusCalle" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="StatusCalle1" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="StatusCalle2" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="StatusColonia" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="Modificable" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

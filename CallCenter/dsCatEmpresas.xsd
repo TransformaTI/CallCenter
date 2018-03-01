@@ -1,0 +1,46 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="dsCatEmpresas" targetNamespace="http://www.tempuri.org/dsCatEmpresas.xsd" xmlns:mstns="http://www.tempuri.org/dsCatEmpresas.xsd" xmlns="http://www.tempuri.org/dsCatEmpresas.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="dsCatEmpresas" msdata:IsDataSet="true" msdata:Locale="es-MX">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="Empresa">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Empresa" type="xs:int" />
+              <xs:element name="RFC" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="CURP" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="RazonSocial" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="Calle" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="Colonia" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="Estado" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="Municipio" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="CP" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="Telefono1" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="Telefono2" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="Fax" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="Contacto" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="ClaveBancaria" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+              <xs:element name="FAlta" msdata:ReadOnly="true" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FActualizacion" msdata:ReadOnly="true" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BitacoraEmpresa">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FTransaccion" type="xs:dateTime" />
+              <xs:element name="Usuario" type="xs:string" minOccurs="0" />
+              <xs:element name="Celula" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="Campo" type="xs:string" />
+              <xs:element name="ValorAnterior" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Empresa" />
+      <xs:field xpath="mstns:Empresa" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

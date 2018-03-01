@@ -1,0 +1,45 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="DsCelula" targetNamespace="http://www.tempuri.org/DsCelula.xsd" xmlns:mstns="http://www.tempuri.org/DsCelula.xsd" xmlns="http://www.tempuri.org/DsCelula.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="DsCelula" msdata:IsDataSet="true" msdata:Locale="es-MX">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Celula">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Celula" type="xs:unsignedByte" />
+							<xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+							<xs:element name="Siglas" type="xs:string" minOccurs="0" />
+							<xs:element name="Producto" type="xs:short" minOccurs="0" />
+							<xs:element name="Telefono" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Ruta">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Ruta" type="xs:short" />
+							<xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+							<xs:element name="Celula" type="xs:unsignedByte" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Colonia">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Colonia" type="xs:short" />
+							<xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="Constraint1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Celula" />
+			<xs:field xpath="mstns:Celula" />
+		</xs:unique>
+		<xs:unique name="Ruta_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Ruta" />
+			<xs:field xpath="mstns:Ruta" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>

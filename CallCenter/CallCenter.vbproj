@@ -1,0 +1,1376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.30319</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{87657F96-845B-4C67-8538-571BC5A7D749}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>Boletin.ICO</ApplicationIcon>
+    <AssemblyKeyContainerName />
+    <AssemblyName>Sigamet</AssemblyName>
+    <AssemblyOriginatorKeyFile />
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <RootNamespace>Sigamet</RootNamespace>
+    <StartupObject>Sigamet.Main</StartupObject>
+    <WebReference_EnableProperties>true</WebReference_EnableProperties>
+    <WebReference_EnableSQLTypes>false</WebReference_EnableSQLTypes>
+    <WebReference_EnableLegacyEventingModel>true</WebReference_EnableLegacyEventingModel>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Sigamet.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile />
+    <DefineConstants />
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Sigamet.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile />
+    <DefineConstants />
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+    </COMReference>
+    <Reference Include="AdmEdificios, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AdmEdificios.dll</HintPath>
+    </Reference>
+    <Reference Include="admEdificiosComisionAdm, Version=1.0.3562.31791, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\admEdificiosComisionAdm.dll</HintPath>
+    </Reference>
+    <Reference Include="AdmLecturas, Version=1.0.5751.30153, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AdmLecturas.dll</HintPath>
+    </Reference>
+    <Reference Include="AsignacionMultiple, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AsignacionMultiple.dll</HintPath>
+    </Reference>
+    <Reference Include="AsignacionPromotor, Version=1.0.5396.31808, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AsignacionPromotor.dll</HintPath>
+    </Reference>
+    <Reference Include="AutorizacionCredito, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AutorizacionCredito.dll</HintPath>
+    </Reference>
+    <Reference Include="AutotanqueMasCercano, Version=1.0.1705.30642, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AutotanqueMasCercano.dll</HintPath>
+    </Reference>
+    <Reference Include="AxInterop.MSACAL">
+      <Name>AxInterop.MSACAL</Name>
+      <HintPath>bin\AxInterop.MSACAL.dll</HintPath>
+    </Reference>
+    <Reference Include="AxInterop.MSMask, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AxInterop.MSMask.dll</HintPath>
+    </Reference>
+    <Reference Include="BitacoraAutotanqueAuxilio, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\BitacoraAutotanqueAuxilio.dll</HintPath>
+    </Reference>
+    <Reference Include="Botones, Version=1.0.2.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Botones.dll</HintPath>
+    </Reference>
+    <Reference Include="Calendario, Version=1.0.1650.30007, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Calendario.dll</HintPath>
+    </Reference>
+    <Reference Include="Calidad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Calidad.dll</HintPath>
+    </Reference>
+    <Reference Include="CallCenterCControls, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CallCenterCControls.dll</HintPath>
+    </Reference>
+    <Reference Include="CantidadEnLetra, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CantidadEnLetra.dll</HintPath>
+    </Reference>
+    <Reference Include="Catalogo, Version=1.0.5711.28730, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Catalogo.dll</HintPath>
+    </Reference>
+    <Reference Include="ClienteMonederoElectronico, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ClienteMonederoElectronico.dll</HintPath>
+    </Reference>
+    <Reference Include="ClienteZonaEconomica, Version=1.0.4413.25109, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ClienteZonaEconomica.dll</HintPath>
+    </Reference>
+    <Reference Include="ConfirmacionProgramados, Version=1.0.6541.17291, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ConfirmacionProgramados.dll</HintPath>
+    </Reference>
+    <Reference Include="Contactos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Contactos.dll</HintPath>
+    </Reference>
+    <Reference Include="ContactosDL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ContactosDL.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlDocumentosDll, Version=1.0.5605.15762, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ControlDocumentosDll.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlesProveedores, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ControlesProveedores.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlFolios, Version=1.0.0.2, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ControlFolios.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlFugasPortatilClasses, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ControlFugasPortatilClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="DBNotas, Version=1.0.3671.19891, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DBNotas.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils, Version=1.5.2.3, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors, Version=1.5.2.3, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.XtraEditors.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.Core, Version=1.5.2.3, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.XtraEditors.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.Design, Version=1.5.2.3, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.XtraEditors.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid, Version=1.5.2.3, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.XtraGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.Design, Version=1.5.2.3, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.XtraGrid.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGridMenus, Version=2.0.0.3, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.XtraGridMenus.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraSideBar, Version=1.1.1.3, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DevExpress.XtraSideBar.dll</HintPath>
+    </Reference>
+    <Reference Include="DLCPedidosWeb, Version=1.0.2442.26144, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLCPedidosWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="DLEDFDatosMedidores, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLEDFDatosMedidores.dll</HintPath>
+    </Reference>
+    <Reference Include="DLProgramacionLecturas, Version=1.0.5731.21361, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLProgramacionLecturas.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentosBSR, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DocumentosBSR.dll</HintPath>
+    </Reference>
+    <Reference Include="EDFAsignacionDataLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EDFAsignacionDataLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="EDFImportacion, Version=1.0.5695.25268, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EDFImportacion.dll</HintPath>
+    </Reference>
+    <Reference Include="EDFUIImportacion, Version=1.0.5695.25269, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EDFUIImportacion.dll</HintPath>
+    </Reference>
+    <Reference Include="ExportacionDirectaReportes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ExportacionDirectaReportes.dll</HintPath>
+    </Reference>
+    <Reference Include="GeneraCiclosAutomaticos, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\GeneraCiclosAutomaticos.dll</HintPath>
+    </Reference>
+    <Reference Include="GeneracionAsignacion, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\GeneracionAsignacion.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="ImagerDecoder, Version=1.0.3595.20964, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ImagerDecoder.dll</HintPath>
+    </Reference>
+    <Reference Include="ImgCallCenter, Version=1.0.5679.31319, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ImgCallCenter.dll</HintPath>
+    </Reference>
+    <Reference Include="ImporteDescuento, Version=1.0.5605.16005, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ImporteDescuento.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Excel">
+      <Name>Interop.Excel</Name>
+      <HintPath>bin\Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.MSACAL">
+      <Name>Interop.MSACAL</Name>
+      <HintPath>bin\Interop.MSACAL.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Office">
+      <Name>Interop.Office</Name>
+      <HintPath>bin\Interop.Office.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Scripting">
+      <Name>Interop.Scripting</Name>
+      <HintPath>bin\Interop.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.VBIDE">
+      <Name>Interop.VBIDE</Name>
+      <HintPath>bin\Interop.VBIDE.dll</HintPath>
+    </Reference>
+    <Reference Include="Liquidacion, Version=1.0.3246.18718, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Liquidacion.dll</HintPath>
+    </Reference>
+    <Reference Include="LiquidacionSTN, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\LiquidacionSTN.dll</HintPath>
+    </Reference>
+    <Reference Include="Llamadas, Version=1.0.5919.27935, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Llamadas.dll</HintPath>
+    </Reference>
+    <Reference Include="MapaSoft.Runtime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MapaSoft.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic">
+      <Name>Microsoft.VisualBasic</Name>
+    </Reference>
+    <Reference Include="MRMDevKit">
+      <Name>MRMDevKit</Name>
+      <HintPath>bin\MRMDevKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NombreEmpresa, Version=1.0.5604.18811, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\NombreEmpresa.dll</HintPath>
+    </Reference>
+    <Reference Include="PantallaFranquicia, Version=1.0.5681.32900, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\PantallaFranquicia.dll</HintPath>
+    </Reference>
+    <Reference Include="PortatilClasses, Version=1.7.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\PortatilClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="PresupuestoST, Version=1.0.5681.32897, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\PresupuestoST.dll</HintPath>
+    </Reference>
+    <Reference Include="Programacion, Version=1.0.6541.17291, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Programacion.dll</HintPath>
+    </Reference>
+    <Reference Include="ProgramacionClasses, Version=1.0.3570.25757, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ProgramacionClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="ProgramacionesST, Version=0.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ProgramacionesST.dll</HintPath>
+    </Reference>
+    <Reference Include="ProspectosMetro, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ProspectosMetro.dll</HintPath>
+    </Reference>
+    <Reference Include="QuejasLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\QuejasLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactivacionPedidos, Version=1.0.2235.18706, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ReactivacionPedidos.dll</HintPath>
+    </Reference>
+    <Reference Include="ReasignacionDePedidos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ReasignacionDePedidos.dll</HintPath>
+    </Reference>
+    <Reference Include="RegularValidations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\RegularValidations.dll</HintPath>
+    </Reference>
+    <Reference Include="RelacionNotas, Version=0.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\RelacionNotas.dll</HintPath>
+    </Reference>
+    <Reference Include="RemisionesCelulaA, Version=1.0.2120.24007, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\RemisionesCelulaA.dll</HintPath>
+    </Reference>
+    <Reference Include="ReporteDinamico, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ReporteDinamico.dll</HintPath>
+    </Reference>
+    <Reference Include="RI500, Version=1.0.1588.17989, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\RI500.dll</HintPath>
+    </Reference>
+    <Reference Include="SGDAC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\SGDAC.dll</HintPath>
+    </Reference>
+    <Reference Include="SigaMetClasses, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\SigaMetClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="SIGAMETSecurity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\SIGAMETSecurity.dll</HintPath>
+    </Reference>
+    <Reference Include="SigametSeguridad, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\SigametSeguridad.dll</HintPath>
+    </Reference>
+    <Reference Include="SigametST, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\SigametST.dll</HintPath>
+    </Reference>
+    <Reference Include="STClienteEquipo, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\STClienteEquipo.dll</HintPath>
+    </Reference>
+    <Reference Include="SVCC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\SVCC.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Design">
+      <Name>System.Design</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Name>System.EnterpriseServices</Name>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="Timer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Timer.dll</HintPath>
+    </Reference>
+    <Reference Include="UDSDataLayer, Version=1.0.4604.18506, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\UDSDataLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="UDSUserInterface, Version=1.0.4604.18507, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\UDSUserInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="UIEDFAsignacion, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\UIEDFAsignacion.dll</HintPath>
+    </Reference>
+    <Reference Include="UINotas, Version=1.0.5605.16911, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\UINotas.dll</HintPath>
+    </Reference>
+    <Reference Include="ValesPromocionales, Version=1.0.2622.28229, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ValesPromocionales.dll</HintPath>
+    </Reference>
+    <Reference Include="VbPowerPack2002, Version=0.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\VbPowerPack2002.dll</HintPath>
+    </Reference>
+    <Reference Include="VentasMultinivel, Version=1.0.2355.29355, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\VentasMultinivel.dll</HintPath>
+    </Reference>
+    <Reference Include="VentasPromotor, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\VentasPromotor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AltaCheque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaDeposito.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bitacora.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BitacoraProgramacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BitacoraRemision.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarFolio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarLitros.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambioCheque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambioCheques.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambioContrato.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CancelacionC6.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cantidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapturaDatosReporte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapturaHorario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapturaPrecios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClienteConciliar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClienteExiste.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClienteLiquidacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Conciliacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaCarga.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlNotas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ctlLiquidacion.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="dsAltaCheque.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAltaCheque.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsBitacora.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBitacora.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsBitacoraProgramacion.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBitacoraProgramacion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsBitacoraRemision.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBitacoraRemision.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsCallCenter.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsCallCenter.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsCatEmpresas.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsCatEmpresas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsCelula.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsCelula.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsCelulaRuta.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsCelulaRuta.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsCheques.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsCheques.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsClienteEncontrado.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsClienteEncontrado.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsConciliacion.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsConciliacion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsCUsuario.vb">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="DsDatCliente.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsDatCliente.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsEmpresaGen.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsEmpresaGen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsEquipos.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsEquipos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsHorarioRuta.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsHorarioRuta.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsLiquida.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsLiquida.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsLiquidacion.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsLiquidacion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsLlamada.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsLlamada.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsModificacion.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsModificacion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsPedido.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPedido.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsPlaneacion.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPlaneacion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsPrograma.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPrograma.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsRBitacora.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRBitacora.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsRemisiones.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRemisiones.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsRutaCelula6.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRutaCelula6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsRutaLiquidacion.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRutaLiquidacion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsRutasLiquidaciones.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRutasLiquidaciones.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsTipoFactura.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsTipoFactura.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EntregaDocumento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extravio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAvanzaProgramacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBitacoraUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBoletin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBoletinEspere.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCalendarioCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCallCenter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCallCenterConfig.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClienteProximoSuministro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClienteRuta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClienteRutaTraspaso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsultaReporte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsultaReporteNota.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEnviarMensaje.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLiqEstacionario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLiquidacionesPendientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListaPedidosWeb.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionaRutaPreliquidacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionAutotanque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Horario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HorariosColonia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImprimeNotas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoPedidoPortatil.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfase.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InterfaseCorporativo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LecturaLiquidacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Liquidacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Liquidacion1.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Liquidacion2005.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LiquidacionRemision.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LiquidacionRemision2005.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Llamada.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Pedido.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PedidoPortatil.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Relacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ruta80.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RutaApoyo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Splash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SumaLitros.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TabBar.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tanque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TerminoLiquidacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Web References\desarrollogm\Reference.vb">
+      <DependentUpon>Reference.map</DependentUpon>
+      <SubType>code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Content Include="Boletin.ICO" />
+    <Content Include="dsAltaCheque.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAltaCheque.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsBitacora.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBitacora.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsBitacoraProgramacion.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBitacoraProgramacion.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsBitacoraRemision.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBitacoraRemision.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsCallCenter.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCallCenter.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsCatEmpresas.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCatEmpresas.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="DsCelula.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsCelula.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="DsCelulaRuta.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsCelulaRuta.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="DsCEmpresa.xsd" />
+    <Content Include="dsCheques.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCheques.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsClienteEncontrado.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsClienteEncontrado.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsConciliacion.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsConciliacion.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="DsCUsuario.xsd" />
+    <Content Include="DsDatCliente.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsDatCliente.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsEmpresaGen.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEmpresaGen.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsEquipos.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEquipos.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsHorarioRuta.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsHorarioRuta.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsLiquida.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsLiquida.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsLiquidacion.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsLiquidacion.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsLlamada.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsLlamada.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsModificacion.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsModificacion.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsPedido.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPedido.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsPlaneacion.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPlaneacion.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsPrograma.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPrograma.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsRBitacora.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRBitacora.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsRemisiones.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRemisiones.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsRutaCelula6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRutaCelula6.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsRutaLiquidacion.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRutaLiquidacion.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsRutasLiquidaciones.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRutasLiquidaciones.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="dsTipoFactura.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsTipoFactura.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="Logistica.ico" />
+    <EmbeddedResource Include="AltaCheque.resx">
+      <DependentUpon>AltaCheque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaDeposito.resx">
+      <DependentUpon>AltaDeposito.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bitacora.resx">
+      <DependentUpon>Bitacora.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BitacoraProgramacion.resx">
+      <DependentUpon>BitacoraProgramacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BitacoraRemision.resx">
+      <DependentUpon>BitacoraRemision.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuscarCliente.resx">
+      <DependentUpon>BuscarCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuscarFolio.resx">
+      <DependentUpon>BuscarFolio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuscarLitros.resx">
+      <DependentUpon>BuscarLitros.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambioCheque.resx">
+      <DependentUpon>CambioCheque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambioCheques.resx">
+      <DependentUpon>CambioCheques.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambioContrato.resx">
+      <DependentUpon>CambioContrato.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CancelacionC6.resx">
+      <DependentUpon>CancelacionC6.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cantidad.resx">
+      <DependentUpon>Cantidad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CapturaDatosReporte.resx">
+      <DependentUpon>CapturaDatosReporte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CapturaHorario.resx">
+      <DependentUpon>CapturaHorario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CapturaPrecios.resx">
+      <DependentUpon>CapturaPrecios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClienteConciliar.resx">
+      <DependentUpon>ClienteConciliar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClienteExiste.resx">
+      <DependentUpon>ClienteExiste.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClienteLiquidacion.resx">
+      <DependentUpon>ClienteLiquidacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Conciliacion.resx">
+      <DependentUpon>Conciliacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuracion.resx">
+      <DependentUpon>Configuracion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaCarga.resx">
+      <DependentUpon>ConsultaCarga.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlNotas.resx">
+      <DependentUpon>ControlNotas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlLiquidacion.resx">
+      <DependentUpon>ctlLiquidacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntregaDocumento.resx">
+      <DependentUpon>EntregaDocumento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extravio.resx">
+      <DependentUpon>Extravio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAvanzaProgramacion.resx">
+      <DependentUpon>frmAvanzaProgramacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBitacoraUsuario.resx">
+      <DependentUpon>frmBitacoraUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBoletin.resx">
+      <DependentUpon>frmBoletin.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBoletinEspere.resx">
+      <DependentUpon>frmBoletinEspere.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCalendarioCliente.resx">
+      <DependentUpon>frmCalendarioCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCallCenter.resx">
+      <DependentUpon>frmCallCenter.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCallCenterConfig.resx">
+      <DependentUpon>frmCallCenterConfig.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClienteProximoSuministro.resx">
+      <DependentUpon>frmClienteProximoSuministro.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClienteRuta.resx">
+      <DependentUpon>frmClienteRuta.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClienteRutaTraspaso.resx">
+      <DependentUpon>frmClienteRutaTraspaso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConsultaReporte.resx">
+      <DependentUpon>frmConsultaReporte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConsultaReporteNota.resx">
+      <DependentUpon>frmConsultaReporteNota.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEnviarMensaje.resx">
+      <DependentUpon>frmEnviarMensaje.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLiqEstacionario.resx">
+      <DependentUpon>frmLiqEstacionario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLiquidacionesPendientes.resx">
+      <DependentUpon>frmLiquidacionesPendientes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListaPedidosWeb.resx">
+      <DependentUpon>frmListaPedidosWeb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrincipal.resx">
+      <DependentUpon>frmPrincipal.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionaRutaPreliquidacion.resx">
+      <DependentUpon>frmSeleccionaRutaPreliquidacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionAutotanque.resx">
+      <DependentUpon>frmSeleccionAutotanque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Horario.resx">
+      <DependentUpon>Horario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HorariosColonia.resx">
+      <DependentUpon>HorariosColonia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImprimeNotas.resx">
+      <DependentUpon>ImprimeNotas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoPedidoPortatil.resx">
+      <DependentUpon>InfoPedidoPortatil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfase.resx">
+      <DependentUpon>Interfase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfaseCorporativo.resx">
+      <DependentUpon>InterfaseCorporativo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LecturaLiquidacion.resx">
+      <DependentUpon>LecturaLiquidacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Liquidacion.resx">
+      <DependentUpon>Liquidacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Liquidacion1.resx">
+      <DependentUpon>Liquidacion1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Liquidacion2005.resx">
+      <DependentUpon>Liquidacion2005.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LiquidacionRemision.resx">
+      <DependentUpon>LiquidacionRemision.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LiquidacionRemision2005.resx">
+      <DependentUpon>LiquidacionRemision2005.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Llamada.resx">
+      <DependentUpon>Llamada.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pedido.resx">
+      <DependentUpon>Pedido.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PedidoPortatil.resx">
+      <DependentUpon>PedidoPortatil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relacion.resx">
+      <DependentUpon>Relacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ruta80.resx">
+      <DependentUpon>Ruta80.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RutaApoyo.resx">
+      <DependentUpon>RutaApoyo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Splash.resx">
+      <DependentUpon>Splash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SumaLitros.resx">
+      <DependentUpon>SumaLitros.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabBar.resx">
+      <DependentUpon>TabBar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tanque.resx">
+      <DependentUpon>Tanque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TerminoLiquidacion.resx">
+      <DependentUpon>TerminoLiquidacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsAltaCheque.xsx">
+      <DependentUpon>dsAltaCheque.xsd</DependentUpon>
+    </None>
+    <None Include="dsBitacora.xsc">
+      <DependentUpon>dsBitacora.xsd</DependentUpon>
+    </None>
+    <None Include="dsBitacora.xsx">
+      <DependentUpon>dsBitacora.xsd</DependentUpon>
+    </None>
+    <None Include="dsBitacoraProgramacion.xsx">
+      <DependentUpon>dsBitacoraProgramacion.xsd</DependentUpon>
+    </None>
+    <None Include="dsBitacoraRemision.xsx">
+      <DependentUpon>dsBitacoraRemision.xsd</DependentUpon>
+    </None>
+    <None Include="dsCallCenter.xsx">
+      <DependentUpon>dsCallCenter.xsd</DependentUpon>
+    </None>
+    <None Include="DsCelula.xsx">
+      <DependentUpon>DsCelula.xsd</DependentUpon>
+    </None>
+    <None Include="DsCEmpresa.xsx">
+      <DependentUpon>DsCEmpresa.xsd</DependentUpon>
+    </None>
+    <None Include="dsCheques.xsc">
+      <DependentUpon>dsCheques.xsd</DependentUpon>
+    </None>
+    <None Include="dsCheques.xsx">
+      <DependentUpon>dsCheques.xsd</DependentUpon>
+    </None>
+    <None Include="dsClienteEncontrado.xsx">
+      <DependentUpon>dsClienteEncontrado.xsd</DependentUpon>
+    </None>
+    <None Include="dsConciliacion.xsx">
+      <DependentUpon>dsConciliacion.xsd</DependentUpon>
+    </None>
+    <None Include="DsDatCliente.xsx">
+      <DependentUpon>DsDatCliente.xsd</DependentUpon>
+    </None>
+    <None Include="dsEquipos.xsx">
+      <DependentUpon>dsEquipos.xsd</DependentUpon>
+    </None>
+    <None Include="dsHorarioRuta.xsx">
+      <DependentUpon>dsHorarioRuta.xsd</DependentUpon>
+    </None>
+    <None Include="dsLiquida.xsx">
+      <DependentUpon>dsLiquida.xsd</DependentUpon>
+    </None>
+    <None Include="dsLiquidacion.xsx">
+      <DependentUpon>dsLiquidacion.xsd</DependentUpon>
+    </None>
+    <None Include="dsLlamada.xsc">
+      <DependentUpon>dsLlamada.xsd</DependentUpon>
+    </None>
+    <None Include="dsLlamada.xss">
+      <DependentUpon>dsLlamada.xsd</DependentUpon>
+    </None>
+    <None Include="dsLlamada.xsx">
+      <DependentUpon>dsLlamada.xsd</DependentUpon>
+    </None>
+    <None Include="dsModificacion.xsc">
+      <DependentUpon>dsModificacion.xsd</DependentUpon>
+    </None>
+    <None Include="dsModificacion.xsx">
+      <DependentUpon>dsModificacion.xsd</DependentUpon>
+    </None>
+    <None Include="dsPedido.xsc">
+      <DependentUpon>dsPedido.xsd</DependentUpon>
+    </None>
+    <None Include="dsPedido.xsx">
+      <DependentUpon>dsPedido.xsd</DependentUpon>
+    </None>
+    <None Include="dsPlaneacion.xsx">
+      <DependentUpon>dsPlaneacion.xsd</DependentUpon>
+    </None>
+    <None Include="dsPrograma.xsx">
+      <DependentUpon>dsPrograma.xsd</DependentUpon>
+    </None>
+    <None Include="dsRBitacora.xsx">
+      <DependentUpon>dsRBitacora.xsd</DependentUpon>
+    </None>
+    <None Include="dsRemisiones.xsx">
+      <DependentUpon>dsRemisiones.xsd</DependentUpon>
+    </None>
+    <None Include="dsRutaCelula6.xsx">
+      <DependentUpon>dsRutaCelula6.xsd</DependentUpon>
+    </None>
+    <None Include="dsRutaLiquidacion.xsx">
+      <DependentUpon>dsRutaLiquidacion.xsd</DependentUpon>
+    </None>
+    <None Include="dsRutasLiquidaciones.xsx">
+      <DependentUpon>dsRutasLiquidaciones.xsd</DependentUpon>
+    </None>
+    <None Include="dsTipoFactura.xsx">
+      <DependentUpon>dsTipoFactura.xsd</DependentUpon>
+    </None>
+    <None Include="Web References\desarrollogm\Pedido.disco" />
+    <None Include="Web References\desarrollogm\Pedido.wsdl" />
+    <None Include="Web References\desarrollogm\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <WebReferences Include="Web References\" />
+    <WebReferenceUrl Include="http://PYROS:9004/Pedido.asmx">
+      <RelPath>Web References\desarrollogm\</RelPath>
+      <UrlBehavior>Static</UrlBehavior>
+      <UpdateFromURL>http://PYROS:9004/Pedido.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>
+      </CachedAppSettingsObjectName>
+      <CachedSettingsPropName>
+      </CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Librerias\MobileGas\MobileGas.vbproj">
+      <Project>{EA452C17-37AC-4E9D-BA80-B43E77731812}</Project>
+      <Name>MobileGas</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent />
+    <PostBuildEvent />
+  </PropertyGroup>
+</Project>

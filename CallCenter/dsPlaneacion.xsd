@@ -1,0 +1,82 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="dsPlaneacion" targetNamespace="http://www.tempuri.org/dsPlaneacion.xsd" xmlns:mstns="http://www.tempuri.org/dsPlaneacion.xsd" xmlns="http://www.tempuri.org/dsPlaneacion.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="dsPlaneacion" msdata:IsDataSet="true" msdata:Locale="es-MX">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Celula">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Celula" type="xs:unsignedByte" />
+							<xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Pedido">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Anio" msdata:ReadOnly="true" type="xs:int" minOccurs="0" />
+							<xs:element name="Pedido" type="xs:int" minOccurs="0" />
+							<xs:element name="TipoPedido" msdata:ReadOnly="true" type="xs:int" minOccurs="0" />
+							<xs:element name="Producto" msdata:ReadOnly="true" type="xs:int" minOccurs="0" />
+							<xs:element name="FPedido" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Status" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="Ruta" type="xs:short" minOccurs="0" />
+							<xs:element name="Celula" type="xs:unsignedByte" minOccurs="0" />
+							<xs:element name="Cliente" type="xs:int" minOccurs="0" />
+							<xs:element name="Tipo" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="Usuario" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Cliente">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Cliente" type="xs:int" />
+							<xs:element name="Nombre" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+							<xs:element name="FUltimoSurtido" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="ConsumoPromedio" msdata:ReadOnly="true" type="xs:decimal" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Programacion">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Cliente" type="xs:long" minOccurs="0" />
+							<xs:element name="Programa" type="xs:int" minOccurs="0" />
+							<xs:element name="ProgramaTexto" type="xs:string" minOccurs="0" />
+							<xs:element name="HorarioTexto" type="xs:string" minOccurs="0" />
+							<xs:element name="DiaFestivo" type="xs:string" minOccurs="0" />
+							<xs:element name="FInicioPrograma" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Observaciones" type="xs:string" minOccurs="0" />
+							<xs:element name="Status" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Festivo">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Dia" msdata:ReadOnly="true" type="xs:dateTime" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Programa">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="NumPedidos" msdata:ReadOnly="true" type="xs:int" minOccurs="0" />
+							<xs:element name="ConsumoPromedio" msdata:ReadOnly="true" type="xs:int" minOccurs="0" />
+							<xs:element name="Fecha" type="xs:dateTime" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="Constraint1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Celula" />
+			<xs:field xpath="mstns:Celula" />
+		</xs:unique>
+		<xs:unique name="Cliente_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Cliente" />
+			<xs:field xpath="mstns:Cliente" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>

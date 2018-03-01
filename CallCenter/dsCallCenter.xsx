@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Este archivo lo genera de forma automática el diseñador de esquemas XML. Contiene información de diseño para componentes de la superficie de diseño.-->
+<XSDDesignerLayout layoutVersion="1" viewPortLeft="18480" viewPortTop="0">
+    <Empresa_XmlElement left="635" top="635" width="5292" height="2963" selected="0" zOrder="7" index="0" />
+    <Calle_XmlElement left="7197" top="841" width="5292" height="2963" selected="0" zOrder="8" index="1" />
+    <CalleColonia_XmlElement left="8573" top="4253" width="5292" height="2963" selected="0" zOrder="9" index="2" />
+    <Ruta_XmlElement left="1085" top="4465" width="5292" height="2963" selected="0" zOrder="10" index="3" />
+    <Colonia_XmlElement left="13945" top="1792" width="5292" height="3122" selected="0" zOrder="11" index="4" />
+    <CP_XmlElement left="-184" top="8276" width="5292" height="2963" selected="0" zOrder="12" index="5" />
+    <MunicipioColonia_XmlElement left="7013" top="8648" width="5292" height="2963" selected="0" zOrder="13" index="6" />
+    <Municipio_XmlElement left="13495" top="8832" width="5292" height="3122" selected="0" zOrder="14" index="7" />
+    <ColoniaCP_XmlElement left="20507" top="1000" width="5292" height="3122" selected="0" zOrder="15" index="8" />
+    <Llamada_XmlElement left="33631" top="1000" width="5292" height="3122" selected="0" zOrder="16" index="9" />
+    <ClienteEquipo_XmlElement left="40193" top="1000" width="5292" height="3122" selected="0" zOrder="0" index="10" />
+    <Programa_XmlElement left="36405" top="8176" width="5292" height="3122" selected="0" zOrder="2" index="11" />
+    <Pedido_XmlElement left="45459" top="4836" width="5292" height="3122" selected="0" zOrder="3" index="12" />
+    <Cliente_XmlElement left="52021" top="1000" width="5292" height="3122" selected="0" zOrder="5" index="13" />
+</XSDDesignerLayout>

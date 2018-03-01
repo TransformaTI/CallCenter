@@ -1,0 +1,58 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="dsPedido" targetNamespace="http://www.tempuri.org/dsPedido.xsd" xmlns:mstns="http://www.tempuri.org/dsPedido.xsd" xmlns="http://www.tempuri.org/dsPedido.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="dsPedido" msdata:IsDataSet="true" msdata:Locale="es-MX">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Producto">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Producto" type="xs:short" />
+							<xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Prioridad">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PrioridadPedido" type="xs:unsignedByte" />
+							<xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Horario">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Lunes" type="xs:string" minOccurs="0" />
+							<xs:element name="Martes" type="xs:string" minOccurs="0" />
+							<xs:element name="Miercoles" type="xs:string" minOccurs="0" />
+							<xs:element name="Jueves" type="xs:string" minOccurs="0" />
+							<xs:element name="Viernes" type="xs:string" minOccurs="0" />
+							<xs:element name="Sabado" type="xs:string" minOccurs="0" />
+							<xs:element name="Domingo" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="TipoPedido">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TipoPedido" type="xs:unsignedByte" />
+							<xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="Constraint1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Producto" />
+			<xs:field xpath="mstns:Producto" />
+		</xs:unique>
+		<xs:unique name="Prioridad_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Prioridad" />
+			<xs:field xpath="mstns:PrioridadPedido" />
+		</xs:unique>
+		<xs:unique name="Table_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:TipoPedido" />
+			<xs:field xpath="mstns:TipoPedido" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>

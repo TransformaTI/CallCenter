@@ -1,0 +1,78 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="dsAltaCheque" targetNamespace="http://www.tempuri.org/dsAltaCheque.xsd" xmlns:mstns="http://www.tempuri.org/dsAltaCheque.xsd" xmlns="http://www.tempuri.org/dsAltaCheque.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="dsAltaCheque" msdata:IsDataSet="true" msdata:Locale="es-MX">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="Banco">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Banco" type="xs:short" />
+              <xs:element name="Nombre" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Table">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Ruta" type="xs:short" />
+              <xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CalleColonia">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Calle" type="xs:int" />
+              <xs:element name="Colonia" type="xs:int" />
+              <xs:element name="CP" type="xs:string" minOccurs="0" />
+              <xs:element name="Municipio" type="xs:int" minOccurs="0" />
+              <xs:element name="Nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="Soundex" type="xs:string" minOccurs="0" />
+              <xs:element name="Estado" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="DesMunicipio" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Celula">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Celula" type="xs:unsignedByte" />
+              <xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+              <xs:element name="Siglas" type="xs:string" minOccurs="0" />
+              <xs:element name="Producto" type="xs:short" minOccurs="0" />
+              <xs:element name="Telefono" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Usuario">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Usuario" type="xs:string" />
+              <xs:element name="Nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="Clave" type="xs:string" minOccurs="0" />
+              <xs:element name="Empleado" type="xs:int" minOccurs="0" />
+              <xs:element name="Celula" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="Status" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Banco" />
+      <xs:field xpath="mstns:Banco" />
+    </xs:unique>
+    <xs:unique name="Table_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Table" />
+      <xs:field xpath="mstns:Ruta" />
+    </xs:unique>
+    <xs:unique name="Celula_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Celula" />
+      <xs:field xpath="mstns:Celula" />
+    </xs:unique>
+    <xs:unique name="Usuario_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Usuario" />
+      <xs:field xpath="mstns:Usuario" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

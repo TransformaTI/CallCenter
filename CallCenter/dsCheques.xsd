@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="dsCheques" targetNamespace="http://www.tempuri.org/dsCheques.xsd" xmlns:mstns="http://www.tempuri.org/dsCheques.xsd" xmlns="http://www.tempuri.org/dsCheques.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="dsCheques" msdata:IsDataSet="true" msdata:Locale="es-MX">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Cheques">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AñoCobro" type="xs:short" />
+							<xs:element name="Cobro" type="xs:int" />
+							<xs:element name="Importe" type="xs:decimal" />
+							<xs:element name="Impuesto" type="xs:decimal" />
+							<xs:element name="Total" type="xs:decimal" />
+							<xs:element name="Banco" type="xs:short" minOccurs="0" />
+							<xs:element name="Cliente" type="xs:int" minOccurs="0" />
+							<xs:element name="Saldo" type="xs:decimal" />
+							<xs:element name="NumeroCheque" type="xs:string" minOccurs="0" />
+							<xs:element name="Fcheque" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="NumeroCuenta" type="xs:string" minOccurs="0" />
+							<xs:element name="Expr1" type="xs:short" minOccurs="0" />
+							<xs:element name="Expr2" type="xs:int" minOccurs="0" />
+							<xs:element name="Nombre" type="xs:string" minOccurs="0" />
+							<xs:element name="NombreBanco" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

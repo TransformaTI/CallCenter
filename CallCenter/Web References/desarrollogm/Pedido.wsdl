@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="BoletinarPedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PedidoReferencia" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="EsProgramacion" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Autotanque" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdEstacionSGC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Observaciones" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BoletinarPedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BoletinarPedidoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaAutotanquesPorRutaYDia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ruta" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FechaI" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="FechaF" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaAutotanquesPorRutaYDiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaAutotanquesPorRutaYDiaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaPedidosPorAutotanqueFecha">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Autotanque" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FechaCompromiso" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaPedidosPorAutotanqueFechaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaPedidosPorAutotanqueFechaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Reasignacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AutotanqueDestino" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Datos">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdEstacionSGC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReasignacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReasignacionResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtieneCelulas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtieneCelulasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtieneCelulasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtieneRutasPorCelula">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Celula" type="tns:Celula" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Celula">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdCelula" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdEstacionSGC" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExtensionDataObject" />
+      <s:element name="ObtieneRutasPorCelulaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtieneRutasPorCelulaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtieneAutotanquesPorRuta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ruta" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtieneAutotanquesPorRutaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtieneAutotanquesPorRutaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelaPedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Destino" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IDPedido" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelaPedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CancelaPedidoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelaPedidoCallCenter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PedidoReferencia" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelaPedidoCallCenterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CancelaPedidoCallCenterResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistrarMensaje">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Destino" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistrarMensajeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegistrarMensajeResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaPedidoConfiguracionAnulada">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Estacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Configuracion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Celula" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="AñoPed" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="IDPedido" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Observaciones" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaPedidoConfiguracionAnuladaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AltaPedidoConfiguracionAnuladaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BoletinarPedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:BoletinarPedido" />
+  </wsdl:message>
+  <wsdl:message name="BoletinarPedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:BoletinarPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaAutotanquesPorRutaYDiaSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaAutotanquesPorRutaYDia" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaAutotanquesPorRutaYDiaSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaAutotanquesPorRutaYDiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaPedidosPorAutotanqueFechaSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaPedidosPorAutotanqueFecha" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaPedidosPorAutotanqueFechaSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaPedidosPorAutotanqueFechaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReasignacionSoapIn">
+    <wsdl:part name="parameters" element="tns:Reasignacion" />
+  </wsdl:message>
+  <wsdl:message name="ReasignacionSoapOut">
+    <wsdl:part name="parameters" element="tns:ReasignacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtieneCelulasSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtieneCelulas" />
+  </wsdl:message>
+  <wsdl:message name="ObtieneCelulasSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtieneCelulasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtieneRutasPorCelulaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtieneRutasPorCelula" />
+  </wsdl:message>
+  <wsdl:message name="ObtieneRutasPorCelulaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtieneRutasPorCelulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtieneAutotanquesPorRutaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtieneAutotanquesPorRuta" />
+  </wsdl:message>
+  <wsdl:message name="ObtieneAutotanquesPorRutaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtieneAutotanquesPorRutaResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelaPedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelaPedido" />
+  </wsdl:message>
+  <wsdl:message name="CancelaPedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelaPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelaPedidoCallCenterSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelaPedidoCallCenter" />
+  </wsdl:message>
+  <wsdl:message name="CancelaPedidoCallCenterSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelaPedidoCallCenterResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegistrarMensajeSoapIn">
+    <wsdl:part name="parameters" element="tns:RegistrarMensaje" />
+  </wsdl:message>
+  <wsdl:message name="RegistrarMensajeSoapOut">
+    <wsdl:part name="parameters" element="tns:RegistrarMensajeResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaPedidoConfiguracionAnuladaSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaPedidoConfiguracionAnulada" />
+  </wsdl:message>
+  <wsdl:message name="AltaPedidoConfiguracionAnuladaSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaPedidoConfiguracionAnuladaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PedidoSoap">
+    <wsdl:operation name="BoletinarPedido">
+      <wsdl:input message="tns:BoletinarPedidoSoapIn" />
+      <wsdl:output message="tns:BoletinarPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAutotanquesPorRutaYDia">
+      <wsdl:input message="tns:ConsultaAutotanquesPorRutaYDiaSoapIn" />
+      <wsdl:output message="tns:ConsultaAutotanquesPorRutaYDiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaPedidosPorAutotanqueFecha">
+      <wsdl:input message="tns:ConsultaPedidosPorAutotanqueFechaSoapIn" />
+      <wsdl:output message="tns:ConsultaPedidosPorAutotanqueFechaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Reasignacion">
+      <wsdl:input message="tns:ReasignacionSoapIn" />
+      <wsdl:output message="tns:ReasignacionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneCelulas">
+      <wsdl:input message="tns:ObtieneCelulasSoapIn" />
+      <wsdl:output message="tns:ObtieneCelulasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneRutasPorCelula">
+      <wsdl:input message="tns:ObtieneRutasPorCelulaSoapIn" />
+      <wsdl:output message="tns:ObtieneRutasPorCelulaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneAutotanquesPorRuta">
+      <wsdl:input message="tns:ObtieneAutotanquesPorRutaSoapIn" />
+      <wsdl:output message="tns:ObtieneAutotanquesPorRutaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelaPedido">
+      <wsdl:input message="tns:CancelaPedidoSoapIn" />
+      <wsdl:output message="tns:CancelaPedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelaPedidoCallCenter">
+      <wsdl:input message="tns:CancelaPedidoCallCenterSoapIn" />
+      <wsdl:output message="tns:CancelaPedidoCallCenterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarMensaje">
+      <wsdl:input message="tns:RegistrarMensajeSoapIn" />
+      <wsdl:output message="tns:RegistrarMensajeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AltaPedidoConfiguracionAnulada">
+      <wsdl:input message="tns:AltaPedidoConfiguracionAnuladaSoapIn" />
+      <wsdl:output message="tns:AltaPedidoConfiguracionAnuladaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PedidoSoap" type="tns:PedidoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BoletinarPedido">
+      <soap:operation soapAction="http://tempuri.org/BoletinarPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAutotanquesPorRutaYDia">
+      <soap:operation soapAction="http://tempuri.org/ConsultaAutotanquesPorRutaYDia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaPedidosPorAutotanqueFecha">
+      <soap:operation soapAction="http://tempuri.org/ConsultaPedidosPorAutotanqueFecha" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reasignacion">
+      <soap:operation soapAction="http://tempuri.org/Reasignacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneCelulas">
+      <soap:operation soapAction="http://tempuri.org/ObtieneCelulas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneRutasPorCelula">
+      <soap:operation soapAction="http://tempuri.org/ObtieneRutasPorCelula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneAutotanquesPorRuta">
+      <soap:operation soapAction="http://tempuri.org/ObtieneAutotanquesPorRuta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelaPedido">
+      <soap:operation soapAction="http://tempuri.org/CancelaPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelaPedidoCallCenter">
+      <soap:operation soapAction="http://tempuri.org/CancelaPedidoCallCenter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarMensaje">
+      <soap:operation soapAction="http://tempuri.org/RegistrarMensaje" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AltaPedidoConfiguracionAnulada">
+      <soap:operation soapAction="http://tempuri.org/AltaPedidoConfiguracionAnulada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PedidoSoap12" type="tns:PedidoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BoletinarPedido">
+      <soap12:operation soapAction="http://tempuri.org/BoletinarPedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAutotanquesPorRutaYDia">
+      <soap12:operation soapAction="http://tempuri.org/ConsultaAutotanquesPorRutaYDia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaPedidosPorAutotanqueFecha">
+      <soap12:operation soapAction="http://tempuri.org/ConsultaPedidosPorAutotanqueFecha" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reasignacion">
+      <soap12:operation soapAction="http://tempuri.org/Reasignacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneCelulas">
+      <soap12:operation soapAction="http://tempuri.org/ObtieneCelulas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneRutasPorCelula">
+      <soap12:operation soapAction="http://tempuri.org/ObtieneRutasPorCelula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtieneAutotanquesPorRuta">
+      <soap12:operation soapAction="http://tempuri.org/ObtieneAutotanquesPorRuta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelaPedido">
+      <soap12:operation soapAction="http://tempuri.org/CancelaPedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelaPedidoCallCenter">
+      <soap12:operation soapAction="http://tempuri.org/CancelaPedidoCallCenter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarMensaje">
+      <soap12:operation soapAction="http://tempuri.org/RegistrarMensaje" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AltaPedidoConfiguracionAnulada">
+      <soap12:operation soapAction="http://tempuri.org/AltaPedidoConfiguracionAnulada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Pedido">
+    <wsdl:port name="PedidoSoap" binding="tns:PedidoSoap">
+      <soap:address location="http://pyros:9004/Pedido.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PedidoSoap12" binding="tns:PedidoSoap12">
+      <soap12:address location="http://pyros:9004/Pedido.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

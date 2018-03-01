@@ -1,0 +1,107 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="dsLiquidacion" targetNamespace="http://www.tempuri.org/dsLiquidacion.xsd" xmlns:mstns="http://www.tempuri.org/dsLiquidacion.xsd"
+	xmlns="http://www.tempuri.org/dsLiquidacion.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="dsLiquidacion" msdata:IsDataSet="true" msdata:Locale="es-MX">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Pedido">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Celula" type="xs:unsignedByte" />
+							<xs:element name="Ruta" type="xs:short" />
+							<xs:element name="AñoNota" type="xs:int" />
+							<xs:element name="Nota" type="xs:int" />
+							<xs:element name="AñoPed" type="xs:short" minOccurs="0" />
+							<xs:element name="Pedido" type="xs:int" minOccurs="0" />
+							<xs:element name="Cliente" type="xs:int" minOccurs="0" />
+							<xs:element name="Nombre" msdata:ReadOnly="true" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="TipoPago">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Tipo" type="xs:int" minOccurs="0" />
+							<xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Documento">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Banco" type="xs:long" minOccurs="0" />
+							<xs:element name="Cheque" type="xs:string" minOccurs="0" />
+							<xs:element name="FCheque" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Cuenta" type="xs:string" minOccurs="0" />
+							<xs:element name="Monto" type="xs:decimal" minOccurs="0" />
+							<xs:element name="Disponible" type="xs:decimal" minOccurs="0" />
+							<xs:element name="DesBanco" type="xs:string" minOccurs="0" />
+							<xs:element name="Llave" type="xs:long" />
+							<xs:element name="Tipo" type="xs:long" minOccurs="0" />
+							<xs:element name="TipoDes" type="xs:string" minOccurs="0" />
+							<xs:element name="Cliente" type="xs:long" minOccurs="0" />
+							<xs:element name="Nombre" type="xs:string" minOccurs="0" />
+							<xs:element name="PosFechado" type="xs:string" minOccurs="0" />
+							<xs:element name="TPV" type="xs:boolean" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Detalle">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Cliente" type="xs:string" minOccurs="0" />
+							<xs:element name="Monto" type="xs:decimal" minOccurs="0" />
+							<xs:element name="Tipo" type="xs:long" minOccurs="0" />
+							<xs:element name="DesTipo" type="xs:string" minOccurs="0" />
+							<xs:element name="Banco" type="xs:long" minOccurs="0" />
+							<xs:element name="Cheque" type="xs:string" minOccurs="0" />
+							<xs:element name="Cuenta" type="xs:string" minOccurs="0" />
+							<xs:element name="NombreBanco" type="xs:string" minOccurs="0" />
+							<xs:element name="Nombre" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Banco">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Banco" type="xs:short" />
+							<xs:element name="Nombre" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Cliente">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Monto" type="xs:decimal" minOccurs="0" />
+							<xs:element name="Nombre" type="xs:string" minOccurs="0" />
+							<xs:element name="Disponible" type="xs:decimal" minOccurs="0" />
+							<xs:element name="Cliente" type="xs:long" minOccurs="0" />
+							<xs:element name="Litros" type="xs:double" minOccurs="0" />
+							<xs:element name="Tipo" type="xs:int" minOccurs="0" />
+							<xs:element name="DesTipo" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Operador">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AñoAtt" type="xs:short" />
+							<xs:element name="Folio" type="xs:int" />
+							<xs:element name="Ruta" type="xs:short" />
+							<xs:element name="Celula" type="xs:unsignedByte" minOccurs="0" />
+							<xs:element name="Autotanque" type="xs:short" minOccurs="0" />
+							<xs:element name="Operador" type="xs:int" />
+							<xs:element name="Nombre" type="xs:string" minOccurs="0" />
+							<xs:element name="LitrosLiquidados" type="xs:double" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="Constraint1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Banco" />
+			<xs:field xpath="mstns:Banco" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>

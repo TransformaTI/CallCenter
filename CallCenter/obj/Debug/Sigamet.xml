@@ -1,0 +1,1915 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Sigamet
+</name>
+</assembly>
+<members>
+<member name="T:Sigamet.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Sigamet.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Sigamet.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.BancoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque._TableDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.CalleColoniaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.CelulaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.UsuarioDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.BancoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque._TableRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.CalleColoniaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.CelulaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.UsuarioRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.BancoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque._TableRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.CalleColoniaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.CelulaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsAltaCheque.UsuarioRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacora">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacora.BitacoraDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacora.BitacoraRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacora.BitacoraRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacoraProgramacion">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacoraProgramacion.BitacoraDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacoraProgramacion.BitacoraRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacoraProgramacion.BitacoraRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacoraRemision">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacoraRemision.BitacoraDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacoraRemision.BitacoraRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsBitacoraRemision.BitacoraRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.EmpresaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.CalleDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.CalleColoniaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.RutaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ColoniaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.CPDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.MunicipioColoniaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.MunicipioDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ColoniaCPDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.LlamadaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ClienteEquipoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ProgramaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.PedidoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ClienteDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.EmpresaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.CalleRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.CalleColoniaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.RutaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ColoniaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.CPRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.MunicipioColoniaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.MunicipioRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ColoniaCPRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.LlamadaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ClienteEquipoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ProgramaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.PedidoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ClienteRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.EmpresaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.CalleRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.CalleColoniaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.RutaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ColoniaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.CPRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.MunicipioColoniaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.MunicipioRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ColoniaCPRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.LlamadaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ClienteEquipoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ProgramaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.PedidoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCallCenter.ClienteRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCatEmpresas">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsCatEmpresas.EmpresaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCatEmpresas.BitacoraEmpresaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCatEmpresas.EmpresaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCatEmpresas.BitacoraEmpresaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCatEmpresas.EmpresaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCatEmpresas.BitacoraEmpresaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsCelula">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelula.CelulaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelula.RutaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelula.ColoniaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelula.CelulaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelula.RutaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelula.ColoniaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelula.CelulaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsCelula.RutaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsCelula.ColoniaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsCelulaRuta">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelulaRuta.CelulaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelulaRuta.RutaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelulaRuta.UsuarioDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelulaRuta.CelulaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelulaRuta.RutaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelulaRuta.UsuarioRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsCelulaRuta.CelulaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsCelulaRuta.RutaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsCelulaRuta.UsuarioRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsCheques">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsCheques.ChequesDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCheques.ChequesRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsCheques.ChequesRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsClienteEncontrado">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsClienteEncontrado.ClienteDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsClienteEncontrado.ClienteRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsClienteEncontrado.ClienteRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsConciliacion">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsConciliacion.OperadorDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsConciliacion.RutaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsConciliacion.PedidoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsConciliacion.OperadorRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsConciliacion.RutaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsConciliacion.PedidoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsConciliacion.OperadorRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsConciliacion.RutaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsConciliacion.PedidoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.CalleDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.CalleColoniaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.ColoniaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.DatosDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.MunicipioColoniaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.CPDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.RutaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.ClasificacionClienteDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.RamoClienteDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.TipoClienteDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.PedidoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.ColoniaCPDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.MunicipioDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente._TableDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.CalleRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.CalleColoniaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.ColoniaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.DatosRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.MunicipioColoniaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.CPRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.RutaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.ClasificacionClienteRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.RamoClienteRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.TipoClienteRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.PedidoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.ColoniaCPRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.MunicipioRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente._TableRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.CalleRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.CalleColoniaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.ColoniaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.DatosRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.MunicipioColoniaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.CPRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.RutaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.ClasificacionClienteRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.RamoClienteRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.TipoClienteRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.PedidoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.ColoniaCPRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente.MunicipioRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.DsDatCliente._TableRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsEmpresaGen">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsEmpresaGen.EmpresaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsEmpresaGen.BitacoraEmpresaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsEmpresaGen.EmpresaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsEmpresaGen.BitacoraEmpresaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsEmpresaGen.EmpresaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsEmpresaGen.BitacoraEmpresaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsEquipos">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsEquipos.EquipoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsEquipos.TipoPropiedadDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsEquipos.ClienteEquipoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsEquipos.EquipoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsEquipos.TipoPropiedadRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsEquipos.ClienteEquipoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsEquipos.EquipoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsEquipos.TipoPropiedadRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsEquipos.ClienteEquipoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsHorarioRuta">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsHorarioRuta.RutaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsHorarioRuta.HorarioDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsHorarioRuta.RutaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsHorarioRuta.HorarioRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsHorarioRuta.RutaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsHorarioRuta.HorarioRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquida">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquida.CelulaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquida.CelulaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquida.CelulaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.PedidoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.TipoPagoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.DocumentoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.DetalleDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.BancoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.ClienteDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.OperadorDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.PedidoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.TipoPagoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.DocumentoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.DetalleRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.BancoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.ClienteRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.OperadorRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.PedidoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.TipoPagoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.DocumentoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.DetalleRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.BancoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.ClienteRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsLiquidacion.OperadorRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsLlamada">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsLlamada.AutotanqueDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLlamada.MotivoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLlamada.OperadorDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLlamada.AutotanqueRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLlamada.MotivoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLlamada.OperadorRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsLlamada.AutotanqueRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsLlamada.MotivoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsLlamada.OperadorRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsModificacion">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsModificacion.CelulaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsModificacion.PedidoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsModificacion.RampacDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsModificacion.CelulaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsModificacion.PedidoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsModificacion.RampacRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsModificacion.CelulaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsModificacion.PedidoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsModificacion.RampacRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.ProductoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.PrioridadDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.HorarioDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.TipoPedidoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.ProductoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.PrioridadRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.HorarioRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.TipoPedidoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.ProductoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.PrioridadRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.HorarioRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPedido.TipoPedidoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.CelulaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.PedidoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.ClienteDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.ProgramacionDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.FestivoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.ProgramaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.CelulaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.PedidoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.ClienteRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.ProgramacionRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.FestivoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.ProgramaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.CelulaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.PedidoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.ClienteRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.ProgramacionRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.FestivoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPlaneacion.ProgramaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPrograma">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsPrograma.ProgramaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPrograma.HorarioDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPrograma.ProgramaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPrograma.HorarioRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsPrograma.ProgramaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsPrograma.HorarioRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRBitacora">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsRBitacora.CelulaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRBitacora.UsuarioDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRBitacora.CelulaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRBitacora.UsuarioRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRBitacora.CelulaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRBitacora.UsuarioRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.CelulaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.ProgramacionesDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.ProgramaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.PedidosDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.NotasDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.BitacoraDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.RutaGeneradaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.CelulaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.ProgramacionesRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.ProgramaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.PedidosRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.NotasRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.BitacoraRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.RutaGeneradaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.CelulaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.ProgramacionesRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.ProgramaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.PedidosRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.NotasRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.BitacoraRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRemisiones.RutaGeneradaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRutaCelula6">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsRutaCelula6.RutaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRutaCelula6.RutaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRutaCelula6.RutaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRutaLiquidacion">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsRutaLiquidacion.RutaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRutaLiquidacion.RutaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRutaLiquidacion.RutaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsRutasLiquidaciones">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsRutasLiquidaciones.RutasDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRutasLiquidaciones.RutasRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsRutasLiquidaciones.RutasRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.dsTipoFactura">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Sigamet.dsTipoFactura.TipoFacturaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Sigamet.dsTipoFactura.TipoFacturaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Sigamet.dsTipoFactura.TipoFacturaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Sigamet.desarrollogm.Pedido">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.#ctor">
+<remarks/>
+</member>
+<member name="E:Sigamet.desarrollogm.Pedido.BoletinarPedidoCompleted">
+<remarks/>
+</member>
+<member name="E:Sigamet.desarrollogm.Pedido.ConsultaAutotanquesPorRutaYDiaCompleted">
+<remarks/>
+</member>
+<member name="E:Sigamet.desarrollogm.Pedido.ConsultaPedidosPorAutotanqueFechaCompleted">
+<remarks/>
+</member>
+<member name="E:Sigamet.desarrollogm.Pedido.ReasignacionCompleted">
+<remarks/>
+</member>
+<member name="E:Sigamet.desarrollogm.Pedido.ObtieneCelulasCompleted">
+<remarks/>
+</member>
+<member name="E:Sigamet.desarrollogm.Pedido.ObtieneRutasPorCelulaCompleted">
+<remarks/>
+</member>
+<member name="E:Sigamet.desarrollogm.Pedido.ObtieneAutotanquesPorRutaCompleted">
+<remarks/>
+</member>
+<member name="E:Sigamet.desarrollogm.Pedido.CancelaPedidoCompleted">
+<remarks/>
+</member>
+<member name="E:Sigamet.desarrollogm.Pedido.CancelaPedidoCallCenterCompleted">
+<remarks/>
+</member>
+<member name="E:Sigamet.desarrollogm.Pedido.RegistrarMensajeCompleted">
+<remarks/>
+</member>
+<member name="E:Sigamet.desarrollogm.Pedido.AltaPedidoConfiguracionAnuladaCompleted">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BoletinarPedido(System.String,System.String,System.String,System.Boolean,System.Int32,System.String,System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BeginBoletinarPedido(System.String,System.String,System.String,System.Boolean,System.Int32,System.String,System.String,System.AsyncCallback,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.EndBoletinarPedido(System.IAsyncResult)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BoletinarPedidoAsync(System.String,System.String,System.String,System.Boolean,System.Int32,System.String,System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BoletinarPedidoAsync(System.String,System.String,System.String,System.Boolean,System.Int32,System.String,System.String,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ConsultaAutotanquesPorRutaYDia(System.String,System.Int32,System.DateTime,System.DateTime)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BeginConsultaAutotanquesPorRutaYDia(System.String,System.Int32,System.DateTime,System.DateTime,System.AsyncCallback,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.EndConsultaAutotanquesPorRutaYDia(System.IAsyncResult)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ConsultaAutotanquesPorRutaYDiaAsync(System.String,System.Int32,System.DateTime,System.DateTime)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ConsultaAutotanquesPorRutaYDiaAsync(System.String,System.Int32,System.DateTime,System.DateTime,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ConsultaPedidosPorAutotanqueFecha(System.String,System.Int32,System.DateTime)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BeginConsultaPedidosPorAutotanqueFecha(System.String,System.Int32,System.DateTime,System.AsyncCallback,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.EndConsultaPedidosPorAutotanqueFecha(System.IAsyncResult)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ConsultaPedidosPorAutotanqueFechaAsync(System.String,System.Int32,System.DateTime)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ConsultaPedidosPorAutotanqueFechaAsync(System.String,System.Int32,System.DateTime,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.Reasignacion(System.String,System.Int32,System.Data.DataSet,System.String,System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BeginReasignacion(System.String,System.Int32,System.Data.DataSet,System.String,System.String,System.AsyncCallback,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.EndReasignacion(System.IAsyncResult)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ReasignacionAsync(System.String,System.Int32,System.Data.DataSet,System.String,System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ReasignacionAsync(System.String,System.Int32,System.Data.DataSet,System.String,System.String,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ObtieneCelulas(System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BeginObtieneCelulas(System.String,System.AsyncCallback,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.EndObtieneCelulas(System.IAsyncResult)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ObtieneCelulasAsync(System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ObtieneCelulasAsync(System.String,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ObtieneRutasPorCelula(System.String,Sigamet.desarrollogm.Celula)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BeginObtieneRutasPorCelula(System.String,Sigamet.desarrollogm.Celula,System.AsyncCallback,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.EndObtieneRutasPorCelula(System.IAsyncResult)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ObtieneRutasPorCelulaAsync(System.String,Sigamet.desarrollogm.Celula)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ObtieneRutasPorCelulaAsync(System.String,Sigamet.desarrollogm.Celula,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ObtieneAutotanquesPorRuta(System.String,System.Int32)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BeginObtieneAutotanquesPorRuta(System.String,System.Int32,System.AsyncCallback,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.EndObtieneAutotanquesPorRuta(System.IAsyncResult)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ObtieneAutotanquesPorRutaAsync(System.String,System.Int32)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.ObtieneAutotanquesPorRutaAsync(System.String,System.Int32,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.CancelaPedido(System.Int32,System.String,System.Int32)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BeginCancelaPedido(System.Int32,System.String,System.Int32,System.AsyncCallback,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.EndCancelaPedido(System.IAsyncResult)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.CancelaPedidoAsync(System.Int32,System.String,System.Int32)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.CancelaPedidoAsync(System.Int32,System.String,System.Int32,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.CancelaPedidoCallCenter(System.String,System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BeginCancelaPedidoCallCenter(System.String,System.String,System.AsyncCallback,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.EndCancelaPedidoCallCenter(System.IAsyncResult)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.CancelaPedidoCallCenterAsync(System.String,System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.CancelaPedidoCallCenterAsync(System.String,System.String,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.RegistrarMensaje(System.Int32,System.String,System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BeginRegistrarMensaje(System.Int32,System.String,System.String,System.AsyncCallback,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.EndRegistrarMensaje(System.IAsyncResult)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.RegistrarMensajeAsync(System.Int32,System.String,System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.RegistrarMensajeAsync(System.Int32,System.String,System.String,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.AltaPedidoConfiguracionAnulada(System.String,System.String,System.Int16,System.Int16,System.Int32,System.String,System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.BeginAltaPedidoConfiguracionAnulada(System.String,System.String,System.Int16,System.Int16,System.Int32,System.String,System.String,System.AsyncCallback,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.EndAltaPedidoConfiguracionAnulada(System.IAsyncResult)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.AltaPedidoConfiguracionAnuladaAsync(System.String,System.String,System.Int16,System.Int16,System.Int32,System.String,System.String)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.AltaPedidoConfiguracionAnuladaAsync(System.String,System.String,System.Int16,System.Int16,System.Int32,System.String,System.String,System.Object)">
+<remarks/>
+</member>
+<member name="M:Sigamet.desarrollogm.Pedido.CancelAsync(System.Object)">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.Celula">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.Celula.ExtensionData">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.Celula.Descripcion">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.Celula.IdCelula">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.Celula.IdEstacionSGC">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ExtensionDataObject">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.BoletinarPedidoCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.BoletinarPedidoCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.BoletinarPedidoCompletedEventArgs.Result">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ConsultaAutotanquesPorRutaYDiaCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ConsultaAutotanquesPorRutaYDiaCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.ConsultaAutotanquesPorRutaYDiaCompletedEventArgs.Result">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ConsultaPedidosPorAutotanqueFechaCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ConsultaPedidosPorAutotanqueFechaCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.ConsultaPedidosPorAutotanqueFechaCompletedEventArgs.Result">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ReasignacionCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ReasignacionCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.ReasignacionCompletedEventArgs.Result">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ObtieneCelulasCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ObtieneCelulasCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.ObtieneCelulasCompletedEventArgs.Result">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ObtieneRutasPorCelulaCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ObtieneRutasPorCelulaCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.ObtieneRutasPorCelulaCompletedEventArgs.Result">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ObtieneAutotanquesPorRutaCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.ObtieneAutotanquesPorRutaCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.ObtieneAutotanquesPorRutaCompletedEventArgs.Result">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.CancelaPedidoCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.CancelaPedidoCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.CancelaPedidoCompletedEventArgs.Result">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.CancelaPedidoCallCenterCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.CancelaPedidoCallCenterCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.CancelaPedidoCallCenterCompletedEventArgs.Result">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.RegistrarMensajeCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.RegistrarMensajeCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.RegistrarMensajeCompletedEventArgs.Result">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.AltaPedidoConfiguracionAnuladaCompletedEventHandler">
+<remarks/>
+</member>
+<member name="T:Sigamet.desarrollogm.AltaPedidoConfiguracionAnuladaCompletedEventArgs">
+<remarks/>
+</member>
+<member name="P:Sigamet.desarrollogm.AltaPedidoConfiguracionAnuladaCompletedEventArgs.Result">
+<remarks/>
+</member>
+</members>
+</doc>

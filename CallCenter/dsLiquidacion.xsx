@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Este archivo lo genera de forma automática el diseñador de esquemas XML. Contiene información de diseño para componentes de la superficie de diseño.-->
+<XSDDesignerLayout layoutVersion="2" viewPortLeft="6276" viewPortTop="-233" zoom="100">
+    <Pedido_XmlElement left="7276" top="815" width="5292" height="2963" selected="0" zOrder="1" index="0" expanded="0" />
+    <TipoPago_XmlElement left="12991" top="767" width="5292" height="2963" selected="0" zOrder="2" index="1" expanded="0" />
+    <Documento_XmlElement left="10875" top="5582" width="5292" height="2963" selected="0" zOrder="4" index="2" expanded="0" />
+    <Detalle_XmlElement left="10899" top="9022" width="5292" height="2963" selected="0" zOrder="6" index="3" expanded="0" />
+    <Banco_XmlElement left="19553" top="1000" width="5292" height="2963" selected="0" zOrder="8" index="4" expanded="0" />
+    <Cliente_XmlElement left="17995" top="8964" width="5292" height="2963" selected="0" zOrder="10" index="5" expanded="0" />
+    <Operador_XmlElement left="26115" top="1000" width="5292" height="2963" selected="0" zOrder="12" index="6" expanded="0" />
+</XSDDesignerLayout>
