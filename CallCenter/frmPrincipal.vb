@@ -5,15 +5,16 @@ Public Class frmPrincipal
     Inherits System.Windows.Forms.Form
 
     Private WithEvents oRI As RI500.InterfaseRI
+    Private _URLGateway As String
 
 #Region "Control de alarmas de los postit"
 
     Private Sub InicioControlAlarma()
         'Abre los postits que están configurados como alarmas y que son de la célula
         Cursor = Cursors.WaitCursor
-        Dim strQuery As String = _
-        "Select * From PostIt Where Alarma = 1 And Cliente In " & _
-            "(Select Cliente From Cliente Where Celula In " & _
+        Dim strQuery As String =
+        "Select * From PostIt Where Alarma = 1 And Cliente In " &
+            "(Select Cliente From Cliente Where Celula In " &
                 "(Select Celula From UsuarioCelula Where Usuario = '" & Main.GLOBAL_Usuario & "'))"
         '"SELECT Postit, Texto FROM Postit WHERE Alarma = 1"
         'Dim cnPostit As New SqlConnection(LeeInfoConexion(False))
@@ -33,8 +34,8 @@ Public Class frmPrincipal
             Dim _Total As Integer, _NotifyText As String
             While dr.Read
 
-                mnuItem = New SigaMetClasses.cMenuItem(Mid(CType(dr("Texto"), String), 1, 30), _
-                CType(dr("Postit"), Integer), _
+                mnuItem = New SigaMetClasses.cMenuItem(Mid(CType(dr("Texto"), String), 1, 30),
+                CType(dr("Postit"), Integer),
                 New EventHandler(AddressOf OnAlarmaClick))
                 mnuControlAlarma.MenuItems.Add(mnuItem)
 
@@ -53,8 +54,8 @@ Public Class frmPrincipal
 
             'Ventana de notificación
             If _Total > 0 Then
-                _NotifyText = "Tiene " & _Total.ToString & _
-                " alarmas pendientes." & Chr(13) & Chr(13) & _
+                _NotifyText = "Tiene " & _Total.ToString &
+                " alarmas pendientes." & Chr(13) & Chr(13) &
                 "Puede revisarlas en el tablero de alarmas dando clic en este mensaje, o dando clic en el menú principal."
                 Me.NotificationWindow.Notify(_NotifyText)
             End If
@@ -188,6 +189,8 @@ Public Class frmPrincipal
 
     Private Sub frmPrincipal_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim oConfig As New SigaMetClasses.cConfig(1, GLOBAL_Corporativo, GLOBAL_Sucursal)
+
+        _URLGateway = oConfig.Parametros("URLGateway")
 
         'Registrar el inicio de sesión en el módulo
         If GLOBAL_REGISTRO_INICIO_SESION Then
@@ -1164,7 +1167,7 @@ Public Class frmPrincipal
         'staPrincipal
         '
         Me.staPrincipal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.staPrincipal.Location = New System.Drawing.Point(0, -21)
+        Me.staPrincipal.Location = New System.Drawing.Point(0, -41)
         Me.staPrincipal.Name = "staPrincipal"
         Me.staPrincipal.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.stapUsuario, Me.stapNombre, Me.stapCelula, Me.stapFecha, Me.sbpServidor, Me.sbpBaseDeDatos, Me.sbpVersion})
         Me.staPrincipal.ShowPanels = True
@@ -1297,7 +1300,6 @@ Public Class frmPrincipal
         '
         'NotificationWindow
         '
-        Me.NotificationWindow.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.SystemColors.InactiveCaption, System.Drawing.SystemColors.Window)
         Me.NotificationWindow.DefaultText = Nothing
         Me.NotificationWindow.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.NotificationWindow.ForeColor = System.Drawing.SystemColors.ControlText
@@ -1316,7 +1318,7 @@ Public Class frmPrincipal
         'frmPrincipal
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
-        Me.ClientSize = New System.Drawing.Size(1031, 0)
+        Me.ClientSize = New System.Drawing.Size(1031, -20)
         Me.Controls.Add(Me.staPrincipal)
         Me.Controls.Add(Me.TabBar1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
