@@ -10,6 +10,7 @@ Public Class frmCallCenter
     Private _RutaCliente As Short
     Private _Empresa As Integer
     Private _StatusCalidad As String
+    Private _URLGateway As String
 
     Private isCargando As Integer = 0
 
@@ -3242,8 +3243,23 @@ Public Class frmCallCenter
     End Sub
 
     Private Sub ConsultaCliente()
+
+        Dim oConfig As New SigaMetClasses.cConfig(1, GLOBAL_Corporativo, GLOBAL_Sucursal)
+        _URLGateway = oConfig.Parametros("URLGateway")
+        Dim oSigamet As New SigaMetClasses.frmConsultaCliente(_Cliente)
+        Dim oConsultaCliente As SigaMetClasses.frmConsultaCliente
+
+        If (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+
+            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente)
+
+        Else
+
+            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, _URLGateway)
+
+        End If
+
         Cursor = Cursors.WaitCursor
-        Dim oConsultaCliente As New SigaMetClasses.frmConsultaCliente(_Cliente)
         oConsultaCliente.ShowDialog()
         Cursor = Cursors.Default
     End Sub
