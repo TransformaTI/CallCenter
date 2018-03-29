@@ -61,7 +61,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <DebugSymbols>true</DebugSymbols>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
@@ -350,6 +350,10 @@
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
     </Reference>
+    <Reference Include="MobileGas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MobileGas.dll</HintPath>
+    </Reference>
     <Reference Include="MRMDevKit">
       <Name>MRMDevKit</Name>
       <HintPath>bin\MRMDevKit.dll</HintPath>
@@ -421,6 +425,9 @@
     <Reference Include="RI500, Version=1.0.1588.17989, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\RI500.dll</HintPath>
+    </Reference>
+    <Reference Include="RTGMGateway">
+      <HintPath>..\..\RTGMGateway\RTGMGateway\bin\Debug\RTGMGateway.dll</HintPath>
     </Reference>
     <Reference Include="SGDAC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1358,12 +1365,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Librerias\MobileGas\MobileGas.vbproj">
-      <Project>{EA452C17-37AC-4E9D-BA80-B43E77731812}</Project>
-      <Name>MobileGas</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

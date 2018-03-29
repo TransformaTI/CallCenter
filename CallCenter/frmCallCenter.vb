@@ -10,7 +10,7 @@ Public Class frmCallCenter
     Private _RutaCliente As Short
     Private _Empresa As Integer
     Private _StatusCalidad As String
-    Private _URLGateway As String
+    Public _URLGateway As String
 
     Private isCargando As Integer = 0
 
@@ -58,11 +58,13 @@ Public Class frmCallCenter
 
 #Region " Windows Form Designer generated code "
 
-    Public Sub New()
+    Public Sub New(Optional ByVal URLGateway As String = Nothing)
         MyBase.New()
 
         'This call is required by the Windows Form Designer.
         InitializeComponent()
+
+        _URLGateway = URLGateway
 
         'Add any initialization after the InitializeComponent() call
         chkPortatil.Visible = GLOBAL_ManejarClientesPortatil
@@ -96,6 +98,8 @@ Public Class frmCallCenter
 
         'Modulo de quejas Activo
         btnQueja.Visible = GLOBAL_ModuloQuejas
+
+
     End Sub
 
     'Form overrides dispose to clean up the component list.
@@ -506,7 +510,7 @@ Public Class frmCallCenter
         Me.tbBarra.Location = New System.Drawing.Point(935, 0)
         Me.tbBarra.Name = "tbBarra"
         Me.tbBarra.ShowToolTips = True
-        Me.tbBarra.Size = New System.Drawing.Size(73, 604)
+        Me.tbBarra.Size = New System.Drawing.Size(73, 541)
         Me.tbBarra.TabIndex = 12
         '
         'btnBarra2
@@ -887,7 +891,7 @@ Public Class frmCallCenter
         Me.lblCreditoExcedido.AlternatingColor2 = System.Drawing.Color.Red
         Me.lblCreditoExcedido.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCreditoExcedido.ForeColor = System.Drawing.Color.Maroon
-        Me.lblCreditoExcedido.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lblCreditoExcedido.LinkColor = System.Drawing.Color.Red
         Me.lblCreditoExcedido.Location = New System.Drawing.Point(780, 140)
         Me.lblCreditoExcedido.Name = "lblCreditoExcedido"
         Me.lblCreditoExcedido.Size = New System.Drawing.Size(156, 20)
@@ -1069,7 +1073,7 @@ Public Class frmCallCenter
         Me.pnlCallCenter.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlCallCenter.Location = New System.Drawing.Point(0, 0)
         Me.pnlCallCenter.Name = "pnlCallCenter"
-        Me.pnlCallCenter.Size = New System.Drawing.Size(935, 604)
+        Me.pnlCallCenter.Size = New System.Drawing.Size(935, 541)
         Me.pnlCallCenter.TabIndex = 56
         '
         'grpGeoReferencia
@@ -1316,7 +1320,7 @@ Public Class frmCallCenter
         Me.lvwLlamada.FullRowSelect = True
         Me.lvwLlamada.Location = New System.Drawing.Point(14, 574)
         Me.lvwLlamada.Name = "lvwLlamada"
-        Me.lvwLlamada.Size = New System.Drawing.Size(738, 51)
+        Me.lvwLlamada.Size = New System.Drawing.Size(738, 0)
         Me.lvwLlamada.TabIndex = 92
         Me.lvwLlamada.UseCompatibleStateImageBehavior = False
         Me.lvwLlamada.View = System.Windows.Forms.View.Details
@@ -1380,7 +1384,7 @@ Public Class frmCallCenter
         Me.grdLlamada.ReadOnly = True
         Me.grdLlamada.SelectionBackColor = System.Drawing.Color.Navy
         Me.grdLlamada.SelectionForeColor = System.Drawing.Color.White
-        Me.grdLlamada.Size = New System.Drawing.Size(738, 440)
+        Me.grdLlamada.Size = New System.Drawing.Size(738, 377)
         Me.grdLlamada.TabIndex = 65
         Me.grdLlamada.TableStyles.AddRange(New System.Windows.Forms.DataGridTableStyle() {Me.styLlamada})
         '
@@ -1568,7 +1572,7 @@ Public Class frmCallCenter
         Me.txtObservacionesLlamada.Name = "txtObservacionesLlamada"
         Me.txtObservacionesLlamada.ReadOnly = True
         Me.txtObservacionesLlamada.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtObservacionesLlamada.Size = New System.Drawing.Size(160, 440)
+        Me.txtObservacionesLlamada.Size = New System.Drawing.Size(160, 377)
         Me.txtObservacionesLlamada.TabIndex = 86
         '
         'lblListaPedido
@@ -1977,7 +1981,7 @@ Public Class frmCallCenter
         Me.lnkQueja.AutoSize = True
         Me.lnkQueja.BackColor = System.Drawing.Color.Gainsboro
         Me.lnkQueja.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lnkQueja.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lnkQueja.LinkColor = System.Drawing.Color.Red
         Me.lnkQueja.Location = New System.Drawing.Point(8, 124)
         Me.lnkQueja.Name = "lnkQueja"
         Me.lnkQueja.Size = New System.Drawing.Size(79, 13)
@@ -2323,7 +2327,7 @@ Public Class frmCallCenter
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
         Me.BackColor = System.Drawing.Color.Gainsboro
-        Me.ClientSize = New System.Drawing.Size(1008, 604)
+        Me.ClientSize = New System.Drawing.Size(1008, 541)
         Me.Controls.Add(Me.pnlCallCenter)
         Me.Controls.Add(Me.tbBarra)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -3245,7 +3249,17 @@ Public Class frmCallCenter
     Private Sub ConsultaCliente()
 
         Dim oConfig As New SigaMetClasses.cConfig(1, GLOBAL_Corporativo, GLOBAL_Sucursal)
-        _URLGateway = oConfig.Parametros("URLGateway")
+
+        Try
+            _URLGateway = oConfig.Parametros("URLGateway")
+
+        Catch ex As Exception
+
+            MessageBox.Show("El parámetro _URLGateway no está configurado.  " + ex.Message)
+
+        End Try
+
+
         Dim oSigamet As New SigaMetClasses.frmConsultaCliente(_Cliente)
         Dim oConsultaCliente As SigaMetClasses.frmConsultaCliente
 
@@ -5309,7 +5323,7 @@ Public Class frmCallCenter
 #Region "Captura de tarjetas"
     Private Sub CapturaTarjeta()
         If _Cliente > 0 Then
-            Dim frmCapTarjetaCredito As New SigaMetClasses.frmConTarjetaCredito(_Cliente, GLOBAL_Usuario)
+            Dim frmCapTarjetaCredito As New SigaMetClasses.frmConTarjetaCredito(_Cliente, GLOBAL_Usuario, _URLGateway)
             frmCapTarjetaCredito.ShowDialog()
         End If
     End Sub

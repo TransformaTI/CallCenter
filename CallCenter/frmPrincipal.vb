@@ -141,7 +141,7 @@ Public Class frmPrincipal
 
     Private Sub CallCenter()
         Cursor = Cursors.WaitCursor
-        Dim oCallCenter As New frmCallCenter()
+        Dim oCallCenter As New frmCallCenter(_URLGateway)
         oCallCenter.MdiParent = Me
         oCallCenter.Show()
         oCallCenter.BringToFront()
