@@ -1167,7 +1167,7 @@ Public Class frmPrincipal
         'staPrincipal
         '
         Me.staPrincipal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.staPrincipal.Location = New System.Drawing.Point(0, -21)
+        Me.staPrincipal.Location = New System.Drawing.Point(0, -41)
         Me.staPrincipal.Name = "staPrincipal"
         Me.staPrincipal.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.stapUsuario, Me.stapNombre, Me.stapCelula, Me.stapFecha, Me.sbpServidor, Me.sbpBaseDeDatos, Me.sbpVersion})
         Me.staPrincipal.ShowPanels = True
@@ -1319,7 +1319,7 @@ Public Class frmPrincipal
         'frmPrincipal
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
-        Me.ClientSize = New System.Drawing.Size(1031, 0)
+        Me.ClientSize = New System.Drawing.Size(1031, -20)
         Me.Controls.Add(Me.staPrincipal)
         Me.Controls.Add(Me.TabBar1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

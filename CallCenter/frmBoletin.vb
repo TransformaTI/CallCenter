@@ -18,6 +18,7 @@ Public Class frmBoletin
     Private _FCompromiso As Date    
     Private _Autotanque As Integer = 0
     Private _FAlta As Date
+    Private _URLGateway As String
     Friend WithEvents btnCerrar As System.Windows.Forms.ToolBarButton
     Friend WithEvents btnSep2 As System.Windows.Forms.ToolBarButton
     Friend WithEvents btnRefrescar As System.Windows.Forms.ToolBarButton
@@ -34,6 +35,7 @@ Public Class frmBoletin
     Friend WithEvents DsTipoFactura1 As Sigamet.dsTipoFactura
     Friend WithEvents btnReasignar As System.Windows.Forms.ToolBarButton
     Friend WithEvents tbBarra As System.Windows.Forms.ToolBar
+
 
 
 
