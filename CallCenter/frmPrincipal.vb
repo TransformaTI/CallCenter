@@ -496,11 +496,12 @@ Public Class frmPrincipal
 
 #Region "Windows Form Designer generated code "
 
-    Public Sub New()
+    Public Sub New(Optional ByVal URLGateway As String = Nothing)
         MyBase.New()
 
         'This call is required by the Windows Form Designer.
         InitializeComponent()
+        _URLGateway = URLGateway
 
         'Add any initialization after the InitializeComponent() call
         mniRelacionNotas.Enabled = oSeguridad.TieneAcceso("RelacionNotas")
@@ -1410,7 +1411,7 @@ Public Class frmPrincipal
                 End If
             Next
             Cursor = Cursors.WaitCursor
-            Dim oBoletin As New frmBoletin()
+            Dim oBoletin As New frmBoletin(_URLGateway)
             oBoletin.MdiParent = Me
             oBoletin.Show()
             Cursor = Cursors.Default
