@@ -22,7 +22,7 @@ Public Class frmBoletin
     Private _FCompromiso As Date    
     Private _Autotanque As Integer = 0
     Private _FAlta As Date
-    Private _URLGateway As String
+    Public _URLGateway As String
     Friend WithEvents btnCerrar As System.Windows.Forms.ToolBarButton
     Friend WithEvents btnSep2 As System.Windows.Forms.ToolBarButton
     Friend WithEvents btnRefrescar As System.Windows.Forms.ToolBarButton
@@ -1011,11 +1011,6 @@ Public Class frmBoletin
             oItem.SubItems.Add(CType(oDireccionEntrega.Telefono1, String).Trim) '17
             oItem.SubItems.Add(CType(oDireccionEntrega.Observaciones, String).Trim) '18
 
-            'If CType(objPedido.RutaBoletin.NumeroRuta, Short) = 0 Then '19
-            '    oItem.SubItems.Add(CType(objPedido.ReporteRAF, String).ToString)
-            'Else
-            '    oItem.SubItems.Add(CType(objPedido.ReporteRAFBoletin, String).ToString)
-            'End If
 
             lvwBoletin.Items.Add(oItem)
         Next
@@ -1026,7 +1021,7 @@ Public Class frmBoletin
     End Function
 
 
-    Private Sub CargaBoletin(Optional ByVal URLGateway As String = Nothing)
+    Private Sub CargaBoletin(Optional ByVal URLGateway As String = "")
         If chkPortatil.Checked Then
             CargaBoletinPortatil()
             Exit Sub
@@ -1048,9 +1043,9 @@ Public Class frmBoletin
             _CelulaCarga = Main.GLOBAL_Celula
         End If
 
-        If (URLGateway Is String.Empty Or URLGateway Is Nothing) Then
+        If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
             oGateway = New RTGMGateway.RTGMGateway
-            oGateway.URLServicio = URLGateway
+            oGateway.URLServicio = _URLGateway
 
             'SolicitudPedidoGateway.FechaSuministroInicio = FechaDtp
             'SolicitudPedidoGateway.IDZona = _CelulaCarga
@@ -1059,8 +1054,12 @@ Public Class frmBoletin
 
             'Int IDCliente, Int IDEmpresa, String Latitud
             '  [TestCase(4, 0, "19.55350667")]
+            ' int IDCliente, int IDEmpresa, int IDZona
+            ' [TestCase(88763, 0, 201)]
+
             'Se ponen estos parámetros por default, para prueba de pedidos.
-            SolicitudPedidoGateway.IDDireccionEntrega = 4
+
+            SolicitudPedidoGateway.IDDireccionEntrega = 88763
             SolicitudPedidoGateway.IDEmpresa = 0
             SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
             SolicitudPedidoGateway.IDZona = 201
@@ -1071,6 +1070,7 @@ Public Class frmBoletin
             ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
             'Consulta los pedidos que vienen como respuesta del Web Service 
             ConsultaClientesBoletinCRM(ListaPedidos)
+            Cursor = Cursors.Default
 
 
         Else
@@ -1187,6 +1187,7 @@ Public Class frmBoletin
 
                     lvwBoletin.Items.Add(oItem)
                 End While
+
                 If Not Global_MuestraRutaBoletin Then
                     lvwBoletin.Columns(6).Width = 0
                     lvwBoletin.Columns(7).Width = 0
