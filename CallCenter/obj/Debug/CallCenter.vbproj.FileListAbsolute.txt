@@ -178,3 +178,4 @@ C:\Repos\CallCenter\CallCenter\bin\RTGMGateway.pdb
 C:\Repos\CallCenter\CallCenter\bin\RTGMGateway.dll.config
 C:\Repos\CallCenter\CallCenter\bin\log4net.xml
 C:\Repos\CallCenter\CallCenter\bin\nunit.framework.xml
+C:\Repos\CallCenter\CallCenter\obj\Debug\CallCenter.vbprojResolveAssemblyReference.cache
