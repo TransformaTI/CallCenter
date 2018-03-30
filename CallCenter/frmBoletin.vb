@@ -1070,6 +1070,7 @@ Public Class frmBoletin
             ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
             'Consulta los pedidos que vienen como respuesta del Web Service 
             ConsultaClientesBoletinCRM(ListaPedidos)
+
             Cursor = Cursors.Default
 
 
