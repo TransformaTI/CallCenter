@@ -1064,12 +1064,6 @@ Public Class frmBoletin
             oGateway = New RTGMGateway.RTGMGateway
             oGateway.URLServicio = _URLGateway
 
-            'SolicitudPedidoGateway.IDDireccionEntrega = 88763
-            'SolicitudPedidoGateway.IDEmpresa = 0
-            'SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
-            'SolicitudPedidoGateway.IDZona = 201
-            'SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
-
             SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
             SolicitudPedidoGateway.IDZona = _CelulaCarga
             SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
