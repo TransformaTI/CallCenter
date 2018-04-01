@@ -1388,7 +1388,7 @@ Public Class frmBoletin
         For Each oItem In lvwBoletin.Items
             If oItem.Selected Then
                 'strMensaje &= "Ruta: " & oItem.SubItems(4).Text & " Cliente: " & oItem.SubItems(6).Text & " " & oItem.SubItems(7).Text & " Dirección: " & oItem.SubItems(10).Text & Chr(13)
-                strMensaje &= "Ruta: " & oItem.SubItems(4).Text & " Cliente: " & oItem.SubItems(8).Text & " " & oItem.SubItems(9).Text & _
+                strMensaje &= "Ruta: " & oItem.SubItems(4).Text & " Cliente: " & oItem.SubItems(8).Text & " " & oItem.SubItems(9).Text &
                     " Dirección: " & oItem.SubItems(10).Text & Chr(13)
                 TotalSeleccionados += 1
             End If
