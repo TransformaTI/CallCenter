@@ -1411,9 +1411,19 @@ Public Class frmPrincipal
                 End If
             Next
             Cursor = Cursors.WaitCursor
-            Dim oBoletin As New frmBoletin(_URLGateway)
-            oBoletin.MdiParent = Me
-            oBoletin.Show()
+            'Si el UrlGateway no es recuperado, se usa el constructor por defecto
+            If (String.IsNullOrEmpty(URLGateway)) Then
+                Dim oBoletin As New frmBoletin()
+                oBoletin.MdiParent = Me
+                oBoletin.Show()
+            Else
+                'Si el UrlGateway  es recuperado, se usa el constructor con _urlGateway
+                Dim oBoletin As New frmBoletin(_URLGateway)
+                oBoletin.MdiParent = Me
+                oBoletin.Show()
+            End If
+
+
             Cursor = Cursors.Default
         Else
             MessageBox.Show("No tiene acceso a esta operación.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop)
