@@ -196,7 +196,7 @@ Public Class frmBoletin
         Me.grdcolUsuario = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.grdcolObservaciones = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.txtLlamadaObservaciones = New System.Windows.Forms.TextBox()
-        Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia()
+        Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia((_URLGateway))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.grpDatos = New System.Windows.Forms.GroupBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -505,6 +505,7 @@ Public Class frmBoletin
         Me.SeleccionCalleColonia.Name = "SeleccionCalleColonia"
         Me.SeleccionCalleColonia.Size = New System.Drawing.Size(536, 144)
         Me.SeleccionCalleColonia.TabIndex = 0
+        Me.SeleccionCalleColonia._URLGateway = _URLGateway
         '
         'Panel1
         '
@@ -994,6 +995,8 @@ Public Class frmBoletin
         Dim oSolicitud As RTGMGateway.SolicitudGateway
         Dim oDireccionEntrega As RTGMCore.DireccionEntrega
         Dim oGateway As New RTGMGateway.RTGMGateway
+
+        lvwBoletin.Items.Clear()
 
         For Each objPedido In Pedidos
             cliente = objPedido.IDDireccionEntrega
@@ -1506,6 +1509,27 @@ Public Class frmBoletin
         End Try
     End Sub
 
+    Private Function ConsultarDetallePedidoCRM(ByVal PedidoReferencia As String) As RTGMCore.Pedido
+
+        Dim objPedido As New RTGMCore.Pedido
+        Dim cliente As New Integer
+        Dim oGateway As New RTGMGateway.RTGMGateway
+        Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway
+        Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
+        SolicitudPedidoGateway.PedidoReferencia = PedidoReferencia
+        SolicitudPedidoGateway.IDEmpresa = 0
+        SolicitudPedidoGateway.IDZona = 201
+        SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
+        SolicitudPedidoGateway.FechaCompromisoInicio = DateTime.Now.Date
+
+        Dim ListaPedidos As List(Of RTGMCore.Pedido)
+        objPedidoGateway.URLServicio = _URLGateway
+        ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
+
+        Return ListaPedidos(0)
+
+    End Function
+
     Private Sub lvwBoletin_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles lvwBoletin.SelectedIndexChanged
         Dim dt As DataTable
         Try
@@ -1529,6 +1553,15 @@ Public Class frmBoletin
                 lblCliente.Text = _Cliente.ToString
                 lblNombre.Text = _Nombre
                 lblTelCasa.Text = SigaMetClasses.FormatoTelefono(CType(lvwBoletin.FocusedItem.SubItems(17).Text, String).Trim)
+
+                'Se agrega funcionalidad para ir al Web Service a consultar el detalle del pedido o del cliente . 
+
+                Dim objPedido As New RTGMCore.Pedido
+                objPedido = ConsultarDetallePedidoCRM(_PedidoReferencia)
+                lblCliente.Text = objPedido.DireccionEntrega.IDDireccionEntrega
+                lblNombre.Text = objPedido.DireccionEntrega.Nombre
+                lblTelCasa.Text = objPedido.DireccionEntrega.Telefono1
+
                 lblObservacionesPedido.Text = CType(lvwBoletin.FocusedItem.SubItems(18).Text, String).Trim
                 If chkPortatil.Checked Then
                     SeleccionCalleColonia.CargaDatosClientePortatilSoloLectura(_Cliente)
@@ -1769,14 +1802,10 @@ Public Class frmBoletin
 
         Dim objPedido As New RTGMCore.Pedido
         Dim cliente As New Integer
-        Dim oSolicitud As RTGMGateway.SolicitudGateway
-        Dim oDireccionEntrega As RTGMCore.DireccionEntrega
         Dim oGateway As New RTGMGateway.RTGMGateway
         Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
         Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway
         Dim FechaDtp As Date
-
-
 
         Cursor = Cursors.WaitCursor
         btnLlamadaOperador.Enabled = False

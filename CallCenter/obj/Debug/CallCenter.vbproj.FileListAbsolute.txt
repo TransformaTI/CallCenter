@@ -179,7 +179,6 @@ C:\Repos\CallCenter\CallCenter\bin\RTGMGateway.dll.config
 C:\Repos\CallCenter\CallCenter\bin\log4net.xml
 C:\Repos\CallCenter\CallCenter\bin\nunit.framework.xml
 C:\Repos\CallCenter\CallCenter\obj\Debug\CallCenter.vbprojResolveAssemblyReference.cache
-C:\Users\elena\Documents\CallCenter\CallCenter\obj\Debug\CallCenter.vbprojResolveAssemblyReference.cache
 C:\Users\elena\Documents\CallCenter\CallCenter\obj\Debug\CallCenter.vbproj.ResolveComReference.cache
 C:\Users\elena\Documents\CallCenter\CallCenter\obj\Debug\Sigamet.AltaCheque.resources
 C:\Users\elena\Documents\CallCenter\CallCenter\obj\Debug\Sigamet.AltaDeposito.resources
