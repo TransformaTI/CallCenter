@@ -1294,7 +1294,7 @@ Public Class frmBoletin
                 End If
             Next
 
-            Dim frmLlamada As New Llamada(pedidoReferencia, rutaPedido, dtpFecha.Value.Date, DtCel)
+            Dim frmLlamada As New Llamada(pedidoReferencia, rutaPedido, dtpFecha.Value.Date, DtCel, _URLGateway)
             frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, False, _FAlta)
             'Dim frmLlamada As New Llamada("20148118689", rutaPedido, dtpFecha.Value.Date, DtCel)
             'frmLlamada.Entrada(_Cliente, _Nombre, 8, 118689, lblTelCasa.Text, _Ruta, 2014, TipoLlamada)

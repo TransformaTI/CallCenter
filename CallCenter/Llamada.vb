@@ -28,6 +28,7 @@ Public Class Llamada
     Friend WithEvents chkNoValidarGPS As System.Windows.Forms.CheckBox
     Private _FAlta As Date
     Dim _RutaBoletin As Short
+    Public _URLGateway As String
 
 
     Private Sub ConsultaAutotanquesPorDia(ByVal ruta As Int32, ByVal inicio As Boolean)
@@ -86,9 +87,12 @@ Public Class Llamada
         Me.Cursor = Cursors.Default
     End Sub
 
-    Public Sub New(ByVal PedidoReferencia As String, ByVal RutaPedido As Int32, ByVal FechaPedido As Date, ByVal DaCelula As DataTable)
+    Public Sub New(ByVal PedidoReferencia As String, ByVal RutaPedido As Int32, ByVal FechaPedido As Date, ByVal DaCelula As DataTable, ByVal URLGateway As String)
         'This call is required by the Windows Form Designer.
         InitializeComponent()
+
+        _URLGateway = URLGateway
+
         Me.pedidoReferencia = PedidoReferencia
         Me.fechaPedido = FechaPedido
         daCel = DaCelula
@@ -196,6 +200,21 @@ Public Class Llamada
         End If
     End Sub
 
+    Public Function ConsultarDatosCliente(ByVal Cliente As Integer) As RTGMCore.DireccionEntrega
+
+        Dim oGateway = New RTGMGateway.RTGMGateway
+        Dim oSolicitud As RTGMGateway.SolicitudGateway
+        Dim oDireccionEntrega As RTGMCore.DireccionEntrega
+
+        oSolicitud.IDCliente = Cliente
+        oGateway.URLServicio = _URLGateway
+        oDireccionEntrega = oGateway.buscarDireccionEntrega(oSolicitud)
+
+        Return oDireccionEntrega
+
+    End Function
+
+
     Public Sub Entrada(ByVal Cliente As Integer, ByVal Nombre As String, ByVal Celula As Integer, ByVal Pedido As Integer, ByVal Origen As String, ByVal Ruta As Integer, ByVal Anio As Integer, ByVal Boletin As Integer, ByVal FCompromiso As Date, ByVal Portatil As Boolean, ByVal FAlta As Date)
         Dim Dias As Integer = Nothing
 
@@ -227,6 +246,27 @@ Public Class Llamada
         txtDemandante.Text = Nombre
         lbOrigen.Text = Origen
         Me.Text += "|Fecha llamada: " + CType(Now.Date, String)
+
+        'Se va al web service a traer el nombre  en ambos casos,   Portatil y Normal .
+        If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+
+            Dim oDireccionEntrega As New RTGMCore.DireccionEntrega
+            oDireccionEntrega = ConsultarDatosCliente(Cliente)
+
+            Me.Text = "Llamada - [" + oDireccionEntrega.Nombre + "]"
+            _Cliente = Cliente
+            _Celula = Celula
+            _Pedido = Pedido
+            _Anio = Anio
+            _Boletin = Boletin
+            _Portatil = Portatil
+            _FCompromiso = FCompromiso
+            _Ruta = Ruta
+            _FAlta = FAlta
+
+            Me.txtDemandante.Text = oDireccionEntrega.Nombre
+
+        End If
 
         LlenaListaAutotanques(_Ruta, True)
 
