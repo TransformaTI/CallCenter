@@ -189,8 +189,11 @@ Public Class frmPrincipal
 
     Private Sub frmPrincipal_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim oConfig As New SigaMetClasses.cConfig(1, GLOBAL_Corporativo, GLOBAL_Sucursal)
-
-        _URLGateway = oConfig.Parametros("URLGateway")
+        Try
+            _URLGateway = oConfig.Parametros("URLGateway")
+        Catch ex As ArgumentException
+            _URLGateway = ""
+        End Try
 
         'Registrar el inicio de sesión en el módulo
         If GLOBAL_REGISTRO_INICIO_SESION Then
