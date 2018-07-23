@@ -1001,6 +1001,10 @@ Public Class frmBoletin
         For Each objPedido In Pedidos
             cliente = objPedido.IDDireccionEntrega
             oSolicitud = New RTGMGateway.SolicitudGateway
+
+            oSolicitud.Fuente = RTGMCore.Fuente.Sigamet
+            oSolicitud.IDEmpresa = 1
+
             oSolicitud.IDCliente = cliente
             oGateway.URLServicio = _URLGateway
             oDireccionEntrega = oGateway.buscarDireccionEntrega(oSolicitud)
@@ -1070,6 +1074,8 @@ Public Class frmBoletin
             SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
             SolicitudPedidoGateway.IDZona = _CelulaCarga
             SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
+            SolicitudPedidoGateway.FuenteDatos = RTGMCore.Fuente.Sigamet
+            SolicitudPedidoGateway.IDEmpresa = 1
 
             Dim ListaPedidos As List(Of RTGMCore.Pedido)
             objPedidoGateway.URLServicio = _URLGateway
@@ -1509,18 +1515,17 @@ Public Class frmBoletin
         End Try
     End Sub
 
-    Private Function ConsultarDetallePedidoCRM(ByVal PedidoReferencia As String) As RTGMCore.Pedido
+    Private Function ConsultarDetallePedidoCRM(ByVal objPedidoParam As RTGMCore.Pedido) As RTGMCore.Pedido
 
-        Dim objPedido As New RTGMCore.Pedido
         Dim cliente As New Integer
         Dim oGateway As New RTGMGateway.RTGMGateway
         Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway
         Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
-        SolicitudPedidoGateway.PedidoReferencia = PedidoReferencia
-        SolicitudPedidoGateway.IDEmpresa = 0
-        SolicitudPedidoGateway.IDZona = 201
+        SolicitudPedidoGateway.PedidoReferencia = objPedidoParam.PedidoReferencia
+        SolicitudPedidoGateway.IDEmpresa = objPedidoParam.IDEmpresa
+        SolicitudPedidoGateway.IDZona = objPedidoParam.IDZona
         SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
-        SolicitudPedidoGateway.FechaCompromisoInicio = DateTime.Now.Date
+        SolicitudPedidoGateway.FechaCompromisoInicio = objPedidoParam.FCompromiso
 
         Dim ListaPedidos As List(Of RTGMCore.Pedido)
         objPedidoGateway.URLServicio = _URLGateway
@@ -1557,7 +1562,12 @@ Public Class frmBoletin
                 'Se agrega funcionalidad para ir al Web Service a consultar el detalle del pedido o del cliente . 
 
                 Dim objPedido As New RTGMCore.Pedido
-                objPedido = ConsultarDetallePedidoCRM(_PedidoReferencia)
+                objPedido.IDEmpresa = 1
+                objPedido.FCompromiso = _FCompromiso
+                objPedido.IDZona = _Celula
+                objPedido.EstatusBoletin = "BOLETIN"
+                objPedido.PedidoReferencia = _PedidoReferencia
+                objPedido = ConsultarDetallePedidoCRM(objPedido)
                 lblCliente.Text = objPedido.DireccionEntrega.IDDireccionEntrega
                 lblNombre.Text = objPedido.DireccionEntrega.Nombre
                 lblTelCasa.Text = objPedido.DireccionEntrega.Telefono1
