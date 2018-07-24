@@ -1526,12 +1526,17 @@ Public Class frmBoletin
         SolicitudPedidoGateway.IDZona = objPedidoParam.IDZona
         SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
         SolicitudPedidoGateway.FechaCompromisoInicio = objPedidoParam.FCompromiso
-
+        SolicitudPedidoGateway.FuenteDatos = RTGMCore.Fuente.Sigamet
         Dim ListaPedidos As List(Of RTGMCore.Pedido)
         objPedidoGateway.URLServicio = _URLGateway
         ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
 
-        Return ListaPedidos(0)
+        If ListaPedidos.Count > 0 Then
+            Return ListaPedidos(0)
+        Else
+            Return objPedidoParam
+        End If
+
 
     End Function
 
@@ -1562,7 +1567,7 @@ Public Class frmBoletin
                 'Se agrega funcionalidad para ir al Web Service a consultar el detalle del pedido o del cliente . 
 
                 Dim objPedido As New RTGMCore.Pedido
-                objPedido.IDEmpresa = 1
+                objPedido.IDEmpresa = GLOBAL_Corporativo
                 objPedido.FCompromiso = _FCompromiso
                 objPedido.IDZona = _Celula
                 objPedido.EstatusBoletin = "BOLETIN"
@@ -1848,22 +1853,7 @@ Public Class frmBoletin
             SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
             SolicitudPedidoGateway.IDZona = _CelulaCarga
             SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
-            'SolicitudPedidoGateway.IDZona = cboRuta.Ruta
-            'SolicitudPedidoGateway.IDDireccionEntrega = 88763
-
-            'Int IDCliente, Int IDEmpresa, String Latitud
-            '  [TestCase(4, 0, "19.55350667")]
-            ' int IDCliente, int IDEmpresa, int IDZona
-            ' [TestCase(88763, 0, 201)]
-
-            'Se ponen estos parámetros por default, para prueba de pedidos.
-
-            'SolicitudPedidoGateway.IDDireccionEntrega = 88763
-            'SolicitudPedidoGateway.IDEmpresa = 0
-            'SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
-            'SolicitudPedidoGateway.IDZona = 201
-            'SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
-
+            SolicitudPedidoGateway.FuenteDatos = RTGMCore.Fuente.Sigamet
             Dim ListaPedidos As List(Of RTGMCore.Pedido)
             objPedidoGateway.URLServicio = _URLGateway
             ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)

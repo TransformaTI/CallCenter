@@ -1080,25 +1080,8 @@ Public Class Llamada
                     If (boletinEnLinea = False) Then
                         If _Boletin = 2 And _Portatil = False Then
 
+                            'Se actualiza pedido, tanto en la base como en el WS .
                             Llamada_ActualizaPedido(_Anio, _Celula, _Pedido, _RutaBoletin)
-
-                            'cmdInsert.CommandText = "spCCActualizaBoletinEnPedido"
-                            'cmdInsert.Parameters.Clear()
-                            'cmdInsert.Parameters.Add("@AñoPed", SqlDbType.Int).Value = _Anio
-                            'cmdInsert.Parameters.Add("@Celula", SqlDbType.Int).Value = _Celula
-                            'cmdInsert.Parameters.Add("@Pedido", SqlDbType.Int).Value = _Pedido
-                            'cmdInsert.Parameters.Add("@Rutaboletin", SqlDbType.SmallInt).Value = _RutaBoletin
-                            'Try
-                            '    cmdInsert.ExecuteNonQuery()
-                            'Catch ex As Exception
-                            '    MessageBox.Show(ex.Message)
-                            'End Try
-
-
-
-
-
-
 
                         End If
                     End If
@@ -1132,7 +1115,6 @@ Public Class Llamada
         Dim cmdInsert As New SqlClient.SqlCommand()
 
         Dim rdrInsert As SqlClient.SqlDataReader = Nothing
-        Dim SiGrabo As Boolean
         cmdInsert.CommandType = CommandType.StoredProcedure
         cmdInsert.CommandTimeout = 100
         cmdInsert.Connection = SqlConnection
@@ -1150,38 +1132,36 @@ Public Class Llamada
             MessageBox.Show(ex.Message)
         End Try
 
+        If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+            Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido()
+            objGateway.URLServicio = _URLGateway
 
-        Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido()
-        objGateway.URLServicio = _URLGateway
+            'Se arma el pedido con los datos que llegan a la funciòn.
 
-        'Se arma el pedido con los datos que llegan a la funciòn.
+            Dim objPedido As New RTGMCore.PedidoCRMSaldo
+            objPedido.IDEmpresa = GLOBAL_Corporativo
+            objPedido.IDZona = Celula
+            objPedido.AnioPed = Anio
+            objPedido.EstatusBoletin = "BOLETIN"
+            objPedido.PedidoReferencia = Pedido
+            objPedido.IDPedido = Pedido
+            Dim ListaPedidos As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
 
-        Dim objPedido As New RTGMCore.Pedido
-        objPedido.IDEmpresa = 1
-        objPedido.IDZona = Celula
-        objPedido.AnioPed = Anio
-        objPedido.EstatusBoletin = "BOLETIN"
-        ' objPedido.RutaBoletin.IDRuta = RutaBoletin
-        objPedido.PedidoReferencia = Pedido
-        objPedido.IDPedido = Pedido
-        Dim ListaPedidos As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
-        ' Dim ListaRespuesta As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
+            ListaPedidos.Add(objPedido)
 
-        ListaPedidos.Add(objPedido)
-
-        Dim oSolicitudActualizarPedido As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
-        .Fuente = RTGMCore.Fuente.Sigamet,
-        .IDEmpresa = 1,
-        .Pedidos = ListaPedidos,
-        .Portatil = False,
-        .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin,
-        .Usuario = "ROPIMA"
+            Dim oSolicitudActualizarPedido As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
+            .Fuente = RTGMCore.Fuente.Sigamet,
+            .IDEmpresa = GLOBAL_Corporativo,
+            .Pedidos = ListaPedidos,
+            .Portatil = False,
+            .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin,
+            .Usuario = "ROPIMA"
     }
 
-        Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(oSolicitudActualizarPedido)
+            Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(oSolicitudActualizarPedido)
 
 
-
+        End If
 
 
     End Function
@@ -1432,20 +1412,55 @@ Public Class Llamada
                     Dim MGRutinas As New MobileGas.MobileGas(GLOBAL_ConString, GLOBAL_MGConnectionString)
                     Dim PedRegistrado As Boolean = MGRutinas.InsertaPedidoMobileGas(_Pedido, _Cliente, _FCompromiso, _UsuarioMovil, _AutoTanque, _RutaBoletin, _FAlta)
                     If PedRegistrado = False Then
-                        MessageBox.Show("No fué posible enviar el pedido al sistema Móvil Gas," & vbCrLf & _
-                        "no se registrará el boletín en SIGAMET." & vbCrLf & _
-                        "No es posible boletinar pedidos de otros días.", _
+                        MessageBox.Show("No fué posible enviar el pedido al sistema Móvil Gas," & vbCrLf &
+                        "no se registrará el boletín en SIGAMET." & vbCrLf &
+                        "No es posible boletinar pedidos de otros días.",
                         "Error enviando pedido", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Me.Cursor = Cursors.Default
                         Return
                     End If
                 Catch ex As Exception
-                    MessageBox.Show("No fué posible enviar el pedido al sistema Móvil Gas," & vbCrLf & _
-                        "no se registrará el boletín en SIGAMET." & vbCrLf & _
-                        ex.Message, _
+                    MessageBox.Show("No fué posible enviar el pedido al sistema Móvil Gas," & vbCrLf &
+                        "no se registrará el boletín en SIGAMET." & vbCrLf &
+                        ex.Message,
                         "Error enviando pedido", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End Try
+
+                'EVH .   2018/07/23 Se agrega la funcionalidad para boletinar un pedido de Portàtil . 
+                If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+
+                    Try
+                        Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido()
+                        objGateway.URLServicio = _URLGateway
+                        Dim lstPedido As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
+                        lstPedido.Add(New RTGMCore.PedidoCRMSaldo With {
+                                    .IDPedido = _Pedido,
+                                    .IDZona = _Celula,
+                                    .AnioPed = _Anio,
+                                    .PedidoReferencia = _Pedido
+            })
+                        Dim Solicitud As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
+                                    .Fuente = RTGMCore.Fuente.Sigamet,
+                                    .IDEmpresa = 1,
+                                    .Pedidos = lstPedido,
+                                    .Portatil = True,
+                                    .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin,
+                                    .Usuario = "ROPIMA"
+            }
+
+                        Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(Solicitud)
+
+                    Catch ex As Exception
+
+
+                    End Try
+
+
+                End If
+
+
+
             Else
                 _AutoTanque = CInt(cmbAutoTanque.SelectedValue)
                 Dim cmd As New SqlCommand("spCCPedidoPortatilStatus", CnnSigamet)

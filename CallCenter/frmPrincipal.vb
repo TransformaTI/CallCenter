@@ -188,9 +188,21 @@ Public Class frmPrincipal
     End Sub
 
     Private Sub frmPrincipal_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
         Dim oConfig As New SigaMetClasses.cConfig(1, GLOBAL_Corporativo, GLOBAL_Sucursal)
 
-        _URLGateway = oConfig.Parametros("URLGateway")
+        Try
+            Dim oConfig2 As New SigaMetClasses.cConfig(1, GLOBAL_Corporativo, GLOBAL_Sucursal)
+            _URLGateway = CType(oConfig2.Parametros("URLGateway"), String)
+
+        Catch saex As System.ArgumentException
+
+            If saex.Message.Contains("Index") Then
+                _URLGateway = ""
+            End If
+
+        End Try
+
 
         'Registrar el inicio de sesión en el módulo
         If GLOBAL_REGISTRO_INICIO_SESION Then
@@ -219,8 +231,8 @@ Public Class frmPrincipal
         mniVentasMultinivel.Visible = GLOBAL_VentasMultinivel AndAlso (oSeguridad.TieneAcceso("ConsultaRelacionesMultinivel") OrElse oSeguridad.TieneAcceso("ModificaRelacionesMultinivel"))
 
         If GLOBAL_GruposPromocionales Then
-            VentasPromotor.ValLayer.VentasPromotorLib.Instance.Inicializar(CnnSigamet, GLOBAL_Usuario, GLOBAL_Celula, _
-                oSeguridad.TieneAcceso("AGREGAR ASOCIACIONES"), oSeguridad.TieneAcceso("REALIZAR PAGOS PROMOCIONES"), _
+            VentasPromotor.ValLayer.VentasPromotorLib.Instance.Inicializar(CnnSigamet, GLOBAL_Usuario, GLOBAL_Celula,
+                oSeguridad.TieneAcceso("AGREGAR ASOCIACIONES"), oSeguridad.TieneAcceso("REALIZAR PAGOS PROMOCIONES"),
                 GLOBAL_PagoPromocionAPromotor)
             mnuPromotor.Enabled = GLOBAL_GruposPromocionales AndAlso (oSeguridad.TieneAcceso("VENTAS POR PROMOCIONES") OrElse oSeguridad.TieneAcceso("AGREGAR ASOCIACIONES"))
             mnuPromotor.Visible = mnuPromotor.Enabled
