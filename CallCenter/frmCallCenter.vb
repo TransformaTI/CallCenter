@@ -3269,7 +3269,8 @@ Public Class frmCallCenter
 
         Else
 
-            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, _URLGateway)
+            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, _URLGateway, GLOBAL_ConString)
+
 
         End If
 
