@@ -1043,12 +1043,18 @@ Public Class frmBoletin
 
     Private Sub CargarLvwBoletin_PedidosCRM(ByVal Pedidos As List(Of RTGMCore.Pedido))
         Dim objPedido As New RTGMCore.Pedido
+        Dim cliente As New Integer
+        Dim oSolicitud As RTGMGateway.SolicitudGateway
+        Dim oDireccionEntrega As RTGMCore.DireccionEntrega
+        Dim oGateway As New RTGMGateway.RTGMGateway(GLOBAL_Modulo, GLOBAL_ConString)
 
         lvwBoletin.Items.Clear()
 
         For Each objPedido In Pedidos
             cliente = objPedido.IDDireccionEntrega
             oSolicitud = New RTGMGateway.SolicitudGateway
+            'oSolicitud.Fuente = RTGMCore.Fuente.Sigamet
+            'oSolicitud.IDEmpresa = SigaMetClasses.GLOBAL_Empresa
             oSolicitud.IDCliente = cliente
             oGateway.URLServicio = _URLGateway
             oDireccionEntrega = oGateway.buscarDireccionEntrega(oSolicitud)
