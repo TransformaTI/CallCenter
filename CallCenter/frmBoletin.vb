@@ -988,26 +988,65 @@ Public Class frmBoletin
         Cursor = Cursors.Default
     End Sub
 
-    Private Function ConsultaClientesBoletinCRM(ByVal Pedidos As List(Of RTGMCore.Pedido)) As Integer
+    'Private Function ConsultaClientesBoletinCRM(ByVal Pedidos As List(Of RTGMCore.Pedido)) As Integer
 
+    '    Dim objPedido As New RTGMCore.Pedido
+    '    Dim cliente As New Integer
+    '    Dim oSolicitud As RTGMGateway.SolicitudGateway
+    '    Dim oDireccionEntrega As RTGMCore.DireccionEntrega
+    '    Dim oGateway As New RTGMGateway.RTGMGateway(GLOBAL_Modulo, GLOBAL_ConString)
+
+    '    lvwBoletin.Items.Clear()
+
+    '    For Each objPedido In Pedidos
+    '        cliente = objPedido.IDDireccionEntrega
+    '        oSolicitud = New RTGMGateway.SolicitudGateway
+    '        'oSolicitud.Fuente = RTGMCore.Fuente.Sigamet
+    '        'oSolicitud.IDEmpresa = SigaMetClasses.GLOBAL_Empresa
+
+    '        oSolicitud.IDCliente = cliente
+    '        oGateway.URLServicio = _URLGateway
+    '        oDireccionEntrega = oGateway.buscarDireccionEntrega(oSolicitud)
+    '        objPedido.DireccionEntrega.Nombre = oDireccionEntrega.Nombre
+
+    '        Dim oItem As ListViewItem
+    '        Dim tipo As Integer = 0
+
+    '        oItem = New ListViewItem(CType(objPedido.PedidoReferencia, String).Trim, tipo) '0
+    '        oItem.SubItems.Add(CType(objPedido.AnioPed, Short).ToString) '1
+    '        oItem.SubItems.Add(CType(objPedido.IDZona, Byte).ToString) '2
+    '        oItem.SubItems.Add(CType(objPedido.IDPedido, Integer).ToString) '3
+    '        oItem.SubItems.Add(CType(objPedido.RutaOrigen.NumeroRuta, Short).ToString) '4
+    '        oItem.SubItems.Add(CType(objPedido.RutaOrigen.Descripcion, String).Trim) '5
+    '        oItem.SubItems.Add(CType(objPedido.RutaOrigen.NumeroRuta, Short).ToString) '6
+    '        oItem.SubItems.Add(CType(objPedido.RutaBoletin.Descripcion, String).Trim) '7
+    '        oItem.SubItems.Add(CType(objPedido.FAlta, Date).ToString) '8
+    '        oItem.SubItems.Add(CType(objPedido.FCompromiso, Date).ToShortDateString) '9
+    '        oItem.SubItems.Add(CType(objPedido.IDDireccionEntrega, String).Trim) '10
+    '        oItem.SubItems.Add(CType(oDireccionEntrega.Nombre, String).Trim) '11
+    '        oItem.SubItems.Add(CType(oDireccionEntrega.DireccionCompleta, String).Trim) '12
+    '        oItem.SubItems.Add(CType(objPedido.PrioridadPedido, String).Trim) '13
+    '        oItem.SubItems.Add(CType(objPedido.IDUsuarioAlta, String).Trim) '14
+    '        oItem.SubItems.Add(CType(objPedido.EstatusBoletin, String).Trim) '15
+    '        oItem.SubItems.Add(CType(objPedido.LlamadaInsistente, String).Trim) '16
+    '        oItem.SubItems.Add(CType(oDireccionEntrega.Telefono1, String).Trim) '17
+    '        oItem.SubItems.Add(CType(oDireccionEntrega.Observaciones, String).Trim) '18
+
+
+    '        lvwBoletin.Items.Add(oItem)
+    '    Next
+
+    '    Return 0
+
+
+    'End Function
+
+    Private Sub CargarLvwBoletin_PedidosCRM(ByVal Pedidos As List(Of RTGMCore.Pedido))
         Dim objPedido As New RTGMCore.Pedido
-        Dim cliente As New Integer
-        Dim oSolicitud As RTGMGateway.SolicitudGateway
-        Dim oDireccionEntrega As RTGMCore.DireccionEntrega
-        Dim oGateway As New RTGMGateway.RTGMGateway(GLOBAL_Modulo, GLOBAL_ConString)
 
         lvwBoletin.Items.Clear()
 
         For Each objPedido In Pedidos
-            cliente = objPedido.IDDireccionEntrega
-            oSolicitud = New RTGMGateway.SolicitudGateway
-            'oSolicitud.Fuente = RTGMCore.Fuente.Sigamet
-            'oSolicitud.IDEmpresa = SigaMetClasses.GLOBAL_Empresa
-
-            oSolicitud.IDCliente = cliente
-            oGateway.URLServicio = _URLGateway
-            oDireccionEntrega = oGateway.buscarDireccionEntrega(oSolicitud)
-            objPedido.DireccionEntrega.Nombre = oDireccionEntrega.Nombre
 
             Dim oItem As ListViewItem
             Dim tipo As Integer = 0
@@ -1023,24 +1062,18 @@ Public Class frmBoletin
             oItem.SubItems.Add(CType(objPedido.FAlta, Date).ToString) '8
             oItem.SubItems.Add(CType(objPedido.FCompromiso, Date).ToShortDateString) '9
             oItem.SubItems.Add(CType(objPedido.IDDireccionEntrega, String).Trim) '10
-            oItem.SubItems.Add(CType(oDireccionEntrega.Nombre, String).Trim) '11
-            oItem.SubItems.Add(CType(oDireccionEntrega.DireccionCompleta, String).Trim) '12
+            oItem.SubItems.Add(CType(objPedido.DireccionEntrega.Nombre, String).Trim) '11
+            oItem.SubItems.Add(CType(objPedido.DireccionEntrega.DireccionCompleta, String).Trim) '12
             oItem.SubItems.Add(CType(objPedido.PrioridadPedido, String).Trim) '13
             oItem.SubItems.Add(CType(objPedido.IDUsuarioAlta, String).Trim) '14
             oItem.SubItems.Add(CType(objPedido.EstatusBoletin, String).Trim) '15
             oItem.SubItems.Add(CType(objPedido.LlamadaInsistente, String).Trim) '16
-            oItem.SubItems.Add(CType(oDireccionEntrega.Telefono1, String).Trim) '17
-            oItem.SubItems.Add(CType(oDireccionEntrega.Observaciones, String).Trim) '18
-
+            oItem.SubItems.Add(CType(objPedido.DireccionEntrega.Telefono1, String).Trim) '17
+            oItem.SubItems.Add(CType(objPedido.DireccionEntrega.Observaciones, String).Trim) '18
 
             lvwBoletin.Items.Add(oItem)
         Next
-
-        Return 0
-
-
-    End Function
-
+    End Sub
 
     Private Sub CargaBoletin(Optional ByVal URLGateway As String = "")
         ' chkPortatil.Checked = True
@@ -1080,7 +1113,12 @@ Public Class frmBoletin
             objPedidoGateway.URLServicio = _URLGateway
             ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
             'Consulta los pedidos que vienen como respuesta del Web Service 
-            ConsultaClientesBoletinCRM(ListaPedidos)
+
+            ' RM_09_08_2018
+            ' Se comenta este método; los pedidos ya traen información del cliente en la propiedad
+            ' Pedido.DireccionEntrega. Se agrega el método CargarLvwBoletin_PedidosCRM()
+            'ConsultaClientesBoletinCRM(ListaPedidos)
+            CargarLvwBoletin_PedidosCRM(ListaPedidos)
 
             Cursor = Cursors.Default
 
@@ -1857,7 +1895,12 @@ Public Class frmBoletin
             objPedidoGateway.URLServicio = _URLGateway
             ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
             'Consulta los pedidos que vienen como respuesta del Web Service 
-            ConsultaClientesBoletinCRM(ListaPedidos)
+
+            ' RM_09_08_2018
+            ' Se comenta este método; los pedidos ya traen información del cliente en la propiedad
+            ' Pedido.DireccionEntrega. Se agrega el método CargarLvwBoletin_PedidosCRM()
+            'ConsultaClientesBoletinCRM(ListaPedidos)
+            CargarLvwBoletin_PedidosCRM(ListaPedidos)
 
             Cursor = Cursors.Default
 
