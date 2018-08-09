@@ -100,6 +100,7 @@ Module Main
     'Corporativo y sucursal
     Public GLOBAL_Corporativo As Short
     Public GLOBAL_Sucursal As Short
+    Public GLOBAL_Modulo As Byte = 1
 
     Public _Nivel As String
     Public _numeroCelda As Integer

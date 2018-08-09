@@ -994,16 +994,15 @@ Public Class frmBoletin
         Dim cliente As New Integer
         Dim oSolicitud As RTGMGateway.SolicitudGateway
         Dim oDireccionEntrega As RTGMCore.DireccionEntrega
-        Dim oGateway As New RTGMGateway.RTGMGateway(SigaMetClasses.GLOBAL_Modulo, GLOBAL_ConString)
+        Dim oGateway As New RTGMGateway.RTGMGateway(GLOBAL_Modulo, GLOBAL_ConString)
 
         lvwBoletin.Items.Clear()
 
         For Each objPedido In Pedidos
             cliente = objPedido.IDDireccionEntrega
             oSolicitud = New RTGMGateway.SolicitudGateway
-
             'oSolicitud.Fuente = RTGMCore.Fuente.Sigamet
-            oSolicitud.IDEmpresa = SigaMetClasses.GLOBAL_Empresa
+            'oSolicitud.IDEmpresa = SigaMetClasses.GLOBAL_Empresa
 
             oSolicitud.IDCliente = cliente
             oGateway.URLServicio = _URLGateway
@@ -1052,7 +1051,7 @@ Public Class frmBoletin
         End If
         Cursor = Cursors.WaitCursor
 
-        Dim oGateway As RTGMGateway.RTGMGateway
+        'Dim oGateway As RTGMGateway.RTGMGateway
 
         Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway
         Dim _CelulaCarga As Byte
@@ -1068,8 +1067,8 @@ Public Class frmBoletin
         End If
 
         If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
-            oGateway = New RTGMGateway.RTGMGateway(SigaMetClasses.GLOBAL_Modulo, GLOBAL_ConString)
-            oGateway.URLServicio = _URLGateway
+            'oGateway = New RTGMGateway.RTGMGateway(GLOBAL_Modulo, GLOBAL_ConString)
+            'oGateway.URLServicio = _URLGateway
 
             SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
             SolicitudPedidoGateway.IDZona = _CelulaCarga
