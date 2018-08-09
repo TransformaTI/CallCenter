@@ -1047,6 +1047,12 @@ Public Class frmBoletin
         lvwBoletin.Items.Clear()
 
         For Each objPedido In Pedidos
+            cliente = objPedido.IDDireccionEntrega
+            oSolicitud = New RTGMGateway.SolicitudGateway
+            oSolicitud.IDCliente = cliente
+            oGateway.URLServicio = _URLGateway
+            oDireccionEntrega = oGateway.buscarDireccionEntrega(oSolicitud)
+            objPedido.DireccionEntrega.Nombre = oDireccionEntrega.Nombre
 
             Dim oItem As ListViewItem
             Dim tipo As Integer = 0
