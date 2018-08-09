@@ -1003,7 +1003,7 @@ Public Class frmBoletin
             oSolicitud = New RTGMGateway.SolicitudGateway
 
             'oSolicitud.Fuente = RTGMCore.Fuente.Sigamet
-            oSolicitud.IDEmpresa = SigaMetClasses.GLOBAL_Empresa
+            'oSolicitud.IDEmpresa = SigaMetClasses.GLOBAL_Empresa
 
             oSolicitud.IDCliente = cliente
             oGateway.URLServicio = _URLGateway

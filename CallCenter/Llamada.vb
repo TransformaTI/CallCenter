@@ -213,7 +213,7 @@ Public Class Llamada
 
         oSolicitud.IDCliente = Cliente
         oGateway.URLServicio = _URLGateway
-        oSolicitud.Fuente = RTGMCore.Fuente.Sigamet
+        'oSolicitud.Fuente = RTGMCore.Fuente.Sigamet
         Try
             oDireccionEntrega = oGateway.buscarDireccionEntrega(oSolicitud)
         Catch ex As Exception

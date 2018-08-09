@@ -3262,6 +3262,8 @@ Public Class frmCallCenter
 
         Dim oSigamet As New SigaMetClasses.frmConsultaCliente(_Cliente)
         Dim oConsultaCliente As SigaMetClasses.frmConsultaCliente
+        oSigamet.Modulo = 1 'SigaMetClasses.GLOBAL_Modulo
+
 
         If (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
 
@@ -3269,7 +3271,9 @@ Public Class frmCallCenter
 
         Else
 
-            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, _URLGateway, GLOBAL_ConString)
+            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, _URLGateway, GLOBAL_ConString, GLOBAL_Usuario, 1)
+
+            'oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, _URLGateway)
 
 
         End If
@@ -5324,7 +5328,7 @@ Public Class frmCallCenter
 #Region "Captura de tarjetas"
     Private Sub CapturaTarjeta()
         If _Cliente > 0 Then
-            Dim frmCapTarjetaCredito As New SigaMetClasses.frmConTarjetaCredito(_Cliente, GLOBAL_Usuario, _URLGateway)
+            Dim frmCapTarjetaCredito As New SigaMetClasses.frmConTarjetaCredito(_Cliente, GLOBAL_Usuario, _URLGateway, 1, GLOBAL_ConString)
             frmCapTarjetaCredito.ShowDialog()
         End If
     End Sub
