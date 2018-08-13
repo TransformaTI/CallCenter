@@ -48,16 +48,14 @@ Public Class frmBoletin
 
     Public Sub New(Optional ByVal URLGateway As String = Nothing)
         MyBase.New()
+        _URLGateway = URLGateway
 
         'This call is required by the Windows Form Designer.
         InitializeComponent()
 
-        _URLGateway = URLGateway
 
-        Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway
         Dim _CelulaCarga As Byte
         Dim FechaDtp As Date
-        Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
 
         FechaDtp = dtpFecha.Value.Date
 
@@ -67,9 +65,9 @@ Public Class frmBoletin
             _CelulaCarga = Main.GLOBAL_Celula
         End If
 
-        Dim ListaPedidos As List(Of RTGMCore.Pedido)
-        objPedidoGateway.URLServicio = _URLGateway
-        ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
+        'Dim ListaPedidos As List(Of RTGMCore.Pedido)
+        'objPedidoGateway.URLServicio = _URLGateway
+        'ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
 
         'Add any initialization after the InitializeComponent() call
         chkPortatil.Visible = GLOBAL_ManejarClientesPortatil
@@ -196,7 +194,8 @@ Public Class frmBoletin
         Me.grdcolUsuario = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.grdcolObservaciones = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.txtLlamadaObservaciones = New System.Windows.Forms.TextBox()
-        Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia((_URLGateway))
+        'Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia((_URLGateway))
+        Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.grpDatos = New System.Windows.Forms.GroupBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -506,6 +505,8 @@ Public Class frmBoletin
         Me.SeleccionCalleColonia.Size = New System.Drawing.Size(536, 144)
         Me.SeleccionCalleColonia.TabIndex = 0
         Me.SeleccionCalleColonia._URLGateway = _URLGateway
+        Me.SeleccionCalleColonia.CadenaConexion = GLOBAL_ConString
+        Me.SeleccionCalleColonia.Modulo = GLOBAL_Modulo
         '
         'Panel1
         '
@@ -1050,25 +1051,25 @@ Public Class frmBoletin
             Dim oItem As ListViewItem
             Dim tipo As Integer = 0
 
-            oItem = New ListViewItem(CType(objPedido.PedidoReferencia, String).Trim, tipo) '0
-            oItem.SubItems.Add(CType(objPedido.AnioPed, Short).ToString) '1
-            oItem.SubItems.Add(CType(objPedido.IDZona, Byte).ToString) '2
-            oItem.SubItems.Add(CType(objPedido.IDPedido, Integer).ToString) '3
-            oItem.SubItems.Add(CType(objPedido.RutaOrigen.NumeroRuta, Short).ToString) '4
-            oItem.SubItems.Add(CType(objPedido.RutaOrigen.Descripcion, String).Trim) '5
-            oItem.SubItems.Add(CType(objPedido.RutaOrigen.NumeroRuta, Short).ToString) '6
-            oItem.SubItems.Add(CType(objPedido.RutaBoletin.Descripcion, String).Trim) '7
-            oItem.SubItems.Add(CType(objPedido.FAlta, Date).ToString) '8
-            oItem.SubItems.Add(CType(objPedido.FCompromiso, Date).ToShortDateString) '9
+            oItem = New ListViewItem(CType(If(objPedido.PedidoReferencia, ""), String).Trim, tipo) '0
+            oItem.SubItems.Add(CType(If(objPedido.AnioPed, 0), Short).ToString) '1
+            oItem.SubItems.Add(CType(If(objPedido.IDZona, 0), Byte).ToString) '2
+            oItem.SubItems.Add(CType(If(objPedido.IDPedido, 0), Integer).ToString) '3
+            oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '4
+            oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.Descripcion, ""), String).Trim) '5
+            oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '6
+            oItem.SubItems.Add(CType(If(objPedido.RutaBoletin.Descripcion, ""), String).Trim) '7
+            oItem.SubItems.Add(CType(If(objPedido.FAlta, Date.Now), Date).ToString) '8
+            oItem.SubItems.Add(CType(If(objPedido.FCompromiso, Date.Now), Date).ToShortDateString) '9
             oItem.SubItems.Add(CType(objPedido.IDDireccionEntrega, String).Trim) '10
-            oItem.SubItems.Add(CType(objPedido.DireccionEntrega.Nombre, String).Trim) '11
-            oItem.SubItems.Add(CType(objPedido.DireccionEntrega.DireccionCompleta, String).Trim) '12
-            oItem.SubItems.Add(CType(objPedido.PrioridadPedido, String).Trim) '13
-            oItem.SubItems.Add(CType(objPedido.IDUsuarioAlta, String).Trim) '14
-            oItem.SubItems.Add(CType(objPedido.EstatusBoletin, String).Trim) '15
-            oItem.SubItems.Add(CType(objPedido.LlamadaInsistente, String).Trim) '16
-            oItem.SubItems.Add(CType(objPedido.DireccionEntrega.Telefono1, String).Trim) '17
-            oItem.SubItems.Add(CType(objPedido.DireccionEntrega.Observaciones, String).Trim) '18
+            oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Nombre, ""), String).Trim) '11
+            oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.DireccionCompleta, ""), String).Trim) '12
+            oItem.SubItems.Add(CType(If(objPedido.PrioridadPedido, ""), String).Trim) '13
+            oItem.SubItems.Add(CType(If(objPedido.IDUsuarioAlta, ""), String).Trim) '14
+            oItem.SubItems.Add(CType(If(objPedido.EstatusBoletin, ""), String).Trim) '15
+            oItem.SubItems.Add(CType(If(objPedido.LlamadaInsistente, ""), String).Trim) '16
+            oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Telefono1, ""), String).Trim) '17
+            oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Observaciones, ""), String).Trim) '18
 
             lvwBoletin.Items.Add(oItem)
         Next
@@ -1083,12 +1084,8 @@ Public Class frmBoletin
         End If
         Cursor = Cursors.WaitCursor
 
-        'Dim oGateway As RTGMGateway.RTGMGateway
-
-        Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway
         Dim _CelulaCarga As Byte
         Dim FechaDtp As Date
-        Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
 
         FechaDtp = dtpFecha.Value.Date
 
@@ -1099,17 +1096,20 @@ Public Class frmBoletin
         End If
 
         If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
-            'oGateway = New RTGMGateway.RTGMGateway(GLOBAL_Modulo, GLOBAL_ConString)
-            'oGateway.URLServicio = _URLGateway
-
-            SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
-            SolicitudPedidoGateway.IDZona = _CelulaCarga
-            SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
-            'SolicitudPedidoGateway.FuenteDatos = RTGMCore.Fuente.Sigamet
-            SolicitudPedidoGateway.IDEmpresa = SigaMetClasses.GLOBAL_Empresa
-
-            Dim ListaPedidos As List(Of RTGMCore.Pedido)
+            Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
+            Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
+            Dim ListaPedidos As New List(Of RTGMCore.Pedido)
             objPedidoGateway.URLServicio = _URLGateway
+            SolicitudPedidoGateway.IDZona = _CelulaCarga
+
+            If objPedidoGateway.Fuente = RTGMCore.Fuente.Sigamet Then
+                SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
+                SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
+                SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
+            ElseIf objPedidoGateway.Fuente = RTGMCore.Fuente.CRM Then
+                SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
+            End If
+
             ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
             'Consulta los pedidos que vienen como respuesta del Web Service 
 
@@ -1121,9 +1121,7 @@ Public Class frmBoletin
 
             Cursor = Cursors.Default
 
-
         Else
-
             If lvwBoletin.Columns.Contains(colEstadoMG) Then
                 lvwBoletin.Columns.Remove(colPedidoMG)
                 lvwBoletin.Columns.Remove(colAutotanqueMG)
@@ -1266,14 +1264,7 @@ Public Class frmBoletin
             If Not chkTodasLasRutas.Checked Then
                 ConsultaChoferes()
             End If
-
         End If
-
-
-
-
-
-
     End Sub
 
     Private Sub ConsultaChoferes()
@@ -1554,15 +1545,13 @@ Public Class frmBoletin
     Private Function ConsultarDetallePedidoCRM(ByVal objPedidoParam As RTGMCore.Pedido) As RTGMCore.Pedido
 
         Dim cliente As New Integer
-        Dim oGateway As New RTGMGateway.RTGMGateway(SigaMetClasses.GLOBAL_Modulo, GLOBAL_ConString)
-        Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway
+        Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
         Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
         SolicitudPedidoGateway.PedidoReferencia = objPedidoParam.PedidoReferencia
-        SolicitudPedidoGateway.IDEmpresa = objPedidoParam.IDEmpresa
         SolicitudPedidoGateway.IDZona = objPedidoParam.IDZona
         SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
         SolicitudPedidoGateway.FechaCompromisoInicio = objPedidoParam.FCompromiso
-        ' SolicitudPedidoGateway.FuenteDatos = RTGMCore.Fuente.Sigamet
+
         Dim ListaPedidos As List(Of RTGMCore.Pedido)
         objPedidoGateway.URLServicio = _URLGateway
         ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
@@ -1849,13 +1838,14 @@ Public Class frmBoletin
         CargaBoletinPortatil()
         Cursor = Cursors.Default
     End Sub
+
     Private Sub CargaBoletinPortatil(Optional ByVal URLGateway As String = Nothing)
 
         Dim objPedido As New RTGMCore.Pedido
         Dim cliente As New Integer
-        Dim oGateway As New RTGMGateway.RTGMGateway(SigaMetClasses.GLOBAL_Modulo, GLOBAL_ConString)
+        'Dim oGateway As New RTGMGateway.RTGMGateway(SigaMetClasses.GLOBAL_Modulo, GLOBAL_ConString)
         Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
-        Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway
+        Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
         Dim FechaDtp As Date
 
         Cursor = Cursors.WaitCursor
@@ -1883,8 +1873,8 @@ Public Class frmBoletin
         End If
 
         If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
-            oGateway = New RTGMGateway.RTGMGateway(SigaMetClasses.GLOBAL_Modulo, GLOBAL_ConString)
-            oGateway.URLServicio = _URLGateway
+            'oGateway = New RTGMGateway.RTGMGateway(SigaMetClasses.GLOBAL_Modulo, GLOBAL_ConString)
+            'oGateway.URLServicio = _URLGateway
 
             SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
             SolicitudPedidoGateway.IDZona = _CelulaCarga
