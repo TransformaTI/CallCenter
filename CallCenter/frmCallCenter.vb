@@ -4821,8 +4821,17 @@ Public Class frmCallCenter
         Dim oConsultaPedido As SigaMetClasses.ConsultaCargo = Nothing
         Cursor = Cursors.WaitCursor
         Try
-            oConsultaPedido = New SigaMetClasses.ConsultaCargo(_PedidoReferencia)
-            oConsultaPedido.ShowDialog()
+            If String.IsNullOrEmpty(_URLGateway) Then
+                oConsultaPedido = New SigaMetClasses.ConsultaCargo(_PedidoReferencia)
+                oConsultaPedido.ShowDialog()
+            Else
+                oConsultaPedido = New SigaMetClasses.ConsultaCargo(_PedidoReferencia,
+                                                                   strURLGateway:=_URLGateway,
+                                                                   Modulo:=GLOBAL_Modulo,
+                                                                   CadenaConexion:=GLOBAL_ConString)
+                oConsultaPedido.ShowDialog()
+            End If
+
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
