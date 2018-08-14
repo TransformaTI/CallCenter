@@ -34,6 +34,8 @@ Public Class Llamada
     Private _FAlta As Date
     Dim _RutaBoletin As Short
     Public _URLGateway As String
+    Private _Modulo As Byte
+    Private _CadenaConexion As String
 
 
     Private Sub ConsultaAutotanquesPorDia(ByVal ruta As Int32, ByVal inicio As Boolean)
@@ -92,11 +94,19 @@ Public Class Llamada
         Me.Cursor = Cursors.Default
     End Sub
 
-    Public Sub New(ByVal PedidoReferencia As String, ByVal RutaPedido As Int32, ByVal FechaPedido As Date, ByVal DaCelula As DataTable, ByVal URLGateway As String)
+    Public Sub New(ByVal PedidoReferencia As String,
+                   ByVal RutaPedido As Int32,
+                   ByVal FechaPedido As Date,
+                   ByVal DaCelula As DataTable,
+                   ByVal URLGateway As String,
+                   Optional ByVal Modulo As Byte = 0,
+                   Optional ByVal CadenaConexion As String = "")
         'This call is required by the Windows Form Designer.
         InitializeComponent()
 
         _URLGateway = URLGateway
+        _Modulo = Modulo
+        _CadenaConexion = CadenaConexion
 
         Me.pedidoReferencia = PedidoReferencia
         Me.fechaPedido = FechaPedido
@@ -1132,7 +1142,7 @@ Public Class Llamada
         End Try
 
         If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
-            Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido()
+            Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido(_Modulo, _CadenaConexion)
             objGateway.URLServicio = _URLGateway
 
             'Se arma el pedido con los datos que llegan a la funciòn.
@@ -1149,8 +1159,6 @@ Public Class Llamada
             ListaPedidos.Add(objPedido)
 
             Dim oSolicitudActualizarPedido As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
-            .Fuente = RTGMCore.Fuente.Sigamet,
-            .IDEmpresa = GLOBAL_Corporativo,
             .Pedidos = ListaPedidos,
             .Portatil = False,
             .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin,
@@ -1430,7 +1438,7 @@ Public Class Llamada
                 If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
 
                     Try
-                        Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido()
+                        Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido(_Modulo, _CadenaConexion)
                         objGateway.URLServicio = _URLGateway
                         Dim lstPedido As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
                         lstPedido.Add(New RTGMCore.PedidoCRMSaldo With {
@@ -1440,8 +1448,6 @@ Public Class Llamada
                                     .PedidoReferencia = _Pedido
             })
                         Dim Solicitud As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
-                                    .Fuente = RTGMCore.Fuente.Sigamet,
-                                    .IDEmpresa = 1,
                                     .Pedidos = lstPedido,
                                     .Portatil = True,
                                     .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin,
