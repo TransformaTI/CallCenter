@@ -4828,7 +4828,8 @@ Public Class frmCallCenter
                 oConsultaPedido = New SigaMetClasses.ConsultaCargo(_PedidoReferencia,
                                                                    strURLGateway:=_URLGateway,
                                                                    Modulo:=GLOBAL_Modulo,
-                                                                   CadenaConexion:=GLOBAL_ConString)
+                                                                   CadenaConexion:=GLOBAL_ConString,
+                                                                   Celula:=_Celula)
                 oConsultaPedido.ShowDialog()
             End If
 
