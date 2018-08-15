@@ -217,7 +217,7 @@ Public Class Llamada
 
     Public Function ConsultarDatosCliente(ByVal Cliente As Integer) As RTGMCore.DireccionEntrega
 
-        Dim oGateway = New RTGMGateway.RTGMGateway(SigaMetClasses.GLOBAL_Modulo, SigaMetClasses.DataLayer.Conexion.ConnectionString)
+        Dim oGateway = New RTGMGateway.RTGMGateway(_Modulo, _CadenaConexion)
         Dim oSolicitud As RTGMGateway.SolicitudGateway
         Dim oDireccionEntrega As New RTGMCore.DireccionEntrega
 
@@ -226,12 +226,10 @@ Public Class Llamada
         Try
             oDireccionEntrega = oGateway.buscarDireccionEntrega(oSolicitud)
         Catch ex As Exception
-
+            Throw ex
         End Try
 
-
         Return oDireccionEntrega
-
     End Function
 
 
