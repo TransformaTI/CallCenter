@@ -1061,10 +1061,15 @@ Public Class frmBoletin
                     oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '4
                     oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.Descripcion, ""), String).Trim) '5
                     oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '6
-
+                Else
+                    oItem.SubItems.Add("") '4
+                    oItem.SubItems.Add("") '5
+                    oItem.SubItems.Add("") '6
                 End If
                 If Not IsNothing(objPedido.RutaBoletin) Then
                     oItem.SubItems.Add(CType(If(objPedido.RutaBoletin.Descripcion, ""), String).Trim) '7
+                Else
+                    oItem.SubItems.Add("") '7
                 End If
                 oItem.SubItems.Add(CType(If(objPedido.FAlta, Date.Now), Date).ToString) '8
                 oItem.SubItems.Add(CType(If(objPedido.FCompromiso, Date.Now), Date).ToShortDateString) '9
@@ -1072,6 +1077,9 @@ Public Class frmBoletin
                 If Not IsNothing(objPedido.DireccionEntrega) Then
                     oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Nombre, ""), String).Trim) '11
                     oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.DireccionCompleta, ""), String).Trim) '12
+                Else
+                    oItem.SubItems.Add("") '11
+                    oItem.SubItems.Add("") '12
                 End If
                 oItem.SubItems.Add(CType(If(objPedido.PrioridadPedido, ""), String).Trim) '13
                 oItem.SubItems.Add(CType(If(objPedido.IDUsuarioAlta, ""), String).Trim) '14
@@ -1080,6 +1088,9 @@ Public Class frmBoletin
                 If Not IsNothing(objPedido.DireccionEntrega) Then
                     oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Telefono1, ""), String).Trim) '17
                     oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Observaciones, ""), String).Trim) '18
+                Else
+                    oItem.SubItems.Add("") '17
+                    oItem.SubItems.Add("") '18
                 End If
                 lvwBoletin.Items.Add(oItem)
             Next
