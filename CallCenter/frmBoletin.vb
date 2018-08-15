@@ -23,6 +23,7 @@ Public Class frmBoletin
     Private _Autotanque As Integer = 0
     Private _FAlta As Date
     Public _URLGateway As String
+    Private _PedidosRTGM As List(Of RTGMCore.Pedido)
     Friend WithEvents btnCerrar As System.Windows.Forms.ToolBarButton
     Friend WithEvents btnSep2 As System.Windows.Forms.ToolBarButton
     Friend WithEvents btnRefrescar As System.Windows.Forms.ToolBarButton
@@ -1110,7 +1111,8 @@ Public Class frmBoletin
         If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
             Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
             Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
-            Dim ListaPedidos As New List(Of RTGMCore.Pedido)
+            'Dim ListaPedidos As New List(Of RTGMCore.Pedido)
+            _PedidosRTGM = New List(Of RTGMCore.Pedido)
             objPedidoGateway.URLServicio = _URLGateway
             SolicitudPedidoGateway.IDZona = _CelulaCarga
 
@@ -1122,14 +1124,14 @@ Public Class frmBoletin
                 SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
             End If
 
-            ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
+            _PedidosRTGM = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
             'Consulta los pedidos que vienen como respuesta del Web Service 
 
             ' RM_09_08_2018
             ' Se comenta este método; los pedidos ya traen información del cliente en la propiedad
             ' Pedido.DireccionEntrega. Se agrega el método CargarLvwBoletin_PedidosCRM()
             'ConsultaClientesBoletinCRM(ListaPedidos)
-            CargarLvwBoletin_PedidosCRM(ListaPedidos)
+            CargarLvwBoletin_PedidosCRM(_PedidosRTGM)
 
             Cursor = Cursors.Default
 
@@ -1603,16 +1605,16 @@ Public Class frmBoletin
 
                 'Se agrega funcionalidad para ir al Web Service a consultar el detalle del pedido o del cliente . 
 
-                Dim objPedido As New RTGMCore.Pedido
-                objPedido.IDEmpresa = GLOBAL_Corporativo
-                objPedido.FCompromiso = _FCompromiso
-                objPedido.IDZona = _Celula
-                objPedido.EstatusBoletin = "BOLETIN"
-                objPedido.PedidoReferencia = _PedidoReferencia
-                objPedido = ConsultarDetallePedidoCRM(objPedido)
-                lblCliente.Text = objPedido.DireccionEntrega.IDDireccionEntrega
-                lblNombre.Text = objPedido.DireccionEntrega.Nombre
-                lblTelCasa.Text = objPedido.DireccionEntrega.Telefono1
+                'Dim objPedido As New RTGMCore.Pedido
+                'objPedido.IDEmpresa = GLOBAL_Corporativo
+                'objPedido.FCompromiso = _FCompromiso
+                'objPedido.IDZona = _Celula
+                'objPedido.EstatusBoletin = "BOLETIN"
+                'objPedido.PedidoReferencia = _PedidoReferencia
+                'objPedido = ConsultarDetallePedidoCRM(objPedido)
+                'lblCliente.Text = objPedido.DireccionEntrega.IDDireccionEntrega
+                'lblNombre.Text = objPedido.DireccionEntrega.Nombre
+                'lblTelCasa.Text = objPedido.DireccionEntrega.Telefono1
 
                 lblObservacionesPedido.Text = CType(lvwBoletin.FocusedItem.SubItems(18).Text, String).Trim
                 If chkPortatil.Checked Then
