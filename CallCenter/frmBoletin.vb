@@ -1122,18 +1122,13 @@ Public Class frmBoletin
         If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
             Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
             Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
-            'Dim ListaPedidos As New List(Of RTGMCore.Pedido)
             _PedidosRTGM = New List(Of RTGMCore.Pedido)
             objPedidoGateway.URLServicio = _URLGateway
-            SolicitudPedidoGateway.IDZona = _CelulaCarga
 
-            If objPedidoGateway.Fuente = RTGMCore.Fuente.Sigamet Then
-                SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
-                SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
-                SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
-            ElseIf objPedidoGateway.Fuente = RTGMCore.Fuente.CRM Then
-                SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
-            End If
+            SolicitudPedidoGateway.IDZona = _CelulaCarga
+            SolicitudPedidoGateway.EstatusBoletin = cboStatusBoletin.SelectedItem
+            SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
+            SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
 
             _PedidosRTGM = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
             'Consulta los pedidos que vienen como respuesta del Web Service 
@@ -1145,7 +1140,6 @@ Public Class frmBoletin
             CargarLvwBoletin_PedidosCRM(_PedidosRTGM)
 
             Cursor = Cursors.Default
-
         Else
             If lvwBoletin.Columns.Contains(colEstadoMG) Then
                 lvwBoletin.Columns.Remove(colPedidoMG)
