@@ -1062,16 +1062,16 @@ Public Class frmBoletin
                     oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.Descripcion, ""), String).Trim) '5
                     oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '6
                 Else
-                    oItem.SubItems.Add("") '4
+                    oItem.SubItems.Add(0) '4
                     oItem.SubItems.Add("") '5
-                    oItem.SubItems.Add("") '6
+                    oItem.SubItems.Add(0) '6
                 End If
                 If Not IsNothing(objPedido.RutaBoletin) Then
                     oItem.SubItems.Add(CType(If(objPedido.RutaBoletin.Descripcion, ""), String).Trim) '7
                 Else
                     oItem.SubItems.Add("") '7
                 End If
-                oItem.SubItems.Add(CType(If(objPedido.FAlta, Date.Now), Date).ToString) '8
+                oItem.SubItems.Add(CType(If(objPedido.FAlta, Date.Now), Date).ToShortDateString) '8
                 oItem.SubItems.Add(CType(If(objPedido.FCompromiso, Date.Now), Date).ToShortDateString) '9
                 oItem.SubItems.Add(CType(objPedido.IDDireccionEntrega, String).Trim) '10
                 If Not IsNothing(objPedido.DireccionEntrega) Then
