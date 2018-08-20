@@ -1145,30 +1145,27 @@ Public Class Llamada
 
             'Se arma el pedido con los datos que llegan a la funciòn.
 
-            Dim objPedido As New RTGMCore.PedidoCRMSaldo
+            Dim objPedido As New RTGMCore.PedidoCRMDatos
             objPedido.IDEmpresa = GLOBAL_Corporativo
             objPedido.IDZona = Celula
-            objPedido.AnioPed = Anio
-            objPedido.EstatusBoletin = "BOLETIN"
-            objPedido.PedidoReferencia = Pedido
+            'objPedido.AnioPed = Anio
+            objPedido.EstatusBoletin = "BOLETINADO"
+            'objPedido.PedidoReferencia = Pedido
             objPedido.IDPedido = Pedido
             Dim ListaPedidos As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
 
             ListaPedidos.Add(objPedido)
 
             Dim oSolicitudActualizarPedido As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
-            .Pedidos = ListaPedidos,
-            .Portatil = False,
-            .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin,
-            .Usuario = "ROPIMA"
-    }
+                .Pedidos = ListaPedidos,
+                .Portatil = False,
+                .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin
+            }
+            '.Usuario = "ROPIMA"
 
             Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(oSolicitudActualizarPedido)
 
-
         End If
-
-
     End Function
 
 
