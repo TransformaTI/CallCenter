@@ -1833,11 +1833,13 @@ Public Class frmBoletin
 
 
     Private Sub lvwBoletin_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lvwBoletin.DoubleClick
-        Cursor = Cursors.WaitCursor
-        Dim oCallCenter As New frmCallCenter(_Cliente, chkPortatil.Checked)
-        oCallCenter.Show()
-        Cursor = Cursors.Default
 
+        If String.IsNullOrEmpty(_URLGateway) Then
+            Cursor = Cursors.WaitCursor
+            Dim oCallCenter As New frmCallCenter(_Cliente, chkPortatil.Checked)
+            Cursor = Cursors.Default
+            oCallCenter.Show()
+        End If
     End Sub
 
     Private Sub habilitaCambioCompromiso()
