@@ -1083,7 +1083,7 @@ Public Class frmBoletin
                 End If
                 oItem.SubItems.Add(CType(If(objPedido.PrioridadPedido, ""), String).Trim) '13
                 oItem.SubItems.Add(CType(If(objPedido.IDUsuarioAlta, ""), String).Trim) '14
-                oItem.SubItems.Add(CType(If(objPedido.EstatusBoletin, ""), String).Trim) '15
+                oItem.SubItems.Add(CType(If(objPedido.EstatusPedido, ""), String).Trim) '15
                 oItem.SubItems.Add(CType(If(objPedido.LlamadaInsistente, ""), String).Trim) '16
                 If Not IsNothing(objPedido.DireccionEntrega) Then
                     oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Telefono1, ""), String).Trim) '17
