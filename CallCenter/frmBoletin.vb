@@ -1120,26 +1120,34 @@ Public Class frmBoletin
         End If
 
         If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
-            Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
-            Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
-            _PedidosRTGM = New List(Of RTGMCore.Pedido)
-            objPedidoGateway.URLServicio = _URLGateway
+            Try
+                Dim FechaFin As Date = FechaDtp.AddSeconds(-1).AddDays(1)
 
-            SolicitudPedidoGateway.IDZona = _CelulaCarga
-            SolicitudPedidoGateway.EstatusBoletin = cboStatusBoletin.SelectedItem
-            SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
-            SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
+                Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
+                Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
+                _PedidosRTGM = New List(Of RTGMCore.Pedido)
+                objPedidoGateway.URLServicio = _URLGateway
 
-            _PedidosRTGM = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
-            'Consulta los pedidos que vienen como respuesta del Web Service 
+                SolicitudPedidoGateway.IDZona = _CelulaCarga
+                SolicitudPedidoGateway.EstatusBoletin = cboStatusBoletin.SelectedItem
+                SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
+                SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
+                SolicitudPedidoGateway.FechaCompromisoFin = FechaFin
 
-            ' RM_09_08_2018
-            ' Se comenta este método; los pedidos ya traen información del cliente en la propiedad
-            ' Pedido.DireccionEntrega. Se agrega el método CargarLvwBoletin_PedidosCRM()
-            'ConsultaClientesBoletinCRM(ListaPedidos)
-            CargarLvwBoletin_PedidosCRM(_PedidosRTGM)
+                _PedidosRTGM = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
+                'Consulta los pedidos que vienen como respuesta del Web Service 
 
-            Cursor = Cursors.Default
+                ' RM_09_08_2018
+                ' Se comenta este método; los pedidos ya traen información del cliente en la propiedad
+                ' Pedido.DireccionEntrega. Se agrega el método CargarLvwBoletin_PedidosCRM()
+                'ConsultaClientesBoletinCRM(ListaPedidos)
+                CargarLvwBoletin_PedidosCRM(_PedidosRTGM)
+            Catch ex As Exception
+                MessageBox.Show("Error consultando los pedidos en CRM." & vbCrLf & ex.Message,
+                            ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                Cursor = Cursors.Default
+            End Try
         Else
             If lvwBoletin.Columns.Contains(colEstadoMG) Then
                 lvwBoletin.Columns.Remove(colPedidoMG)
