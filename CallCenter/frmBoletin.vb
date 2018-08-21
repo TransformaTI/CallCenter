@@ -22,7 +22,7 @@ Public Class frmBoletin
     Private _FCompromiso As Date    
     Private _Autotanque As Integer = 0
     Private _FAlta As Date
-    Public _URLGateway As String
+    Public _URLGateway As String = ""
     Private _PedidosRTGM As List(Of RTGMCore.Pedido)
     Friend WithEvents btnCerrar As System.Windows.Forms.ToolBarButton
     Friend WithEvents btnSep2 As System.Windows.Forms.ToolBarButton
@@ -195,8 +195,7 @@ Public Class frmBoletin
         Me.grdcolUsuario = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.grdcolObservaciones = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.txtLlamadaObservaciones = New System.Windows.Forms.TextBox()
-        'Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia((_URLGateway))
-        Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia()
+        Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia(_URLGateway)
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.grpDatos = New System.Windows.Forms.GroupBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -237,8 +236,8 @@ Public Class frmBoletin
         Me.btnLlamadaOperador = New System.Windows.Forms.ToolBarButton()
         Me.btnActualizaStatusMG = New System.Windows.Forms.ToolBarButton()
         Me.tbBarra = New System.Windows.Forms.ToolBar()
-        Me.DsTipoFactura1 = New Sigamet.dsTipoFactura()
         Me.btnReasignar = New System.Windows.Forms.ToolBarButton()
+        Me.DsTipoFactura1 = New Sigamet.dsTipoFactura()
         CType(Me.grdLlamada, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.grpDatos.SuspendLayout()
@@ -289,7 +288,7 @@ Public Class frmBoletin
         '
         'colPedidoReferencia
         '
-        Me.colPedidoReferencia.Text = "Pedido"
+        Me.colPedidoReferencia.Text = "PedidoReferencia"
         Me.colPedidoReferencia.Width = 100
         '
         'colAñoPed
@@ -305,7 +304,7 @@ Public Class frmBoletin
         'colPedido
         '
         Me.colPedido.Text = "Pedido"
-        Me.colPedido.Width = 0
+        Me.colPedido.Width = 50
         '
         'colRuta
         '
@@ -905,12 +904,6 @@ Public Class frmBoletin
         Me.tbBarra.Size = New System.Drawing.Size(1008, 42)
         Me.tbBarra.TabIndex = 0
         '
-        'DsTipoFactura1
-        '
-        Me.DsTipoFactura1.DataSetName = "dsTipoFactura"
-        Me.DsTipoFactura1.Locale = New System.Globalization.CultureInfo("es-MX")
-        Me.DsTipoFactura1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'btnReasignar
         '
         Me.btnReasignar.ImageIndex = 14
@@ -918,6 +911,12 @@ Public Class frmBoletin
         Me.btnReasignar.Tag = "ReasignarPedidos"
         Me.btnReasignar.Text = "Reasignar pedidos"
         Me.btnReasignar.ToolTipText = "Reasignar pedidos boletinados"
+        '
+        'DsTipoFactura1
+        '
+        Me.DsTipoFactura1.DataSetName = "dsTipoFactura"
+        Me.DsTipoFactura1.Locale = New System.Globalization.CultureInfo("es-MX")
+        Me.DsTipoFactura1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'frmBoletin
         '
