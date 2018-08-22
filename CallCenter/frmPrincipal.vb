@@ -176,7 +176,12 @@ Public Class frmPrincipal
             End If
         Next
         Cursor = Cursors.WaitCursor
-        Dim oServ As New SigametST.frmServProgramacion(GLOBAL_Usuario, GLOBAL_Password, GLOBAL_ConString, GLOBAL_Corporativo, GLOBAL_Sucursal)
+        Dim oServ As New SigametST.frmServProgramacion(GLOBAL_Usuario,
+                                                       GLOBAL_Password,
+                                                       GLOBAL_ConString,
+                                                       GLOBAL_Corporativo,
+                                                       GLOBAL_Sucursal,
+                                                       _URLGateway)
         oServ.MdiParent = Me
         oServ.WindowState = FormWindowState.Maximized
         oServ.Show()
@@ -196,11 +201,9 @@ Public Class frmPrincipal
             _URLGateway = CType(oConfig2.Parametros("URLGateway"), String)
 
         Catch saex As System.ArgumentException
-
             If saex.Message.Contains("Index") Then
                 _URLGateway = ""
             End If
-
         End Try
 
 
