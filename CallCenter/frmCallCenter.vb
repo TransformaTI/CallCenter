@@ -5615,7 +5615,7 @@ Public Class frmCallCenter
 
     Private Sub btnContactos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnContactos.Click
         If _Cliente <> 0 Then
-            Dim consultaContacto As CRMContactos.ListaContactos = New CRMContactos.ListaContactos(CnnSigamet, _Cliente)
+            Dim consultaContacto As CRMContactos.ListaContactos = New CRMContactos.ListaContactos(CnnSigamet, _Cliente, GLOBAL_ConString, _URLGateway)
             consultaContacto.Width = Me.Width - 100
             consultaContacto.Height = Me.Height - 100
             consultaContacto.WindowState = FormWindowState.Normal
