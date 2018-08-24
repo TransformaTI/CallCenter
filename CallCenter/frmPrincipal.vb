@@ -1828,7 +1828,13 @@ Public Class frmPrincipal
         Next
 
         Cursor = Cursors.WaitCursor
-        Dim admEdificios As New AdmEdificios.frmCatEdificios(GLOBAL_Celula, CnnSigamet, GLOBAL_Usuario, GLOBAL_Corporativo, GLOBAL_Sucursal)
+        Dim admEdificios As New AdmEdificios.frmCatEdificios(GLOBAL_Celula,
+                                                             CnnSigamet,
+                                                             GLOBAL_Usuario,
+                                                             GLOBAL_Corporativo,
+                                                             GLOBAL_Sucursal,
+                                                             _URLGateway,
+                                                             GLOBAL_ConString)
         admEdificios.MdiParent = Me
         admEdificios.Show()
         Cursor = Cursors.Default
