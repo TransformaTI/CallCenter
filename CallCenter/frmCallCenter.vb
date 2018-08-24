@@ -3254,9 +3254,7 @@ Public Class frmCallCenter
             _URLGateway = oConfig.Parametros("URLGateway")
 
         Catch ex As Exception
-
-            MessageBox.Show("El parámetro _URLGateway no está configurado.  " + ex.Message)
-
+            'MessageBox.Show("El parámetro _URLGateway no está configurado.  " + ex.Message)
         End Try
 
 
