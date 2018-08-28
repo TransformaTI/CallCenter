@@ -1419,7 +1419,7 @@ Public Class frmBoletin
 
     Private Sub ConsultaCliente()
         Cursor = Cursors.WaitCursor
-        Dim oConsultaCliente As New SigaMetClasses.frmConsultaCliente(_Cliente, PermiteCapturarNotas:=False)
+        Dim oConsultaCliente As New SigaMetClasses.frmConsultaCliente(_Cliente, GLOBAL_Usuario, SoloDocumentosACredito:=False, SoloDocumentosSurtidos:=True, PermiteSeleccionarDocumento:=False, PermiteModificarDatosCredito:=False, PermiteModificarDatosCliente:=False, PermiteCapturarNotas:=False, PermiteCambioEmpleadoNomina:=False, PermiteCambioCtePadre:=False, DSCatalogos:=Nothing, LinkQueja:=True, URLGateway:=_URLGateway, CadenaCon:=GLOBAL_ConString)
         oConsultaCliente.ShowDialog()
         Cursor = Cursors.Default
     End Sub
