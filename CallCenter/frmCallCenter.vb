@@ -3176,7 +3176,12 @@ Public Class frmCallCenter
 
     Private Sub BuscarCliente()
         Cursor = Cursors.WaitCursor
-        Dim frmBuscar As New SigaMetClasses.BusquedaCliente(Celula:=Main.GLOBAL_Celula, Remoto:=Main.GLOBAL_Remoto, PriodidadPortatil:=GLOBAL_PrioridadPortatil)
+        Dim frmBuscar As New SigaMetClasses.BusquedaCliente(Celula:=Main.GLOBAL_Celula,
+                                                            Remoto:=Main.GLOBAL_Remoto,
+                                                            PriodidadPortatil:=GLOBAL_PrioridadPortatil,
+                                                            URLGateway:=_URLGateway,
+                                                            Modulo:=GLOBAL_Modulo,
+                                                            CadCon:=GLOBAL_ConString)
         'agregado el 28/09/2004
         frmBuscar.ClientesPortatil = GLOBAL_ManejarClientesPortatil
         If GLOBAL_ManejarClientesPortatil Then
