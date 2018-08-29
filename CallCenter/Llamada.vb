@@ -1201,7 +1201,7 @@ Public Class Llamada
             Else
                 lnkAlertaRAF.Visible = False
             End If
-
+            ConsultaOperadorAutotanque()
             'LUSATE Consulta Fin de día por autotanque
             ConsultaFinDeDia(cmbAutoTanque.SelectedValue)
         Else
