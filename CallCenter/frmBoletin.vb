@@ -1058,7 +1058,8 @@ Public Class frmBoletin
                 oItem.SubItems.Add(CType(If(objPedido.IDPedido, 0), Integer).ToString) '3
                 If Not IsNothing(objPedido.RutaOrigen) Then
                     oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '4
-                    oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.Descripcion, ""), String).Trim) '5
+                    'oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.Descripcion, ""), String).Trim) '5
+                    oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Ruta.Descripcion.Trim, ""), String).Trim) '5
                     oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '6
                 Else
                     oItem.SubItems.Add(0) '4
