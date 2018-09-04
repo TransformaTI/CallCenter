@@ -3161,7 +3161,7 @@ Public Class frmCallCenter
             Cursor = Cursors.WaitCursor
             Dim oST As SigametST.frmServicios
             Try
-                oST = New SigametST.frmServicios(_Cliente, Now.Date, GLOBAL_Usuario, GLOBAL_Corporativo, GLOBAL_Sucursal)
+                oST = New SigametST.frmServicios(_Cliente, Now.Date, GLOBAL_Usuario, GLOBAL_Corporativo, GLOBAL_Sucursal, ActivarComoDato:=True)
                 oST.ShowDialog()
                 CargaPedido()
                 CargaLlamada()
