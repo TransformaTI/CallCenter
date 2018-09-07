@@ -1832,9 +1832,7 @@ Public Class frmPrincipal
                                                              CnnSigamet,
                                                              GLOBAL_Usuario,
                                                              GLOBAL_Corporativo,
-                                                             GLOBAL_Sucursal,
-                                                             _URLGateway,
-                                                             GLOBAL_ConString)
+                                                             GLOBAL_Sucursal)
         admEdificios.MdiParent = Me
         admEdificios.Show()
         Cursor = Cursors.Default
