@@ -292,9 +292,8 @@ Public Class frmPrincipal
         If Main.GLOBAL_Remoto Then
             Me.Menu = Me.mnuRemoto
         End If
-
+        InactivarCallCenter()
         InicioControlAlarma()
-
     End Sub
 
     Private Sub frmPrincipal_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
@@ -1183,7 +1182,7 @@ Public Class frmPrincipal
         'staPrincipal
         '
         Me.staPrincipal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.staPrincipal.Location = New System.Drawing.Point(0, -41)
+        Me.staPrincipal.Location = New System.Drawing.Point(0, 306)
         Me.staPrincipal.Name = "staPrincipal"
         Me.staPrincipal.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.stapUsuario, Me.stapNombre, Me.stapCelula, Me.stapFecha, Me.sbpServidor, Me.sbpBaseDeDatos, Me.sbpVersion})
         Me.staPrincipal.ShowPanels = True
@@ -1335,7 +1334,7 @@ Public Class frmPrincipal
         'frmPrincipal
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
-        Me.ClientSize = New System.Drawing.Size(1031, -20)
+        Me.ClientSize = New System.Drawing.Size(1031, 327)
         Me.Controls.Add(Me.staPrincipal)
         Me.Controls.Add(Me.TabBar1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -2656,9 +2655,9 @@ Public Class frmPrincipal
         End Try
     End Sub
 
- 
+
     Private Sub mnuFugasPortatil_Click(sender As System.Object, e As System.EventArgs) Handles mnuFugasPortatil.Click
-        Try            
+        Try
             Dim frm As Form = Nothing
             If formFocus(frm, "frmFugaPortatilProcesos") Then
                 Exit Sub
@@ -2666,12 +2665,23 @@ Public Class frmPrincipal
             Me.Cursor = Cursors.WaitCursor
             frm = New ControlFugasPortatilClasses.frmFugaPortatilProcesos()
             Me.Cursor = Cursors.Default
-            frm.WindowState = FormWindowState.Maximized            
+            frm.WindowState = FormWindowState.Maximized
             frm.MdiParent = Me
             frm.Show()
         Catch ex As Exception
-            MessageBox.Show("Ha ocurrido un error:" & vbCrLf & ex.Message & vbCrLf & _
+            MessageBox.Show("Ha ocurrido un error:" & vbCrLf & ex.Message & vbCrLf &
                ex.StackTrace, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Public Sub InactivarCallCenter()
+        Dim oConfig As New SigaMetClasses.cConfig(GLOBAL_Modulo, GLOBAL_Corporativo, GLOBAL_Sucursal)
+        Dim FuenteCRM As String
+        FuenteCRM = CType(oConfig.Parametros("FuenteCRM"), String).Trim
+        FuenteCRM = UCase(FuenteCRM)
+        If FuenteCRM = "CRM" Then
+            Me.mniCallCenter.Enabled = False
+        Else
+            Me.mniCallCenter.Enabled = True
+        End If
     End Sub
 End Class
