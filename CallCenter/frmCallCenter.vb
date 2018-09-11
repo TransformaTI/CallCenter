@@ -3275,7 +3275,8 @@ Public Class frmCallCenter
                                                                      CadenaCon:=GLOBAL_ConString,
                                                                      Usuario:=GLOBAL_Usuario,
                                                                      Modulo:=GLOBAL_Modulo,
-                                                                     PermiteModificarDatosCliente:=False)
+                                                                     PermiteModificarDatosCliente:=False,
+                                                                     MostrarBtnContactos:=False)
             'oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, _URLGateway)
         End If
         Cursor = Cursors.WaitCursor
