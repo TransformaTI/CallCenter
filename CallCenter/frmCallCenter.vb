@@ -3270,7 +3270,13 @@ Public Class frmCallCenter
         If (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
             oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente)
         Else
-            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, _URLGateway, GLOBAL_ConString, GLOBAL_Usuario, GLOBAL_Modulo)
+            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente,
+                                                                     URLGateway:=_URLGateway,
+                                                                     CadenaCon:=GLOBAL_ConString,
+                                                                     Usuario:=GLOBAL_Usuario,
+                                                                     Modulo:=GLOBAL_Modulo,
+                                                                     PermiteModificarDatosCliente:=False,
+                                                                     MostrarBtnContactos:=False)
             'oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, _URLGateway)
         End If
         Cursor = Cursors.WaitCursor
