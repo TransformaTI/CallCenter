@@ -1272,11 +1272,14 @@ Public Class Llamada
         ''LUSATE                   
         If GLOBAL_VersionMovilGas <> 3 And Not _Portatil Then
             DsLlamada.Operador.Clear()
-            daAutotanque.Fill(DsLlamada, "Operador")
+            If (DsLlamada.Operador.Rows.Count > 0) Then
+                daAutotanque.Fill(DsLlamada, "Operador")
+            End If
             cmbOperador.DataSource = DsLlamada.Operador
-            cmbOperador.DisplayMember = "Nombre"
-            cmbOperador.ValueMember = "Operador"                    
-        End If
+                cmbOperador.DisplayMember = "Nombre"
+                cmbOperador.ValueMember = "Operador"
+
+            End If
     End Sub
 
     Private Sub cmbAutoTanque_SelectedIndexChanged_1(sender As System.Object, e As System.EventArgs) Handles cmbAutoTanque.SelectedIndexChanged                
