@@ -5,7 +5,10 @@ Public Class frmPrincipal
     Inherits System.Windows.Forms.Form
 
     Private WithEvents oRI As RI500.InterfaseRI
+    Friend WithEvents MnuBusqueCliente As MenuItem
+    Friend WithEvents MnuTarjetaCredito As MenuItem
     Private _URLGateway As String
+    Private _cliente As Integer
 
 #Region "Control de alarmas de los postit"
 
@@ -306,12 +309,12 @@ Public Class frmPrincipal
 
         Dim _Pendientes As Integer = PuedeCerrar(GLOBAL_Celula)
         If _Pendientes > 0 Then
-            Dim strMensaje As String = _
-            "No puede cerrar la aplicacion por que todavia tiene " & _
-            _Pendientes.ToString & _
-            " conciliaciones pendientes de realizar." & _
+            Dim strMensaje As String =
+            "No puede cerrar la aplicacion por que todavia tiene " &
+            _Pendientes.ToString &
+            " conciliaciones pendientes de realizar." &
             Chr(13) & "¿Desea salir de todas formas?"
-            If MessageBox.Show(strMensaje, "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = _
+            If MessageBox.Show(strMensaje, "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) =
             DialogResult.No Then
                 e.Cancel = True
                 Cursor = Cursors.Default
@@ -343,9 +346,9 @@ Public Class frmPrincipal
         'todo Manejar si se estan usando los reportes locales
         'Ya no pasa como parámetro el usuario y el password ya que está hard-code en el componente de reportes
         Dim frmReporteDinamico As ReporteDinamico.frmListaReporte
-        Try                        
-            frmReporteDinamico = New ReporteDinamico.frmListaReporte(1, GLOBAL_RutaReportes, _
-                GLOBAL_Servidor, GLOBAL_Database, GLOBAL_Usuario, CnnSigamet, _
+        Try
+            frmReporteDinamico = New ReporteDinamico.frmListaReporte(1, GLOBAL_RutaReportes,
+                GLOBAL_Servidor, GLOBAL_Database, GLOBAL_Usuario, CnnSigamet,
                 GLOBAL_Corporativo, GLOBAL_Sucursal, GLOBAL_SeguridadReportes)
 
             frmReporteDinamico.MdiParent = Me
@@ -456,7 +459,7 @@ Public Class frmPrincipal
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub LlamadaLiquidacion(ByVal Fecha As Date, ByVal Ruta As Integer, ByVal Folio As Integer, ByVal AnioAtt As Integer, _
+    Private Sub LlamadaLiquidacion(ByVal Fecha As Date, ByVal Ruta As Integer, ByVal Folio As Integer, ByVal AnioAtt As Integer,
     ByVal Descarga As Boolean, ByVal Celula As Integer)
         'Validacion segun el tipo de liquidacion de parametros. MHV 02/11/2004
         If Not GLOBAL_NuevaVersionLiquidacion Then
@@ -479,26 +482,26 @@ Public Class frmPrincipal
             'End If
             'Quitar el comentario para la nueva versión pruebas
         Else
-            Dim mdiLiquidacion As Liquidacion2.Liquidacion2005 = _
-                New Liquidacion2.Liquidacion2005(Global_TipoLiquidacion, _
-                    GLOBAL_AdmEdificiosLiquidacionCredito, _
-                    GLOBAL_SaldoAFavorLiquidacion, _
-                    GLOBAL_ValidaSerieRemision, _
-                    GLOBAL_RamoClienteAdmEdificios, _
-                    GLOBAL_ClaveRamoClienteAdmEdificios, _
-                    GLOBAL_VentasMultinivel, _
-                    GLOBAL_ClaveCreditoAutorizado, _
-                    GLOBAL_AplicaValidacionCredito, _
-                    GLOBAL_Usuario, _
-                    GLOBAL_Password, _
-                    CnnSigamet, _
-                    GLOBAL_SeleccionTipoCreditoLiq, _
-                    GLOBAL_LiquidacionObsequios, _
-                    GLOBAL_ValidacionFinalLiquidacion, _
-                    GLOBAL_DescuentoProntoPago, _
-                    GLOBAL_ValidacionLimiteCredito, _
-                    GLOBAL_AgrupacionPedidosLiquidacion, _
-                    GLOBAL_Corporativo, _
+            Dim mdiLiquidacion As Liquidacion2.Liquidacion2005 =
+                New Liquidacion2.Liquidacion2005(Global_TipoLiquidacion,
+                    GLOBAL_AdmEdificiosLiquidacionCredito,
+                    GLOBAL_SaldoAFavorLiquidacion,
+                    GLOBAL_ValidaSerieRemision,
+                    GLOBAL_RamoClienteAdmEdificios,
+                    GLOBAL_ClaveRamoClienteAdmEdificios,
+                    GLOBAL_VentasMultinivel,
+                    GLOBAL_ClaveCreditoAutorizado,
+                    GLOBAL_AplicaValidacionCredito,
+                    GLOBAL_Usuario,
+                    GLOBAL_Password,
+                    CnnSigamet,
+                    GLOBAL_SeleccionTipoCreditoLiq,
+                    GLOBAL_LiquidacionObsequios,
+                    GLOBAL_ValidacionFinalLiquidacion,
+                    GLOBAL_DescuentoProntoPago,
+                    GLOBAL_ValidacionLimiteCredito,
+                    GLOBAL_AgrupacionPedidosLiquidacion,
+                    GLOBAL_Corporativo,
                     GLOBAL_Sucursal)
             mdiLiquidacion.MdiParent = Me
             Cursor = Cursors.Default
@@ -642,7 +645,7 @@ Public Class frmPrincipal
     Friend WithEvents mniReportesEspeciales As System.Windows.Forms.MenuItem
     Friend WithEvents mnuGruposComerciales As System.Windows.Forms.MenuItem
     Friend WithEvents mnuAuxilioFallas As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuFugasPortatil As System.Windows.Forms.MenuItem    
+    Friend WithEvents mnuFugasPortatil As System.Windows.Forms.MenuItem
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrincipal))
@@ -750,7 +753,9 @@ Public Class frmPrincipal
         Me.ControlAlarma = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.ContextMenu1 = New System.Windows.Forms.ContextMenu()
         Me.NotificationWindow = New VbPowerPack.NotificationWindow(Me.components)
+        Me.MnuBusqueCliente = New System.Windows.Forms.MenuItem()
         Me.TabBar1 = New Sigamet.TabBar()
+        Me.MnuTarjetaCredito = New System.Windows.Forms.MenuItem()
         CType(Me.stapUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.stapNombre, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.stapCelula, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -767,7 +772,7 @@ Public Class frmPrincipal
         'mniArchivo
         '
         Me.mniArchivo.Index = 0
-        Me.mniArchivo.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mniCallCenter, Me.mnuConsultaBoletin, Me.mnuPedidoWeb, Me.mnuBitacora, Me.mnuSuministroPronosticado, Me.mnuClienteRuta, Me.mnuTraspaso, Me.mnuRemCelulaA, Me.mnuHorariosRuta, Me.mnuRutaApoyo, Me.mnuNotasRuta, Me.mnuActivacionPedidos, Me.mnuControlDocumentos, Me.mniRelacionNotas, Me.mnuSep1, Me.mnuCargaTarjetaRampac, Me.mnuSep2, Me.mnuDescargaTarjetaRampac, Me.mnuDescargaUDS, Me.mnuLiquidacionManual, Me.mnuVales, Me.mnuSep3, Me.mnuConciliacionNotasBlancas, Me.mnuReposicionNotasBlancas, Me.MenuItem13, Me.mnuModificaLiquidacion, Me.mnuLiquidacionesPendientes, Me.MenuItem36, Me.mnuCancelacionPedido, Me.mnuRuta80, Me.MenuItem17, Me.mnuServicioTecnico, Me.mnuComodato, Me.MenuItem3, Me.mnuAdmEdificios, Me.mnuDivAdm, Me.mnuDescargaRI, Me.mnuCargaRI, Me.mnuTableroAlarma, Me.MenuItem5, Me.mniSalir, Me.MenuItem2})
+        Me.mniArchivo.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mniCallCenter, Me.mnuConsultaBoletin, Me.mnuPedidoWeb, Me.mnuBitacora, Me.mnuSuministroPronosticado, Me.mnuClienteRuta, Me.mnuTraspaso, Me.mnuRemCelulaA, Me.mnuHorariosRuta, Me.mnuRutaApoyo, Me.mnuNotasRuta, Me.mnuActivacionPedidos, Me.mnuControlDocumentos, Me.mniRelacionNotas, Me.MnuBusqueCliente, Me.MnuTarjetaCredito, Me.mnuSep1, Me.mnuCargaTarjetaRampac, Me.mnuSep2, Me.mnuDescargaTarjetaRampac, Me.mnuDescargaUDS, Me.mnuLiquidacionManual, Me.mnuVales, Me.mnuSep3, Me.mnuConciliacionNotasBlancas, Me.mnuReposicionNotasBlancas, Me.MenuItem13, Me.mnuModificaLiquidacion, Me.mnuLiquidacionesPendientes, Me.MenuItem36, Me.mnuCancelacionPedido, Me.mnuRuta80, Me.MenuItem17, Me.mnuServicioTecnico, Me.mnuComodato, Me.MenuItem3, Me.mnuAdmEdificios, Me.mnuDivAdm, Me.mnuDescargaRI, Me.mnuCargaRI, Me.mnuTableroAlarma, Me.MenuItem5, Me.mniSalir, Me.MenuItem2})
         Me.mniArchivo.Text = "&Archivo"
         '
         'mniCallCenter
@@ -844,143 +849,143 @@ Public Class frmPrincipal
         '
         'mnuSep1
         '
-        Me.mnuSep1.Index = 14
+        Me.mnuSep1.Index = 16
         Me.mnuSep1.Text = "-"
         '
         'mnuCargaTarjetaRampac
         '
-        Me.mnuCargaTarjetaRampac.Index = 15
+        Me.mnuCargaTarjetaRampac.Index = 17
         Me.mnuCargaTarjetaRampac.Text = "Carga de &tarjeta rampac (generación de remisiones y programaciones)"
         '
         'mnuSep2
         '
-        Me.mnuSep2.Index = 16
+        Me.mnuSep2.Index = 18
         Me.mnuSep2.Text = "-"
         '
         'mnuDescargaTarjetaRampac
         '
-        Me.mnuDescargaTarjetaRampac.Index = 17
+        Me.mnuDescargaTarjetaRampac.Index = 19
         Me.mnuDescargaTarjetaRampac.Text = "&Descarga de tarjeta rampac y liquidación de ruta"
         '
         'mnuDescargaUDS
         '
-        Me.mnuDescargaUDS.Index = 18
+        Me.mnuDescargaUDS.Index = 20
         Me.mnuDescargaUDS.Text = "Descarga de datos del archivo &UDS"
         '
         'mnuLiquidacionManual
         '
-        Me.mnuLiquidacionManual.Index = 19
+        Me.mnuLiquidacionManual.Index = 21
         Me.mnuLiquidacionManual.Text = "&Liquidación manual de ruta"
         '
         'mnuVales
         '
-        Me.mnuVales.Index = 20
+        Me.mnuVales.Index = 22
         Me.mnuVales.Text = "Captura de &vales promocionales"
         '
         'mnuSep3
         '
-        Me.mnuSep3.Index = 21
+        Me.mnuSep3.Index = 23
         Me.mnuSep3.Text = "-"
         '
         'mnuConciliacionNotasBlancas
         '
-        Me.mnuConciliacionNotasBlancas.Index = 22
+        Me.mnuConciliacionNotasBlancas.Index = 24
         Me.mnuConciliacionNotasBlancas.Text = "Conciliación de &notas blancas"
         '
         'mnuReposicionNotasBlancas
         '
-        Me.mnuReposicionNotasBlancas.Index = 23
+        Me.mnuReposicionNotasBlancas.Index = 25
         Me.mnuReposicionNotasBlancas.Text = "&Reposición de notas blancas"
         Me.mnuReposicionNotasBlancas.Visible = False
         '
         'MenuItem13
         '
-        Me.MenuItem13.Index = 24
+        Me.MenuItem13.Index = 26
         Me.MenuItem13.Text = "-"
         '
         'mnuModificaLiquidacion
         '
-        Me.mnuModificaLiquidacion.Index = 25
+        Me.mnuModificaLiquidacion.Index = 27
         Me.mnuModificaLiquidacion.Text = "Modificación de Liquidaciones"
         '
         'mnuLiquidacionesPendientes
         '
-        Me.mnuLiquidacionesPendientes.Index = 26
+        Me.mnuLiquidacionesPendientes.Index = 28
         Me.mnuLiquidacionesPendientes.Text = "Liquidaciones pendientes de realizar"
         '
         'MenuItem36
         '
-        Me.MenuItem36.Index = 27
+        Me.MenuItem36.Index = 29
         Me.MenuItem36.Text = "-"
         '
         'mnuCancelacionPedido
         '
-        Me.mnuCancelacionPedido.Index = 28
+        Me.mnuCancelacionPedido.Index = 30
         Me.mnuCancelacionPedido.Text = "Cancelación de pedidos"
         '
         'mnuRuta80
         '
-        Me.mnuRuta80.Index = 29
+        Me.mnuRuta80.Index = 31
         Me.mnuRuta80.Text = "Ruta 80"
         '
         'MenuItem17
         '
-        Me.MenuItem17.Index = 30
+        Me.MenuItem17.Index = 32
         Me.MenuItem17.Text = "-"
         '
         'mnuServicioTecnico
         '
-        Me.mnuServicioTecnico.Index = 31
+        Me.mnuServicioTecnico.Index = 33
         Me.mnuServicioTecnico.Text = "Servicios técnicos"
         '
         'mnuComodato
         '
-        Me.mnuComodato.Index = 32
+        Me.mnuComodato.Index = 34
         Me.mnuComodato.Text = "Comodato"
         '
         'MenuItem3
         '
-        Me.MenuItem3.Index = 33
+        Me.MenuItem3.Index = 35
         Me.MenuItem3.Text = "-"
         '
         'mnuAdmEdificios
         '
-        Me.mnuAdmEdificios.Index = 34
+        Me.mnuAdmEdificios.Index = 36
         Me.mnuAdmEdificios.Text = "&Administración de edificios"
         '
         'mnuDivAdm
         '
-        Me.mnuDivAdm.Index = 35
+        Me.mnuDivAdm.Index = 37
         Me.mnuDivAdm.Text = "-"
         '
         'mnuDescargaRI
         '
-        Me.mnuDescargaRI.Index = 36
+        Me.mnuDescargaRI.Index = 38
         Me.mnuDescargaRI.Text = "Descarga RI"
         '
         'mnuCargaRI
         '
-        Me.mnuCargaRI.Index = 37
+        Me.mnuCargaRI.Index = 39
         Me.mnuCargaRI.Text = "Carga RI"
         '
         'mnuTableroAlarma
         '
-        Me.mnuTableroAlarma.Index = 38
+        Me.mnuTableroAlarma.Index = 40
         Me.mnuTableroAlarma.Text = "Tablero de alarmas"
         '
         'MenuItem5
         '
-        Me.MenuItem5.Index = 39
+        Me.MenuItem5.Index = 41
         Me.MenuItem5.Text = "-"
         '
         'mniSalir
         '
-        Me.mniSalir.Index = 40
+        Me.mniSalir.Index = 42
         Me.mniSalir.Text = "&Salir"
         '
         'MenuItem2
         '
-        Me.MenuItem2.Index = 41
+        Me.MenuItem2.Index = 43
         Me.MenuItem2.Text = "***LIQ"
         Me.MenuItem2.Visible = False
         '
@@ -1182,7 +1187,7 @@ Public Class frmPrincipal
         'staPrincipal
         '
         Me.staPrincipal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.staPrincipal.Location = New System.Drawing.Point(0, 306)
+        Me.staPrincipal.Location = New System.Drawing.Point(0, 245)
         Me.staPrincipal.Name = "staPrincipal"
         Me.staPrincipal.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.stapUsuario, Me.stapNombre, Me.stapCelula, Me.stapFecha, Me.sbpServidor, Me.sbpBaseDeDatos, Me.sbpVersion})
         Me.staPrincipal.ShowPanels = True
@@ -1320,6 +1325,11 @@ Public Class frmPrincipal
         Me.NotificationWindow.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.NotificationWindow.ForeColor = System.Drawing.SystemColors.ControlText
         '
+        'MnuBusqueCliente
+        '
+        Me.MnuBusqueCliente.Index = 14
+        Me.MnuBusqueCliente.Text = "Búsqueda de clientes"
+        '
         'TabBar1
         '
         Me.TabBar1.AutoHide = True
@@ -1331,10 +1341,15 @@ Public Class frmPrincipal
         Me.TabBar1.TabIndex = 3
         Me.TabBar1.UnfocusedColor = System.Drawing.SystemColors.Control
         '
+        'MnuTarjetaCredito
+        '
+        Me.MnuTarjetaCredito.Index = 15
+        Me.MnuTarjetaCredito.Text = "Tarjetas de crédito"
+        '
         'frmPrincipal
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
-        Me.ClientSize = New System.Drawing.Size(1031, 327)
+        Me.ClientSize = New System.Drawing.Size(1031, 266)
         Me.Controls.Add(Me.staPrincipal)
         Me.Controls.Add(Me.TabBar1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1927,8 +1942,8 @@ Public Class frmPrincipal
             AddHandler mnuCancelacionFolios.Click, AddressOf mnuCancelacionFolios_Click
 
             'Nueva versión de control de folios patrón singleton 16/06/2009
-            ControlFolios.Globals.GetInstance.ConfiguraModulo(GLOBAL_Servidor, GLOBAL_Database, _
-                GLOBAL_Usuario, GLOBAL_Password, GLOBAL_Corporativo, GLOBAL_Sucursal, _
+            ControlFolios.Globals.GetInstance.ConfiguraModulo(GLOBAL_Servidor, GLOBAL_Database,
+                GLOBAL_Usuario, GLOBAL_Password, GLOBAL_Corporativo, GLOBAL_Sucursal,
                 GLOBAL_RutaReportes, GLOBAL_ConString)
         Else
             mnuFolios.Enabled = False
@@ -2414,8 +2429,8 @@ Public Class frmPrincipal
             End If
         Next
         Me.Cursor = Cursors.WaitCursor
-        VentasPromotor.ValLayer.VentasPromotorLib.Instance.Inicializar(CnnSigamet, GLOBAL_Usuario, GLOBAL_Celula, _
-            oSeguridad.TieneAcceso("AGREGAR ASOCIACIONES"), oSeguridad.TieneAcceso("REALIZAR PAGOS PROMOCIONES"), _
+        VentasPromotor.ValLayer.VentasPromotorLib.Instance.Inicializar(CnnSigamet, GLOBAL_Usuario, GLOBAL_Celula,
+            oSeguridad.TieneAcceso("AGREGAR ASOCIACIONES"), oSeguridad.TieneAcceso("REALIZAR PAGOS PROMOCIONES"),
             GLOBAL_PagoPromocionAPromotor)
         frm = New VentasPromotor.UILayer.frmRelacionClientePromotor()
         frm.MdiParent = Me
@@ -2433,7 +2448,7 @@ Public Class frmPrincipal
         Me.Cursor = Cursors.WaitCursor
         frm = New ReactivacionPedidos.ReactivacionPedidos(CnnSigamet)
         'Reactivación de pedidos de fechas anteriores, por perfil, solo para grmeco
-        DirectCast(frm, ReactivacionPedidos.ReactivacionPedidos).FechaCancelacionBloqueada = _
+        DirectCast(frm, ReactivacionPedidos.ReactivacionPedidos).FechaCancelacionBloqueada =
             False
         '    oSeguridad.TieneAcceso("Reactivacion_PedidosFull")
 
@@ -2455,8 +2470,8 @@ Public Class frmPrincipal
     End Function
 
     Private Sub mnuDescargaUDS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuDescargaUDS.Click
-        If MessageBox.Show("Esta por iniciar el proceso de los archivos UDS" & vbCrLf & _
-        "Asegurese de haber efectuado el corte correspondiente" & vbCrLf & _
+        If MessageBox.Show("Esta por iniciar el proceso de los archivos UDS" & vbCrLf &
+        "Asegurese de haber efectuado el corte correspondiente" & vbCrLf &
         "¿Desea continuar?", "Liquidación UDS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             Dim frmUDS As New UIUDS.FrmMain(CnnSigamet)
             frmUDS.WindowState = FormWindowState.Maximized
@@ -2496,7 +2511,7 @@ Public Class frmPrincipal
             frm.MdiParent = Me
             frm.Show()
         Catch ex As Exception
-            MessageBox.Show("Ha ocurrido un error:" & vbCrLf & ex.Message & vbCrLf & _
+            MessageBox.Show("Ha ocurrido un error:" & vbCrLf & ex.Message & vbCrLf &
                 ex.StackTrace, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -2571,7 +2586,7 @@ Public Class frmPrincipal
                 frm.MdiParent = Me
                 frm.Show()
             Catch ex As Exception
-                MessageBox.Show("Ha ocurrido un error:" & vbCrLf & ex.Message & vbCrLf & _
+                MessageBox.Show("Ha ocurrido un error:" & vbCrLf & ex.Message & vbCrLf &
                     ex.StackTrace, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         Else
@@ -2595,7 +2610,7 @@ Public Class frmPrincipal
             f.Show()
             Cursor = Cursors.Default
         Catch ex As Exception
-            MessageBox.Show("Ha ocurrido un error:" & vbCrLf & ex.Message & vbCrLf & _
+            MessageBox.Show("Ha ocurrido un error:" & vbCrLf & ex.Message & vbCrLf &
                 ex.StackTrace, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -2636,8 +2651,8 @@ Public Class frmPrincipal
 
     Private Sub mnuAuxilioFallas_Click(sender As System.Object, e As System.EventArgs) Handles mnuAuxilioFallas.Click
         Try
-            BitacoraAutotanqueAuxilio.Public.Global.ConfiguraLibrary(SigametSeguridad.Seguridad.Conexion.ConnectionString, _
-                                                                     SigametSeguridad.Seguridad.Conexion, GLOBAL_Usuario, 1, _
+            BitacoraAutotanqueAuxilio.Public.Global.ConfiguraLibrary(SigametSeguridad.Seguridad.Conexion.ConnectionString,
+                                                                     SigametSeguridad.Seguridad.Conexion, GLOBAL_Usuario, 1,
                                                                      GLOBAL_CelulasUsuario, Main.GLOBAL_Estacion, GLOBAL_URLWebserviceBoletin)
             Dim frm As Form = Nothing
             If formFocus(frm, "frmBitacoraAuxilios") Then
@@ -2650,7 +2665,7 @@ Public Class frmPrincipal
             frm.MdiParent = Me
             frm.Show()
         Catch ex As Exception
-            MessageBox.Show("Ha ocurrido un error:" & vbCrLf & ex.Message & vbCrLf & _
+            MessageBox.Show("Ha ocurrido un error:" & vbCrLf & ex.Message & vbCrLf &
                 ex.StackTrace, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -2683,5 +2698,36 @@ Public Class frmPrincipal
         Else
             Me.mniCallCenter.Enabled = True
         End If
+    End Sub
+
+    Private Sub MnuBusqueCliente_Click(sender As Object, e As EventArgs) Handles MnuBusqueCliente.Click
+        BuscarCliente()
+    End Sub
+    Private Sub BuscarCliente()
+        Cursor = Cursors.WaitCursor
+        Dim frmBuscar As New SigaMetClasses.BusquedaCliente(Celula:=Main.GLOBAL_Celula,
+                                                            Remoto:=Main.GLOBAL_Remoto,
+                                                            PriodidadPortatil:=GLOBAL_PrioridadPortatil,
+                                                            URLGateway:=_URLGateway,
+                                                            Modulo:=GLOBAL_Modulo,
+                                                            CadCon:=GLOBAL_ConString)
+        If frmBuscar.ShowDialog = DialogResult.OK Then
+            _cliente = frmBuscar.Cliente
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub MnuTarjetaCredito_Click(sender As Object, e As EventArgs) Handles MnuTarjetaCredito.Click
+        CapturaTarjeta()
+    End Sub
+
+    Private Sub CapturaTarjeta()
+        Try
+            Dim frmCapTarjetaCredito As New SigaMetClasses.frmConTarjetaCredito(_cliente, GLOBAL_Usuario, _URLGateway, 1, GLOBAL_ConString)
+            frmCapTarjetaCredito.ShowDialog()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
 End Class
