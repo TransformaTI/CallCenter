@@ -39,6 +39,7 @@ Public Class frmBoletin
     Friend WithEvents btnActualizaStatusMG As System.Windows.Forms.ToolBarButton
     Friend WithEvents DsTipoFactura1 As Sigamet.dsTipoFactura
     Friend WithEvents btnReasignar As System.Windows.Forms.ToolBarButton
+    Friend WithEvents urlcrm As ColumnHeader
     Friend WithEvents tbBarra As System.Windows.Forms.ToolBar
 
 
@@ -182,6 +183,7 @@ Public Class frmBoletin
         Me.colTelCasa = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colObservaciones = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colRAF = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.urlcrm = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colEstadoSGC = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colEstadoMG = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colAutotanqueMG = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -195,7 +197,6 @@ Public Class frmBoletin
         Me.grdcolUsuario = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.grdcolObservaciones = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.txtLlamadaObservaciones = New System.Windows.Forms.TextBox()
-        Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia(_URLGateway)
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.grpDatos = New System.Windows.Forms.GroupBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -273,7 +274,7 @@ Public Class frmBoletin
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lvwBoletin.BackColor = System.Drawing.Color.Honeydew
-        Me.lvwBoletin.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colPedidoReferencia, Me.colAñoPed, Me.colCelula, Me.colPedido, Me.colRuta, Me.colRutaDescripcion, Me.colRutaBoletin, Me.colRutaBoletinDescripcion, Me.colHora, Me.colFCompromiso, Me.colCliente, Me.colNombre, Me.colDireccion, Me.colPrioridad, Me.colUsuario, Me.colStatus, Me.colInsistente, Me.colTelCasa, Me.colObservaciones, Me.colRAF})
+        Me.lvwBoletin.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colPedidoReferencia, Me.colAñoPed, Me.colCelula, Me.colPedido, Me.colRuta, Me.colRutaDescripcion, Me.colRutaBoletin, Me.colRutaBoletinDescripcion, Me.colHora, Me.colFCompromiso, Me.colCliente, Me.colNombre, Me.colDireccion, Me.colPrioridad, Me.colUsuario, Me.colStatus, Me.colInsistente, Me.colTelCasa, Me.colObservaciones, Me.colRAF, Me.urlcrm})
         Me.lvwBoletin.FullRowSelect = True
         Me.lvwBoletin.GridLines = True
         Me.lvwBoletin.HideSelection = False
@@ -377,11 +378,15 @@ Public Class frmBoletin
         'colObservaciones
         '
         Me.colObservaciones.Text = "Observaciones"
-        Me.colObservaciones.Width = 0
         '
         'colRAF
         '
         Me.colRAF.Text = "Reporte RAF"
+        '
+        'urlcrm
+        '
+        Me.urlcrm.Text = "URLCRM"
+        Me.urlcrm.Width = 0
         '
         'colEstadoSGC
         '
@@ -494,20 +499,6 @@ Public Class frmBoletin
         Me.txtLlamadaObservaciones.Size = New System.Drawing.Size(416, 72)
         Me.txtLlamadaObservaciones.TabIndex = 5
         '
-        'SeleccionCalleColonia
-        '
-        Me.SeleccionCalleColonia.AltaCalleColonia = True
-        Me.SeleccionCalleColonia.Calle = 0
-        Me.SeleccionCalleColonia.Colonia = 0
-        Me.SeleccionCalleColonia.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SeleccionCalleColonia.Location = New System.Drawing.Point(8, 72)
-        Me.SeleccionCalleColonia.Name = "SeleccionCalleColonia"
-        Me.SeleccionCalleColonia.Size = New System.Drawing.Size(536, 144)
-        Me.SeleccionCalleColonia.TabIndex = 0
-        Me.SeleccionCalleColonia._URLGateway = _URLGateway
-        Me.SeleccionCalleColonia.CadenaConexion = GLOBAL_ConString
-        Me.SeleccionCalleColonia.Modulo = GLOBAL_Modulo
-        '
         'Panel1
         '
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
@@ -532,7 +523,6 @@ Public Class frmBoletin
         Me.grpDatos.Controls.Add(Me.Label2)
         Me.grpDatos.Controls.Add(Me.Label3)
         Me.grpDatos.Controls.Add(Me.lblCliente)
-        Me.grpDatos.Controls.Add(Me.SeleccionCalleColonia)
         Me.grpDatos.Location = New System.Drawing.Point(16, 8)
         Me.grpDatos.Name = "grpDatos"
         Me.grpDatos.Size = New System.Drawing.Size(568, 280)
@@ -1092,6 +1082,10 @@ Public Class frmBoletin
                     oItem.SubItems.Add("") '17
                     oItem.SubItems.Add("") '18
                 End If
+
+                oItem.SubItems.Add("") '19
+                oItem.SubItems.Add(IIf(Not IsNothing(objPedido.URLCRM), objPedido.URLCRM.ToString(), "")) '20
+
                 lvwBoletin.Items.Add(oItem)
             Next
         Catch ex As Exception
@@ -1630,9 +1624,9 @@ Public Class frmBoletin
                 'lblTelCasa.Text = objPedido.DireccionEntrega.Telefono1
 
                 lblObservacionesPedido.Text = CType(lvwBoletin.FocusedItem.SubItems(18).Text, String).Trim
-                If chkPortatil.Checked Then
+                If chkPortatil.Checked And Not IsNothing(SeleccionCalleColonia) Then
                     SeleccionCalleColonia.CargaDatosClientePortatilSoloLectura(_Cliente)
-                Else
+                ElseIf (Not IsNothing(SeleccionCalleColonia)) Then
                     SeleccionCalleColonia.CargaDatosClienteSoloLectura(_Cliente)
                 End If
                 If Not grpDatos.Visible Then grpDatos.Visible = True
@@ -1834,13 +1828,21 @@ Public Class frmBoletin
 
 
     Private Sub lvwBoletin_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lvwBoletin.DoubleClick
+        Try
 
-        If String.IsNullOrEmpty(_URLGateway) Then
-            Cursor = Cursors.WaitCursor
-            Dim oCallCenter As New frmCallCenter(_Cliente, chkPortatil.Checked)
-            Cursor = Cursors.Default
-            oCallCenter.Show()
-        End If
+            If String.IsNullOrEmpty(_URLGateway) Then
+                Cursor = Cursors.WaitCursor
+                Dim oCallCenter As New frmCallCenter(_Cliente, chkPortatil.Checked)
+                Cursor = Cursors.Default
+                oCallCenter.Show()
+
+            Else
+                System.Diagnostics.Process.Start(lvwBoletin.SelectedItems(lvwBoletin.SelectedIndices.IndexOf(lvwBoletin.FocusedItem.Index)).SubItems(20).Text)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Ocurrió un error al consultar el  pedido", ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub habilitaCambioCompromiso()
