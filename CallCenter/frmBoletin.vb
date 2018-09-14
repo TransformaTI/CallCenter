@@ -1084,8 +1084,11 @@ Public Class frmBoletin
                 End If
 
                 oItem.SubItems.Add("") '19
-                oItem.SubItems.Add(IIf(Not IsNothing(objPedido.URLCRM), objPedido.URLCRM.ToString(), "")) '20
 
+                If Not IsNothing(objPedido.URLCRM) Then
+                    'oItem.SubItems.Add(IIf(Not IsNothing(objPedido.URLCRM), objPedido.URLCRM.ToString(), "")) '20
+                    oItem.SubItems.Add(objPedido.URLCRM.ToString())
+                End If
                 lvwBoletin.Items.Add(oItem)
             Next
         Catch ex As Exception
