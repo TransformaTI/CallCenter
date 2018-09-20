@@ -3140,6 +3140,8 @@ Public Class frmCallCenter
         cmdInsert.Dispose()
         'se agregó cliente portátil
         Dim frmLlamada As New Llamada()
+        frmLlamada.CadenaConexion = GLOBAL_ConString
+        frmLlamada.URLGateway = _URLGateway
         frmLlamada.Entrada(_Cliente, txtNombre.Text, _CelulaCliente, Pedido, txtTelCasa.Text.Trim, _RutaCliente, Año, 0, _FAlta, chkPortatil.Checked, _FAlta)
         'frmLlamada.setCelda(_numeroCelda)
         '_numeroCelda = frmLlamada.getCelda()

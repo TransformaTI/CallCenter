@@ -1355,6 +1355,8 @@ Public Class frmBoletin
             Next
 
             Dim frmLlamada As New Llamada(pedidoReferencia, rutaPedido, dtpFecha.Value.Date, DtCel, _URLGateway, GLOBAL_Modulo, GLOBAL_ConString)
+            frmLlamada.CadenaConexion = GLOBAL_ConString
+            frmLlamada.URLGateway = _URLGateway
             frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, False, _FAlta)
             'Dim frmLlamada As New Llamada("20148118689", rutaPedido, dtpFecha.Value.Date, DtCel)
             'frmLlamada.Entrada(_Cliente, _Nombre, 8, 118689, lblTelCasa.Text, _Ruta, 2014, TipoLlamada)
@@ -1371,6 +1373,8 @@ Public Class frmBoletin
 
         Else
             Dim frmLlamada As New Llamada()
+            frmLlamada.CadenaConexion = GLOBAL_ConString
+            frmLlamada.URLGateway = _URLGateway
             frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, False, _FAlta)
             frmLlamada.Dispose()
         End If
@@ -2056,6 +2060,8 @@ Public Class frmBoletin
     Private Sub LlamadaPortatil(ByVal TipoLlamada As enumTipoLlamada)
         Cursor = Cursors.WaitCursor
         Dim frmLlamada As New Llamada()
+        frmLlamada.CadenaConexion = GLOBAL_ConString
+        frmLlamada.URLGateway = _URLGateway
         frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, True, _FAlta)
 
         'LUSATE se traslada esta parte del código al formulario Llamada para registro de campos adicionales

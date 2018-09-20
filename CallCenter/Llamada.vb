@@ -33,9 +33,25 @@ Public Class Llamada
     Friend WithEvents chkNoValidarGPS As System.Windows.Forms.CheckBox
     Private _FAlta As Date
     Dim _RutaBoletin As Short
-    Public _URLGateway As String
-    Private _Modulo As Byte
+    Private _URLGateway As String
+    Public Property URLGateway() As String
+        Get
+            Return _URLGateway
+        End Get
+        Set(ByVal value As String)
+            _URLGateway = value
+        End Set
+    End Property
+    Private _Modulo As Byte = 1
     Private _CadenaConexion As String
+    Public Property CadenaConexion() As String
+        Get
+            Return _CadenaConexion
+        End Get
+        Set(ByVal value As String)
+            _CadenaConexion = value
+        End Set
+    End Property
 
 
     Private Sub ConsultaAutotanquesPorDia(ByVal ruta As Int32, ByVal inicio As Boolean)
@@ -1549,13 +1565,12 @@ Public Class Llamada
             Else
                 cmdCAutoTanque.Parameters("@Ruta").Value = RutaConsulta
             End If
-
-            daAutotanque.Fill(Me.DsLlamada.Autotanque)            
-            Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
-            Me.cmbAutoTanque.DisplayMember = "Autotanque"
-            Me.cmbAutoTanque.ValueMember = "Autotanque"
+            daAutotanque.Fill(Me.DsLlamada.Autotanque)
         End If
-            daMotivo.Fill(DsLlamada, "Motivo")
+        Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
+        Me.cmbAutoTanque.DisplayMember = "Autotanque"
+        Me.cmbAutoTanque.ValueMember = "Autotanque"
+        daMotivo.Fill(DsLlamada, "Motivo")
     End Sub
 
     Private Sub ConsultaCelulas()
