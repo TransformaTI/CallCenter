@@ -794,7 +794,7 @@ Public Class frmClienteProximoSuministro
     Private Sub Consultar()
         If _Cliente <> 0 Then
             Cursor = Cursors.WaitCursor
-            Dim oConsultaCliente As New SigaMetClasses.frmConsultaCliente(_Cliente, PermiteCapturarNotas:=False)
+            Dim oConsultaCliente As New SigaMetClasses.frmConsultaCliente(_Cliente, PermiteCapturarNotas:=False, Nuevo:=0)
             oConsultaCliente.ShowDialog()
             Cursor = Cursors.Default
         End If

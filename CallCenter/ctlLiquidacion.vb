@@ -189,7 +189,7 @@ Public Class ctlLiquidacion
                                             lblImporte.DoubleClick
 
         Cursor = Cursors.WaitCursor
-        Dim oConsultaCliente As New SigaMetClasses.frmConsultaCliente(_Cliente)
+        Dim oConsultaCliente As New SigaMetClasses.frmConsultaCliente(_Cliente, Nuevo:=0)
         oConsultaCliente.ShowDialog()
         Cursor = Cursors.Default
 

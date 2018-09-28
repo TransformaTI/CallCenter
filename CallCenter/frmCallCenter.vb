@@ -3265,12 +3265,12 @@ Public Class frmCallCenter
         End Try
 
 
-        Dim oSigamet As New SigaMetClasses.frmConsultaCliente(_Cliente)
+        Dim oSigamet As New SigaMetClasses.frmConsultaCliente(_Cliente, Nuevo:=0)
         Dim oConsultaCliente As SigaMetClasses.frmConsultaCliente
         oSigamet.Modulo = GLOBAL_Modulo  'SigaMetClasses.GLOBAL_Modulo
 
         If (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
-            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente)
+            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, Nuevo:=0)
         Else
             oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente,
                                                                      URLGateway:=_URLGateway,

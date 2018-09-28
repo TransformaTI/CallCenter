@@ -665,6 +665,8 @@ Public Class frmPrincipal
         Me.mnuActivacionPedidos = New System.Windows.Forms.MenuItem()
         Me.mnuControlDocumentos = New System.Windows.Forms.MenuItem()
         Me.mniRelacionNotas = New System.Windows.Forms.MenuItem()
+        Me.MnuBusqueCliente = New System.Windows.Forms.MenuItem()
+        Me.MnuTarjetaCredito = New System.Windows.Forms.MenuItem()
         Me.mnuSep1 = New System.Windows.Forms.MenuItem()
         Me.mnuCargaTarjetaRampac = New System.Windows.Forms.MenuItem()
         Me.mnuSep2 = New System.Windows.Forms.MenuItem()
@@ -753,9 +755,7 @@ Public Class frmPrincipal
         Me.ControlAlarma = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.ContextMenu1 = New System.Windows.Forms.ContextMenu()
         Me.NotificationWindow = New VbPowerPack.NotificationWindow(Me.components)
-        Me.MnuBusqueCliente = New System.Windows.Forms.MenuItem()
         Me.TabBar1 = New Sigamet.TabBar()
-        Me.MnuTarjetaCredito = New System.Windows.Forms.MenuItem()
         CType(Me.stapUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.stapNombre, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.stapCelula, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -846,6 +846,16 @@ Public Class frmPrincipal
         '
         Me.mniRelacionNotas.Index = 13
         Me.mniRelacionNotas.Text = "&Relación de notas"
+        '
+        'MnuBusqueCliente
+        '
+        Me.MnuBusqueCliente.Index = 14
+        Me.MnuBusqueCliente.Text = "Búsqueda de clientes"
+        '
+        'MnuTarjetaCredito
+        '
+        Me.MnuTarjetaCredito.Index = 15
+        Me.MnuTarjetaCredito.Text = "Tarjetas de crédito"
         '
         'mnuSep1
         '
@@ -1187,7 +1197,7 @@ Public Class frmPrincipal
         'staPrincipal
         '
         Me.staPrincipal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.staPrincipal.Location = New System.Drawing.Point(0, 245)
+        Me.staPrincipal.Location = New System.Drawing.Point(0, 225)
         Me.staPrincipal.Name = "staPrincipal"
         Me.staPrincipal.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.stapUsuario, Me.stapNombre, Me.stapCelula, Me.stapFecha, Me.sbpServidor, Me.sbpBaseDeDatos, Me.sbpVersion})
         Me.staPrincipal.ShowPanels = True
@@ -1325,11 +1335,6 @@ Public Class frmPrincipal
         Me.NotificationWindow.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.NotificationWindow.ForeColor = System.Drawing.SystemColors.ControlText
         '
-        'MnuBusqueCliente
-        '
-        Me.MnuBusqueCliente.Index = 14
-        Me.MnuBusqueCliente.Text = "Búsqueda de clientes"
-        '
         'TabBar1
         '
         Me.TabBar1.AutoHide = True
@@ -1341,15 +1346,10 @@ Public Class frmPrincipal
         Me.TabBar1.TabIndex = 3
         Me.TabBar1.UnfocusedColor = System.Drawing.SystemColors.Control
         '
-        'MnuTarjetaCredito
-        '
-        Me.MnuTarjetaCredito.Index = 15
-        Me.MnuTarjetaCredito.Text = "Tarjetas de crédito"
-        '
         'frmPrincipal
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
-        Me.ClientSize = New System.Drawing.Size(1031, 266)
+        Me.ClientSize = New System.Drawing.Size(1031, 246)
         Me.Controls.Add(Me.staPrincipal)
         Me.Controls.Add(Me.TabBar1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
