@@ -9,6 +9,9 @@ Public Class frmPrincipal
     Friend WithEvents MnuTarjetaCredito As MenuItem
     Private _URLGateway As String
     Private _cliente As Integer
+    ' Variable para enviar pedidos a la plataforma SGCWeb     - RM 03/10/2018
+    Private _SGCWebHabilitado As Boolean
+
 
 #Region "Control de alarmas de los postit"
 
@@ -196,8 +199,8 @@ Public Class frmPrincipal
     End Sub
 
     Private Sub frmPrincipal_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
         Dim oConfig As New SigaMetClasses.cConfig(1, GLOBAL_Corporativo, GLOBAL_Sucursal)
+        CargarParametros()
 
         Try
             Dim oConfig2 As New SigaMetClasses.cConfig(1, GLOBAL_Corporativo, GLOBAL_Sucursal)
@@ -297,6 +300,21 @@ Public Class frmPrincipal
         End If
         InactivarCallCenter()
         InicioControlAlarma()
+    End Sub
+
+    ''' <summary>
+    ''' Carga las configuraciones desde la tabla dbo.Parametro
+    ''' </summary>
+    Private Sub CargarParametros()
+        Dim oConfig As New SigaMetClasses.cConfig(GLOBAL_Modulo, GLOBAL_Corporativo, GLOBAL_Sucursal)
+
+        Try
+            _SGCWebHabilitado = CType(oConfig.Parametros("PlataformaSGCWeb"), Boolean)
+
+        Catch ex As Exception
+            MessageBox.Show("Se produjo un error consultando los parámetros:" & vbCrLf & ex.Message,
+                            Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub frmPrincipal_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
@@ -1447,7 +1465,7 @@ Public Class frmPrincipal
                 oBoletin.Show()
             Else
                 'Si el UrlGateway  es recuperado, se usa el constructor con _urlGateway
-                Dim oBoletin As New frmBoletin(_URLGateway)
+                Dim oBoletin As New frmBoletin(_URLGateway, SGCWebHabilitado:=_SGCWebHabilitado)
                 oBoletin.MdiParent = Me
                 oBoletin.Show()
             End If

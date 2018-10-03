@@ -19,6 +19,9 @@ Public Class Llamada
     Private _UsuarioMovil As Integer
     Private _AutoTanque As Integer
 
+    ' Variable para enviar el pedido a la plataforma SGCWeb     RM 03/10/2018
+    Private _SGCWebHabilitado As Boolean
+
     Private pedidoReferencia As String
     Private fechaPedido As Date
     Private boletinEnLinea As Boolean = False
@@ -63,11 +66,16 @@ Public Class Llamada
 
         Dim dtAutotanquesDia As New DataTable()
 
-        If GLOBAL_UsarSigametServices Then
-            dtAutotanquesDia = servicioPedido.ConsultaAutotanquesPorRutaYDia(Main.GLOBAL_Estacion,
-                ruta, DateTime.Now.Date, DateTime.Now.Date).Tables(0)
-            Me.Cursor = Cursors.Default
-        End If
+        Try
+            If GLOBAL_UsarSigametServices Then
+                dtAutotanquesDia = servicioPedido.ConsultaAutotanquesPorRutaYDia(Main.GLOBAL_Estacion,
+                    ruta, DateTime.Now.Date, DateTime.Now.Date).Tables(0)
+                Me.Cursor = Cursors.Default
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Se produjo un error consultando los autotanques:" & vbCrLf & ex.Message,
+                            Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
         If dtAutotanquesDia.Rows.Count > 0 Then
             RemoveHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
@@ -115,14 +123,16 @@ Public Class Llamada
                    ByVal FechaPedido As Date,
                    ByVal DaCelula As DataTable,
                    ByVal URLGateway As String,
-                   Optional ByVal Modulo As Byte = 0,
-                   Optional ByVal CadenaConexion As String = "")
+          Optional ByVal Modulo As Byte = 0,
+          Optional ByVal CadenaConexion As String = "",
+          Optional ByVal SGCWebHabilitado As Boolean = False)
         'This call is required by the Windows Form Designer.
         InitializeComponent()
 
         _URLGateway = URLGateway
         _Modulo = Modulo
         _CadenaConexion = CadenaConexion
+        _SGCWebHabilitado = SGCWebHabilitado
 
         Me.pedidoReferencia = PedidoReferencia
         Me.fechaPedido = FechaPedido
@@ -1155,38 +1165,70 @@ Public Class Llamada
             MessageBox.Show(ex.Message)
         End Try
 
+        'Try
+        '    If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+        '        Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido(_Modulo, _CadenaConexion)
+        '        objGateway.URLServicio = _URLGateway
+
+        '        'Se arma el pedido con los datos que llegan a la funciòn.
+
+        '        Dim objPedido As New RTGMCore.PedidoCRMDatos
+        '        objPedido.IDEmpresa = GLOBAL_Corporativo
+        '        objPedido.IDZona = Celula
+        '        'objPedido.AnioPed = Anio
+        '        objPedido.EstatusBoletin = "BOLETINADO"
+        '        'objPedido.PedidoReferencia = Pedido
+        '        objPedido.IDPedido = Pedido
+        '        Dim ListaPedidos As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
+
+        '        ListaPedidos.Add(objPedido)
+
+        '        Dim oSolicitudActualizarPedido As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
+        '            .Pedidos = ListaPedidos,
+        '            .Portatil = False,
+        '            .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin
+        '        }
+
+        '        Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(oSolicitudActualizarPedido)
+        '    End If
+        'Catch ex As Exception
+        '    MessageBox.Show("Error actualizando el pedido en CRM." & vbCrLf & ex.Message,
+        '                    ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'End Try
+    End Function
+
+    Private Sub BoletinarPedidoEnCRM()
         Try
-            If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
-                Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido(_Modulo, _CadenaConexion)
-                objGateway.URLServicio = _URLGateway
+            'If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+            '    Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido(_Modulo, _CadenaConexion)
+            '    objGateway.URLServicio = _URLGateway
 
-                'Se arma el pedido con los datos que llegan a la funciòn.
+            '    'Se arma el pedido con los datos que llegan a la funciòn.
 
-                Dim objPedido As New RTGMCore.PedidoCRMDatos
-                objPedido.IDEmpresa = GLOBAL_Corporativo
-                objPedido.IDZona = Celula
-                'objPedido.AnioPed = Anio
-                objPedido.EstatusBoletin = "BOLETINADO"
-                'objPedido.PedidoReferencia = Pedido
-                objPedido.IDPedido = Pedido
-                Dim ListaPedidos As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
+            '    Dim objPedido As New RTGMCore.PedidoCRMDatos
+            '    objPedido.IDEmpresa = GLOBAL_Corporativo
+            '    objPedido.IDZona = Celula
+            '    'objPedido.AnioPed = Anio
+            '    objPedido.EstatusBoletin = "BOLETINADO"
+            '    'objPedido.PedidoReferencia = Pedido
+            '    objPedido.IDPedido = Pedido
+            '    Dim ListaPedidos As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
 
-                ListaPedidos.Add(objPedido)
+            '    ListaPedidos.Add(objPedido)
 
-                Dim oSolicitudActualizarPedido As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
-                    .Pedidos = ListaPedidos,
-                    .Portatil = False,
-                    .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin
-                }
+            '    Dim oSolicitudActualizarPedido As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
+            '        .Pedidos = ListaPedidos,
+            '        .Portatil = False,
+            '        .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin
+            '    }
 
-                Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(oSolicitudActualizarPedido)
-            End If
+            '    Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(oSolicitudActualizarPedido)
+            'End If
         Catch ex As Exception
             MessageBox.Show("Error actualizando el pedido en CRM." & vbCrLf & ex.Message,
                             ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-    End Function
-
+    End Sub
 
     'Funcion para encontrar la referencia de la celda del grid de pedidos
     Public Function getCelda() As Integer

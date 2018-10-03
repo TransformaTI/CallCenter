@@ -24,6 +24,9 @@ Public Class frmBoletin
     Private _FAlta As Date
     Public _URLGateway As String = ""
     Private _PedidosRTGM As List(Of RTGMCore.Pedido)
+    ' Variable para enviar el pedido a la plataforma SGCWeb     - RM 03/10/2018
+    Private _SGCWebHabilitado As Boolean
+
     Friend WithEvents btnCerrar As System.Windows.Forms.ToolBarButton
     Friend WithEvents btnSep2 As System.Windows.Forms.ToolBarButton
     Friend WithEvents btnRefrescar As System.Windows.Forms.ToolBarButton
@@ -48,9 +51,11 @@ Public Class frmBoletin
 
 #Region " Windows Form Designer generated code "
 
-    Public Sub New(Optional ByVal URLGateway As String = Nothing)
+    Public Sub New(Optional ByVal URLGateway As String = Nothing,
+                   Optional ByVal SGCWebHabilitado As Boolean = False)
         MyBase.New()
         _URLGateway = URLGateway
+        _SGCWebHabilitado = SGCWebHabilitado
 
         'This call is required by the Windows Form Designer.
         InitializeComponent()
@@ -1125,6 +1130,7 @@ Public Class frmBoletin
                 _PedidosRTGM = New List(Of RTGMCore.Pedido)
                 objPedidoGateway.URLServicio = _URLGateway
 
+                '   Boletín
                 SolicitudPedidoGateway.IDZona = _CelulaCarga
                 SolicitudPedidoGateway.EstatusBoletin = cboStatusBoletin.SelectedItem
                 SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
@@ -1354,7 +1360,14 @@ Public Class frmBoletin
                 End If
             Next
 
-            Dim frmLlamada As New Llamada(pedidoReferencia, rutaPedido, dtpFecha.Value.Date, DtCel, _URLGateway, GLOBAL_Modulo, GLOBAL_ConString)
+            Dim frmLlamada As New Llamada(pedidoReferencia,
+                                          rutaPedido,
+                                          dtpFecha.Value.Date,
+                                          DtCel,
+                                          _URLGateway,
+                                          GLOBAL_Modulo,
+                                          GLOBAL_ConString,
+                                          SGCWebHabilitado:=_SGCWebHabilitado)
             frmLlamada.CadenaConexion = GLOBAL_ConString
             frmLlamada.URLGateway = _URLGateway
             frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, False, _FAlta)
