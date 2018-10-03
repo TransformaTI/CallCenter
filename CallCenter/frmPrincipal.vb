@@ -9,8 +9,10 @@ Public Class frmPrincipal
     Friend WithEvents MnuTarjetaCredito As MenuItem
     Private _URLGateway As String
     Private _cliente As Integer
+
     ' Variable para enviar pedidos a la plataforma SGCWeb     - RM 03/10/2018
     Private _SGCWebHabilitado As Boolean
+    Private _FuenteGateway As String
 
 
 #Region "Control de alarmas de los postit"
@@ -310,6 +312,7 @@ Public Class frmPrincipal
 
         Try
             _SGCWebHabilitado = CType(oConfig.Parametros("PlataformaSGCWeb"), Boolean)
+            _FuenteGateway = CType(oConfig.Parametros("FuenteCRM"), String)
 
         Catch ex As Exception
             MessageBox.Show("Se produjo un error consultando los parámetros:" & vbCrLf & ex.Message,
@@ -1465,7 +1468,9 @@ Public Class frmPrincipal
                 oBoletin.Show()
             Else
                 'Si el UrlGateway  es recuperado, se usa el constructor con _urlGateway
-                Dim oBoletin As New frmBoletin(_URLGateway, SGCWebHabilitado:=_SGCWebHabilitado)
+                Dim oBoletin As New frmBoletin(_URLGateway,
+                                               SGCWebHabilitado:=_SGCWebHabilitado,
+                                               FuenteGateway:=_FuenteGateway)
                 oBoletin.MdiParent = Me
                 oBoletin.Show()
             End If
