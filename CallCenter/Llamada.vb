@@ -19,9 +19,9 @@ Public Class Llamada
     Private _UsuarioMovil As Integer
     Private _AutoTanque As Integer
 
-    ' Variable para enviar el pedido a la plataforma SGCWeb     RM 03/10/2018
+    ' Variable para enviar el pedido a la plataforma SGCWeb     - RM 03/10/2018
     Private _SGCWebHabilitado As Boolean
-
+    Private _FuenteGateway As String
     Private pedidoReferencia As String
     Private fechaPedido As Date
     Private boletinEnLinea As Boolean = False
@@ -125,7 +125,8 @@ Public Class Llamada
                    ByVal URLGateway As String,
           Optional ByVal Modulo As Byte = 0,
           Optional ByVal CadenaConexion As String = "",
-          Optional ByVal SGCWebHabilitado As Boolean = False)
+          Optional ByVal SGCWebHabilitado As Boolean = False,
+          Optional ByVal FuenteGateway As String = "")
         'This call is required by the Windows Form Designer.
         InitializeComponent()
 
@@ -133,6 +134,7 @@ Public Class Llamada
         _Modulo = Modulo
         _CadenaConexion = CadenaConexion
         _SGCWebHabilitado = SGCWebHabilitado
+        _FuenteGateway = FuenteGateway
 
         Me.pedidoReferencia = PedidoReferencia
         Me.fechaPedido = FechaPedido
@@ -1000,7 +1002,8 @@ Public Class Llamada
             End If
 
             '04/09/2014: Se separa esta sección del código para evitar ingresar a la transacción si falla el proceso de pegasus
-            If (boletinEnLinea) Then
+            '03/10/2018: Se agrega validación de la variable _SGCWebHabilitado  - RM
+            If (boletinEnLinea AndAlso _SGCWebHabilitado) Then
                 Try
                     Dim servicioPedido As New desarrollogm.Pedido()
                     servicioPedido.Url = GLOBAL_URLWebserviceBoletin
@@ -1013,6 +1016,17 @@ Public Class Llamada
                         False, Convert.ToInt32(cmbAutoTanque.SelectedValue), idPlantaSGC, txtObservaciones.Text)
                 Catch ex As Exception
                     MessageBox.Show("No fué posible enviar el pedido al sistema SGCWEB," & vbCrLf &
+                        "no se registrará el boletín en SIGAMET." & vbCrLf &
+                        ex.Message,
+                        "Error enviando pedido", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
+                End Try
+            ElseIf (_FuenteGateway.Equals("CRM")) Then
+
+                Try
+                    BoletinarPedidoEnCRM(_Pedido, _Celula)
+                Catch ex As Exception
+                    MessageBox.Show("No fue posible boletinar el pedido en CRM," & vbCrLf &
                         "no se registrará el boletín en SIGAMET." & vbCrLf &
                         ex.Message,
                         "Error enviando pedido", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1114,6 +1128,7 @@ Public Class Llamada
                         If _Boletin = 2 And _Portatil = False Then
 
                             'Se actualiza pedido, tanto en la base como en el WS .
+                            ' 03/10/2018: Se actualiza el pedido solo en la base de datos   - RM
                             Llamada_ActualizaPedido(_Anio, _Celula, _Pedido, _RutaBoletin)
 
                         End If
@@ -1197,36 +1212,43 @@ Public Class Llamada
         'End Try
     End Function
 
-    Private Sub BoletinarPedidoEnCRM()
+    ''' <summary>
+    ''' Boletina el pedido en el CRM
+    ''' </summary>
+    Private Sub BoletinarPedidoEnCRM(ByVal pedido As Integer, ByVal celula As Integer)
+
         Try
-            'If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
-            '    Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido(_Modulo, _CadenaConexion)
-            '    objGateway.URLServicio = _URLGateway
+            If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+                Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido(_Modulo, _CadenaConexion)
+                objGateway.URLServicio = _URLGateway
 
-            '    'Se arma el pedido con los datos que llegan a la funciòn.
+                Dim objPedido As New RTGMCore.PedidoCRMDatos
+                objPedido.IDEmpresa = GLOBAL_Corporativo
+                objPedido.EstatusBoletin = "BOLETINADO"
+                objPedido.IDPedido = pedido
+                objPedido.IDZona = celula
 
-            '    Dim objPedido As New RTGMCore.PedidoCRMDatos
-            '    objPedido.IDEmpresa = GLOBAL_Corporativo
-            '    objPedido.IDZona = Celula
-            '    'objPedido.AnioPed = Anio
-            '    objPedido.EstatusBoletin = "BOLETINADO"
-            '    'objPedido.PedidoReferencia = Pedido
-            '    objPedido.IDPedido = Pedido
-            '    Dim ListaPedidos As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
+                Dim ListaPedidos As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
 
-            '    ListaPedidos.Add(objPedido)
+                ListaPedidos.Add(objPedido)
 
-            '    Dim oSolicitudActualizarPedido As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
-            '        .Pedidos = ListaPedidos,
-            '        .Portatil = False,
-            '        .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin
-            '    }
+                Dim oSolicitudActualizarPedido As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
+                    .Pedidos = ListaPedidos,
+                    .Portatil = False,
+                    .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin
+                }
 
-            '    Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(oSolicitudActualizarPedido)
-            'End If
+                Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(oSolicitudActualizarPedido)
+
+                If (Not ListaRespuesta(0).Success AndAlso
+                        Not IsNothing(ListaRespuesta(0).Message)) Then
+
+                    Throw New Exception(ListaRespuesta(0).Message)
+                End If
+
+            End If
         Catch ex As Exception
-            MessageBox.Show("Error actualizando el pedido en CRM." & vbCrLf & ex.Message,
-                            ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Throw
         End Try
     End Sub
 
