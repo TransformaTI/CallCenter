@@ -1631,10 +1631,13 @@ Public Class Llamada
             End If
             daAutotanque.Fill(Me.DsLlamada.Autotanque)
         End If
-        Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
-        Me.cmbAutoTanque.DisplayMember = "Autotanque"
-        Me.cmbAutoTanque.ValueMember = "Autotanque"
-        daMotivo.Fill(DsLlamada, "Motivo")
+        If Me.cmbAutoTanque.Items.Count = 0 Then
+            Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
+            Me.cmbAutoTanque.DisplayMember = "Autotanque"
+            Me.cmbAutoTanque.ValueMember = "Autotanque"
+            daMotivo.Fill(DsLlamada, "Motivo")
+        End If
+
     End Sub
 
     Private Sub ConsultaCelulas()
