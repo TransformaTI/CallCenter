@@ -275,7 +275,7 @@ Public Class frmPrincipal
         activarMenuReporteRaf(oSeguridad.TieneAcceso("SeguimientoRAF"))
         activarMenuSeguimientoFugas(oSeguridad.TieneAcceso("SeguimientoFugasPtl"))
 
-
+        desactivarMenuTarjetaCredito()
 
         'Para registro de pedidos WEB
         MenuRemoval("REGISTRO_PEDIDOSWEB", mnuPedidoWeb, Me.Menu)
@@ -305,6 +305,15 @@ Public Class frmPrincipal
     End Sub
 
     ''' <summary>
+    ''' Deshabilita el menú tarjeta de crédito cuando la fuente del gateway es Sigamet
+    ''' </summary>
+    Private Sub desactivarMenuTarjetaCredito()
+        If (_FuenteGateway.Equals("SIGAMET")) Then
+            MnuTarjetaCredito.Visible = False
+        End If
+    End Sub
+
+    ''' <summary>
     ''' Carga las configuraciones desde la tabla dbo.Parametro
     ''' </summary>
     Private Sub CargarParametros()
@@ -313,6 +322,7 @@ Public Class frmPrincipal
         Try
             _SGCWebHabilitado = CType(oConfig.Parametros("PlataformaSGCWeb"), Boolean)
             _FuenteGateway = CType(oConfig.Parametros("FuenteCRM"), String)
+            _FuenteGateway = _FuenteGateway.ToUpper()
 
         Catch ex As Exception
             MessageBox.Show("Se produjo un error consultando los parámetros:" & vbCrLf & ex.Message,
@@ -1218,7 +1228,7 @@ Public Class frmPrincipal
         'staPrincipal
         '
         Me.staPrincipal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.staPrincipal.Location = New System.Drawing.Point(0, 225)
+        Me.staPrincipal.Location = New System.Drawing.Point(0, 103)
         Me.staPrincipal.Name = "staPrincipal"
         Me.staPrincipal.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.stapUsuario, Me.stapNombre, Me.stapCelula, Me.stapFecha, Me.sbpServidor, Me.sbpBaseDeDatos, Me.sbpVersion})
         Me.staPrincipal.ShowPanels = True
@@ -1370,7 +1380,7 @@ Public Class frmPrincipal
         'frmPrincipal
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
-        Me.ClientSize = New System.Drawing.Size(1031, 246)
+        Me.ClientSize = New System.Drawing.Size(1031, 124)
         Me.Controls.Add(Me.staPrincipal)
         Me.Controls.Add(Me.TabBar1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
