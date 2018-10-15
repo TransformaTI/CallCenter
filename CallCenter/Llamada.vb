@@ -37,6 +37,9 @@ Public Class Llamada
     Private _FAlta As Date
     Dim _RutaBoletin As Short
     Private _URLGateway As String
+    Private _Modulo As Byte = 1
+    Private _CadenaConexion As String
+
     Public Property URLGateway() As String
         Get
             Return _URLGateway
@@ -45,8 +48,8 @@ Public Class Llamada
             _URLGateway = value
         End Set
     End Property
-    Private _Modulo As Byte = 1
-    Private _CadenaConexion As String
+
+
     Public Property CadenaConexion() As String
         Get
             Return _CadenaConexion
@@ -56,6 +59,14 @@ Public Class Llamada
         End Set
     End Property
 
+    Public Property FuenteGateway As String
+        Get
+            Return _FuenteGateway
+        End Get
+        Set(value As String)
+            _FuenteGateway = value
+        End Set
+    End Property
 
     Private Sub ConsultaAutotanquesPorDia(ByVal ruta As Int32, ByVal inicio As Boolean)
         Me.Cursor = Cursors.WaitCursor
@@ -704,7 +715,7 @@ Public Class Llamada
         '
         'SqlConnection
         '
-        Me.SqlConnection.ConnectionString = "data source=Digital5000;initial catalog=Sigamet;persist security info=False;user " & _
+        Me.SqlConnection.ConnectionString = "data source=Digital5000;initial catalog=Sigamet;persist security info=False;user " &
     "id=sa;workstation id=FHURTADO;packet size=4096"
         Me.SqlConnection.FireInfoMessageEventOnUserErrors = False
         '

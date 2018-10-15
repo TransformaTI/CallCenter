@@ -1392,6 +1392,7 @@ Public Class frmBoletin
             Dim frmLlamada As New Llamada()
             frmLlamada.CadenaConexion = GLOBAL_ConString
             frmLlamada.URLGateway = _URLGateway
+            frmLlamada.FuenteGateway = _FuenteGateway
             frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, False, _FAlta)
             frmLlamada.Dispose()
         End If
