@@ -1642,13 +1642,15 @@ Public Class Llamada
             End If
             daAutotanque.Fill(Me.DsLlamada.Autotanque)
         End If
+
         If Me.cmbAutoTanque.Items.Count = 0 Then
             Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
             Me.cmbAutoTanque.DisplayMember = "Autotanque"
             Me.cmbAutoTanque.ValueMember = "Autotanque"
-            daMotivo.Fill(DsLlamada, "Motivo")
         End If
 
+        ' 17/10/2018 RM - Siempre cargar la tabla Motivo
+        daMotivo.Fill(DsLlamada, "Motivo")
     End Sub
 
     Private Sub ConsultaCelulas()
