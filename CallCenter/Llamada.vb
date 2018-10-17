@@ -1032,8 +1032,8 @@ Public Class Llamada
                         "Error enviando pedido", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End Try
-            ElseIf (_FuenteGateway.Equals("CRM")) Then
 
+            ElseIf _FuenteGateway.Equals("CRM") AndAlso _Boletin = frmBoletin.enumTipoLlamada.Cliente Then
                 Try
                     BoletinarPedidoEnCRM(_Pedido, _Celula)
                 Catch ex As Exception

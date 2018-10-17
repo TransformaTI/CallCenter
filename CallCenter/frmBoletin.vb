@@ -1338,7 +1338,7 @@ Public Class frmBoletin
         oCargar.ShowDialog()
     End Sub
 
-    Private Enum enumTipoLlamada
+    Public Enum enumTipoLlamada
         Operador = 1
         Cliente = 2
         Suministro = 3
