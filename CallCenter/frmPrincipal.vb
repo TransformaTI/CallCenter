@@ -1228,7 +1228,7 @@ Public Class frmPrincipal
         'staPrincipal
         '
         Me.staPrincipal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.staPrincipal.Location = New System.Drawing.Point(0, 103)
+        Me.staPrincipal.Location = New System.Drawing.Point(0, -21)
         Me.staPrincipal.Name = "staPrincipal"
         Me.staPrincipal.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.stapUsuario, Me.stapNombre, Me.stapCelula, Me.stapFecha, Me.sbpServidor, Me.sbpBaseDeDatos, Me.sbpVersion})
         Me.staPrincipal.ShowPanels = True
@@ -1380,7 +1380,7 @@ Public Class frmPrincipal
         'frmPrincipal
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
-        Me.ClientSize = New System.Drawing.Size(1031, 124)
+        Me.ClientSize = New System.Drawing.Size(1031, 0)
         Me.Controls.Add(Me.staPrincipal)
         Me.Controls.Add(Me.TabBar1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -2756,7 +2756,7 @@ Public Class frmPrincipal
 
     Private Sub CapturaTarjeta()
         Try
-            Dim frmCapTarjetaCredito As New SigaMetClasses.frmConTarjetaCredito(_cliente, GLOBAL_Usuario, _URLGateway, 1, GLOBAL_ConString)
+            Dim frmCapTarjetaCredito As New SigaMetClasses.frmConTarjetaCredito(_cliente, GLOBAL_Usuario, _URLGateway, 1, GLOBAL_ConString, _FuenteGateway)
             frmCapTarjetaCredito.ShowDialog()
         Catch ex As Exception
             MessageBox.Show(ex.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
