@@ -66,6 +66,8 @@ Public Class frmBoletin
         _FuenteGateway = FuenteGateway
 
         SeleccionCalleColonia1.URLGateway = _URLGateway
+        SeleccionCalleColonia1.CadenaConexion = GLOBAL_ConString
+        SeleccionCalleColonia1.Modulo = GLOBAL_Modulo
 
         Dim _CelulaCarga As Byte
         Dim FechaDtp As Date
