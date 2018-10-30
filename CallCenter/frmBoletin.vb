@@ -44,6 +44,7 @@ Public Class frmBoletin
     Friend WithEvents DsTipoFactura1 As Sigamet.dsTipoFactura
     Friend WithEvents btnReasignar As System.Windows.Forms.ToolBarButton
     Friend WithEvents urlcrm As ColumnHeader
+    Friend WithEvents SeleccionCalleColonia1 As SigaMetClasses.SeleccionCalleColonia
     Friend WithEvents tbBarra As System.Windows.Forms.ToolBar
 
 
@@ -56,13 +57,15 @@ Public Class frmBoletin
                    Optional ByVal SGCWebHabilitado As Boolean = False,
                    Optional ByVal FuenteGateway As String = "")
         MyBase.New()
-        _URLGateway = URLGateway
-        _SGCWebHabilitado = SGCWebHabilitado
-        _FuenteGateway = FuenteGateway
 
         'This call is required by the Windows Form Designer.
         InitializeComponent()
 
+        _URLGateway = URLGateway
+        _SGCWebHabilitado = SGCWebHabilitado
+        _FuenteGateway = FuenteGateway
+
+        SeleccionCalleColonia1.URLGateway = _URLGateway
 
         Dim _CelulaCarga As Byte
         Dim FechaDtp As Date
@@ -125,7 +128,6 @@ Public Class frmBoletin
     Friend WithEvents grdcolMotivo As System.Windows.Forms.DataGridTextBoxColumn
     Friend WithEvents grdcolObservaciones As System.Windows.Forms.DataGridTextBoxColumn
     Friend WithEvents colStatus As System.Windows.Forms.ColumnHeader
-    Friend WithEvents SeleccionCalleColonia As SigaMetClasses.SeleccionCalleColonia
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
@@ -219,7 +221,6 @@ Public Class frmBoletin
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.cboStatusBoletin = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.cboRuta = New SigaMetClasses.Combos.ComboRutaBoletin()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.chkTodasLasRutas = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -247,6 +248,8 @@ Public Class frmBoletin
         Me.tbBarra = New System.Windows.Forms.ToolBar()
         Me.btnReasignar = New System.Windows.Forms.ToolBarButton()
         Me.DsTipoFactura1 = New Sigamet.dsTipoFactura()
+        Me.cboRuta = New SigaMetClasses.Combos.ComboRutaBoletin()
+        Me.SeleccionCalleColonia1 = New SigaMetClasses.SeleccionCalleColonia()
         CType(Me.grdLlamada, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.grpDatos.SuspendLayout()
@@ -523,6 +526,7 @@ Public Class frmBoletin
         '
         'grpDatos
         '
+        Me.grpDatos.Controls.Add(Me.SeleccionCalleColonia1)
         Me.grpDatos.Controls.Add(Me.Label7)
         Me.grpDatos.Controls.Add(Me.lblNombre)
         Me.grpDatos.Controls.Add(Me.lblObservacionesPedido)
@@ -661,16 +665,6 @@ Public Class frmBoletin
         Me.Label1.Size = New System.Drawing.Size(47, 13)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "Estatus:"
-        '
-        'cboRuta
-        '
-        Me.cboRuta.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboRuta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboRuta.Enabled = False
-        Me.cboRuta.Location = New System.Drawing.Point(848, 21)
-        Me.cboRuta.Name = "cboRuta"
-        Me.cboRuta.Size = New System.Drawing.Size(96, 21)
-        Me.cboRuta.TabIndex = 12
         '
         'Label6
         '
@@ -916,6 +910,29 @@ Public Class frmBoletin
         Me.DsTipoFactura1.Locale = New System.Globalization.CultureInfo("es-MX")
         Me.DsTipoFactura1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
+        'cboRuta
+        '
+        Me.cboRuta.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboRuta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboRuta.Enabled = False
+        Me.cboRuta.Location = New System.Drawing.Point(848, 21)
+        Me.cboRuta.Name = "cboRuta"
+        Me.cboRuta.Size = New System.Drawing.Size(96, 21)
+        Me.cboRuta.TabIndex = 12
+        '
+        'SeleccionCalleColonia1
+        '
+        Me.SeleccionCalleColonia1.AltaCalleColonia = True
+        Me.SeleccionCalleColonia1.CadenaConexion = Nothing
+        Me.SeleccionCalleColonia1.Calle = 0
+        Me.SeleccionCalleColonia1.Colonia = 0
+        Me.SeleccionCalleColonia1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SeleccionCalleColonia1.Location = New System.Drawing.Point(8, 66)
+        Me.SeleccionCalleColonia1.Modulo = CType(0, Byte)
+        Me.SeleccionCalleColonia1.Name = "SeleccionCalleColonia1"
+        Me.SeleccionCalleColonia1.Size = New System.Drawing.Size(536, 144)
+        Me.SeleccionCalleColonia1.TabIndex = 13
+        '
         'frmBoletin
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
@@ -981,7 +998,7 @@ Public Class frmBoletin
         End If
         Cursor = Cursors.WaitCursor
         Dim frmPedido As New Pedido()
-        frmPedido.Entrada(_Cliente, _Nombre, Me.SeleccionCalleColonia.CP, _Ruta, 0, _Celula, _Ruta.ToString, 1)
+        frmPedido.Entrada(_Cliente, _Nombre, Me.SeleccionCalleColonia1.CP, _Ruta, 0, _Celula, _Ruta.ToString, 1)
         'frmPedido.Entrada(_Cliente, _Nombre, Me.SeleccionCalleColonia.CP, _Ruta, "", _Celula, _Ruta.ToString, 1)
         frmPedido.Dispose()
         Cursor = Cursors.Default
@@ -1649,10 +1666,10 @@ Public Class frmBoletin
                 'lblTelCasa.Text = objPedido.DireccionEntrega.Telefono1
 
                 lblObservacionesPedido.Text = CType(lvwBoletin.FocusedItem.SubItems(18).Text, String).Trim
-                If chkPortatil.Checked And Not IsNothing(SeleccionCalleColonia) Then
-                    SeleccionCalleColonia.CargaDatosClientePortatilSoloLectura(_Cliente)
-                ElseIf (Not IsNothing(SeleccionCalleColonia)) Then
-                    SeleccionCalleColonia.CargaDatosClienteSoloLectura(_Cliente)
+                If chkPortatil.Checked Then
+                    SeleccionCalleColonia1.CargaDatosClientePortatilSoloLectura(_Cliente)
+                Else
+                    SeleccionCalleColonia1.CargaDatosClienteSoloLectura(_Cliente)
                 End If
                 If Not grpDatos.Visible Then grpDatos.Visible = True
 
