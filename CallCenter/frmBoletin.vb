@@ -1145,6 +1145,7 @@ Public Class frmBoletin
 
         If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
             Try
+                Dim FechaInicio As Date = FechaDtp.AddDays(-30)
                 Dim FechaFin As Date = FechaDtp.AddSeconds(-1).AddDays(1)
 
                 Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
@@ -1156,7 +1157,7 @@ Public Class frmBoletin
                 SolicitudPedidoGateway.IDZona = _CelulaCarga
                 SolicitudPedidoGateway.EstatusBoletin = cboStatusBoletin.SelectedItem
                 SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
-                SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
+                SolicitudPedidoGateway.FechaCompromisoInicio = FechaInicio
                 SolicitudPedidoGateway.FechaCompromisoFin = FechaFin
 
                 _PedidosRTGM = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
