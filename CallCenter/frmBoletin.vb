@@ -1065,6 +1065,11 @@ Public Class frmBoletin
         Try
             lvwBoletin.Items.Clear()
 
+            ' Agregar la columna EstadoSGC
+            If Not lvwBoletin.Columns.Contains(colEstadoSGC) Then
+                lvwBoletin.Columns.Add(colEstadoSGC)
+            End If
+
             For Each objPedido In Pedidos
                 Dim oItem As ListViewItem
                 Dim tipo As Integer = 0
@@ -1110,12 +1115,12 @@ Public Class frmBoletin
                     oItem.SubItems.Add("") '18
                 End If
 
-                oItem.SubItems.Add("") '19
+                oItem.SubItems.Add(objPedido.ReporteRAF) '19
 
-                If Not IsNothing(objPedido.URLCRM) Then
-                    'oItem.SubItems.Add(IIf(Not IsNothing(objPedido.URLCRM), objPedido.URLCRM.ToString(), "")) '20
-                    oItem.SubItems.Add(objPedido.URLCRM.ToString())
-                End If
+                oItem.SubItems.Add(objPedido.URLCRM) '20
+
+                oItem.SubItems.Add(objPedido.EstatusMovil) '21 EstadoSGC
+
                 lvwBoletin.Items.Add(oItem)
             Next
         Catch ex As Exception
