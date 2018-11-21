@@ -3666,7 +3666,11 @@ Public Class frmCallCenter
                 _ColorBack = lvwPedido.BackColor
 
                 If Not IsDBNull(dr("Pedido")) Then
-                    oItem.Text = CType(dr("PedidoReferencia"), String).Trim
+                    If IsDBNull(dr("PedidoReferencia")) Then
+                        Throw New Exception("Uno de los pedidos de clientes tiene información inconsistente (pedidoreferencia) que es nulo, por favor reporte al área de soporte a aplicaciones.")
+                    Else
+                        oItem.Text = CType(dr("PedidoReferencia"), String).Trim
+                    End If
                 Else
                     oItem.Text = ""
                 End If
