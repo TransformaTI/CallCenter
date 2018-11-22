@@ -1361,7 +1361,6 @@ Public Class frmPrincipal
         '
         'NotificationWindow
         '
-        Me.NotificationWindow.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.SystemColors.InactiveCaption, System.Drawing.SystemColors.Window)
         Me.NotificationWindow.DefaultText = Nothing
         Me.NotificationWindow.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.NotificationWindow.ForeColor = System.Drawing.SystemColors.ControlText

@@ -3667,7 +3667,7 @@ Public Class frmCallCenter
 
                 If Not IsDBNull(dr("Pedido")) Then
                     If IsDBNull(dr("PedidoReferencia")) Then
-                        Throw New Exception("Uno de los pedidos de clientes tiene información inconsistente (pedidoreferencia) que es nulo, por favor reporte al área de soporte a aplicaciones.")
+                        oItem.Text = dr("AñoPed").ToString() + dr("Celula").ToString() + dr("Pedido").ToString()
                     Else
                         oItem.Text = CType(dr("PedidoReferencia"), String).Trim
                     End If
