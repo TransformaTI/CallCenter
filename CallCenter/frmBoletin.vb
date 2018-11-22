@@ -1878,20 +1878,34 @@ Public Class frmBoletin
 
 
     Private Sub lvwBoletin_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lvwBoletin.DoubleClick
+        Dim URLFrontendCRM As String
         Try
+            'El módulo de callcenter se encuentra conectado al módulo de CRM
+            If Not String.IsNullOrEmpty(_URLGateway) And _FuenteGateway = "SIGAMET" Then
+                Cursor = Cursors.WaitCursor
+                Dim oCallCenter As New frmCallCenter(_Cliente, chkPortatil.Checked)
+                Cursor = Cursors.Default
+                oCallCenter.Show()
+            End If
+            If Not String.IsNullOrEmpty(_URLGateway) And _FuenteGateway = "CRM" Then
+                URLFrontendCRM = lvwBoletin.SelectedItems(lvwBoletin.SelectedIndices.IndexOf(lvwBoletin.FocusedItem.Index)).SubItems(20).Text
+                If (URLFrontendCRM.Trim <> "" And URLFrontendCRM <> String.Empty) Then
+                    System.Diagnostics.Process.Start(lvwBoletin.SelectedItems(lvwBoletin.SelectedIndices.IndexOf(lvwBoletin.FocusedItem.Index)).SubItems(20).Text)
+                Else
+                    Throw New Exception("El sistema CRM devolvió una dirección a una de sus páginas vacía, por favor reporte al equipo de soporte.")
+                End If
+            End If
 
+            'El módulo de callcenter no se encuentra conectado al módulo de CRM
             If String.IsNullOrEmpty(_URLGateway) Then
                 Cursor = Cursors.WaitCursor
                 Dim oCallCenter As New frmCallCenter(_Cliente, chkPortatil.Checked)
                 Cursor = Cursors.Default
                 oCallCenter.Show()
-
-            Else
-                System.Diagnostics.Process.Start(lvwBoletin.SelectedItems(lvwBoletin.SelectedIndices.IndexOf(lvwBoletin.FocusedItem.Index)).SubItems(20).Text)
             End If
 
         Catch ex As Exception
-            MessageBox.Show("Ocurrió un error al consultar el  pedido", ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Ocurrió un error al consultar el  pedido" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
