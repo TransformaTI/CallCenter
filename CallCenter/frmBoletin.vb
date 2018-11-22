@@ -1150,7 +1150,13 @@ Public Class frmBoletin
 
         If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
             Try
-                Dim FechaInicio As Date = FechaDtp.AddDays(-30)
+                Dim FechaInicio As Date
+                If _FuenteGateway = "CRM" Then
+                    FechaInicio = FechaDtp.AddDays(-30)
+                Else
+                    FechaInicio = FechaDtp
+                End If
+
                 Dim FechaFin As Date = FechaDtp.AddSeconds(-1).AddDays(1)
 
                 Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
