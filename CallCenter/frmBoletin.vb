@@ -1658,13 +1658,31 @@ Public Class frmBoletin
                 _LlevaLaNota = CType(lvwBoletin.FocusedItem.SubItems(16).Text, String).Trim
                 _FCompromiso = CType(lvwBoletin.FocusedItem.SubItems(9).Text, Date)
                 _FAlta = CType(lvwBoletin.FocusedItem.SubItems(8).Text, Date)
-                If chkPortatil.Checked Then
-                    _Autotanque = CType(lvwBoletin.FocusedItem.SubItems(21).Text, Integer)
-                End If
+				If chkPortatil.Checked Then
+					_Autotanque = CType(lvwBoletin.FocusedItem.SubItems(21).Text, Integer)
+				End If
 
-                lblCliente.Text = _Cliente.ToString
-                lblNombre.Text = _Nombre
-                lblTelCasa.Text = SigaMetClasses.FormatoTelefono(CType(lvwBoletin.FocusedItem.SubItems(17).Text, String).Trim)
+
+
+
+
+				If _URLGateway = "" Then
+					lblCliente.Text = _Cliente.ToString
+					lblNombre.Text = _Nombre
+					If chkPortatil.Checked Then
+						SeleccionCalleColonia1.CargaDatosClientePortatilSoloLectura(_Cliente)
+					Else
+						SeleccionCalleColonia1.CargaDatosClienteSoloLectura(_Cliente)
+					End If
+				Else
+					lblCliente.Text = _PedidosRTGM(lvwBoletin.SelectedIndices(0)).DireccionEntrega.IDDireccionEntrega
+					lblNombre.Text = _PedidosRTGM(lvwBoletin.SelectedIndices(0)).DireccionEntrega.Nombre
+					SeleccionCalleColonia1.CargaPorDireccionDeEntrega(_PedidosRTGM(lvwBoletin.SelectedIndices(0)))
+				End If
+
+
+
+				lblTelCasa.Text = SigaMetClasses.FormatoTelefono(CType(lvwBoletin.FocusedItem.SubItems(17).Text, String).Trim)
 
                 'Se agrega funcionalidad para ir al Web Service a consultar el detalle del pedido o del cliente . 
 
@@ -1680,12 +1698,12 @@ Public Class frmBoletin
                 'lblTelCasa.Text = objPedido.DireccionEntrega.Telefono1
 
                 lblObservacionesPedido.Text = CType(lvwBoletin.FocusedItem.SubItems(18).Text, String).Trim
-                If chkPortatil.Checked Then
-                    SeleccionCalleColonia1.CargaDatosClientePortatilSoloLectura(_Cliente)
-                Else
-                    SeleccionCalleColonia1.CargaDatosClienteSoloLectura(_Cliente)
-                End If
-                If Not grpDatos.Visible Then grpDatos.Visible = True
+
+
+
+
+
+				If Not grpDatos.Visible Then grpDatos.Visible = True
 
                 txtLlamadaObservaciones.Text = ""
                 If chkPortatil.Checked Then
