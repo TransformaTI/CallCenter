@@ -32,7 +32,7 @@
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <OldToolsVersion>0.0</OldToolsVersion>
     <UpgradeBackupLocation />
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -97,7 +97,7 @@
     </COMReference>
     <Reference Include="AdmEdificios, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Librerias\AdmEdificios\bin\AdmEdificios.dll</HintPath>
+      <HintPath>bin\AdmEdificios.dll</HintPath>
     </Reference>
     <Reference Include="admEdificiosComisionAdm, Version=1.0.3562.31791, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -173,7 +173,7 @@
     </Reference>
     <Reference Include="Contactos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Librerias\Contactos\bin\Debug\Contactos.dll</HintPath>
+      <HintPath>..\..\SigametLibrerias\Contactos\bin\Debug\Contactos.dll</HintPath>
     </Reference>
     <Reference Include="ContactosDL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -271,6 +271,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\EDFAsignacionDataLayer.dll</HintPath>
     </Reference>
+    <Reference Include="EDFConfiguracionConexion, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EDFConfiguracionConexion.dll</HintPath>
+    </Reference>
+    <Reference Include="EDFExportacion, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EDFExportacion.dll</HintPath>
+    </Reference>
     <Reference Include="EDFImportacion, Version=1.0.5695.25268, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\EDFImportacion.dll</HintPath>
@@ -281,11 +289,11 @@
     </Reference>
     <Reference Include="ExportacionDirectaReportes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\ExportacionDirectaReportes.dll</HintPath>
+      <HintPath>..\..\SigametLibrerias\ExportacionDirectaReportes\bin\Debug\ExportacionDirectaReportes.dll</HintPath>
     </Reference>
     <Reference Include="GeneraCiclosAutomaticos, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\GeneraCiclosAutomaticos.dll</HintPath>
+      <HintPath>..\..\SigametLibrerias\GeneraCiclosAutomaticos VS2010\bin\Debug\GeneraCiclosAutomaticos.dll</HintPath>
     </Reference>
     <Reference Include="GeneracionAsignacion, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -337,7 +345,7 @@
     </Reference>
     <Reference Include="LiquidacionSTN, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\LiquidacionSTN.dll</HintPath>
+      <HintPath>..\..\SigametLibrerias\LiquidacionSTN VS2010\bin\Debug\LiquidacionSTN.dll</HintPath>
     </Reference>
     <Reference Include="Llamadas, Version=1.0.5919.27935, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -420,7 +428,7 @@
     </Reference>
     <Reference Include="ReporteDinamico, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\ReporteDinamico.dll</HintPath>
+      <HintPath>..\..\SigametLibrerias\ReporteDinamico\bin\ReporteDinamico.dll</HintPath>
     </Reference>
     <Reference Include="RI500, Version=1.0.1588.17989, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
@@ -435,7 +443,7 @@
     </Reference>
     <Reference Include="SigaMetClasses, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Librerias\SigaMetClasses\bin\SigaMetClasses.dll</HintPath>
+      <HintPath>..\..\SigametLibrerias\SigaMetClasses\bin\SigaMetClasses.dll</HintPath>
     </Reference>
     <Reference Include="SIGAMETSecurity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -445,9 +453,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\SigametSeguridad.dll</HintPath>
     </Reference>
-    <Reference Include="SigametST, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Librerias\SigametST\bin\SigametST.dll</HintPath>
+    <Reference Include="SigametST">
+      <HintPath>..\..\SigametLibrerias\SigametST\bin\SigametST.dll</HintPath>
     </Reference>
     <Reference Include="STClienteEquipo, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -473,6 +480,10 @@
     </Reference>
     <Reference Include="System.EnterpriseServices">
       <Name>System.EnterpriseServices</Name>
+    </Reference>
+    <Reference Include="System.Threading, Version=1.0.2856.102, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\TaskParallelLibrary.1.0.2856.0\lib\Net35\System.Threading.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services">
@@ -1327,6 +1338,7 @@
     <None Include="dsTipoFactura.xsx">
       <DependentUpon>dsTipoFactura.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Web References\desarrollogm\Pedido.disco" />
     <None Include="Web References\desarrollogm\Pedido.wsdl" />
     <None Include="Web References\desarrollogm\Reference.map">
