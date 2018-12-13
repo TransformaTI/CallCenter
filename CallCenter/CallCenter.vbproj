@@ -481,10 +481,6 @@
     <Reference Include="System.EnterpriseServices">
       <Name>System.EnterpriseServices</Name>
     </Reference>
-    <Reference Include="System.Threading, Version=1.0.2856.102, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\TaskParallelLibrary.1.0.2856.0\lib\Net35\System.Threading.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services">
       <Name>System.Web.Services</Name>
@@ -1338,7 +1334,6 @@
     <None Include="dsTipoFactura.xsx">
       <DependentUpon>dsTipoFactura.xsd</DependentUpon>
     </None>
-    <None Include="packages.config" />
     <None Include="Web References\desarrollogm\Pedido.disco" />
     <None Include="Web References\desarrollogm\Pedido.wsdl" />
     <None Include="Web References\desarrollogm\Reference.map">
