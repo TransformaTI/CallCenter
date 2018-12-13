@@ -305,25 +305,23 @@ Public Class Llamada
         Me.Text += "|Fecha llamada: " + CType(Now.Date, String)
 
         'Se va al web service a traer el nombre  en ambos casos,   Portatil y Normal .
-        If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+        'If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+        '    Dim oDireccionEntrega As New RTGMCore.DireccionEntrega
+        '    oDireccionEntrega = ConsultarDatosCliente(Cliente)
 
-            Dim oDireccionEntrega As New RTGMCore.DireccionEntrega
-            oDireccionEntrega = ConsultarDatosCliente(Cliente)
+        '    Me.Text = "Llamada - [" + oDireccionEntrega.Nombre + "]"
+        '    _Cliente = Cliente
+        '    _Celula = Celula
+        '    _Pedido = Pedido
+        '    _Anio = Anio
+        '    _Boletin = Boletin
+        '    _Portatil = Portatil
+        '    _FCompromiso = FCompromiso
+        '    _Ruta = Ruta
+        '    _FAlta = FAlta
 
-            Me.Text = "Llamada - [" + oDireccionEntrega.Nombre + "]"
-            _Cliente = Cliente
-            _Celula = Celula
-            _Pedido = Pedido
-            _Anio = Anio
-            _Boletin = Boletin
-            _Portatil = Portatil
-            _FCompromiso = FCompromiso
-            _Ruta = Ruta
-            _FAlta = FAlta
-
-            Me.txtDemandante.Text = oDireccionEntrega.Nombre
-
-        End If
+        '    Me.txtDemandante.Text = oDireccionEntrega.Nombre
+        'End If
 
         LlenaListaAutotanques(_Ruta, True)
 
@@ -1320,10 +1318,10 @@ Public Class Llamada
             End If
             daHorario.Fill(retTable)
         Catch ex As SqlClient.SqlException
-            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) & _
+            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            MessageBox.Show("Error." & Chr(13) & _
+            MessageBox.Show("Error." & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             If CnnSigamet.State = ConnectionState.Open Then
@@ -1367,13 +1365,13 @@ Public Class Llamada
                 daAutotanque.Fill(DsLlamada, "Operador")
             End If
             cmbOperador.DataSource = DsLlamada.Operador
-                cmbOperador.DisplayMember = "Nombre"
-                cmbOperador.ValueMember = "Operador"
+            cmbOperador.DisplayMember = "Nombre"
+            cmbOperador.ValueMember = "Operador"
 
-            End If
+        End If
     End Sub
 
-    Private Sub cmbAutoTanque_SelectedIndexChanged_1(sender As System.Object, e As System.EventArgs) Handles cmbAutoTanque.SelectedIndexChanged                
+    Private Sub cmbAutoTanque_SelectedIndexChanged_1(sender As System.Object, e As System.EventArgs) Handles cmbAutoTanque.SelectedIndexChanged
         If GLOBAL_VersionMovilGas = 1 And cmbAutoTanque.SelectedIndex <> -1 And _Portatil Then
             _UsuarioMovil = 0
             cmbOperador.SelectedValue = cmbAutoTanque.SelectedValue
@@ -1449,10 +1447,10 @@ Public Class Llamada
 
 
         Catch ex As SqlClient.SqlException
-            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) & _
+            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            MessageBox.Show("Error." & Chr(13) & _
+            MessageBox.Show("Error." & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             If CnnSigamet.State = ConnectionState.Open Then
@@ -1485,10 +1483,10 @@ Public Class Llamada
             End If
 
         Catch ex As SqlClient.SqlException
-            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) & _
+            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            MessageBox.Show("Error." & Chr(13) & _
+            MessageBox.Show("Error." & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             If CnnSigamet.State = ConnectionState.Open Then
@@ -1664,7 +1662,7 @@ Public Class Llamada
             cmdCelula.CommandText = "Select Celula,Descripcion from Celula where Comercial=1 and Celula<>0 order by Celula "
         End If
 
-        Dim daCelula As New SqlDataAdapter(cmdCelula)        
+        Dim daCelula As New SqlDataAdapter(cmdCelula)
         Dim dtCelula As New DataTable()
 
         AbreConexion()
