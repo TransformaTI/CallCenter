@@ -21,7 +21,7 @@ Public Class Llamada
 
     ' Variable para enviar el pedido a la plataforma SGCWeb     - RM 03/10/2018
     Private _SGCWebHabilitado As Boolean
-    Private _FuenteGateway As String
+    Private _FuenteGateway As String = ""
     Private pedidoReferencia As String
     Private fechaPedido As Date
     Private boletinEnLinea As Boolean = False
