@@ -510,7 +510,7 @@ Public Class frmCallCenter
         Me.tbBarra.Location = New System.Drawing.Point(935, 0)
         Me.tbBarra.Name = "tbBarra"
         Me.tbBarra.ShowToolTips = True
-        Me.tbBarra.Size = New System.Drawing.Size(73, 541)
+        Me.tbBarra.Size = New System.Drawing.Size(73, 436)
         Me.tbBarra.TabIndex = 12
         '
         'btnBarra2
@@ -891,7 +891,7 @@ Public Class frmCallCenter
         Me.lblCreditoExcedido.AlternatingColor2 = System.Drawing.Color.Red
         Me.lblCreditoExcedido.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCreditoExcedido.ForeColor = System.Drawing.Color.Maroon
-        Me.lblCreditoExcedido.LinkColor = System.Drawing.Color.Red
+        Me.lblCreditoExcedido.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.lblCreditoExcedido.Location = New System.Drawing.Point(780, 140)
         Me.lblCreditoExcedido.Name = "lblCreditoExcedido"
         Me.lblCreditoExcedido.Size = New System.Drawing.Size(156, 20)
@@ -1073,7 +1073,7 @@ Public Class frmCallCenter
         Me.pnlCallCenter.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlCallCenter.Location = New System.Drawing.Point(0, 0)
         Me.pnlCallCenter.Name = "pnlCallCenter"
-        Me.pnlCallCenter.Size = New System.Drawing.Size(935, 541)
+        Me.pnlCallCenter.Size = New System.Drawing.Size(935, 436)
         Me.pnlCallCenter.TabIndex = 56
         '
         'grpGeoReferencia
@@ -1147,7 +1147,7 @@ Public Class frmCallCenter
         Me.lnkNoSuministrar.AutoSize = True
         Me.lnkNoSuministrar.BackColor = System.Drawing.Color.Gainsboro
         Me.lnkNoSuministrar.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold)
-        Me.lnkNoSuministrar.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lnkNoSuministrar.LinkColor = System.Drawing.Color.Red
         Me.lnkNoSuministrar.Location = New System.Drawing.Point(239, 12)
         Me.lnkNoSuministrar.Name = "lnkNoSuministrar"
         Me.lnkNoSuministrar.Size = New System.Drawing.Size(49, 11)
@@ -1164,7 +1164,7 @@ Public Class frmCallCenter
         Me.lnkAlertaRAF.AutoSize = True
         Me.lnkAlertaRAF.BackColor = System.Drawing.Color.Gainsboro
         Me.lnkAlertaRAF.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold)
-        Me.lnkAlertaRAF.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lnkAlertaRAF.LinkColor = System.Drawing.Color.Red
         Me.lnkAlertaRAF.Location = New System.Drawing.Point(726, 118)
         Me.lnkAlertaRAF.Name = "lnkAlertaRAF"
         Me.lnkAlertaRAF.Size = New System.Drawing.Size(72, 11)
@@ -1384,7 +1384,7 @@ Public Class frmCallCenter
         Me.grdLlamada.ReadOnly = True
         Me.grdLlamada.SelectionBackColor = System.Drawing.Color.Navy
         Me.grdLlamada.SelectionForeColor = System.Drawing.Color.White
-        Me.grdLlamada.Size = New System.Drawing.Size(738, 377)
+        Me.grdLlamada.Size = New System.Drawing.Size(738, 272)
         Me.grdLlamada.TabIndex = 65
         Me.grdLlamada.TableStyles.AddRange(New System.Windows.Forms.DataGridTableStyle() {Me.styLlamada})
         '
@@ -1572,7 +1572,7 @@ Public Class frmCallCenter
         Me.txtObservacionesLlamada.Name = "txtObservacionesLlamada"
         Me.txtObservacionesLlamada.ReadOnly = True
         Me.txtObservacionesLlamada.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtObservacionesLlamada.Size = New System.Drawing.Size(160, 377)
+        Me.txtObservacionesLlamada.Size = New System.Drawing.Size(160, 272)
         Me.txtObservacionesLlamada.TabIndex = 86
         '
         'lblListaPedido
@@ -1981,7 +1981,7 @@ Public Class frmCallCenter
         Me.lnkQueja.AutoSize = True
         Me.lnkQueja.BackColor = System.Drawing.Color.Gainsboro
         Me.lnkQueja.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lnkQueja.LinkColor = System.Drawing.Color.Red
+        Me.lnkQueja.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.lnkQueja.Location = New System.Drawing.Point(8, 124)
         Me.lnkQueja.Name = "lnkQueja"
         Me.lnkQueja.Size = New System.Drawing.Size(79, 13)
@@ -2269,13 +2269,16 @@ Public Class frmCallCenter
         'SeleccionCalleColonia
         '
         Me.SeleccionCalleColonia.AltaCalleColonia = True
+        Me.SeleccionCalleColonia.CadenaConexion = Nothing
         Me.SeleccionCalleColonia.Calle = 0
         Me.SeleccionCalleColonia.Colonia = 0
         Me.SeleccionCalleColonia.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SeleccionCalleColonia.Location = New System.Drawing.Point(9, 89)
+        Me.SeleccionCalleColonia.Modulo = CType(0, Byte)
         Me.SeleccionCalleColonia.Name = "SeleccionCalleColonia"
         Me.SeleccionCalleColonia.Size = New System.Drawing.Size(536, 144)
         Me.SeleccionCalleColonia.TabIndex = 5
+        Me.SeleccionCalleColonia.URLGateway = Nothing
         '
         'cboRamoCliente
         '
@@ -2327,7 +2330,7 @@ Public Class frmCallCenter
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
         Me.BackColor = System.Drawing.Color.Gainsboro
-        Me.ClientSize = New System.Drawing.Size(1008, 541)
+        Me.ClientSize = New System.Drawing.Size(1008, 436)
         Me.Controls.Add(Me.pnlCallCenter)
         Me.Controls.Add(Me.tbBarra)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -3269,8 +3272,9 @@ Public Class frmCallCenter
         Dim oConsultaCliente As SigaMetClasses.frmConsultaCliente
         oSigamet.Modulo = GLOBAL_Modulo  'SigaMetClasses.GLOBAL_Modulo
 
+
         If (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
-            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, Nuevo:=0)
+            oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente, Nuevo:=0, Usuario:=GLOBAL_Usuario)
         Else
             oConsultaCliente = New SigaMetClasses.frmConsultaCliente(_Cliente,
                                                                      URLGateway:=_URLGateway,
