@@ -344,6 +344,7 @@ Public Class frmCallCenter
         Me.lblCreditoExcedido = New SVCC.BlinkingClickLabel()
         Me.btnContactos = New System.Windows.Forms.Button()
         Me.lblReferencia = New System.Windows.Forms.Label()
+        Me.txtLada = New SigaMetClasses.Controles.txtNumeroEntero()
         Me.MainMenu1 = New System.Windows.Forms.MainMenu(Me.components)
         Me.MenuItem1 = New System.Windows.Forms.MenuItem()
         Me.mnuBuscar = New System.Windows.Forms.MenuItem()
@@ -377,6 +378,7 @@ Public Class frmCallCenter
         Me.btnSolicitudCredito = New System.Windows.Forms.ToolBarButton()
         Me.btnInfoProspectos = New System.Windows.Forms.ToolBarButton()
         Me.btnFugas = New System.Windows.Forms.ToolBarButton()
+        Me.cboOrigenCliente = New SigaMetClasses.Combos.ComboOrigenCliente()
         Me.lblPromotor = New System.Windows.Forms.Label()
         Me.grpVentasMultinivel = New System.Windows.Forms.GroupBox()
         Me.lblClienteOrigen = New System.Windows.Forms.Label()
@@ -401,6 +403,8 @@ Public Class frmCallCenter
         Me.colLLOperador = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.colLLDemandante = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.colLLObservaciones = New System.Windows.Forms.DataGridTextBoxColumn()
+        Me.lblStatusCalidad = New SigaMetClasses.Controles.LabelStatus()
+        Me.lblStatus = New SigaMetClasses.Controles.LabelStatus()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label44 = New System.Windows.Forms.Label()
         Me.Label43 = New System.Windows.Forms.Label()
@@ -430,6 +434,7 @@ Public Class frmCallCenter
         Me.lvwcolFactura = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.lvwcolObservaciones = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.lvwcolProducto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia()
         Me.txtObservacionesCliente = New System.Windows.Forms.TextBox()
         Me.grdClasificacion = New System.Windows.Forms.GroupBox()
         Me.lblGiroCliente = New System.Windows.Forms.Label()
@@ -437,6 +442,7 @@ Public Class frmCallCenter
         Me.lblComision = New System.Windows.Forms.Label()
         Me.lblVip = New System.Windows.Forms.Label()
         Me.chkVIP = New System.Windows.Forms.CheckBox()
+        Me.cboRamoCliente = New SigaMetClasses.Combos.ComboRamoCliente()
         Me.lblTipoFactura = New System.Windows.Forms.Label()
         Me.lblClasificacionCliente = New System.Windows.Forms.Label()
         Me.lblCartera = New System.Windows.Forms.Label()
@@ -453,6 +459,7 @@ Public Class frmCallCenter
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.txtTelAlterno2 = New System.Windows.Forms.TextBox()
+        Me.txtTelCasa = New SigaMetClasses.Controles.txtNumeroEntero()
         Me.txtTelAlterno1 = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.chkContrato = New System.Windows.Forms.CheckBox()
@@ -460,6 +467,7 @@ Public Class frmCallCenter
         Me.lblRazonSocial = New System.Windows.Forms.Label()
         Me.lblCliente = New System.Windows.Forms.Label()
         Me.txtNombre = New System.Windows.Forms.TextBox()
+        Me.cboRuta = New SigaMetClasses.Combos.ComboRuta2Filtro()
         Me.lblOrigenCliente = New System.Windows.Forms.Label()
         Me.lblRuta = New System.Windows.Forms.Label()
         Me.grpTanques = New System.Windows.Forms.GroupBox()
@@ -474,18 +482,10 @@ Public Class frmCallCenter
         Me.styProgramacion = New System.Windows.Forms.DataGridTableStyle()
         Me.colProgTexto = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.lblObservacionesProgramacion = New System.Windows.Forms.Label()
+        Me.lblProgramacion = New SigaMetClasses.Controles.LabelStatus()
         Me.btnCalendario = New System.Windows.Forms.Button()
         Me.lblCtePadreEdif = New System.Windows.Forms.LinkLabel()
         Me.lblNombreEmpresa = New NombreEmpresa.LabelNombreEmpresa()
-        Me.cboOrigenCliente = New SigaMetClasses.Combos.ComboOrigenCliente()
-        Me.lblStatusCalidad = New SigaMetClasses.Controles.LabelStatus()
-        Me.lblStatus = New SigaMetClasses.Controles.LabelStatus()
-        Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia()
-        Me.cboRamoCliente = New SigaMetClasses.Combos.ComboRamoCliente()
-        Me.txtLada = New SigaMetClasses.Controles.txtNumeroEntero()
-        Me.txtTelCasa = New SigaMetClasses.Controles.txtNumeroEntero()
-        Me.cboRuta = New SigaMetClasses.Combos.ComboRuta2Filtro()
-        Me.lblProgramacion = New SigaMetClasses.Controles.LabelStatus()
         Me.pnlCallCenter.SuspendLayout()
         Me.grpGeoReferencia.SuspendLayout()
         Me.grpVentasMultinivel.SuspendLayout()
@@ -923,6 +923,14 @@ Public Class frmCallCenter
         Me.lblReferencia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ttMensaje.SetToolTip(Me.lblReferencia, "Célula del cliente")
         '
+        'txtLada
+        '
+        Me.txtLada.Location = New System.Drawing.Point(92, 24)
+        Me.txtLada.Name = "txtLada"
+        Me.txtLada.Size = New System.Drawing.Size(44, 21)
+        Me.txtLada.TabIndex = 0
+        Me.ttMensaje.SetToolTip(Me.txtLada, "Clave lada para los teléfonos del cliente")
+        '
         'MainMenu1
         '
         Me.MainMenu1.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem1})
@@ -1239,6 +1247,16 @@ Public Class frmCallCenter
         Me.btnFugas.Text = "Fugas portatil"
         Me.btnFugas.ToolTipText = "Registro de fugas portatil"
         '
+        'cboOrigenCliente
+        '
+        Me.cboOrigenCliente.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboOrigenCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboOrigenCliente.Location = New System.Drawing.Point(622, 64)
+        Me.cboOrigenCliente.Name = "cboOrigenCliente"
+        Me.cboOrigenCliente.Size = New System.Drawing.Size(296, 21)
+        Me.cboOrigenCliente.TabIndex = 10
+        '
         'lblPromotor
         '
         Me.lblPromotor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -1458,6 +1476,26 @@ Public Class frmCallCenter
         Me.colLLObservaciones.MappingName = "Observaciones"
         Me.colLLObservaciones.NullText = ""
         Me.colLLObservaciones.Width = 0
+        '
+        'lblStatusCalidad
+        '
+        Me.lblStatusCalidad.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblStatusCalidad.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStatusCalidad.Location = New System.Drawing.Point(622, 112)
+        Me.lblStatusCalidad.Name = "lblStatusCalidad"
+        Me.lblStatusCalidad.Size = New System.Drawing.Size(98, 21)
+        Me.lblStatusCalidad.TabIndex = 91
+        Me.lblStatusCalidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblStatus
+        '
+        Me.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblStatus.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStatus.Location = New System.Drawing.Point(622, 88)
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(98, 21)
+        Me.lblStatus.TabIndex = 90
+        Me.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label1
         '
@@ -1682,6 +1720,20 @@ Public Class frmCallCenter
         '
         Me.lvwcolProducto.Width = 0
         '
+        'SeleccionCalleColonia
+        '
+        Me.SeleccionCalleColonia.AltaCalleColonia = True
+        Me.SeleccionCalleColonia.CadenaConexion = Nothing
+        Me.SeleccionCalleColonia.Calle = 0
+        Me.SeleccionCalleColonia.Colonia = 0
+        Me.SeleccionCalleColonia.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SeleccionCalleColonia.Location = New System.Drawing.Point(9, 89)
+        Me.SeleccionCalleColonia.Modulo = CType(0, Byte)
+        Me.SeleccionCalleColonia.Name = "SeleccionCalleColonia"
+        Me.SeleccionCalleColonia.Size = New System.Drawing.Size(536, 144)
+        Me.SeleccionCalleColonia.TabIndex = 5
+        Me.SeleccionCalleColonia.URLGateway = Nothing
+        '
         'txtObservacionesCliente
         '
         Me.txtObservacionesCliente.Location = New System.Drawing.Point(97, 233)
@@ -1762,6 +1814,15 @@ Public Class frmCallCenter
         Me.chkVIP.Size = New System.Drawing.Size(16, 21)
         Me.chkVIP.TabIndex = 4
         Me.chkVIP.TabStop = False
+        '
+        'cboRamoCliente
+        '
+        Me.cboRamoCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboRamoCliente.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboRamoCliente.Location = New System.Drawing.Point(100, 48)
+        Me.cboRamoCliente.Name = "cboRamoCliente"
+        Me.cboRamoCliente.Size = New System.Drawing.Size(148, 21)
+        Me.cboRamoCliente.TabIndex = 1
         '
         'lblTipoFactura
         '
@@ -1947,6 +2008,14 @@ Public Class frmCallCenter
         Me.txtTelAlterno2.TabIndex = 3
         Me.txtTelAlterno2.TabStop = False
         '
+        'txtTelCasa
+        '
+        Me.txtTelCasa.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTelCasa.Location = New System.Drawing.Point(136, 24)
+        Me.txtTelCasa.Name = "txtTelCasa"
+        Me.txtTelCasa.Size = New System.Drawing.Size(120, 21)
+        Me.txtTelCasa.TabIndex = 1
+        '
         'txtTelAlterno1
         '
         Me.txtTelAlterno1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -2018,6 +2087,16 @@ Public Class frmCallCenter
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(448, 21)
         Me.txtNombre.TabIndex = 1
+        '
+        'cboRuta
+        '
+        Me.cboRuta.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboRuta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboRuta.Location = New System.Drawing.Point(622, 40)
+        Me.cboRuta.Name = "cboRuta"
+        Me.cboRuta.Size = New System.Drawing.Size(296, 21)
+        Me.cboRuta.TabIndex = 9
         '
         'lblOrigenCliente
         '
@@ -2204,6 +2283,17 @@ Public Class frmCallCenter
         Me.lblObservacionesProgramacion.Size = New System.Drawing.Size(346, 20)
         Me.lblObservacionesProgramacion.TabIndex = 1
         '
+        'lblProgramacion
+        '
+        Me.lblProgramacion.AutoSize = True
+        Me.lblProgramacion.BackColor = System.Drawing.SystemColors.Control
+        Me.lblProgramacion.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblProgramacion.Location = New System.Drawing.Point(288, 0)
+        Me.lblProgramacion.Name = "lblProgramacion"
+        Me.lblProgramacion.Size = New System.Drawing.Size(0, 13)
+        Me.lblProgramacion.TabIndex = 93
+        Me.lblProgramacion.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'btnCalendario
         '
         Me.btnCalendario.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -2235,96 +2325,6 @@ Public Class frmCallCenter
         Me.lblNombreEmpresa.Name = "lblNombreEmpresa"
         Me.lblNombreEmpresa.Size = New System.Drawing.Size(0, 26)
         Me.lblNombreEmpresa.TabIndex = 105
-        '
-        'cboOrigenCliente
-        '
-        Me.cboOrigenCliente.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboOrigenCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboOrigenCliente.Location = New System.Drawing.Point(622, 64)
-        Me.cboOrigenCliente.Name = "cboOrigenCliente"
-        Me.cboOrigenCliente.Size = New System.Drawing.Size(296, 21)
-        Me.cboOrigenCliente.TabIndex = 10
-        '
-        'lblStatusCalidad
-        '
-        Me.lblStatusCalidad.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblStatusCalidad.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStatusCalidad.Location = New System.Drawing.Point(622, 112)
-        Me.lblStatusCalidad.Name = "lblStatusCalidad"
-        Me.lblStatusCalidad.Size = New System.Drawing.Size(98, 21)
-        Me.lblStatusCalidad.TabIndex = 91
-        Me.lblStatusCalidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lblStatus
-        '
-        Me.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblStatus.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStatus.Location = New System.Drawing.Point(622, 88)
-        Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(98, 21)
-        Me.lblStatus.TabIndex = 90
-        Me.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'SeleccionCalleColonia
-        '
-        Me.SeleccionCalleColonia.AltaCalleColonia = True
-        Me.SeleccionCalleColonia.CadenaConexion = Nothing
-        Me.SeleccionCalleColonia.Calle = 0
-        Me.SeleccionCalleColonia.Colonia = 0
-        Me.SeleccionCalleColonia.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SeleccionCalleColonia.Location = New System.Drawing.Point(9, 89)
-        Me.SeleccionCalleColonia.Modulo = CType(0, Byte)
-        Me.SeleccionCalleColonia.Name = "SeleccionCalleColonia"
-        Me.SeleccionCalleColonia.Size = New System.Drawing.Size(536, 144)
-        Me.SeleccionCalleColonia.TabIndex = 5
-        Me.SeleccionCalleColonia.URLGateway = Nothing
-        '
-        'cboRamoCliente
-        '
-        Me.cboRamoCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboRamoCliente.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboRamoCliente.Location = New System.Drawing.Point(100, 48)
-        Me.cboRamoCliente.Name = "cboRamoCliente"
-        Me.cboRamoCliente.Size = New System.Drawing.Size(148, 21)
-        Me.cboRamoCliente.TabIndex = 1
-        '
-        'txtLada
-        '
-        Me.txtLada.Location = New System.Drawing.Point(92, 24)
-        Me.txtLada.Name = "txtLada"
-        Me.txtLada.Size = New System.Drawing.Size(44, 21)
-        Me.txtLada.TabIndex = 0
-        Me.ttMensaje.SetToolTip(Me.txtLada, "Clave lada para los teléfonos del cliente")
-        '
-        'txtTelCasa
-        '
-        Me.txtTelCasa.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTelCasa.Location = New System.Drawing.Point(136, 24)
-        Me.txtTelCasa.Name = "txtTelCasa"
-        Me.txtTelCasa.Size = New System.Drawing.Size(120, 21)
-        Me.txtTelCasa.TabIndex = 1
-        '
-        'cboRuta
-        '
-        Me.cboRuta.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboRuta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboRuta.Location = New System.Drawing.Point(622, 40)
-        Me.cboRuta.Name = "cboRuta"
-        Me.cboRuta.Size = New System.Drawing.Size(296, 21)
-        Me.cboRuta.TabIndex = 9
-        '
-        'lblProgramacion
-        '
-        Me.lblProgramacion.AutoSize = True
-        Me.lblProgramacion.BackColor = System.Drawing.SystemColors.Control
-        Me.lblProgramacion.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblProgramacion.Location = New System.Drawing.Point(288, 0)
-        Me.lblProgramacion.Name = "lblProgramacion"
-        Me.lblProgramacion.Size = New System.Drawing.Size(0, 13)
-        Me.lblProgramacion.TabIndex = 93
-        Me.lblProgramacion.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'frmCallCenter
         '
@@ -2493,7 +2493,7 @@ Public Class frmCallCenter
         ' If _CelulaCliente = GLOBAL_Celula Or Main.GLOBAL_CelulaAdmin = True Then
         Cursor = Cursors.WaitCursor
         Dim oProgramacion As Programacion.frmProgramacion
-        oProgramacion = New Programacion.frmProgramacion(_Cliente, Main.GLOBAL_Usuario, True, SigaMetClasses.Enumeradores.enumTipoOperacionProgramacion.Alta, Main.GLOBAL_UserInfo, _
+        oProgramacion = New Programacion.frmProgramacion(_Cliente, Main.GLOBAL_Usuario, True, SigaMetClasses.Enumeradores.enumTipoOperacionProgramacion.Alta, Main.GLOBAL_UserInfo,
             GLOBAL_CapturaObservacionesInactivacionProg)
         If oProgramacion.ShowDialog() = DialogResult.OK Then
             Me.CargaProgramaCliente()
@@ -2580,8 +2580,8 @@ Public Class frmCallCenter
         If GLOBAL_AplicaAdministracionEdificios Then
             If Not (oSeguridad.TieneAcceso("Administración de edificios")) And Trim(CType(cboRamoCliente.Text, String)) _
                      = GLOBAL_RamoClienteAdmEdificios Then
-                MessageBox.Show("Solo el encargado de administración" & Chr(13) & _
-                        "de edificios puede manejar clientes" & Chr(13) & "con el ramo 'Edificio administrado'", _
+                MessageBox.Show("Solo el encargado de administración" & Chr(13) &
+                        "de edificios puede manejar clientes" & Chr(13) & "con el ramo 'Edificio administrado'",
                         Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
@@ -2627,65 +2627,65 @@ Public Class frmCallCenter
             '10/11/2004 Se agregó el parámetro Usuario, requerido por el spCCAltaModificaClientePortátil
             If chkPortatil.Checked Then
 
-                Dim cteExistente As Integer = oCliente.validaDireccionPortatil(SeleccionCalleColonia.Calle, SeleccionCalleColonia.NumExterior, _
+                Dim cteExistente As Integer = oCliente.validaDireccionPortatil(SeleccionCalleColonia.Calle, SeleccionCalleColonia.NumExterior,
                     SeleccionCalleColonia.Colonia, SeleccionCalleColonia.NumInterior, CnnSigamet)
                 If cteExistente <> -1 AndAlso cteExistente <> 0 Then
-                    If MessageBox.Show("El cliente no. " & CStr(cteExistente) & " tiene la misma dirección" & Chr(13) & _
+                    If MessageBox.Show("El cliente no. " & CStr(cteExistente) & " tiene la misma dirección" & Chr(13) &
                         "del cliente que va a dar de alta. ¿Desea continuar?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) _
                             = DialogResult.No Then
                         Throw New Exception("No se guardó el cliente")
                     End If
                 End If
 
-                _NuevoCliente = oCliente.AltaModificaPortatil(GLOBAL_Celula, _
-                                    txtNombre.Text.Trim, _
-                                    SeleccionCalleColonia.Calle, _
-                                    SeleccionCalleColonia.NumExterior, _
-                                    SeleccionCalleColonia.Colonia, _
-                                    CType(cboRuta.SelectedValue, Short), _
-                                    CType(cboRamoCliente.SelectedValue, Short), _
-                                    CType(cboOrigenCliente.SelectedValue, Byte), _
-                                    txtTelCasa.Text.Trim, _
-                                    txtTelAlterno1.Text.Trim, _
-                                    SeleccionCalleColonia.NumInterior, _
-                                    SeleccionCalleColonia.EntreCalle1, _
-                                    SeleccionCalleColonia.EntreCalle2, _
-                                    txtObservacionesCliente.Text.Trim, _
-                                    GLOBAL_Usuario, _
+                _NuevoCliente = oCliente.AltaModificaPortatil(GLOBAL_Celula,
+                                    txtNombre.Text.Trim,
+                                    SeleccionCalleColonia.Calle,
+                                    SeleccionCalleColonia.NumExterior,
+                                    SeleccionCalleColonia.Colonia,
+                                    CType(cboRuta.SelectedValue, Short),
+                                    CType(cboRamoCliente.SelectedValue, Short),
+                                    CType(cboOrigenCliente.SelectedValue, Byte),
+                                    txtTelCasa.Text.Trim,
+                                    txtTelAlterno1.Text.Trim,
+                                    SeleccionCalleColonia.NumInterior,
+                                    SeleccionCalleColonia.EntreCalle1,
+                                    SeleccionCalleColonia.EntreCalle2,
+                                    txtObservacionesCliente.Text.Trim,
+                                    GLOBAL_Usuario,
                                     UserInfo:=Main.GLOBAL_UserInfo)
             Else
                 Dim oSeguridad As New SigaMetClasses.cSeguridad(GLOBAL_Usuario, 1)
-                Dim cteExistente As Integer = oCliente.validaDireccionEstacionario(CInt(Val(lblCliente.Text)), SeleccionCalleColonia.Calle, SeleccionCalleColonia.NumExterior, _
+                Dim cteExistente As Integer = oCliente.validaDireccionEstacionario(CInt(Val(lblCliente.Text)), SeleccionCalleColonia.Calle, SeleccionCalleColonia.NumExterior,
                     SeleccionCalleColonia.Colonia, SeleccionCalleColonia.NumInterior, CnnSigamet)
                 If GLOBAL_VentasMultinivel AndAlso cteExistente > 0 AndAlso Not oSeguridad.TieneAcceso("AltaClienteExistente") Then
                     MessageBox.Show("Existe un cliente con la misma dirección del cliente que va a dar de alta." & Chr(13) & "No se guardará el nuevo cliente", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     Exit Sub
                 End If
-                _NuevoCliente = oCliente.AltaModifica(GLOBAL_Celula, _
-                    txtNombre.Text.Trim, _
-                    Main.PRED_TipoCliente, _
-                    SeleccionCalleColonia.Calle, _
-                    SeleccionCalleColonia.NumExterior, _
-                    SeleccionCalleColonia.Colonia, _
-                    CType(cboRuta.SelectedValue, Short), _
-                    CType(cboRamoCliente.SelectedValue, Short), _
-                    CType(cboOrigenCliente.SelectedValue, Byte), _
-                    Main.PRED_ClasificacionCliente, _
-                    txtTelCasa.Text.Trim, _
-                    txtTelAlterno1.Text.Trim, _
-                    txtTelAlterno2.Text.Trim, _
-                     , , _
-                    SeleccionCalleColonia.NumInterior, _
-                    _Empresa, _
-                    SeleccionCalleColonia.EntreCalle1, _
-                    SeleccionCalleColonia.EntreCalle2, _
-                    txtObservacionesCliente.Text.Trim, _
-                    GLOBAL_Usuario, _
-                    UserInfo:=Main.GLOBAL_UserInfo, _
-                    Email:=txtEmail.Text.Trim, _
-                    VIP:=chkVIP.Checked, _
-                    ContratoAprobado:=chkContrato.Checked, _
-                    Promotor:=_promotor, _
+                _NuevoCliente = oCliente.AltaModifica(GLOBAL_Celula,
+                    txtNombre.Text.Trim,
+                    Main.PRED_TipoCliente,
+                    SeleccionCalleColonia.Calle,
+                    SeleccionCalleColonia.NumExterior,
+                    SeleccionCalleColonia.Colonia,
+                    CType(cboRuta.SelectedValue, Short),
+                    CType(cboRamoCliente.SelectedValue, Short),
+                    CType(cboOrigenCliente.SelectedValue, Byte),
+                    Main.PRED_ClasificacionCliente,
+                    txtTelCasa.Text.Trim,
+                    txtTelAlterno1.Text.Trim,
+                    txtTelAlterno2.Text.Trim,
+                     , ,
+                    SeleccionCalleColonia.NumInterior,
+                    _Empresa,
+                    SeleccionCalleColonia.EntreCalle1,
+                    SeleccionCalleColonia.EntreCalle2,
+                    txtObservacionesCliente.Text.Trim,
+                    GLOBAL_Usuario,
+                    UserInfo:=Main.GLOBAL_UserInfo,
+                    Email:=txtEmail.Text.Trim,
+                    VIP:=chkVIP.Checked,
+                    ContratoAprobado:=chkContrato.Checked,
+                    Promotor:=_promotor,
                     Lada:=txtLada.Text.Trim)
             End If
             '28/09/2004
@@ -2756,7 +2756,7 @@ Public Class frmCallCenter
 
         'Para evitar la cancelación de servicios técnicos en esta pantalla
         If _Producto.Trim = "4" Then
-            MessageBox.Show("No puede cancelar servicios técnicos," & vbCrLf & _
+            MessageBox.Show("No puede cancelar servicios técnicos," & vbCrLf &
                             "contacte al área encargada.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop)
             Exit Sub
         End If
@@ -2841,8 +2841,8 @@ Public Class frmCallCenter
         cmd.CommandTimeout = 30
         cmd.CommandType = CommandType.Text
 
-        cmd.CommandText = " SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED " & _
-                                " Select Count(*) as Registro from Pedido INNER JOIN Producto ON Pedido.Producto=Producto.Producto and Producto.TipoProducto=1 where Cliente=@Cliente and Status='ACTIVO' and TipoCargo=1 and TipoPedido in (1,2)  " & _
+        cmd.CommandText = " SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED " &
+                                " Select Count(*) as Registro from Pedido INNER JOIN Producto ON Pedido.Producto=Producto.Producto and Producto.TipoProducto=1 where Cliente=@Cliente and Status='ACTIVO' and TipoCargo=1 and TipoPedido in (1,2)  " &
                                 " SET TRANSACTION ISOLATION LEVEL READ COMMITTED "
         cmd.Parameters.Clear()
         cmd.Parameters.Add("@Cliente", SqlDbType.Int).Value = _Cliente
@@ -2862,7 +2862,7 @@ Public Class frmCallCenter
         End If
         If lvwPedido.Items.Count = 0 Then
             Dim frmPedido As New Pedido()
-            frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, _Colonia, _CelulaCliente, DescRuta, 0, _
+            frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, _Colonia, _CelulaCliente, DescRuta, 0,
             ColoniaNombre:=_ColoniaNombre)
             'frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, SeleccionCalleColonia.Colonia.ToString, _CelulaCliente, cboRuta.Text, 0)
             frmPedido.Dispose()
@@ -2874,7 +2874,7 @@ Public Class frmCallCenter
         Else
             If Existe = 0 Then
                 Dim frmPedido As New Pedido()
-                frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, _Colonia, _
+                frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, _Colonia,
                     _CelulaCliente, DescRuta, 0, mensajeCreditoExcedido:=GLOBAL_MensajeCreditoExcedido, ColoniaNombre:=_ColoniaNombre)
                 'frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, SeleccionCalleColonia.Colonia.ToString, _
                 '    _CelulaCliente, cboRuta.Text, 0, GLOBAL_MensajeCreditoExcedido)
@@ -2886,8 +2886,8 @@ Public Class frmCallCenter
 
             Else
 
-                cmd.CommandText = " SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED " & _
-                                        " Select FCompromiso, getdate() as FActual, Pedido, AñoPed, Celula from Pedido INNER JOIN Producto ON Pedido.Producto=Producto.Producto and Producto.TipoProducto=1 where Cliente=@Cliente and Status='ACTIVO' and TipoCargo=1 and TipoPedido in (1,2) " & _
+                cmd.CommandText = " SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED " &
+                                        " Select FCompromiso, getdate() as FActual, Pedido, AñoPed, Celula from Pedido INNER JOIN Producto ON Pedido.Producto=Producto.Producto and Producto.TipoProducto=1 where Cliente=@Cliente and Status='ACTIVO' and TipoCargo=1 and TipoPedido in (1,2) " &
                                         " SET TRANSACTION ISOLATION LEVEL READ COMMITTED "
                 cmd.Parameters.Clear()
                 cmd.Parameters.Add("@Cliente", SqlDbType.Int).Value = _Cliente
@@ -2901,8 +2901,8 @@ Public Class frmCallCenter
                 rdrInsert.Close()
                 cmd.Dispose()
 
-                cmd.CommandText = " SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED " & _
-                                        " Select Count(*) as Nota from Nota where Celula=@Celula and Pedido=@Pedido and AñoPed=@Anio " & _
+                cmd.CommandText = " SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED " &
+                                        " Select Count(*) as Nota from Nota where Celula=@Celula and Pedido=@Pedido and AñoPed=@Anio " &
                                         " SET TRANSACTION ISOLATION LEVEL READ COMMITTED "
                 cmd.Parameters.Clear()
                 cmd.Parameters.Add("@Celula", SqlDbType.Int).Value = Celula
@@ -2919,7 +2919,7 @@ Public Class frmCallCenter
                     If FActual.Date < FCompromiso.Date Then
 
                         Dim frmPedido As New Pedido()
-                        frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, _Colonia, _CelulaCliente, DescRuta, 1, _
+                        frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, _Colonia, _CelulaCliente, DescRuta, 1,
                         ColoniaNombre:=_ColoniaNombre)
                         'frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, SeleccionCalleColonia.Colonia.ToString, _CelulaCliente, cboRuta.Text, 1)
                         frmPedido.Dispose()
@@ -2966,7 +2966,7 @@ Public Class frmCallCenter
                     If FActual.Date <= FCompromiso.Date Then
 
                         Dim frmPedido As Pedido = New Pedido()
-                        frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, _Colonia, _CelulaCliente, DescRuta, 1, _
+                        frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, _Colonia, _CelulaCliente, DescRuta, 1,
                         ColoniaNombre:=_ColoniaNombre)
                         'frmPedido.Entrada(_Cliente, txtNombre.Text, SeleccionCalleColonia.CP, _RutaCliente, SeleccionCalleColonia.Colonia.ToString, _CelulaCliente, cboRuta.Text, 1)
                         frmPedido.Dispose()
@@ -3038,21 +3038,21 @@ Public Class frmCallCenter
                 Dim oCliente As SigaMetClasses.ModificaCliente
 
                 Try
-                    oCliente = New SigaMetClasses.ModificaCliente(_Cliente, _
-                                                            GLOBAL_Usuario, _
-                                                            PermiteModificarStatus:=accesoCalidad, _
-                                                            PermiteModificarStatusCalidad:=modificarStatusCalidad, _
-                                                            PermiteModificarCelula:=accesoCalidad, _
-                                                            PermiteCambiarClientePadre:=_CambiarClientePadre, _
-                                                            UserInfo:=Main.GLOBAL_UserInfo, _
-                                                            Portatil:=chkPortatil.Checked, _
-                                                            aplicarAdmEdificios:=GLOBAL_AplicaAdministracionEdificios, _
-                                                            ramoadmedificios:=GLOBAL_RamoClienteAdmEdificios, _
-                                                            ManejarClientesPortatil:=GLOBAL_ManejarClientesPortatil, _
-                                                            habilitarcambiodatosfiscales:=oSeguridad.TieneAcceso("Cambio de datos fiscales"), _
-                                                            AltaCalleColonia:=GLOBAL_AltaCalleColonia, _
-                                                            CambioPorcentajeComision:=oSeguridad.TieneAcceso("FactorComisionCliente"), _
-                                                            CambioStatusContratoFirmado:=oSeguridad.TieneAcceso("CapturaContratoFirmado"), _
+                    oCliente = New SigaMetClasses.ModificaCliente(_Cliente,
+                                                            GLOBAL_Usuario,
+                                                            PermiteModificarStatus:=accesoCalidad,
+                                                            PermiteModificarStatusCalidad:=modificarStatusCalidad,
+                                                            PermiteModificarCelula:=accesoCalidad,
+                                                            PermiteCambiarClientePadre:=_CambiarClientePadre,
+                                                            UserInfo:=Main.GLOBAL_UserInfo,
+                                                            Portatil:=chkPortatil.Checked,
+                                                            AplicarAdmEdificios:=GLOBAL_AplicaAdministracionEdificios,
+                                                            RamoAdmEdificios:=GLOBAL_RamoClienteAdmEdificios,
+                                                            ManejarClientesPortatil:=GLOBAL_ManejarClientesPortatil,
+                                                            HabilitarCambioDatosFiscales:=oSeguridad.TieneAcceso("Cambio de datos fiscales"),
+                                                            AltaCalleColonia:=GLOBAL_AltaCalleColonia,
+                                                            CambioPorcentajeComision:=oSeguridad.TieneAcceso("FactorComisionCliente"),
+                                                            CambioStatusContratoFirmado:=oSeguridad.TieneAcceso("CapturaContratoFirmado"),
                                                             CambioDigitoVerificador:=oSeguridad.TieneAcceso("CAMBIO_DIGITOVERIFICADOR"))
                 Catch ex As Exception
                     MessageBox.Show(ex.Message)
@@ -3186,7 +3186,8 @@ Public Class frmCallCenter
                                                             PriodidadPortatil:=GLOBAL_PrioridadPortatil,
                                                             URLGateway:=_URLGateway,
                                                             Modulo:=GLOBAL_Modulo,
-                                                            CadCon:=GLOBAL_ConString)
+                                                            CadCon:=GLOBAL_ConString,
+                                                            Usuario:=GLOBAL_Usuario)
         'agregado el 28/09/2004
         frmBuscar.ClientesPortatil = GLOBAL_ManejarClientesPortatil
         If GLOBAL_ManejarClientesPortatil Then
@@ -3198,13 +3199,13 @@ Public Class frmCallCenter
         lblValorY.Text = ""
 
         If frmBuscar.ShowDialog = DialogResult.OK Then
-            _Cliente = frmBuscar.Cliente            
+            _Cliente = frmBuscar.Cliente
             'agregado el 28/09/2004
             If _Cliente <> 0 Then
                 chkPortatil.Checked = frmBuscar.ClientesPortatil
                 chkPortatil.Enabled = False
                 If Not frmBuscar.ClientesPortatil Then
-                    CargaCliente(_Cliente)                    
+                    CargaCliente(_Cliente)
                 Else
                     CargaClientePortatil(_Cliente)
                 End If
