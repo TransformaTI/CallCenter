@@ -1364,9 +1364,11 @@ Public Class Llamada
             If (DsLlamada.Operador.Rows.Count > 0) Then
                 daAutotanque.Fill(DsLlamada, "Operador")
             End If
-            cmbOperador.DataSource = DsLlamada.Operador
-            cmbOperador.DisplayMember = "Nombre"
-            cmbOperador.ValueMember = "Operador"
+            If IsNothing(cmbOperador.DataSource) Then
+                cmbOperador.DataSource = DsLlamada.Operador
+                cmbOperador.DisplayMember = "Nombre"
+                cmbOperador.ValueMember = "Operador"
+            End If
 
         End If
     End Sub
