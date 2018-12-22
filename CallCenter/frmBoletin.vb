@@ -1170,6 +1170,9 @@ Public Class frmBoletin
                 SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
                 SolicitudPedidoGateway.FechaCompromisoInicio = FechaInicio
                 SolicitudPedidoGateway.FechaCompromisoFin = FechaFin
+                If Not chkTodasLasRutas.Checked Then
+                    SolicitudPedidoGateway.IDRutaOrigen = cboRuta.Ruta
+                End If
 
                 _PedidosRTGM = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
                 'Consulta los pedidos que vienen como respuesta del Web Service 
