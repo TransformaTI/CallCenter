@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CallCenter", "CallCenter.vbproj", "{87657F96-845B-4C67-8538-571BC5A7D749}"
 EndProject
@@ -12,6 +12,10 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AdmEdificios", "..\..\Librerias\AdmEdificios\AdmEdificios.vbproj", "{F710BD90-4F9D-4FDC-9C8C-3408CC004650}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contactos", "..\..\Librerias\Contactos\Contactos.csproj", "{CDFE025B-4695-47EF-B130-2FCCA1F8A588}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquidacionSTN", "..\..\Librerias\LiquidacionSTN VS2010\LiquidacionSTN.csproj", "{000FF76B-D44C-4455-ADEA-C771FF53593D}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "STClienteEquipo", "..\..\Librerias\STClienteEquipo\STClienteEquipo.vbproj", "{CC99701F-0F92-46AE-B685-5A68A716A7A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +65,22 @@ Global
 		{CDFE025B-4695-47EF-B130-2FCCA1F8A588}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CDFE025B-4695-47EF-B130-2FCCA1F8A588}.Release|x86.ActiveCfg = Release|x86
 		{CDFE025B-4695-47EF-B130-2FCCA1F8A588}.Release|x86.Build.0 = Release|x86
+		{000FF76B-D44C-4455-ADEA-C771FF53593D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{000FF76B-D44C-4455-ADEA-C771FF53593D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{000FF76B-D44C-4455-ADEA-C771FF53593D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{000FF76B-D44C-4455-ADEA-C771FF53593D}.Debug|x86.Build.0 = Debug|Any CPU
+		{000FF76B-D44C-4455-ADEA-C771FF53593D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{000FF76B-D44C-4455-ADEA-C771FF53593D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{000FF76B-D44C-4455-ADEA-C771FF53593D}.Release|x86.ActiveCfg = Release|Any CPU
+		{000FF76B-D44C-4455-ADEA-C771FF53593D}.Release|x86.Build.0 = Release|Any CPU
+		{CC99701F-0F92-46AE-B685-5A68A716A7A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC99701F-0F92-46AE-B685-5A68A716A7A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC99701F-0F92-46AE-B685-5A68A716A7A1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC99701F-0F92-46AE-B685-5A68A716A7A1}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC99701F-0F92-46AE-B685-5A68A716A7A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC99701F-0F92-46AE-B685-5A68A716A7A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC99701F-0F92-46AE-B685-5A68A716A7A1}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC99701F-0F92-46AE-B685-5A68A716A7A1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -32,7 +32,7 @@
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <OldToolsVersion>0.0</OldToolsVersion>
     <UpgradeBackupLocation />
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -173,7 +173,7 @@
     </Reference>
     <Reference Include="Contactos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SigametLibrerias\Contactos\bin\Debug\Contactos.dll</HintPath>
+      <HintPath>..\..\Librerias\Contactos\bin\Debug\Contactos.dll</HintPath>
     </Reference>
     <Reference Include="ContactosDL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -291,6 +291,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SigametLibrerias\ExportacionDirectaReportes\bin\Debug\ExportacionDirectaReportes.dll</HintPath>
     </Reference>
+    <Reference Include="FormasPago">
+      <HintPath>..\..\Caja\FormasPago\FormasPago\FormasPago\bin\Debug\FormasPago.dll</HintPath>
+    </Reference>
     <Reference Include="GeneraCiclosAutomaticos, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SigametLibrerias\GeneraCiclosAutomaticos VS2010\bin\Debug\GeneraCiclosAutomaticos.dll</HintPath>
@@ -345,7 +348,7 @@
     </Reference>
     <Reference Include="LiquidacionSTN, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SigametLibrerias\LiquidacionSTN VS2010\bin\Debug\LiquidacionSTN.dll</HintPath>
+      <HintPath>..\..\Librerias\LiquidacionSTN VS2010\bin\Debug\LiquidacionSTN.dll</HintPath>
     </Reference>
     <Reference Include="Llamadas, Version=1.0.5919.27935, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -380,7 +383,7 @@
     </Reference>
     <Reference Include="PortatilClasses, Version=1.7.0.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\PortatilClasses.dll</HintPath>
+      <HintPath>..\..\Librerias\PortatilClasses\bin\PortatilClasses.dll</HintPath>
     </Reference>
     <Reference Include="PresupuestoST, Version=1.0.5681.32897, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -443,7 +446,7 @@
     </Reference>
     <Reference Include="SigaMetClasses, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SigametLibrerias\SigaMetClasses\bin\SigaMetClasses.dll</HintPath>
+      <HintPath>..\..\Librerias\SigaMetClasses\bin\SigaMetClasses.dll</HintPath>
     </Reference>
     <Reference Include="SIGAMETSecurity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -453,12 +456,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\SigametSeguridad.dll</HintPath>
     </Reference>
-    <Reference Include="SigametST">
-      <HintPath>..\..\SigametLibrerias\SigametST\bin\SigametST.dll</HintPath>
+    <Reference Include="SigametST, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Librerias\SigametST\bin\SigametST.dll</HintPath>
     </Reference>
     <Reference Include="STClienteEquipo, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\STClienteEquipo.dll</HintPath>
+      <HintPath>..\..\Librerias\STClienteEquipo\bin\STClienteEquipo.exe</HintPath>
     </Reference>
     <Reference Include="SVCC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
