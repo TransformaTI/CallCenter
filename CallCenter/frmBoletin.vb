@@ -1683,23 +1683,23 @@ Public Class frmBoletin
 					_Autotanque = CType(lvwBoletin.FocusedItem.SubItems(21).Text, Integer)
 				End If
 
+                'Dim numero As Integer = lvwBoletin.FocusedItem.Index
 
-				Dim numero As Integer = lvwBoletin.FocusedItem.Index
 
-
-				If _URLGateway = "" Then
-					lblCliente.Text = _Cliente.ToString
-					lblNombre.Text = _Nombre
-					If chkPortatil.Checked Then
-						SeleccionCalleColonia1.CargaDatosClientePortatilSoloLectura(_Cliente)
-					Else
-						SeleccionCalleColonia1.CargaDatosClienteSoloLectura(_Cliente)
-					End If
-				Else
-					lblCliente.Text = _PedidosRTGM(numero).DireccionEntrega.IDDireccionEntrega
-					lblNombre.Text = _PedidosRTGM(numero).DireccionEntrega.Nombre
-					SeleccionCalleColonia1.CargaPorDireccionDeEntrega(_PedidosRTGM(numero))
-				End If
+                If _URLGateway = "" Then
+                    lblCliente.Text = _Cliente.ToString
+                    lblNombre.Text = _Nombre
+                    If chkPortatil.Checked Then
+                        SeleccionCalleColonia1.CargaDatosClientePortatilSoloLectura(_Cliente)
+                    Else
+                        SeleccionCalleColonia1.CargaDatosClienteSoloLectura(_Cliente)
+                    End If
+                Else
+                    Dim drEntrega As RTGMCore.Pedido = _PedidosRTGM.FirstOrDefault(Function(x) x.IDPedido = _PedidoReferencia)
+                    lblCliente.Text = drEntrega.DireccionEntrega.IDDireccionEntrega '_PedidosRTGM(numero).DireccionEntrega.IDDireccionEntrega
+                    lblNombre.Text = drEntrega.DireccionEntrega.Nombre '_PedidosRTGM(numero).DireccionEntrega.Nombre
+                    SeleccionCalleColonia1.CargaPorDireccionDeEntrega(drEntrega) '(_PedidosRTGM(numero))
+                End If
 
 				lblTelCasa.Text = SigaMetClasses.FormatoTelefono(CType(lvwBoletin.FocusedItem.SubItems(17).Text, String).Trim)
 
