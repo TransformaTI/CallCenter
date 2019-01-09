@@ -68,68 +68,68 @@ Public Class Llamada
         End Set
     End Property
 
-    Private Sub ConsultaAutotanquesPorDia(ByVal ruta As Int32, ByVal inicio As Boolean)
-        Me.Cursor = Cursors.WaitCursor
+	Public Sub ConsultaAutotanquesPorDia(ByVal ruta As Int32, ByVal inicio As Boolean)
+		Me.Cursor = Cursors.WaitCursor
 
-        Dim servicioPedido As New desarrollogm.Pedido()
+		Dim servicioPedido As New desarrollogm.Pedido()
 
-        servicioPedido.Url = GLOBAL_URLWebserviceBoletin
+		servicioPedido.Url = GLOBAL_URLWebserviceBoletin
 
-        Dim dtAutotanquesDia As New DataTable()
+		Dim dtAutotanquesDia As New DataTable()
 
-        Try
-            If GLOBAL_UsarSigametServices Then
-                dtAutotanquesDia = servicioPedido.ConsultaAutotanquesPorRutaYDia(Main.GLOBAL_Estacion,
-                    ruta, DateTime.Now.Date, DateTime.Now.Date).Tables(0)
-                Me.Cursor = Cursors.Default
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Se produjo un error consultando los autotanques:" & vbCrLf & ex.Message,
-                            Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+		Try
+			If GLOBAL_UsarSigametServices Then
+				dtAutotanquesDia = servicioPedido.ConsultaAutotanquesPorRutaYDia(Main.GLOBAL_Estacion,
+					ruta, DateTime.Now.Date, DateTime.Now.Date).Tables(0)
+				Me.Cursor = Cursors.Default
+			End If
+		Catch ex As Exception
+			MessageBox.Show("Se produjo un error consultando los autotanques:" & vbCrLf & ex.Message,
+							Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
+		End Try
 
-        If dtAutotanquesDia.Rows.Count > 0 Then
-            RemoveHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
+		If dtAutotanquesDia.Rows.Count > 0 Then
+			RemoveHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
 
-            cmbAutoTanque.DataSource = dtAutotanquesDia
-            cmbAutoTanque.DisplayMember = "Autotanque"
-            cmbAutoTanque.ValueMember = "Autotanque"
-            boletinEnLinea = True
-            idPlantaSGC = CType(dtAutotanquesDia.Rows(0).Item("NombrePlantaSGC"), String)
+			cmbAutoTanque.DataSource = dtAutotanquesDia
+			cmbAutoTanque.DisplayMember = "Autotanque"
+			cmbAutoTanque.ValueMember = "Autotanque"
+			boletinEnLinea = True
+			idPlantaSGC = CType(dtAutotanquesDia.Rows(0).Item("NombrePlantaSGC"), String)
 
-            cmbOperador.DataSource = dtAutotanquesDia
-            cmbOperador.DisplayMember = "OperadorNombre"
-            cmbOperador.ValueMember = "Operador"
+			cmbOperador.DataSource = dtAutotanquesDia
+			cmbOperador.DisplayMember = "OperadorNombre"
+			cmbOperador.ValueMember = "Operador"
 
-            lblMensaje.Text = ""
-        Else
-            If inicio Then
-                cmbAutoTanque.DataSource = Nothing
-                cmbAutoTanque.Items.Clear()
-                Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
-                Me.cmbAutoTanque.DisplayMember = "Autotanque"
-                Me.cmbAutoTanque.ValueMember = "Autotanque"
-                boletinEnLinea = False
+			lblMensaje.Text = ""
+		Else
+			If inicio Then
+				cmbAutoTanque.DataSource = Nothing
+				cmbAutoTanque.Items.Clear()
+				Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
+				Me.cmbAutoTanque.DisplayMember = "Autotanque"
+				Me.cmbAutoTanque.ValueMember = "Autotanque"
+				boletinEnLinea = False
 
-                AddHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
+				AddHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
 
-                lblMensaje.Text = "No hay autotanques asignados en la ruta seleccionada"
-            Else
-                cmbAutoTanque.DataSource = Nothing
-                cmbAutoTanque.Items.Clear()
-                boletinEnLinea = False
+				lblMensaje.Text = "No hay autotanques asignados en la ruta seleccionada"
+			Else
+				cmbAutoTanque.DataSource = Nothing
+				cmbAutoTanque.Items.Clear()
+				boletinEnLinea = False
 
-                AddHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
+				AddHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
 
-                lblMensaje.Text = "No hay autotanques asignados en la ruta seleccionada"
-            End If
+				lblMensaje.Text = "No hay autotanques asignados en la ruta seleccionada"
+			End If
 
-        End If
+		End If
 
-        Me.Cursor = Cursors.Default
-    End Sub
+		Me.Cursor = Cursors.Default
+	End Sub
 
-    Public Sub New(ByVal PedidoReferencia As String,
+	Public Sub New(ByVal PedidoReferencia As String,
                    ByVal RutaPedido As Int32,
                    ByVal FechaPedido As Date,
                    ByVal DaCelula As DataTable,

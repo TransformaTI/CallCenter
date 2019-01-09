@@ -1444,8 +1444,9 @@ Public Class frmBoletin
             Dim frmLlamada As New Llamada()
             frmLlamada.CadenaConexion = GLOBAL_ConString
             frmLlamada.URLGateway = _URLGateway
-            frmLlamada.FuenteGateway = _FuenteGateway
-            frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, False, _FAlta)
+			frmLlamada.FuenteGateway = _FuenteGateway
+			frmLlamada.ConsultaAutotanquesPorDia(_Ruta, True)
+			frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, False, _FAlta)
             frmLlamada.Dispose()
         End If
         'TODO Debería validar si sí se dió de alta la llamada o no
@@ -1695,8 +1696,8 @@ Public Class frmBoletin
                         SeleccionCalleColonia1.CargaDatosClienteSoloLectura(_Cliente)
                     End If
                 Else
-                    Dim drEntrega As RTGMCore.Pedido = _PedidosRTGM.FirstOrDefault(Function(x) x.IDPedido = _PedidoReferencia)
-                    lblCliente.Text = drEntrega.DireccionEntrega.IDDireccionEntrega '_PedidosRTGM(numero).DireccionEntrega.IDDireccionEntrega
+					Dim drEntrega As RTGMCore.Pedido = _PedidosRTGM.FirstOrDefault(Function(x) x.PedidoReferencia.Trim() = _PedidoReferencia)
+					lblCliente.Text = drEntrega.DireccionEntrega.IDDireccionEntrega '_PedidosRTGM(numero).DireccionEntrega.IDDireccionEntrega
                     lblNombre.Text = drEntrega.DireccionEntrega.Nombre '_PedidosRTGM(numero).DireccionEntrega.Nombre
                     SeleccionCalleColonia1.CargaPorDireccionDeEntrega(drEntrega) '(_PedidosRTGM(numero))
                 End If

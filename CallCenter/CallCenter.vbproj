@@ -462,7 +462,7 @@
     </Reference>
     <Reference Include="STClienteEquipo, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Librerias\STClienteEquipo\bin\STClienteEquipo.exe</HintPath>
+      <HintPath>..\..\Librerias\STClienteEquipo\bin\STClienteEquipo.dll</HintPath>
     </Reference>
     <Reference Include="SVCC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
