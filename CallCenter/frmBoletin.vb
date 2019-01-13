@@ -1131,9 +1131,15 @@ Public Class frmBoletin
     End Sub
 
     Private Sub CargaBoletin(Optional ByVal URLGateway As String = "")
-        ' chkPortatil.Checked = True
+		' chkPortatil.Checked = True
+		SeleccionCalleColonia1.LimpiaTodo()
+		grdLlamada.DataSource = Nothing
+		txtLlamadaObservaciones.Text = ""
+		lblCliente.Text = ""
+		lblNombre.Text = ""
 
-        If chkPortatil.Checked Then
+		lblObservacionesPedido.Text = ""
+		If chkPortatil.Checked Then
             CargaBoletinPortatil()
             Exit Sub
         End If

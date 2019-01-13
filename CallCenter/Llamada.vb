@@ -82,6 +82,11 @@ Public Class Llamada
 				dtAutotanquesDia = servicioPedido.ConsultaAutotanquesPorRutaYDia(Main.GLOBAL_Estacion,
 					ruta, DateTime.Now.Date, DateTime.Now.Date).Tables(0)
 				Me.Cursor = Cursors.Default
+
+				If (dtAutotanquesDia.Rows.Count = 0) Then
+					MessageBox.Show("El webservice no devolvió datos de autotanque:",
+									Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
+				End If
 			End If
 		Catch ex As Exception
 			MessageBox.Show("Se produjo un error consultando los autotanques:" & vbCrLf & ex.Message,
