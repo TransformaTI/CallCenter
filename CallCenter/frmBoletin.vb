@@ -1110,12 +1110,10 @@ Public Class frmBoletin
 					oItem.SubItems.Add(CType(If(objPedido.LlamadaInsistente, ""), String).Trim) '16
 					If Not IsNothing(objPedido.DireccionEntrega) Then
 						oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Telefono1, ""), String).Trim) '17
-						oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Observaciones, ""), String).Trim) '18
 					Else
 						oItem.SubItems.Add("") '17
-						oItem.SubItems.Add("") '18
 					End If
-
+					oItem.SubItems.Add(CType(If(objPedido.Observaciones, ""), String).Trim) '18
 					oItem.SubItems.Add(objPedido.ReporteRAF) '19
 
 					oItem.SubItems.Add(objPedido.URLCRM) '20
