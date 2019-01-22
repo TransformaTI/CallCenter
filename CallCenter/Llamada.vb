@@ -38,9 +38,11 @@ Public Class Llamada
     Dim _RutaBoletin As Short
     Private _URLGateway As String
     Private _Modulo As Byte = 1
-    Private _CadenaConexion As String
+	Private _CadenaConexion As String
 
-    Public Property URLGateway() As String
+	Private _muestraError As Boolean
+
+	Public Property URLGateway() As String
         Get
             Return _URLGateway
         End Get
@@ -83,9 +85,12 @@ Public Class Llamada
 					ruta, DateTime.Now.Date, DateTime.Now.Date).Tables(0)
 				Me.Cursor = Cursors.Default
 
-				If (dtAutotanquesDia.Rows.Count = 0) Then
-					MessageBox.Show("El webservice no devolvió datos de autotanque:",
+				If (dtAutotanquesDia.Rows.Count = 0) And (_muestraError) Then
+
+					MessageBox.Show("El webservice no devolvió datos de autotanque",
 									Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+
 				End If
 			End If
 		Catch ex As Exception
@@ -162,78 +167,80 @@ Public Class Llamada
 
     Private Sub chkBoletinarOtraRuta_CheckedChange(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkBoletinarOtraRuta.CheckedChanged
         cmbAutoTanque.DataSource = Nothing
-        cmbOperador.DataSource = Nothing
-        If GLOBAL_UsarSigametServices Then
-            If daCel.Rows.Count > 0 Then
-                cmbCelula.DisplayMember = "Celula"
-                cmbCelula.ValueMember = "Celula"
-                cmbCelula.DataSource = daCel
+		cmbOperador.DataSource = Nothing
+		_muestraError = False
+		If GLOBAL_UsarSigametServices Then
+			If daCel.Rows.Count > 0 Then
+				cmbCelula.DisplayMember = "Celula"
+				cmbCelula.ValueMember = "Celula"
+				cmbCelula.DataSource = daCel
 
-                Dim celula As Byte
-                If cmbCelula.Items.Count > 0 Then
-                    cmbCelula.SelectedIndex = 0
-                    celula = Convert.ToByte(cmbCelula.SelectedValue)
-                End If
-                cmbRuta.CargaDatos(Celula:=celula, ActivarFiltro:=True, MostrarPortatil:=False)
+				Dim celula As Byte
+				If cmbCelula.Items.Count > 0 Then
+					cmbCelula.SelectedIndex = 0
+					celula = Convert.ToByte(cmbCelula.SelectedValue)
+				End If
+				cmbRuta.CargaDatos(Celula:=celula, ActivarFiltro:=True, MostrarPortatil:=False)
 
-                If cmbRuta.Items.Count > 0 Then
-                    LlenaHorarios = True
-                    cmbRuta.SelectedIndex = 0
-                End If
+				If cmbRuta.Items.Count > 0 Then
+					LlenaHorarios = True
+					cmbRuta.SelectedIndex = 0
+				End If
 
-                If (chkBoletinarOtraRuta.Checked) Then
-                    cmbCelula.Visible = True
-                    cmbRuta.Visible = True
-                    cmbRuta.Enabled = True
-                    lblCelulaRuta.Visible = True
-                Else
-                    cmbCelula.Visible = False
-                    cmbRuta.Visible = False
-                    cmbRuta.Enabled = False
-                    lblCelulaRuta.Visible = False
-                    boletinEnLinea = False
-                    lblMensaje.Text = ""
-                    ConsultaAutotanquesPorDia(rutaPed, True)
-                End If
-            End If
-        Else
-            If (chkBoletinarOtraRuta.Checked) Then
-                cmbCelula.Visible = True
-                cmbRuta.Visible = True
-                cmbRuta.Enabled = True
-                lblCelulaRuta.Visible = True
+				If (chkBoletinarOtraRuta.Checked) Then
+					cmbCelula.Visible = True
+					cmbRuta.Visible = True
+					cmbRuta.Enabled = True
+					lblCelulaRuta.Visible = True
+				Else
+					cmbCelula.Visible = False
+					cmbRuta.Visible = False
+					cmbRuta.Enabled = False
+					lblCelulaRuta.Visible = False
+					boletinEnLinea = False
+					lblMensaje.Text = ""
+					ConsultaAutotanquesPorDia(rutaPed, True)
+				End If
+			End If
+		Else
+			If (chkBoletinarOtraRuta.Checked) Then
+				cmbCelula.Visible = True
+				cmbRuta.Visible = True
+				cmbRuta.Enabled = True
+				lblCelulaRuta.Visible = True
 
-                ConsultaCelulas()
-                If daCel.Rows.Count > 0 Then
-                    cmbCelula.DisplayMember = "Celula"
-                    cmbCelula.ValueMember = "Celula"
-                    cmbCelula.DataSource = daCel
+				ConsultaCelulas()
+				If daCel.Rows.Count > 0 Then
+					cmbCelula.DisplayMember = "Celula"
+					cmbCelula.ValueMember = "Celula"
+					cmbCelula.DataSource = daCel
 
-                    Dim celula As Byte
-                    If cmbCelula.Items.Count > 0 Then
-                        cmbCelula.SelectedIndex = 0
-                        celula = Convert.ToByte(cmbCelula.SelectedValue)
-                    End If
-                End If
-            Else
-                cmbCelula.Visible = False
-                cmbRuta.Visible = False
-                cmbRuta.Enabled = False
-                lblCelulaRuta.Visible = False
-                boletinEnLinea = False
-                lblMensaje.Text = ""
+					Dim celula As Byte
+					If cmbCelula.Items.Count > 0 Then
+						cmbCelula.SelectedIndex = 0
+						celula = Convert.ToByte(cmbCelula.SelectedValue)
+					End If
+				End If
+			Else
+				cmbCelula.Visible = False
+				cmbRuta.Visible = False
+				cmbRuta.Enabled = False
+				lblCelulaRuta.Visible = False
+				boletinEnLinea = False
+				lblMensaje.Text = ""
 
-                LlenaListaAutotanques(_Ruta, False)
-            End If
-        End If
-    End Sub
+				LlenaListaAutotanques(_Ruta, False)
+			End If
+		End If
+		_muestraError = True
+	End Sub
 
     Private Sub cmbRuta_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbRuta.SelectedIndexChanged
         If Not cmbRuta.SelectedIndex = -1 Then
-            If CInt(cmbRuta.Ruta) <> 0 Then
-                LlenaListaAutotanques(cmbRuta.Ruta, False)
-            End If
-        End If
+			If CInt(cmbRuta.Ruta) <> 0 Then
+				LlenaListaAutotanques(cmbRuta.Ruta, False)
+			End If
+		End If
         'LUSATE
         If Me.LlenaHorarios Then
             grdHorario.DataSource = fncHorario(cmbRuta.Ruta, _Colonia)
@@ -253,10 +260,28 @@ Public Class Llamada
             cmbRuta.CargaDatos(Celula:=CType(cmbCelula.SelectedValue, Byte))
         End If
 
-        If cmbRuta.Items.Count > 0 Then
-            cmbRuta.SelectedIndex = 0
-            grdHorario.DataSource = fncHorario(cmbRuta.Ruta, _Colonia)
-        End If
+		If cmbRuta.Items.Count > 0 Then
+			cmbRuta.SelectedIndex = 0
+			grdHorario.DataSource = fncHorario(cmbRuta.Ruta, _Colonia)
+		Else
+			Try
+				cmbOperador.DataSource = Nothing
+				cmbOperador.Items.Clear()
+
+			Catch ex As Exception
+
+			End Try
+
+			Try
+				cmbAutoTanque.DataSource = Nothing
+				cmbAutoTanque.Items.Clear()
+			Catch ex As Exception
+
+			End Try
+
+			MessageBox.Show(Me, "No existen rutas para esta célula",
+									Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
+		End If
     End Sub
 
     Public Function ConsultarDatosCliente(ByVal Cliente As Integer) As RTGMCore.DireccionEntrega
@@ -1282,27 +1307,28 @@ Public Class Llamada
 
     Private Sub Llamada_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         cboMotivo2.CargaDatos()
-        'If GLOBAL_UsarMobileGas And _Portatil = True Then
-        '    'ConsultaOperadorAutotanque()
-        'End If
+		'If GLOBAL_UsarMobileGas And _Portatil = True Then
+		'    'ConsultaOperadorAutotanque()
+		'End If
 
-        'LUSATE Consulta RAF por autotanque
-        If cmbAutoTanque.SelectedIndex <> -1 Then
-            ConsultaRAFPorRutaAutotanque(cmbAutoTanque.SelectedValue)
-            If RAF <> "" Then
-                lnkAlertaRAF.Text = RAF
-                lnkAlertaRAF.Visible = True
-            Else
-                lnkAlertaRAF.Visible = False
-            End If
-            ConsultaOperadorAutotanque()
-            'LUSATE Consulta Fin de día por autotanque
-            ConsultaFinDeDia(cmbAutoTanque.SelectedValue)
-        Else
-            lnkAlertaRAF.Visible = False
-            lnkAlertaFinDeDia.Visible = False
-        End If
-    End Sub
+		'LUSATE Consulta RAF por autotanque
+		If cmbAutoTanque.SelectedIndex <> -1 Then
+			ConsultaRAFPorRutaAutotanque(cmbAutoTanque.SelectedValue)
+			If RAF <> "" Then
+				lnkAlertaRAF.Text = RAF
+				lnkAlertaRAF.Visible = True
+			Else
+				lnkAlertaRAF.Visible = False
+			End If
+			ConsultaOperadorAutotanque()
+			'LUSATE Consulta Fin de día por autotanque
+			ConsultaFinDeDia(cmbAutoTanque.SelectedValue)
+		Else
+			lnkAlertaRAF.Visible = False
+			lnkAlertaFinDeDia.Visible = False
+		End If
+		_muestraError = True
+	End Sub
 
     Private Sub chkFSiguienteLlamada_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkFSiguienteLlamada.CheckedChanged
         dtpFechaProximaLlamada.Enabled = chkFSiguienteLlamada.Checked
