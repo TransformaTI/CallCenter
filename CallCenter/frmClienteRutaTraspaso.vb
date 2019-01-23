@@ -88,585 +88,601 @@ Public Class frmClienteRutaTraspaso
     Friend WithEvents ImageButton2 As VbPowerPack.ImageButton
     Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(frmClienteRutaTraspaso))
-        Me.imgLista = New System.Windows.Forms.ImageList(Me.components)
-        Me.cboRutaOrigen = New SigaMetClasses.Combos.ComboRuta2()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.DataGridTextBoxColumn3 = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.DataGridTextBoxColumn4 = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.DataGridTextBoxColumn5 = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.TaskPane1 = New VbPowerPack.TaskPane()
-        Me.TaskFrame1 = New VbPowerPack.TaskFrame()
-        Me.cboOperadorDestino = New System.Windows.Forms.ComboBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.cboOperadorOrigen = New System.Windows.Forms.ComboBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.lnkGenerar = New System.Windows.Forms.LinkLabel()
-        Me.ImageButton1 = New VbPowerPack.ImageButton()
-        Me.chkTodos = New System.Windows.Forms.CheckBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.cboCelulaDestino = New SigaMetClasses.Combos.ComboUsuarioCelula()
-        Me.cboRutaDestino = New SigaMetClasses.Combos.ComboRuta2()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.lnkCargarDatos = New System.Windows.Forms.LinkLabel()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.cboCelulaOrigen = New SigaMetClasses.Combos.ComboUsuarioCelula()
-        Me.lnkCerrar = New System.Windows.Forms.LinkLabel()
-        Me.ImageButton4 = New VbPowerPack.ImageButton()
-        Me.lnkRefrescar = New System.Windows.Forms.LinkLabel()
-        Me.btnRefrescar = New VbPowerPack.ImageButton()
-        Me.btnConsultar = New VbPowerPack.ImageButton()
-        Me.lnkConsultar = New System.Windows.Forms.LinkLabel()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.grdCliente = New System.Windows.Forms.DataGrid()
-        Me.styClienteRuta = New System.Windows.Forms.DataGridTableStyle()
-        Me.DataGridTextBoxColumn1 = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.DataGridTextBoxColumn2 = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.DataGridTextBoxColumn6 = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.DataGridTextBoxColumn7 = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.DataGridTextBoxColumn8 = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.DataGridTextBoxColumn9 = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.DataGridTextBoxColumn10 = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.DataGridBoolColumn1 = New System.Windows.Forms.DataGridBoolColumn()
-        Me.colCliente = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.colNombre = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.colDireccionCompleta = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.colStatus = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.colStatusCalidad = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.colRamoCliente = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.colGiroCliente = New System.Windows.Forms.DataGridTextBoxColumn()
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
-        Me.ImageButton2 = New VbPowerPack.ImageButton()
-        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.TaskPane1.SuspendLayout()
-        Me.TaskFrame1.SuspendLayout()
-        CType(Me.grdCliente, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
-        '
-        'imgLista
-        '
-        Me.imgLista.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
-        Me.imgLista.ImageSize = New System.Drawing.Size(16, 16)
-        Me.imgLista.ImageStream = CType(resources.GetObject("imgLista.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.imgLista.TransparentColor = System.Drawing.Color.Transparent
-        '
-        'cboRutaOrigen
-        '
-        Me.cboRutaOrigen.Anchor = ((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right)
-        Me.cboRutaOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboRutaOrigen.Location = New System.Drawing.Point(16, 213)
-        Me.cboRutaOrigen.Name = "cboRutaOrigen"
-        Me.cboRutaOrigen.Size = New System.Drawing.Size(160, 21)
-        Me.cboRutaOrigen.TabIndex = 63
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(16, 197)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(31, 14)
-        Me.Label1.TabIndex = 64
-        Me.Label1.Text = "Ruta:"
-        '
-        'DataGridTextBoxColumn3
-        '
-        Me.DataGridTextBoxColumn3.Format = ""
-        Me.DataGridTextBoxColumn3.FormatInfo = Nothing
-        Me.DataGridTextBoxColumn3.MappingName = ""
-        Me.DataGridTextBoxColumn3.Width = 75
-        '
-        'DataGridTextBoxColumn4
-        '
-        Me.DataGridTextBoxColumn4.Format = ""
-        Me.DataGridTextBoxColumn4.FormatInfo = Nothing
-        Me.DataGridTextBoxColumn4.MappingName = ""
-        Me.DataGridTextBoxColumn4.Width = 75
-        '
-        'DataGridTextBoxColumn5
-        '
-        Me.DataGridTextBoxColumn5.Format = ""
-        Me.DataGridTextBoxColumn5.FormatInfo = Nothing
-        Me.DataGridTextBoxColumn5.MappingName = ""
-        Me.DataGridTextBoxColumn5.Width = 75
-        '
-        'TaskPane1
-        '
-        Me.TaskPane1.AutoScroll = True
-        Me.TaskPane1.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.TaskPane1.Controls.AddRange(New System.Windows.Forms.Control() {Me.TaskFrame1})
-        Me.TaskPane1.CornerStyle = VbPowerPack.TaskFrameCornerStyle.SystemDefault
-        Me.TaskPane1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.TaskPane1.Name = "TaskPane1"
-        Me.TaskPane1.Size = New System.Drawing.Size(208, 598)
-        Me.TaskPane1.TabIndex = 65
-        '
-        'TaskFrame1
-        '
-        Me.TaskFrame1.AllowDrop = True
-        Me.TaskFrame1.BackColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TaskFrame1.CaptionBlend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Horizontal, System.Drawing.SystemColors.Window, System.Drawing.Color.FromArgb(CType(160, Byte), CType(160, Byte), CType(160, Byte)))
-        Me.TaskFrame1.CaptionHighlightColor = System.Drawing.SystemColors.ActiveCaption
-        Me.TaskFrame1.Controls.AddRange(New System.Windows.Forms.Control() {Me.LinkLabel1, Me.ImageButton2, Me.cboOperadorDestino, Me.Label8, Me.cboOperadorOrigen, Me.Label7, Me.lnkGenerar, Me.ImageButton1, Me.chkTodos, Me.Label5, Me.cboCelulaDestino, Me.cboRutaDestino, Me.Label6, Me.Label4, Me.lnkCargarDatos, Me.Label2, Me.cboCelulaOrigen, Me.lnkCerrar, Me.ImageButton4, Me.lnkRefrescar, Me.btnRefrescar, Me.btnConsultar, Me.lnkConsultar, Me.cboRutaOrigen, Me.Label1, Me.Label3})
-        Me.TaskFrame1.Location = New System.Drawing.Point(12, 33)
-        Me.TaskFrame1.Name = "TaskFrame1"
-        Me.TaskFrame1.Size = New System.Drawing.Size(184, 550)
-        Me.TaskFrame1.TabIndex = 1
-        Me.TaskFrame1.Text = "Clientes por ruta"
-        '
-        'cboOperadorDestino
-        '
-        Me.cboOperadorDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboOperadorDestino.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboOperadorDestino.Location = New System.Drawing.Point(16, 443)
-        Me.cboOperadorDestino.Name = "cboOperadorDestino"
-        Me.cboOperadorDestino.Size = New System.Drawing.Size(160, 19)
-        Me.cboOperadorDestino.TabIndex = 78
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(16, 424)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(92, 14)
-        Me.Label8.TabIndex = 77
-        Me.Label8.Text = "Operador recibe :"
-        '
-        'cboOperadorOrigen
-        '
-        Me.cboOperadorOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboOperadorOrigen.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboOperadorOrigen.Location = New System.Drawing.Point(16, 277)
-        Me.cboOperadorOrigen.Name = "cboOperadorOrigen"
-        Me.cboOperadorOrigen.Size = New System.Drawing.Size(160, 19)
-        Me.cboOperadorOrigen.TabIndex = 76
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(16, 259)
-        Me.Label7.Name = "Label7"
-        Me.Label7.TabIndex = 75
-        Me.Label7.Text = "Operador entrega :"
-        '
-        'lnkGenerar
-        '
-        Me.lnkGenerar.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lnkGenerar.LinkColor = System.Drawing.Color.Black
-        Me.lnkGenerar.Location = New System.Drawing.Point(40, 16)
-        Me.lnkGenerar.Name = "lnkGenerar"
-        Me.lnkGenerar.Size = New System.Drawing.Size(100, 16)
-        Me.lnkGenerar.TabIndex = 1
-        Me.lnkGenerar.TabStop = True
-        Me.lnkGenerar.Text = "Generar"
-        Me.lnkGenerar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'ImageButton1
-        '
-        Me.ImageButton1.BackColor = System.Drawing.Color.Transparent
-        Me.ImageButton1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.ImageButton1.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.ImageButton1.Location = New System.Drawing.Point(16, 16)
-        Me.ImageButton1.Name = "ImageButton1"
-        Me.ImageButton1.NormalImage = CType(resources.GetObject("ImageButton1.NormalImage"), System.Drawing.Bitmap)
-        Me.ImageButton1.Size = New System.Drawing.Size(16, 16)
-        Me.ImageButton1.SizeMode = VbPowerPack.ImageButtonSizeMode.AutoSize
-        Me.ImageButton1.TabIndex = 2
-        Me.ImageButton1.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.ImageButton1.TransparentColor = System.Drawing.SystemColors.InactiveCaptionText
-        '
-        'chkTodos
-        '
-        Me.chkTodos.ForeColor = System.Drawing.Color.DarkGreen
-        Me.chkTodos.Location = New System.Drawing.Point(16, 42)
-        Me.chkTodos.Name = "chkTodos"
-        Me.chkTodos.Size = New System.Drawing.Size(144, 32)
-        Me.chkTodos.TabIndex = 74
-        Me.chkTodos.Text = "Selecciona todos los clientes"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(16, 341)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(38, 14)
-        Me.Label5.TabIndex = 73
-        Me.Label5.Text = "Célula:"
-        '
-        'cboCelulaDestino
-        '
-        Me.cboCelulaDestino.Anchor = ((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right)
-        Me.cboCelulaDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboCelulaDestino.Location = New System.Drawing.Point(16, 357)
-        Me.cboCelulaDestino.Name = "cboCelulaDestino"
-        Me.cboCelulaDestino.Size = New System.Drawing.Size(160, 21)
-        Me.cboCelulaDestino.TabIndex = 72
-        '
-        'cboRutaDestino
-        '
-        Me.cboRutaDestino.Anchor = ((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right)
-        Me.cboRutaDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboRutaDestino.Location = New System.Drawing.Point(16, 397)
-        Me.cboRutaDestino.Name = "cboRutaDestino"
-        Me.cboRutaDestino.Size = New System.Drawing.Size(160, 21)
-        Me.cboRutaDestino.TabIndex = 70
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(16, 381)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(31, 14)
-        Me.Label6.TabIndex = 71
-        Me.Label6.Text = "Ruta:"
-        '
-        'Label4
-        '
-        Me.Label4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.DarkRed
-        Me.Label4.Location = New System.Drawing.Point(16, 320)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(136, 23)
-        Me.Label4.TabIndex = 69
-        Me.Label4.Text = "Destino de los datos"
-        '
-        'lnkCargarDatos
-        '
-        Me.lnkCargarDatos.LinkArea = New System.Windows.Forms.LinkArea(0, 15)
-        Me.lnkCargarDatos.LinkColor = System.Drawing.Color.Black
-        Me.lnkCargarDatos.Location = New System.Drawing.Point(102, 237)
-        Me.lnkCargarDatos.Name = "lnkCargarDatos"
-        Me.lnkCargarDatos.Size = New System.Drawing.Size(72, 16)
-        Me.lnkCargarDatos.TabIndex = 67
-        Me.lnkCargarDatos.TabStop = True
-        Me.lnkCargarDatos.Text = "Cargar datos"
-        Me.lnkCargarDatos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(16, 155)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 14)
-        Me.Label2.TabIndex = 66
-        Me.Label2.Text = "Célula:"
-        '
-        'cboCelulaOrigen
-        '
-        Me.cboCelulaOrigen.Anchor = ((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right)
-        Me.cboCelulaOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboCelulaOrigen.Location = New System.Drawing.Point(16, 171)
-        Me.cboCelulaOrigen.Name = "cboCelulaOrigen"
-        Me.cboCelulaOrigen.Size = New System.Drawing.Size(160, 21)
-        Me.cboCelulaOrigen.TabIndex = 65
-        '
-        'lnkCerrar
-        '
-        Me.lnkCerrar.LinkColor = System.Drawing.Color.Black
-        Me.lnkCerrar.Location = New System.Drawing.Point(48, 524)
-        Me.lnkCerrar.Name = "lnkCerrar"
-        Me.lnkCerrar.Size = New System.Drawing.Size(100, 16)
-        Me.lnkCerrar.TabIndex = 7
-        Me.lnkCerrar.TabStop = True
-        Me.lnkCerrar.Text = "Cerrar"
-        Me.lnkCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'ImageButton4
-        '
-        Me.ImageButton4.BackColor = System.Drawing.Color.Transparent
-        Me.ImageButton4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.ImageButton4.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.ImageButton4.Location = New System.Drawing.Point(16, 524)
-        Me.ImageButton4.Name = "ImageButton4"
-        Me.ImageButton4.NormalImage = CType(resources.GetObject("ImageButton4.NormalImage"), System.Drawing.Bitmap)
-        Me.ImageButton4.Size = New System.Drawing.Size(16, 16)
-        Me.ImageButton4.SizeMode = VbPowerPack.ImageButtonSizeMode.AutoSize
-        Me.ImageButton4.TabIndex = 6
-        Me.ImageButton4.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        '
-        'lnkRefrescar
-        '
-        Me.lnkRefrescar.LinkColor = System.Drawing.Color.Black
-        Me.lnkRefrescar.Location = New System.Drawing.Point(48, 131)
-        Me.lnkRefrescar.Name = "lnkRefrescar"
-        Me.lnkRefrescar.Size = New System.Drawing.Size(100, 16)
-        Me.lnkRefrescar.TabIndex = 5
-        Me.lnkRefrescar.TabStop = True
-        Me.lnkRefrescar.Text = "Refrescar"
-        Me.lnkRefrescar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'btnRefrescar
-        '
-        Me.btnRefrescar.BackColor = System.Drawing.Color.Transparent
-        Me.btnRefrescar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnRefrescar.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnRefrescar.Location = New System.Drawing.Point(16, 131)
-        Me.btnRefrescar.Name = "btnRefrescar"
-        Me.btnRefrescar.NormalImage = CType(resources.GetObject("btnRefrescar.NormalImage"), System.Drawing.Bitmap)
-        Me.btnRefrescar.Size = New System.Drawing.Size(16, 16)
-        Me.btnRefrescar.SizeMode = VbPowerPack.ImageButtonSizeMode.AutoSize
-        Me.btnRefrescar.TabIndex = 4
-        Me.btnRefrescar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        '
-        'btnConsultar
-        '
-        Me.btnConsultar.BackColor = System.Drawing.Color.Transparent
-        Me.btnConsultar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnConsultar.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnConsultar.Enabled = False
-        Me.btnConsultar.Location = New System.Drawing.Point(16, 107)
-        Me.btnConsultar.Name = "btnConsultar"
-        Me.btnConsultar.NormalImage = CType(resources.GetObject("btnConsultar.NormalImage"), System.Drawing.Bitmap)
-        Me.btnConsultar.Size = New System.Drawing.Size(16, 16)
-        Me.btnConsultar.SizeMode = VbPowerPack.ImageButtonSizeMode.AutoSize
-        Me.btnConsultar.TabIndex = 3
-        Me.btnConsultar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        '
-        'lnkConsultar
-        '
-        Me.lnkConsultar.Enabled = False
-        Me.lnkConsultar.LinkColor = System.Drawing.Color.Black
-        Me.lnkConsultar.Location = New System.Drawing.Point(48, 107)
-        Me.lnkConsultar.Name = "lnkConsultar"
-        Me.lnkConsultar.Size = New System.Drawing.Size(100, 16)
-        Me.lnkConsultar.TabIndex = 2
-        Me.lnkConsultar.TabStop = True
-        Me.lnkConsultar.Text = "Consultar"
-        Me.lnkConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label3
-        '
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(16, 80)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(136, 23)
-        Me.Label3.TabIndex = 68
-        Me.Label3.Text = "Origen de los datos"
-        '
-        'grdCliente
-        '
-        Me.grdCliente.AlternatingBackColor = System.Drawing.Color.Lavender
-        Me.grdCliente.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.grdCliente.BackgroundColor = System.Drawing.Color.LightGray
-        Me.grdCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.grdCliente.CaptionBackColor = System.Drawing.Color.LightSteelBlue
-        Me.grdCliente.CaptionForeColor = System.Drawing.Color.MidnightBlue
-        Me.grdCliente.DataMember = ""
-        Me.grdCliente.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdCliente.FlatMode = True
-        Me.grdCliente.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.grdCliente.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.grdCliente.GridLineColor = System.Drawing.Color.IndianRed
-        Me.grdCliente.GridLineStyle = System.Windows.Forms.DataGridLineStyle.None
-        Me.grdCliente.HeaderBackColor = System.Drawing.Color.MidnightBlue
-        Me.grdCliente.HeaderFont = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.grdCliente.HeaderForeColor = System.Drawing.Color.WhiteSmoke
-        Me.grdCliente.LinkColor = System.Drawing.Color.Teal
-        Me.grdCliente.Location = New System.Drawing.Point(208, 0)
-        Me.grdCliente.Name = "grdCliente"
-        Me.grdCliente.ParentRowsBackColor = System.Drawing.Color.Gainsboro
-        Me.grdCliente.ParentRowsForeColor = System.Drawing.Color.MidnightBlue
-        Me.grdCliente.ReadOnly = True
-        Me.grdCliente.SelectionBackColor = System.Drawing.Color.CadetBlue
-        Me.grdCliente.SelectionForeColor = System.Drawing.Color.WhiteSmoke
-        Me.grdCliente.Size = New System.Drawing.Size(552, 575)
-        Me.grdCliente.TabIndex = 1
-        Me.grdCliente.TableStyles.AddRange(New System.Windows.Forms.DataGridTableStyle() {Me.styClienteRuta})
-        '
-        'styClienteRuta
-        '
-        Me.styClienteRuta.DataGrid = Me.grdCliente
-        Me.styClienteRuta.GridColumnStyles.AddRange(New System.Windows.Forms.DataGridColumnStyle() {Me.DataGridTextBoxColumn1, Me.DataGridTextBoxColumn2, Me.DataGridTextBoxColumn6, Me.DataGridTextBoxColumn7, Me.DataGridTextBoxColumn8, Me.DataGridTextBoxColumn9, Me.DataGridTextBoxColumn10, Me.DataGridBoolColumn1})
-        Me.styClienteRuta.HeaderForeColor = System.Drawing.SystemColors.ControlText
-        Me.styClienteRuta.MappingName = "Cliente"
-        '
-        'DataGridTextBoxColumn1
-        '
-        Me.DataGridTextBoxColumn1.Format = ""
-        Me.DataGridTextBoxColumn1.FormatInfo = Nothing
-        Me.DataGridTextBoxColumn1.HeaderText = "Cliente"
-        Me.DataGridTextBoxColumn1.MappingName = "Cliente"
-        Me.DataGridTextBoxColumn1.ReadOnly = True
-        Me.DataGridTextBoxColumn1.Width = 75
-        '
-        'DataGridTextBoxColumn2
-        '
-        Me.DataGridTextBoxColumn2.Format = ""
-        Me.DataGridTextBoxColumn2.FormatInfo = Nothing
-        Me.DataGridTextBoxColumn2.HeaderText = "Nombre"
-        Me.DataGridTextBoxColumn2.MappingName = "Nombre"
-        Me.DataGridTextBoxColumn2.ReadOnly = True
-        Me.DataGridTextBoxColumn2.Width = 200
-        '
-        'DataGridTextBoxColumn6
-        '
-        Me.DataGridTextBoxColumn6.Format = ""
-        Me.DataGridTextBoxColumn6.FormatInfo = Nothing
-        Me.DataGridTextBoxColumn6.HeaderText = "DireccionCompleta"
-        Me.DataGridTextBoxColumn6.MappingName = "DireccionCompleta"
-        Me.DataGridTextBoxColumn6.ReadOnly = True
-        Me.DataGridTextBoxColumn6.Width = 250
-        '
-        'DataGridTextBoxColumn7
-        '
-        Me.DataGridTextBoxColumn7.Format = ""
-        Me.DataGridTextBoxColumn7.FormatInfo = Nothing
-        Me.DataGridTextBoxColumn7.HeaderText = "Status"
-        Me.DataGridTextBoxColumn7.MappingName = "Status"
-        Me.DataGridTextBoxColumn7.ReadOnly = True
-        Me.DataGridTextBoxColumn7.Width = 75
-        '
-        'DataGridTextBoxColumn8
-        '
-        Me.DataGridTextBoxColumn8.Format = ""
-        Me.DataGridTextBoxColumn8.FormatInfo = Nothing
-        Me.DataGridTextBoxColumn8.HeaderText = "StatusCalidad"
-        Me.DataGridTextBoxColumn8.MappingName = "StatusCalidad"
-        Me.DataGridTextBoxColumn8.ReadOnly = True
-        Me.DataGridTextBoxColumn8.Width = 75
-        '
-        'DataGridTextBoxColumn9
-        '
-        Me.DataGridTextBoxColumn9.Format = ""
-        Me.DataGridTextBoxColumn9.FormatInfo = Nothing
-        Me.DataGridTextBoxColumn9.HeaderText = "RamoCliente"
-        Me.DataGridTextBoxColumn9.MappingName = "RamoClienteDescripcion"
-        Me.DataGridTextBoxColumn9.ReadOnly = True
-        Me.DataGridTextBoxColumn9.Width = 120
-        '
-        'DataGridTextBoxColumn10
-        '
-        Me.DataGridTextBoxColumn10.Format = ""
-        Me.DataGridTextBoxColumn10.FormatInfo = Nothing
-        Me.DataGridTextBoxColumn10.HeaderText = "GiroCliente"
-        Me.DataGridTextBoxColumn10.MappingName = "GiroClienteDescripcion"
-        Me.DataGridTextBoxColumn10.ReadOnly = True
-        Me.DataGridTextBoxColumn10.Width = 75
-        '
-        'DataGridBoolColumn1
-        '
-        Me.DataGridBoolColumn1.Alignment = System.Windows.Forms.HorizontalAlignment.Center
-        Me.DataGridBoolColumn1.FalseValue = False
-        Me.DataGridBoolColumn1.HeaderText = "Traspaso"
-        Me.DataGridBoolColumn1.MappingName = "Traspaso"
-        Me.DataGridBoolColumn1.NullValue = CType(resources.GetObject("DataGridBoolColumn1.NullValue"), System.DBNull)
-        Me.DataGridBoolColumn1.TrueValue = True
-        Me.DataGridBoolColumn1.Width = 75
-        '
-        'colCliente
-        '
-        Me.colCliente.Format = ""
-        Me.colCliente.FormatInfo = Nothing
-        Me.colCliente.HeaderText = "Cliente"
-        Me.colCliente.MappingName = "Cliente"
-        Me.colCliente.Width = 90
-        '
-        'colNombre
-        '
-        Me.colNombre.Format = ""
-        Me.colNombre.FormatInfo = Nothing
-        Me.colNombre.HeaderText = "Nombre"
-        Me.colNombre.MappingName = "Nombre"
-        Me.colNombre.Width = 250
-        '
-        'colDireccionCompleta
-        '
-        Me.colDireccionCompleta.Format = ""
-        Me.colDireccionCompleta.FormatInfo = Nothing
-        Me.colDireccionCompleta.HeaderText = "Dirección"
-        Me.colDireccionCompleta.MappingName = "DireccionCompleta"
-        Me.colDireccionCompleta.Width = 200
-        '
-        'colStatus
-        '
-        Me.colStatus.Format = ""
-        Me.colStatus.FormatInfo = Nothing
-        Me.colStatus.HeaderText = "Estatus"
-        Me.colStatus.MappingName = "Status"
-        Me.colStatus.Width = 75
-        '
-        'colStatusCalidad
-        '
-        Me.colStatusCalidad.Format = ""
-        Me.colStatusCalidad.FormatInfo = Nothing
-        Me.colStatusCalidad.HeaderText = "E.Calidad"
-        Me.colStatusCalidad.MappingName = "StatusCalidad"
-        Me.colStatusCalidad.Width = 75
-        '
-        'colRamoCliente
-        '
-        Me.colRamoCliente.Format = ""
-        Me.colRamoCliente.FormatInfo = Nothing
-        Me.colRamoCliente.HeaderText = "Ramo del cliente"
-        Me.colRamoCliente.MappingName = "RamoClienteDescripcion"
-        Me.colRamoCliente.Width = 75
-        '
-        'colGiroCliente
-        '
-        Me.colGiroCliente.Format = ""
-        Me.colGiroCliente.FormatInfo = Nothing
-        Me.colGiroCliente.HeaderText = "Giro del cliente"
-        Me.colGiroCliente.MappingName = "GiroClienteDescripcion"
-        Me.colGiroCliente.Width = 75
-        '
-        'ProgressBar1
-        '
-        Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.ProgressBar1.Location = New System.Drawing.Point(208, 575)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(552, 23)
-        Me.ProgressBar1.TabIndex = 66
-        '
-        'ImageButton2
-        '
-        Me.ImageButton2.BackColor = System.Drawing.Color.Transparent
-        Me.ImageButton2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.ImageButton2.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.ImageButton2.Location = New System.Drawing.Point(16, 488)
-        Me.ImageButton2.Name = "ImageButton2"
-        Me.ImageButton2.NormalImage = CType(resources.GetObject("ImageButton2.NormalImage"), System.Drawing.Bitmap)
-        Me.ImageButton2.Size = New System.Drawing.Size(16, 16)
-        Me.ImageButton2.SizeMode = VbPowerPack.ImageButtonSizeMode.AutoSize
-        Me.ImageButton2.TabIndex = 16
-        Me.ImageButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        '
-        'LinkLabel1
-        '
-        Me.LinkLabel1.LinkColor = System.Drawing.Color.Black
-        Me.LinkLabel1.Location = New System.Drawing.Point(48, 488)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(100, 16)
-        Me.LinkLabel1.TabIndex = 79
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "Folios"
-        Me.LinkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'frmClienteRutaTraspaso
-        '
-        Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
-        Me.ClientSize = New System.Drawing.Size(760, 598)
-        Me.Controls.AddRange(New System.Windows.Forms.Control() {Me.grdCliente, Me.ProgressBar1, Me.TaskPane1})
-        Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "frmClienteRutaTraspaso"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Clientes por ruta (Traspasos)"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.TaskPane1.ResumeLayout(False)
-        Me.TaskFrame1.ResumeLayout(False)
-        CType(Me.grdCliente, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
+		Me.components = New System.ComponentModel.Container()
+		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmClienteRutaTraspaso))
+		Me.imgLista = New System.Windows.Forms.ImageList(Me.components)
+		Me.cboRutaOrigen = New SigaMetClasses.Combos.ComboRuta2()
+		Me.Label1 = New System.Windows.Forms.Label()
+		Me.DataGridTextBoxColumn3 = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.DataGridTextBoxColumn4 = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.DataGridTextBoxColumn5 = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.TaskPane1 = New VbPowerPack.TaskPane()
+		Me.TaskFrame1 = New VbPowerPack.TaskFrame()
+		Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+		Me.ImageButton2 = New VbPowerPack.ImageButton()
+		Me.cboOperadorDestino = New System.Windows.Forms.ComboBox()
+		Me.Label8 = New System.Windows.Forms.Label()
+		Me.cboOperadorOrigen = New System.Windows.Forms.ComboBox()
+		Me.Label7 = New System.Windows.Forms.Label()
+		Me.lnkGenerar = New System.Windows.Forms.LinkLabel()
+		Me.ImageButton1 = New VbPowerPack.ImageButton()
+		Me.chkTodos = New System.Windows.Forms.CheckBox()
+		Me.Label5 = New System.Windows.Forms.Label()
+		Me.cboCelulaDestino = New SigaMetClasses.Combos.ComboUsuarioCelula()
+		Me.cboRutaDestino = New SigaMetClasses.Combos.ComboRuta2()
+		Me.Label6 = New System.Windows.Forms.Label()
+		Me.Label4 = New System.Windows.Forms.Label()
+		Me.lnkCargarDatos = New System.Windows.Forms.LinkLabel()
+		Me.Label2 = New System.Windows.Forms.Label()
+		Me.cboCelulaOrigen = New SigaMetClasses.Combos.ComboUsuarioCelula()
+		Me.lnkCerrar = New System.Windows.Forms.LinkLabel()
+		Me.ImageButton4 = New VbPowerPack.ImageButton()
+		Me.lnkRefrescar = New System.Windows.Forms.LinkLabel()
+		Me.btnRefrescar = New VbPowerPack.ImageButton()
+		Me.btnConsultar = New VbPowerPack.ImageButton()
+		Me.lnkConsultar = New System.Windows.Forms.LinkLabel()
+		Me.Label3 = New System.Windows.Forms.Label()
+		Me.grdCliente = New System.Windows.Forms.DataGrid()
+		Me.styClienteRuta = New System.Windows.Forms.DataGridTableStyle()
+		Me.DataGridTextBoxColumn1 = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.DataGridTextBoxColumn2 = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.DataGridTextBoxColumn6 = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.DataGridTextBoxColumn7 = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.DataGridTextBoxColumn8 = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.DataGridTextBoxColumn9 = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.DataGridTextBoxColumn10 = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.DataGridBoolColumn1 = New System.Windows.Forms.DataGridBoolColumn()
+		Me.colCliente = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.colNombre = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.colDireccionCompleta = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.colStatus = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.colStatusCalidad = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.colRamoCliente = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.colGiroCliente = New System.Windows.Forms.DataGridTextBoxColumn()
+		Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+		Me.TaskPane1.SuspendLayout()
+		Me.TaskFrame1.SuspendLayout()
+		CType(Me.grdCliente, System.ComponentModel.ISupportInitialize).BeginInit()
+		Me.SuspendLayout()
+		'
+		'imgLista
+		'
+		Me.imgLista.ImageStream = CType(resources.GetObject("imgLista.ImageStream"), System.Windows.Forms.ImageListStreamer)
+		Me.imgLista.TransparentColor = System.Drawing.Color.Transparent
+		Me.imgLista.Images.SetKeyName(0, "")
+		Me.imgLista.Images.SetKeyName(1, "")
+		Me.imgLista.Images.SetKeyName(2, "")
+		Me.imgLista.Images.SetKeyName(3, "")
+		'
+		'cboRutaOrigen
+		'
+		Me.cboRutaOrigen.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.cboRutaOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cboRutaOrigen.Location = New System.Drawing.Point(16, 213)
+		Me.cboRutaOrigen.Name = "cboRutaOrigen"
+		Me.cboRutaOrigen.Size = New System.Drawing.Size(160, 21)
+		Me.cboRutaOrigen.TabIndex = 63
+		'
+		'Label1
+		'
+		Me.Label1.AutoSize = True
+		Me.Label1.Location = New System.Drawing.Point(16, 197)
+		Me.Label1.Name = "Label1"
+		Me.Label1.Size = New System.Drawing.Size(34, 13)
+		Me.Label1.TabIndex = 64
+		Me.Label1.Text = "Ruta:"
+		'
+		'DataGridTextBoxColumn3
+		'
+		Me.DataGridTextBoxColumn3.Format = ""
+		Me.DataGridTextBoxColumn3.FormatInfo = Nothing
+		Me.DataGridTextBoxColumn3.Width = 75
+		'
+		'DataGridTextBoxColumn4
+		'
+		Me.DataGridTextBoxColumn4.Format = ""
+		Me.DataGridTextBoxColumn4.FormatInfo = Nothing
+		Me.DataGridTextBoxColumn4.Width = 75
+		'
+		'DataGridTextBoxColumn5
+		'
+		Me.DataGridTextBoxColumn5.Format = ""
+		Me.DataGridTextBoxColumn5.FormatInfo = Nothing
+		Me.DataGridTextBoxColumn5.Width = 75
+		'
+		'TaskPane1
+		'
+		Me.TaskPane1.AutoScroll = True
+		Me.TaskPane1.BackColor = System.Drawing.SystemColors.InactiveCaption
+		Me.TaskPane1.Controls.Add(Me.TaskFrame1)
+		Me.TaskPane1.Dock = System.Windows.Forms.DockStyle.Left
+		Me.TaskPane1.Location = New System.Drawing.Point(0, 0)
+		Me.TaskPane1.Name = "TaskPane1"
+		Me.TaskPane1.Size = New System.Drawing.Size(208, 598)
+		Me.TaskPane1.TabIndex = 65
+		'
+		'TaskFrame1
+		'
+		Me.TaskFrame1.AllowDrop = True
+		Me.TaskFrame1.BackColor = System.Drawing.Color.LightSteelBlue
+		Me.TaskFrame1.CaptionBlend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Horizontal, System.Drawing.SystemColors.Window, System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer)))
+		Me.TaskFrame1.CaptionHighlightColor = System.Drawing.SystemColors.ActiveCaption
+		Me.TaskFrame1.Controls.Add(Me.LinkLabel1)
+		Me.TaskFrame1.Controls.Add(Me.ImageButton2)
+		Me.TaskFrame1.Controls.Add(Me.cboOperadorDestino)
+		Me.TaskFrame1.Controls.Add(Me.Label8)
+		Me.TaskFrame1.Controls.Add(Me.cboOperadorOrigen)
+		Me.TaskFrame1.Controls.Add(Me.Label7)
+		Me.TaskFrame1.Controls.Add(Me.lnkGenerar)
+		Me.TaskFrame1.Controls.Add(Me.ImageButton1)
+		Me.TaskFrame1.Controls.Add(Me.chkTodos)
+		Me.TaskFrame1.Controls.Add(Me.Label5)
+		Me.TaskFrame1.Controls.Add(Me.cboCelulaDestino)
+		Me.TaskFrame1.Controls.Add(Me.cboRutaDestino)
+		Me.TaskFrame1.Controls.Add(Me.Label6)
+		Me.TaskFrame1.Controls.Add(Me.Label4)
+		Me.TaskFrame1.Controls.Add(Me.lnkCargarDatos)
+		Me.TaskFrame1.Controls.Add(Me.Label2)
+		Me.TaskFrame1.Controls.Add(Me.cboCelulaOrigen)
+		Me.TaskFrame1.Controls.Add(Me.lnkCerrar)
+		Me.TaskFrame1.Controls.Add(Me.ImageButton4)
+		Me.TaskFrame1.Controls.Add(Me.lnkRefrescar)
+		Me.TaskFrame1.Controls.Add(Me.btnRefrescar)
+		Me.TaskFrame1.Controls.Add(Me.btnConsultar)
+		Me.TaskFrame1.Controls.Add(Me.lnkConsultar)
+		Me.TaskFrame1.Controls.Add(Me.cboRutaOrigen)
+		Me.TaskFrame1.Controls.Add(Me.Label1)
+		Me.TaskFrame1.Controls.Add(Me.Label3)
+		Me.TaskFrame1.Location = New System.Drawing.Point(12, 33)
+		Me.TaskFrame1.Name = "TaskFrame1"
+		Me.TaskFrame1.Size = New System.Drawing.Size(184, 550)
+		Me.TaskFrame1.TabIndex = 1
+		Me.TaskFrame1.Text = "Clientes por ruta"
+		'
+		'LinkLabel1
+		'
+		Me.LinkLabel1.LinkColor = System.Drawing.Color.Black
+		Me.LinkLabel1.Location = New System.Drawing.Point(48, 488)
+		Me.LinkLabel1.Name = "LinkLabel1"
+		Me.LinkLabel1.Size = New System.Drawing.Size(100, 16)
+		Me.LinkLabel1.TabIndex = 79
+		Me.LinkLabel1.TabStop = True
+		Me.LinkLabel1.Text = "Folios"
+		Me.LinkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+		'
+		'ImageButton2
+		'
+		Me.ImageButton2.BackColor = System.Drawing.Color.Transparent
+		Me.ImageButton2.Cursor = System.Windows.Forms.Cursors.Hand
+		Me.ImageButton2.DialogResult = System.Windows.Forms.DialogResult.OK
+		Me.ImageButton2.Location = New System.Drawing.Point(16, 488)
+		Me.ImageButton2.Name = "ImageButton2"
+		Me.ImageButton2.NormalImage = CType(resources.GetObject("ImageButton2.NormalImage"), System.Drawing.Image)
+		Me.ImageButton2.Size = New System.Drawing.Size(16, 16)
+		Me.ImageButton2.TabIndex = 16
+		'
+		'cboOperadorDestino
+		'
+		Me.cboOperadorDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cboOperadorDestino.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.cboOperadorDestino.Location = New System.Drawing.Point(16, 443)
+		Me.cboOperadorDestino.Name = "cboOperadorDestino"
+		Me.cboOperadorDestino.Size = New System.Drawing.Size(160, 19)
+		Me.cboOperadorDestino.TabIndex = 78
+		'
+		'Label8
+		'
+		Me.Label8.AutoSize = True
+		Me.Label8.Location = New System.Drawing.Point(16, 424)
+		Me.Label8.Name = "Label8"
+		Me.Label8.Size = New System.Drawing.Size(92, 13)
+		Me.Label8.TabIndex = 77
+		Me.Label8.Text = "Operador recibe :"
+		'
+		'cboOperadorOrigen
+		'
+		Me.cboOperadorOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cboOperadorOrigen.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.cboOperadorOrigen.Location = New System.Drawing.Point(16, 277)
+		Me.cboOperadorOrigen.Name = "cboOperadorOrigen"
+		Me.cboOperadorOrigen.Size = New System.Drawing.Size(160, 19)
+		Me.cboOperadorOrigen.TabIndex = 76
+		'
+		'Label7
+		'
+		Me.Label7.AutoSize = True
+		Me.Label7.Location = New System.Drawing.Point(16, 259)
+		Me.Label7.Name = "Label7"
+		Me.Label7.Size = New System.Drawing.Size(101, 13)
+		Me.Label7.TabIndex = 75
+		Me.Label7.Text = "Operador entrega :"
+		'
+		'lnkGenerar
+		'
+		Me.lnkGenerar.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lnkGenerar.LinkColor = System.Drawing.Color.Black
+		Me.lnkGenerar.Location = New System.Drawing.Point(40, 16)
+		Me.lnkGenerar.Name = "lnkGenerar"
+		Me.lnkGenerar.Size = New System.Drawing.Size(100, 16)
+		Me.lnkGenerar.TabIndex = 1
+		Me.lnkGenerar.TabStop = True
+		Me.lnkGenerar.Text = "Generar"
+		Me.lnkGenerar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+		'
+		'ImageButton1
+		'
+		Me.ImageButton1.BackColor = System.Drawing.Color.Transparent
+		Me.ImageButton1.Cursor = System.Windows.Forms.Cursors.Hand
+		Me.ImageButton1.DialogResult = System.Windows.Forms.DialogResult.Cancel
+		Me.ImageButton1.Location = New System.Drawing.Point(16, 16)
+		Me.ImageButton1.Name = "ImageButton1"
+		Me.ImageButton1.NormalImage = CType(resources.GetObject("ImageButton1.NormalImage"), System.Drawing.Image)
+		Me.ImageButton1.Size = New System.Drawing.Size(16, 16)
+		Me.ImageButton1.TabIndex = 2
+		Me.ImageButton1.TransparentColor = System.Drawing.SystemColors.InactiveCaptionText
+		'
+		'chkTodos
+		'
+		Me.chkTodos.ForeColor = System.Drawing.Color.DarkGreen
+		Me.chkTodos.Location = New System.Drawing.Point(16, 42)
+		Me.chkTodos.Name = "chkTodos"
+		Me.chkTodos.Size = New System.Drawing.Size(144, 32)
+		Me.chkTodos.TabIndex = 74
+		Me.chkTodos.Text = "Selecciona todos los clientes"
+		'
+		'Label5
+		'
+		Me.Label5.AutoSize = True
+		Me.Label5.Location = New System.Drawing.Point(16, 341)
+		Me.Label5.Name = "Label5"
+		Me.Label5.Size = New System.Drawing.Size(40, 13)
+		Me.Label5.TabIndex = 73
+		Me.Label5.Text = "Célula:"
+		'
+		'cboCelulaDestino
+		'
+		Me.cboCelulaDestino.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.cboCelulaDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cboCelulaDestino.Location = New System.Drawing.Point(16, 357)
+		Me.cboCelulaDestino.Name = "cboCelulaDestino"
+		Me.cboCelulaDestino.Size = New System.Drawing.Size(160, 21)
+		Me.cboCelulaDestino.TabIndex = 72
+		'
+		'cboRutaDestino
+		'
+		Me.cboRutaDestino.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.cboRutaDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cboRutaDestino.Location = New System.Drawing.Point(16, 397)
+		Me.cboRutaDestino.Name = "cboRutaDestino"
+		Me.cboRutaDestino.Size = New System.Drawing.Size(160, 21)
+		Me.cboRutaDestino.TabIndex = 70
+		'
+		'Label6
+		'
+		Me.Label6.AutoSize = True
+		Me.Label6.Location = New System.Drawing.Point(16, 381)
+		Me.Label6.Name = "Label6"
+		Me.Label6.Size = New System.Drawing.Size(34, 13)
+		Me.Label6.TabIndex = 71
+		Me.Label6.Text = "Ruta:"
+		'
+		'Label4
+		'
+		Me.Label4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label4.ForeColor = System.Drawing.Color.DarkRed
+		Me.Label4.Location = New System.Drawing.Point(16, 320)
+		Me.Label4.Name = "Label4"
+		Me.Label4.Size = New System.Drawing.Size(136, 23)
+		Me.Label4.TabIndex = 69
+		Me.Label4.Text = "Destino de los datos"
+		'
+		'lnkCargarDatos
+		'
+		Me.lnkCargarDatos.LinkArea = New System.Windows.Forms.LinkArea(0, 15)
+		Me.lnkCargarDatos.LinkColor = System.Drawing.Color.Black
+		Me.lnkCargarDatos.Location = New System.Drawing.Point(102, 237)
+		Me.lnkCargarDatos.Name = "lnkCargarDatos"
+		Me.lnkCargarDatos.Size = New System.Drawing.Size(72, 16)
+		Me.lnkCargarDatos.TabIndex = 67
+		Me.lnkCargarDatos.TabStop = True
+		Me.lnkCargarDatos.Text = "Cargar datos"
+		Me.lnkCargarDatos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+		Me.lnkCargarDatos.UseCompatibleTextRendering = True
+		'
+		'Label2
+		'
+		Me.Label2.AutoSize = True
+		Me.Label2.Location = New System.Drawing.Point(16, 155)
+		Me.Label2.Name = "Label2"
+		Me.Label2.Size = New System.Drawing.Size(40, 13)
+		Me.Label2.TabIndex = 66
+		Me.Label2.Text = "Célula:"
+		'
+		'cboCelulaOrigen
+		'
+		Me.cboCelulaOrigen.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+			Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.cboCelulaOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.cboCelulaOrigen.Location = New System.Drawing.Point(16, 171)
+		Me.cboCelulaOrigen.Name = "cboCelulaOrigen"
+		Me.cboCelulaOrigen.Size = New System.Drawing.Size(160, 21)
+		Me.cboCelulaOrigen.TabIndex = 65
+		'
+		'lnkCerrar
+		'
+		Me.lnkCerrar.LinkColor = System.Drawing.Color.Black
+		Me.lnkCerrar.Location = New System.Drawing.Point(48, 524)
+		Me.lnkCerrar.Name = "lnkCerrar"
+		Me.lnkCerrar.Size = New System.Drawing.Size(100, 16)
+		Me.lnkCerrar.TabIndex = 7
+		Me.lnkCerrar.TabStop = True
+		Me.lnkCerrar.Text = "Cerrar"
+		Me.lnkCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+		'
+		'ImageButton4
+		'
+		Me.ImageButton4.BackColor = System.Drawing.Color.Transparent
+		Me.ImageButton4.Cursor = System.Windows.Forms.Cursors.Hand
+		Me.ImageButton4.DialogResult = System.Windows.Forms.DialogResult.OK
+		Me.ImageButton4.Location = New System.Drawing.Point(16, 524)
+		Me.ImageButton4.Name = "ImageButton4"
+		Me.ImageButton4.NormalImage = CType(resources.GetObject("ImageButton4.NormalImage"), System.Drawing.Image)
+		Me.ImageButton4.Size = New System.Drawing.Size(16, 16)
+		Me.ImageButton4.TabIndex = 6
+		'
+		'lnkRefrescar
+		'
+		Me.lnkRefrescar.LinkColor = System.Drawing.Color.Black
+		Me.lnkRefrescar.Location = New System.Drawing.Point(48, 131)
+		Me.lnkRefrescar.Name = "lnkRefrescar"
+		Me.lnkRefrescar.Size = New System.Drawing.Size(100, 16)
+		Me.lnkRefrescar.TabIndex = 5
+		Me.lnkRefrescar.TabStop = True
+		Me.lnkRefrescar.Text = "Refrescar"
+		Me.lnkRefrescar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+		'
+		'btnRefrescar
+		'
+		Me.btnRefrescar.BackColor = System.Drawing.Color.Transparent
+		Me.btnRefrescar.Cursor = System.Windows.Forms.Cursors.Hand
+		Me.btnRefrescar.DialogResult = System.Windows.Forms.DialogResult.OK
+		Me.btnRefrescar.Location = New System.Drawing.Point(16, 131)
+		Me.btnRefrescar.Name = "btnRefrescar"
+		Me.btnRefrescar.NormalImage = CType(resources.GetObject("btnRefrescar.NormalImage"), System.Drawing.Image)
+		Me.btnRefrescar.Size = New System.Drawing.Size(16, 16)
+		Me.btnRefrescar.TabIndex = 4
+		'
+		'btnConsultar
+		'
+		Me.btnConsultar.BackColor = System.Drawing.Color.Transparent
+		Me.btnConsultar.Cursor = System.Windows.Forms.Cursors.Hand
+		Me.btnConsultar.DialogResult = System.Windows.Forms.DialogResult.OK
+		Me.btnConsultar.Enabled = False
+		Me.btnConsultar.Location = New System.Drawing.Point(16, 107)
+		Me.btnConsultar.Name = "btnConsultar"
+		Me.btnConsultar.NormalImage = CType(resources.GetObject("btnConsultar.NormalImage"), System.Drawing.Image)
+		Me.btnConsultar.Size = New System.Drawing.Size(16, 16)
+		Me.btnConsultar.TabIndex = 3
+		'
+		'lnkConsultar
+		'
+		Me.lnkConsultar.Enabled = False
+		Me.lnkConsultar.LinkColor = System.Drawing.Color.Black
+		Me.lnkConsultar.Location = New System.Drawing.Point(48, 107)
+		Me.lnkConsultar.Name = "lnkConsultar"
+		Me.lnkConsultar.Size = New System.Drawing.Size(100, 16)
+		Me.lnkConsultar.TabIndex = 2
+		Me.lnkConsultar.TabStop = True
+		Me.lnkConsultar.Text = "Consultar"
+		Me.lnkConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+		'
+		'Label3
+		'
+		Me.Label3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label3.Location = New System.Drawing.Point(16, 80)
+		Me.Label3.Name = "Label3"
+		Me.Label3.Size = New System.Drawing.Size(136, 23)
+		Me.Label3.TabIndex = 68
+		Me.Label3.Text = "Origen de los datos"
+		'
+		'grdCliente
+		'
+		Me.grdCliente.AlternatingBackColor = System.Drawing.Color.Lavender
+		Me.grdCliente.BackColor = System.Drawing.Color.WhiteSmoke
+		Me.grdCliente.BackgroundColor = System.Drawing.Color.LightGray
+		Me.grdCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+		Me.grdCliente.CaptionBackColor = System.Drawing.Color.LightSteelBlue
+		Me.grdCliente.CaptionForeColor = System.Drawing.Color.MidnightBlue
+		Me.grdCliente.DataMember = ""
+		Me.grdCliente.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.grdCliente.FlatMode = True
+		Me.grdCliente.Font = New System.Drawing.Font("Tahoma", 8.0!)
+		Me.grdCliente.ForeColor = System.Drawing.Color.MidnightBlue
+		Me.grdCliente.GridLineColor = System.Drawing.Color.IndianRed
+		Me.grdCliente.GridLineStyle = System.Windows.Forms.DataGridLineStyle.None
+		Me.grdCliente.HeaderBackColor = System.Drawing.Color.MidnightBlue
+		Me.grdCliente.HeaderFont = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
+		Me.grdCliente.HeaderForeColor = System.Drawing.Color.WhiteSmoke
+		Me.grdCliente.LinkColor = System.Drawing.Color.Teal
+		Me.grdCliente.Location = New System.Drawing.Point(208, 0)
+		Me.grdCliente.Name = "grdCliente"
+		Me.grdCliente.ParentRowsBackColor = System.Drawing.Color.Gainsboro
+		Me.grdCliente.ParentRowsForeColor = System.Drawing.Color.MidnightBlue
+		Me.grdCliente.ReadOnly = True
+		Me.grdCliente.SelectionBackColor = System.Drawing.Color.CadetBlue
+		Me.grdCliente.SelectionForeColor = System.Drawing.Color.WhiteSmoke
+		Me.grdCliente.Size = New System.Drawing.Size(552, 575)
+		Me.grdCliente.TabIndex = 1
+		Me.grdCliente.TableStyles.AddRange(New System.Windows.Forms.DataGridTableStyle() {Me.styClienteRuta})
+		'
+		'styClienteRuta
+		'
+		Me.styClienteRuta.DataGrid = Me.grdCliente
+		Me.styClienteRuta.GridColumnStyles.AddRange(New System.Windows.Forms.DataGridColumnStyle() {Me.DataGridTextBoxColumn1, Me.DataGridTextBoxColumn2, Me.DataGridTextBoxColumn6, Me.DataGridTextBoxColumn7, Me.DataGridTextBoxColumn8, Me.DataGridTextBoxColumn9, Me.DataGridTextBoxColumn10, Me.DataGridBoolColumn1})
+		Me.styClienteRuta.HeaderForeColor = System.Drawing.SystemColors.ControlText
+		Me.styClienteRuta.MappingName = "Cliente"
+		'
+		'DataGridTextBoxColumn1
+		'
+		Me.DataGridTextBoxColumn1.Format = ""
+		Me.DataGridTextBoxColumn1.FormatInfo = Nothing
+		Me.DataGridTextBoxColumn1.HeaderText = "Cliente"
+		Me.DataGridTextBoxColumn1.MappingName = "Cliente"
+		Me.DataGridTextBoxColumn1.ReadOnly = True
+		Me.DataGridTextBoxColumn1.Width = 75
+		'
+		'DataGridTextBoxColumn2
+		'
+		Me.DataGridTextBoxColumn2.Format = ""
+		Me.DataGridTextBoxColumn2.FormatInfo = Nothing
+		Me.DataGridTextBoxColumn2.HeaderText = "Nombre"
+		Me.DataGridTextBoxColumn2.MappingName = "Nombre"
+		Me.DataGridTextBoxColumn2.ReadOnly = True
+		Me.DataGridTextBoxColumn2.Width = 200
+		'
+		'DataGridTextBoxColumn6
+		'
+		Me.DataGridTextBoxColumn6.Format = ""
+		Me.DataGridTextBoxColumn6.FormatInfo = Nothing
+		Me.DataGridTextBoxColumn6.HeaderText = "DireccionCompleta"
+		Me.DataGridTextBoxColumn6.MappingName = "DireccionCompleta"
+		Me.DataGridTextBoxColumn6.ReadOnly = True
+		Me.DataGridTextBoxColumn6.Width = 250
+		'
+		'DataGridTextBoxColumn7
+		'
+		Me.DataGridTextBoxColumn7.Format = ""
+		Me.DataGridTextBoxColumn7.FormatInfo = Nothing
+		Me.DataGridTextBoxColumn7.HeaderText = "Status"
+		Me.DataGridTextBoxColumn7.MappingName = "Status"
+		Me.DataGridTextBoxColumn7.ReadOnly = True
+		Me.DataGridTextBoxColumn7.Width = 75
+		'
+		'DataGridTextBoxColumn8
+		'
+		Me.DataGridTextBoxColumn8.Format = ""
+		Me.DataGridTextBoxColumn8.FormatInfo = Nothing
+		Me.DataGridTextBoxColumn8.HeaderText = "StatusCalidad"
+		Me.DataGridTextBoxColumn8.MappingName = "StatusCalidad"
+		Me.DataGridTextBoxColumn8.ReadOnly = True
+		Me.DataGridTextBoxColumn8.Width = 75
+		'
+		'DataGridTextBoxColumn9
+		'
+		Me.DataGridTextBoxColumn9.Format = ""
+		Me.DataGridTextBoxColumn9.FormatInfo = Nothing
+		Me.DataGridTextBoxColumn9.HeaderText = "RamoCliente"
+		Me.DataGridTextBoxColumn9.MappingName = "RamoClienteDescripcion"
+		Me.DataGridTextBoxColumn9.ReadOnly = True
+		Me.DataGridTextBoxColumn9.Width = 120
+		'
+		'DataGridTextBoxColumn10
+		'
+		Me.DataGridTextBoxColumn10.Format = ""
+		Me.DataGridTextBoxColumn10.FormatInfo = Nothing
+		Me.DataGridTextBoxColumn10.HeaderText = "GiroCliente"
+		Me.DataGridTextBoxColumn10.MappingName = "GiroClienteDescripcion"
+		Me.DataGridTextBoxColumn10.ReadOnly = True
+		Me.DataGridTextBoxColumn10.Width = 75
+		'
+		'DataGridBoolColumn1
+		'
+		Me.DataGridBoolColumn1.Alignment = System.Windows.Forms.HorizontalAlignment.Center
+		Me.DataGridBoolColumn1.HeaderText = "Traspaso"
+		Me.DataGridBoolColumn1.MappingName = "Traspaso"
+		Me.DataGridBoolColumn1.Width = 75
+		'
+		'colCliente
+		'
+		Me.colCliente.Format = ""
+		Me.colCliente.FormatInfo = Nothing
+		Me.colCliente.HeaderText = "Cliente"
+		Me.colCliente.MappingName = "Cliente"
+		Me.colCliente.Width = 90
+		'
+		'colNombre
+		'
+		Me.colNombre.Format = ""
+		Me.colNombre.FormatInfo = Nothing
+		Me.colNombre.HeaderText = "Nombre"
+		Me.colNombre.MappingName = "Nombre"
+		Me.colNombre.Width = 250
+		'
+		'colDireccionCompleta
+		'
+		Me.colDireccionCompleta.Format = ""
+		Me.colDireccionCompleta.FormatInfo = Nothing
+		Me.colDireccionCompleta.HeaderText = "Dirección"
+		Me.colDireccionCompleta.MappingName = "DireccionCompleta"
+		Me.colDireccionCompleta.Width = 200
+		'
+		'colStatus
+		'
+		Me.colStatus.Format = ""
+		Me.colStatus.FormatInfo = Nothing
+		Me.colStatus.HeaderText = "Estatus"
+		Me.colStatus.MappingName = "Status"
+		Me.colStatus.Width = 75
+		'
+		'colStatusCalidad
+		'
+		Me.colStatusCalidad.Format = ""
+		Me.colStatusCalidad.FormatInfo = Nothing
+		Me.colStatusCalidad.HeaderText = "E.Calidad"
+		Me.colStatusCalidad.MappingName = "StatusCalidad"
+		Me.colStatusCalidad.Width = 75
+		'
+		'colRamoCliente
+		'
+		Me.colRamoCliente.Format = ""
+		Me.colRamoCliente.FormatInfo = Nothing
+		Me.colRamoCliente.HeaderText = "Ramo del cliente"
+		Me.colRamoCliente.MappingName = "RamoClienteDescripcion"
+		Me.colRamoCliente.Width = 75
+		'
+		'colGiroCliente
+		'
+		Me.colGiroCliente.Format = ""
+		Me.colGiroCliente.FormatInfo = Nothing
+		Me.colGiroCliente.HeaderText = "Giro del cliente"
+		Me.colGiroCliente.MappingName = "GiroClienteDescripcion"
+		Me.colGiroCliente.Width = 75
+		'
+		'ProgressBar1
+		'
+		Me.ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom
+		Me.ProgressBar1.Location = New System.Drawing.Point(208, 575)
+		Me.ProgressBar1.Name = "ProgressBar1"
+		Me.ProgressBar1.Size = New System.Drawing.Size(552, 23)
+		Me.ProgressBar1.TabIndex = 66
+		'
+		'frmClienteRutaTraspaso
+		'
+		Me.AutoScaleBaseSize = New System.Drawing.Size(5, 14)
+		Me.ClientSize = New System.Drawing.Size(760, 598)
+		Me.Controls.Add(Me.grdCliente)
+		Me.Controls.Add(Me.ProgressBar1)
+		Me.Controls.Add(Me.TaskPane1)
+		Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+		Me.Name = "frmClienteRutaTraspaso"
+		Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+		Me.Text = "Clientes por ruta (Traspasos)"
+		Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+		Me.TaskPane1.ResumeLayout(False)
+		Me.TaskFrame1.ResumeLayout(False)
+		Me.TaskFrame1.PerformLayout()
+		CType(Me.grdCliente, System.ComponentModel.ISupportInitialize).EndInit()
+		Me.ResumeLayout(False)
 
-    End Sub
+	End Sub
 
 #End Region
 
-    Private Sub CargaDatos()
+	Private Sub CargaDatos()
         Cursor = Cursors.WaitCursor
         lnkConsultar.Enabled = False
         btnConsultar.Enabled = False
