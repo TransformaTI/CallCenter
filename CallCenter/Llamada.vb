@@ -40,7 +40,6 @@ Public Class Llamada
     Private _Modulo As Byte = 1
 	Private _CadenaConexion As String
 
-	Private _muestraError As Boolean
 
 	Public Property URLGateway() As String
         Get
@@ -85,13 +84,6 @@ Public Class Llamada
 					ruta, DateTime.Now.Date, DateTime.Now.Date).Tables(0)
 				Me.Cursor = Cursors.Default
 
-				If (dtAutotanquesDia.Rows.Count = 0) And (_muestraError) Then
-
-					MessageBox.Show("El webservice no devolvió datos de autotanque",
-									Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-
-				End If
 			End If
 		Catch ex As Exception
 			MessageBox.Show("Se produjo un error consultando los autotanques:" & vbCrLf & ex.Message,
@@ -127,6 +119,11 @@ Public Class Llamada
 			Else
 				cmbAutoTanque.DataSource = Nothing
 				cmbAutoTanque.Items.Clear()
+
+
+				cmbOperador.DataSource = Nothing
+				cmbOperador.Items.Clear()
+
 				boletinEnLinea = False
 
 				AddHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
@@ -168,7 +165,7 @@ Public Class Llamada
     Private Sub chkBoletinarOtraRuta_CheckedChange(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkBoletinarOtraRuta.CheckedChanged
         cmbAutoTanque.DataSource = Nothing
 		cmbOperador.DataSource = Nothing
-		_muestraError = False
+
 		If GLOBAL_UsarSigametServices Then
 			If daCel.Rows.Count > 0 Then
 				cmbCelula.DisplayMember = "Celula"
@@ -232,7 +229,7 @@ Public Class Llamada
 				LlenaListaAutotanques(_Ruta, False)
 			End If
 		End If
-		_muestraError = True
+
 	End Sub
 
     Private Sub cmbRuta_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbRuta.SelectedIndexChanged
@@ -278,9 +275,6 @@ Public Class Llamada
 			Catch ex As Exception
 
 			End Try
-
-			MessageBox.Show(Me, "No existen rutas para esta célula",
-									Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
 		End If
     End Sub
 
@@ -1327,7 +1321,7 @@ Public Class Llamada
 			lnkAlertaRAF.Visible = False
 			lnkAlertaFinDeDia.Visible = False
 		End If
-		_muestraError = True
+
 	End Sub
 
     Private Sub chkFSiguienteLlamada_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkFSiguienteLlamada.CheckedChanged
@@ -1674,14 +1668,14 @@ Public Class Llamada
             daAutotanque.Fill(Me.DsLlamada.Autotanque)
         End If
 
-        If Me.cmbAutoTanque.Items.Count = 0 Then
-            Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
-            Me.cmbAutoTanque.DisplayMember = "Autotanque"
-            Me.cmbAutoTanque.ValueMember = "Autotanque"
-        End If
+		'If Me.cmbAutoTanque.Items.Count > 0 Then
+		'	Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
+		'	Me.cmbAutoTanque.DisplayMember = "Autotanque"
+		'	Me.cmbAutoTanque.ValueMember = "Autotanque"
+		'End If
 
-        ' 17/10/2018 RM - Siempre cargar la tabla Motivo
-        daMotivo.Fill(DsLlamada, "Motivo")
+		' 17/10/2018 RM - Siempre cargar la tabla Motivo
+		daMotivo.Fill(DsLlamada, "Motivo")
     End Sub
 
     Private Sub ConsultaCelulas()
