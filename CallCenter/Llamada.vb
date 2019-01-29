@@ -1,4 +1,9 @@
 Imports System.Data.SqlClient
+Imports System
+Imports System.Linq
+Imports System.Text
+Imports System.Collections.Generic
+
 Public Class Llamada
     Inherits System.Windows.Forms.Form
     Private _Cliente As Integer
@@ -14,6 +19,9 @@ Public Class Llamada
     Private _UsuarioMovil As Integer
     Private _AutoTanque As Integer
 
+    ' Variable para enviar el pedido a la plataforma SGCWeb     - RM 03/10/2018
+    Private _SGCWebHabilitado As Boolean
+    Private _FuenteGateway As String = ""
     Private pedidoReferencia As String
     Private fechaPedido As Date
     Private boletinEnLinea As Boolean = False
@@ -28,67 +36,124 @@ Public Class Llamada
     Friend WithEvents chkNoValidarGPS As System.Windows.Forms.CheckBox
     Private _FAlta As Date
     Dim _RutaBoletin As Short
+    Private _URLGateway As String
+    Private _Modulo As Byte = 1
+	Private _CadenaConexion As String
 
 
-    Private Sub ConsultaAutotanquesPorDia(ByVal ruta As Int32, ByVal inicio As Boolean)
-        Me.Cursor = Cursors.WaitCursor
+	Public Property URLGateway() As String
+        Get
+            Return _URLGateway
+        End Get
+        Set(ByVal value As String)
+            _URLGateway = value
+        End Set
+    End Property
 
-        Dim servicioPedido As New desarrollogm.Pedido()
 
-        servicioPedido.Url = GLOBAL_URLWebserviceBoletin
+    Public Property CadenaConexion() As String
+        Get
+            Return _CadenaConexion
+        End Get
+        Set(ByVal value As String)
+            _CadenaConexion = value
+        End Set
+    End Property
 
-        Dim dtAutotanquesDia As New DataTable()
+    Public Property FuenteGateway As String
+        Get
+            Return _FuenteGateway
+        End Get
+        Set(value As String)
+            _FuenteGateway = value
+        End Set
+    End Property
 
-        If GLOBAL_UsarSigametServices Then
-            dtAutotanquesDia = servicioPedido.ConsultaAutotanquesPorRutaYDia(Main.GLOBAL_Estacion, _
-                ruta, DateTime.Now.Date, DateTime.Now.Date).Tables(0)
-            Me.Cursor = Cursors.Default
-        End If
+	Public Sub ConsultaAutotanquesPorDia(ByVal ruta As Int32, ByVal inicio As Boolean)
+		Me.Cursor = Cursors.WaitCursor
 
-        If dtAutotanquesDia.Rows.Count > 0 Then
-            RemoveHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
+		Dim servicioPedido As New desarrollogm.Pedido()
 
-            cmbAutoTanque.DataSource = dtAutotanquesDia
-            cmbAutoTanque.DisplayMember = "Autotanque"
-            cmbAutoTanque.ValueMember = "Autotanque"
-            boletinEnLinea = True
-            idPlantaSGC = CType(dtAutotanquesDia.Rows(0).Item("NombrePlantaSGC"), String)
+		servicioPedido.Url = GLOBAL_URLWebserviceBoletin
 
-            cmbOperador.DataSource = dtAutotanquesDia
-            cmbOperador.DisplayMember = "OperadorNombre"
-            cmbOperador.ValueMember = "Operador"
+		Dim dtAutotanquesDia As New DataTable()
 
-            lblMensaje.Text = ""
-        Else
-            If inicio Then
-                cmbAutoTanque.DataSource = Nothing
-                cmbAutoTanque.Items.Clear()
-                Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
-                Me.cmbAutoTanque.DisplayMember = "Autotanque"
-                Me.cmbAutoTanque.ValueMember = "Autotanque"
-                boletinEnLinea = False
+		Try
+			If GLOBAL_UsarSigametServices Then
+				dtAutotanquesDia = servicioPedido.ConsultaAutotanquesPorRutaYDia(Main.GLOBAL_Estacion,
+					ruta, DateTime.Now.Date, DateTime.Now.Date).Tables(0)
+				Me.Cursor = Cursors.Default
 
-                AddHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
+			End If
+		Catch ex As Exception
+			MessageBox.Show("Se produjo un error consultando los autotanques:" & vbCrLf & ex.Message,
+							Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
+		End Try
 
-                lblMensaje.Text = "No hay autotanques asignados en la ruta seleccionada"
-            Else
-                cmbAutoTanque.DataSource = Nothing
-                cmbAutoTanque.Items.Clear()
-                boletinEnLinea = False
+		If dtAutotanquesDia.Rows.Count > 0 Then
+			RemoveHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
 
-                AddHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
+			cmbAutoTanque.DataSource = dtAutotanquesDia
+			cmbAutoTanque.DisplayMember = "Autotanque"
+			cmbAutoTanque.ValueMember = "Autotanque"
+			boletinEnLinea = True
+			idPlantaSGC = CType(dtAutotanquesDia.Rows(0).Item("NombrePlantaSGC"), String)
 
-                lblMensaje.Text = "No hay autotanques asignados en la ruta seleccionada"
-            End If
+			cmbOperador.DataSource = dtAutotanquesDia
+			cmbOperador.DisplayMember = "OperadorNombre"
+			cmbOperador.ValueMember = "Operador"
 
-        End If
+			lblMensaje.Text = ""
+		Else
+			If inicio Then
+				cmbAutoTanque.DataSource = Nothing
+				cmbAutoTanque.Items.Clear()
+				Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
+				Me.cmbAutoTanque.DisplayMember = "Autotanque"
+				Me.cmbAutoTanque.ValueMember = "Autotanque"
+				boletinEnLinea = False
 
-        Me.Cursor = Cursors.Default
-    End Sub
+				AddHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
 
-    Public Sub New(ByVal PedidoReferencia As String, ByVal RutaPedido As Int32, ByVal FechaPedido As Date, ByVal DaCelula As DataTable)
+				lblMensaje.Text = "No hay autotanques asignados en la ruta seleccionada"
+			Else
+				cmbAutoTanque.DataSource = Nothing
+				cmbAutoTanque.Items.Clear()
+
+
+				cmbOperador.DataSource = Nothing
+				cmbOperador.Items.Clear()
+
+				boletinEnLinea = False
+
+				AddHandler cmbOperador.SelectedIndexChanged, AddressOf cmbAutoTanque_SelectedIndexChanged
+
+				lblMensaje.Text = "No hay autotanques asignados en la ruta seleccionada"
+			End If
+
+		End If
+
+		Me.Cursor = Cursors.Default
+	End Sub
+
+	Public Sub New(ByVal PedidoReferencia As String,
+                   ByVal RutaPedido As Int32,
+                   ByVal FechaPedido As Date,
+                   ByVal DaCelula As DataTable,
+                   ByVal URLGateway As String,
+          Optional ByVal Modulo As Byte = 0,
+          Optional ByVal CadenaConexion As String = "",
+          Optional ByVal SGCWebHabilitado As Boolean = False,
+          Optional ByVal FuenteGateway As String = "")
         'This call is required by the Windows Form Designer.
         InitializeComponent()
+
+        _URLGateway = URLGateway
+        _Modulo = Modulo
+        _CadenaConexion = CadenaConexion
+        _SGCWebHabilitado = SGCWebHabilitado
+        _FuenteGateway = FuenteGateway
+
         Me.pedidoReferencia = PedidoReferencia
         Me.fechaPedido = FechaPedido
         daCel = DaCelula
@@ -99,78 +164,80 @@ Public Class Llamada
 
     Private Sub chkBoletinarOtraRuta_CheckedChange(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkBoletinarOtraRuta.CheckedChanged
         cmbAutoTanque.DataSource = Nothing
-        cmbOperador.DataSource = Nothing
-        If GLOBAL_UsarSigametServices Then
-            If daCel.Rows.Count > 0 Then
-                cmbCelula.DisplayMember = "Celula"
-                cmbCelula.ValueMember = "Celula"
-                cmbCelula.DataSource = daCel
+		cmbOperador.DataSource = Nothing
 
-                Dim celula As Byte
-                If cmbCelula.Items.Count > 0 Then
-                    cmbCelula.SelectedIndex = 0
-                    celula = Convert.ToByte(cmbCelula.SelectedValue)
-                End If
-                cmbRuta.CargaDatos(Celula:=celula, ActivarFiltro:=True, MostrarPortatil:=False)
+		If GLOBAL_UsarSigametServices Then
+			If daCel.Rows.Count > 0 Then
+				cmbCelula.DisplayMember = "Celula"
+				cmbCelula.ValueMember = "Celula"
+				cmbCelula.DataSource = daCel
 
-                If cmbRuta.Items.Count > 0 Then
-                    LlenaHorarios = True
-                    cmbRuta.SelectedIndex = 0
-                End If
+				Dim celula As Byte
+				If cmbCelula.Items.Count > 0 Then
+					cmbCelula.SelectedIndex = 0
+					celula = Convert.ToByte(cmbCelula.SelectedValue)
+				End If
+				cmbRuta.CargaDatos(Celula:=celula, ActivarFiltro:=True, MostrarPortatil:=False)
 
-                If (chkBoletinarOtraRuta.Checked) Then
-                    cmbCelula.Visible = True
-                    cmbRuta.Visible = True
-                    cmbRuta.Enabled = True
-                    lblCelulaRuta.Visible = True
-                Else
-                    cmbCelula.Visible = False
-                    cmbRuta.Visible = False
-                    cmbRuta.Enabled = False
-                    lblCelulaRuta.Visible = False
-                    boletinEnLinea = False
-                    lblMensaje.Text = ""
-                    ConsultaAutotanquesPorDia(rutaPed, True)
-                End If
-            End If
-        Else           
-            If (chkBoletinarOtraRuta.Checked) Then
-                cmbCelula.Visible = True
-                cmbRuta.Visible = True
-                cmbRuta.Enabled = True
-                lblCelulaRuta.Visible = True
+				If cmbRuta.Items.Count > 0 Then
+					LlenaHorarios = True
+					cmbRuta.SelectedIndex = 0
+				End If
 
-                ConsultaCelulas()
-                If daCel.Rows.Count > 0 Then
-                    cmbCelula.DisplayMember = "Celula"
-                    cmbCelula.ValueMember = "Celula"
-                    cmbCelula.DataSource = daCel
+				If (chkBoletinarOtraRuta.Checked) Then
+					cmbCelula.Visible = True
+					cmbRuta.Visible = True
+					cmbRuta.Enabled = True
+					lblCelulaRuta.Visible = True
+				Else
+					cmbCelula.Visible = False
+					cmbRuta.Visible = False
+					cmbRuta.Enabled = False
+					lblCelulaRuta.Visible = False
+					boletinEnLinea = False
+					lblMensaje.Text = ""
+					ConsultaAutotanquesPorDia(rutaPed, True)
+				End If
+			End If
+		Else
+			If (chkBoletinarOtraRuta.Checked) Then
+				cmbCelula.Visible = True
+				cmbRuta.Visible = True
+				cmbRuta.Enabled = True
+				lblCelulaRuta.Visible = True
 
-                    Dim celula As Byte
-                    If cmbCelula.Items.Count > 0 Then
-                        cmbCelula.SelectedIndex = 0
-                        celula = Convert.ToByte(cmbCelula.SelectedValue)
-                    End If
-                End If
-            Else
-                cmbCelula.Visible = False
-                cmbRuta.Visible = False
-                cmbRuta.Enabled = False
-                lblCelulaRuta.Visible = False
-                boletinEnLinea = False
-                lblMensaje.Text = ""                
+				ConsultaCelulas()
+				If daCel.Rows.Count > 0 Then
+					cmbCelula.DisplayMember = "Celula"
+					cmbCelula.ValueMember = "Celula"
+					cmbCelula.DataSource = daCel
 
-                LlenaListaAutotanques(_Ruta, False)
-            End If            
-        End If
-    End Sub
+					Dim celula As Byte
+					If cmbCelula.Items.Count > 0 Then
+						cmbCelula.SelectedIndex = 0
+						celula = Convert.ToByte(cmbCelula.SelectedValue)
+					End If
+				End If
+			Else
+				cmbCelula.Visible = False
+				cmbRuta.Visible = False
+				cmbRuta.Enabled = False
+				lblCelulaRuta.Visible = False
+				boletinEnLinea = False
+				lblMensaje.Text = ""
+
+				LlenaListaAutotanques(_Ruta, False)
+			End If
+		End If
+
+	End Sub
 
     Private Sub cmbRuta_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbRuta.SelectedIndexChanged
-        If Not cmbRuta.SelectedIndex = -1 Then           
-            If CInt(cmbRuta.Ruta) <> 0 Then
-                LlenaListaAutotanques(cmbRuta.Ruta, False)
-            End If
-        End If        
+        If Not cmbRuta.SelectedIndex = -1 Then
+			If CInt(cmbRuta.Ruta) <> 0 Then
+				LlenaListaAutotanques(cmbRuta.Ruta, False)
+			End If
+		End If
         'LUSATE
         If Me.LlenaHorarios Then
             grdHorario.DataSource = fncHorario(cmbRuta.Ruta, _Colonia)
@@ -190,11 +257,44 @@ Public Class Llamada
             cmbRuta.CargaDatos(Celula:=CType(cmbCelula.SelectedValue, Byte))
         End If
 
-        If cmbRuta.Items.Count > 0 Then
-            cmbRuta.SelectedIndex = 0
-            grdHorario.DataSource = fncHorario(cmbRuta.Ruta, _Colonia)
-        End If
+		If cmbRuta.Items.Count > 0 Then
+			cmbRuta.SelectedIndex = 0
+			grdHorario.DataSource = fncHorario(cmbRuta.Ruta, _Colonia)
+		Else
+			Try
+				cmbOperador.DataSource = Nothing
+				cmbOperador.Items.Clear()
+
+			Catch ex As Exception
+
+			End Try
+
+			Try
+				cmbAutoTanque.DataSource = Nothing
+				cmbAutoTanque.Items.Clear()
+			Catch ex As Exception
+
+			End Try
+		End If
     End Sub
+
+    Public Function ConsultarDatosCliente(ByVal Cliente As Integer) As RTGMCore.DireccionEntrega
+
+        Dim oGateway = New RTGMGateway.RTGMGateway(_Modulo, _CadenaConexion)
+        Dim oSolicitud As RTGMGateway.SolicitudGateway
+        Dim oDireccionEntrega As New RTGMCore.DireccionEntrega
+
+        oSolicitud.IDCliente = Cliente
+        oGateway.URLServicio = _URLGateway
+        Try
+            oDireccionEntrega = oGateway.buscarDireccionEntrega(oSolicitud)
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+        Return oDireccionEntrega
+    End Function
+
 
     Public Sub Entrada(ByVal Cliente As Integer, ByVal Nombre As String, ByVal Celula As Integer, ByVal Pedido As Integer, ByVal Origen As String, ByVal Ruta As Integer, ByVal Anio As Integer, ByVal Boletin As Integer, ByVal FCompromiso As Date, ByVal Portatil As Boolean, ByVal FAlta As Date)
         Dim Dias As Integer = Nothing
@@ -208,7 +308,7 @@ Public Class Llamada
         _Portatil = Portatil
         _FCompromiso = FCompromiso
         _Ruta = Ruta
-        _FAlta = FAlta        
+        _FAlta = FAlta
 
         Try
             SqlConnection.Close()
@@ -227,6 +327,25 @@ Public Class Llamada
         txtDemandante.Text = Nombre
         lbOrigen.Text = Origen
         Me.Text += "|Fecha llamada: " + CType(Now.Date, String)
+
+        'Se va al web service a traer el nombre  en ambos casos,   Portatil y Normal .
+        'If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+        '    Dim oDireccionEntrega As New RTGMCore.DireccionEntrega
+        '    oDireccionEntrega = ConsultarDatosCliente(Cliente)
+
+        '    Me.Text = "Llamada - [" + oDireccionEntrega.Nombre + "]"
+        '    _Cliente = Cliente
+        '    _Celula = Celula
+        '    _Pedido = Pedido
+        '    _Anio = Anio
+        '    _Boletin = Boletin
+        '    _Portatil = Portatil
+        '    _FCompromiso = FCompromiso
+        '    _Ruta = Ruta
+        '    _FAlta = FAlta
+
+        '    Me.txtDemandante.Text = oDireccionEntrega.Nombre
+        'End If
 
         LlenaListaAutotanques(_Ruta, True)
 
@@ -618,7 +737,7 @@ Public Class Llamada
         '
         'SqlConnection
         '
-        Me.SqlConnection.ConnectionString = "data source=Digital5000;initial catalog=Sigamet;persist security info=False;user " & _
+        Me.SqlConnection.ConnectionString = "data source=Digital5000;initial catalog=Sigamet;persist security info=False;user " &
     "id=sa;workstation id=FHURTADO;packet size=4096"
         Me.SqlConnection.FireInfoMessageEventOnUserErrors = False
         '
@@ -896,7 +1015,7 @@ Public Class Llamada
         'daOperador.Fill(DsLlamada, "Operador")
     End Sub
 
-    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click       
+    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
         If CType(cmbAutoTanque.SelectedValue, Int32) <> Nothing OrElse _Boletin <> 2 Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -916,7 +1035,8 @@ Public Class Llamada
             End If
 
             '04/09/2014: Se separa esta sección del código para evitar ingresar a la transacción si falla el proceso de pegasus
-            If (boletinEnLinea) Then
+            '03/10/2018: Se agrega validación de la variable _SGCWebHabilitado  - RM
+            If (boletinEnLinea AndAlso _SGCWebHabilitado) Then
                 Try
                     Dim servicioPedido As New desarrollogm.Pedido()
                     servicioPedido.Url = GLOBAL_URLWebserviceBoletin
@@ -925,12 +1045,23 @@ Public Class Llamada
                         servicioPedido.AltaPedidoConfiguracionAnulada(Main.GLOBAL_Estacion, "GPS", _Celula, _Anio, _Pedido, GLOBAL_Usuario, String.Empty)
                     End If
 
-                    servicioPedido.BoletinarPedido(Main.GLOBAL_Estacion, GLOBAL_Usuario, pedidoReferencia, _
+                    servicioPedido.BoletinarPedido(Main.GLOBAL_Estacion, GLOBAL_Usuario, pedidoReferencia,
                         False, Convert.ToInt32(cmbAutoTanque.SelectedValue), idPlantaSGC, txtObservaciones.Text)
                 Catch ex As Exception
-                    MessageBox.Show("No fué posible enviar el pedido al sistema SGCWEB," & vbCrLf & _
-                        "no se registrará el boletín en SIGAMET." & vbCrLf & _
-                        ex.Message, _
+                    MessageBox.Show("No fué posible enviar el pedido al sistema SGCWEB," & vbCrLf &
+                        "no se registrará el boletín en SIGAMET." & vbCrLf &
+                        ex.Message,
+                        "Error enviando pedido", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
+                End Try
+
+            ElseIf _FuenteGateway.Equals("CRM") AndAlso _Boletin = frmBoletin.enumTipoLlamada.Cliente Then
+                Try
+                    BoletinarPedidoEnCRM(_Pedido, _Celula)
+                Catch ex As Exception
+                    MessageBox.Show("No fue posible boletinar el pedido en CRM," & vbCrLf &
+                        "no se registrará el boletín en SIGAMET." & vbCrLf &
+                        ex.Message,
                         "Error enviando pedido", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End Try
@@ -939,7 +1070,7 @@ Public Class Llamada
             ''LUSATE Rutinas MobilGas
             If _Boletin = 2 And _Portatil = True Then
                 BoletinarPedidoPortatil()
-            End If            
+            End If
 
             Dim Transaccion As SqlClient.SqlTransaction
             Dim cmdInsert As New SqlClient.SqlCommand()
@@ -1025,19 +1156,14 @@ Public Class Llamada
                 Me.Tag = False
             Finally
                 If SiGrabo Then
+                    boletinEnLinea = False
                     If (boletinEnLinea = False) Then
                         If _Boletin = 2 And _Portatil = False Then
-                            cmdInsert.CommandText = "spCCActualizaBoletinEnPedido"
-                            cmdInsert.Parameters.Clear()
-                            cmdInsert.Parameters.Add("@AñoPed", SqlDbType.Int).Value = _Anio
-                            cmdInsert.Parameters.Add("@Celula", SqlDbType.Int).Value = _Celula
-                            cmdInsert.Parameters.Add("@Pedido", SqlDbType.Int).Value = _Pedido
-                            cmdInsert.Parameters.Add("@Rutaboletin", SqlDbType.SmallInt).Value = _RutaBoletin
-                            Try
-                                cmdInsert.ExecuteNonQuery()
-                            Catch ex As Exception
-                                MessageBox.Show(ex.Message)
-                            End Try
+
+                            'Se actualiza pedido, tanto en la base como en el WS .
+                            ' 03/10/2018: Se actualiza el pedido solo en la base de datos   - RM
+                            Llamada_ActualizaPedido(_Anio, _Celula, _Pedido, _RutaBoletin)
+
                         End If
                     End If
 
@@ -1064,6 +1190,101 @@ Public Class Llamada
 
     End Sub
 
+
+    Public Function Llamada_ActualizaPedido(ByVal Anio As Integer, ByVal Celula As String, ByVal Pedido As Integer, RutaBoletin As String) As Boolean
+
+        Dim cmdInsert As New SqlClient.SqlCommand()
+
+        Dim rdrInsert As SqlClient.SqlDataReader = Nothing
+        cmdInsert.CommandType = CommandType.StoredProcedure
+        cmdInsert.CommandTimeout = 100
+        cmdInsert.Connection = SqlConnection
+
+        cmdInsert.CommandText = "spCCActualizaBoletinEnPedido"
+        cmdInsert.Parameters.Clear()
+        cmdInsert.Parameters.Add("@AñoPed", SqlDbType.Int).Value = Anio
+        cmdInsert.Parameters.Add("@Celula", SqlDbType.Int).Value = Celula
+        cmdInsert.Parameters.Add("@Pedido", SqlDbType.Int).Value = Pedido
+        cmdInsert.Parameters.Add("@Rutaboletin", SqlDbType.SmallInt).Value = RutaBoletin
+
+        Try
+            cmdInsert.ExecuteNonQuery()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        'Try
+        '    If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+        '        Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido(_Modulo, _CadenaConexion)
+        '        objGateway.URLServicio = _URLGateway
+
+        '        'Se arma el pedido con los datos que llegan a la funciòn.
+
+        '        Dim objPedido As New RTGMCore.PedidoCRMDatos
+        '        objPedido.IDEmpresa = GLOBAL_Corporativo
+        '        objPedido.IDZona = Celula
+        '        'objPedido.AnioPed = Anio
+        '        objPedido.EstatusBoletin = "BOLETINADO"
+        '        'objPedido.PedidoReferencia = Pedido
+        '        objPedido.IDPedido = Pedido
+        '        Dim ListaPedidos As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
+
+        '        ListaPedidos.Add(objPedido)
+
+        '        Dim oSolicitudActualizarPedido As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
+        '            .Pedidos = ListaPedidos,
+        '            .Portatil = False,
+        '            .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin
+        '        }
+
+        '        Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(oSolicitudActualizarPedido)
+        '    End If
+        'Catch ex As Exception
+        '    MessageBox.Show("Error actualizando el pedido en CRM." & vbCrLf & ex.Message,
+        '                    ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'End Try
+    End Function
+
+    ''' <summary>
+    ''' Boletina el pedido en el CRM
+    ''' </summary>
+    Private Sub BoletinarPedidoEnCRM(ByVal pedido As Integer, ByVal celula As Integer)
+
+        Try
+            If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+                Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido(_Modulo, _CadenaConexion)
+                objGateway.URLServicio = _URLGateway
+
+                Dim objPedido As New RTGMCore.PedidoCRMDatos
+                objPedido.IDEmpresa = GLOBAL_Corporativo
+                objPedido.EstatusBoletin = "BOLETINADO"
+                objPedido.IDPedido = pedido
+                objPedido.IDZona = celula
+
+                Dim ListaPedidos As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
+
+                ListaPedidos.Add(objPedido)
+
+                Dim oSolicitudActualizarPedido As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
+                    .Pedidos = ListaPedidos,
+                    .Portatil = False,
+                    .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin
+                }
+
+                Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(oSolicitudActualizarPedido)
+
+                If (Not ListaRespuesta(0).Success AndAlso
+                        Not IsNothing(ListaRespuesta(0).Message)) Then
+
+                    Throw New Exception(ListaRespuesta(0).Message)
+                End If
+
+            End If
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     'Funcion para encontrar la referencia de la celda del grid de pedidos
     Public Function getCelda() As Integer
         Return _numeroCelda
@@ -1080,27 +1301,28 @@ Public Class Llamada
 
     Private Sub Llamada_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         cboMotivo2.CargaDatos()
-        'If GLOBAL_UsarMobileGas And _Portatil = True Then
-        '    'ConsultaOperadorAutotanque()
-        'End If
+		'If GLOBAL_UsarMobileGas And _Portatil = True Then
+		'    'ConsultaOperadorAutotanque()
+		'End If
 
-        'LUSATE Consulta RAF por autotanque
-        If cmbAutoTanque.SelectedIndex <> -1 Then
-            ConsultaRAFPorRutaAutotanque(cmbAutoTanque.SelectedValue)
-            If RAF <> "" Then
-                lnkAlertaRAF.Text = RAF
-                lnkAlertaRAF.Visible = True
-            Else
-                lnkAlertaRAF.Visible = False
-            End If
+		'LUSATE Consulta RAF por autotanque
+		If cmbAutoTanque.SelectedIndex <> -1 Then
+			ConsultaRAFPorRutaAutotanque(cmbAutoTanque.SelectedValue)
+			If RAF <> "" Then
+				lnkAlertaRAF.Text = RAF
+				lnkAlertaRAF.Visible = True
+			Else
+				lnkAlertaRAF.Visible = False
+			End If
+			ConsultaOperadorAutotanque()
+			'LUSATE Consulta Fin de día por autotanque
+			ConsultaFinDeDia(cmbAutoTanque.SelectedValue)
+		Else
+			lnkAlertaRAF.Visible = False
+			lnkAlertaFinDeDia.Visible = False
+		End If
 
-            'LUSATE Consulta Fin de día por autotanque
-            ConsultaFinDeDia(cmbAutoTanque.SelectedValue)
-        Else
-            lnkAlertaRAF.Visible = False
-            lnkAlertaFinDeDia.Visible = False
-        End If
-    End Sub
+	End Sub
 
     Private Sub chkFSiguienteLlamada_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkFSiguienteLlamada.CheckedChanged
         dtpFechaProximaLlamada.Enabled = chkFSiguienteLlamada.Checked
@@ -1121,10 +1343,10 @@ Public Class Llamada
             End If
             daHorario.Fill(retTable)
         Catch ex As SqlClient.SqlException
-            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) & _
+            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            MessageBox.Show("Error." & Chr(13) & _
+            MessageBox.Show("Error." & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             If CnnSigamet.State = ConnectionState.Open Then
@@ -1164,14 +1386,19 @@ Public Class Llamada
         ''LUSATE                   
         If GLOBAL_VersionMovilGas <> 3 And Not _Portatil Then
             DsLlamada.Operador.Clear()
-            daAutotanque.Fill(DsLlamada, "Operador")
-            cmbOperador.DataSource = DsLlamada.Operador
-            cmbOperador.DisplayMember = "Nombre"
-            cmbOperador.ValueMember = "Operador"                    
+            If (DsLlamada.Operador.Rows.Count > 0) Then
+                daAutotanque.Fill(DsLlamada, "Operador")
+            End If
+            If IsNothing(cmbOperador.DataSource) Then
+                cmbOperador.DataSource = DsLlamada.Operador
+                cmbOperador.DisplayMember = "Nombre"
+                cmbOperador.ValueMember = "Operador"
+            End If
+
         End If
     End Sub
 
-    Private Sub cmbAutoTanque_SelectedIndexChanged_1(sender As System.Object, e As System.EventArgs) Handles cmbAutoTanque.SelectedIndexChanged                
+    Private Sub cmbAutoTanque_SelectedIndexChanged_1(sender As System.Object, e As System.EventArgs) Handles cmbAutoTanque.SelectedIndexChanged
         If GLOBAL_VersionMovilGas = 1 And cmbAutoTanque.SelectedIndex <> -1 And _Portatil Then
             _UsuarioMovil = 0
             cmbOperador.SelectedValue = cmbAutoTanque.SelectedValue
@@ -1247,10 +1474,10 @@ Public Class Llamada
 
 
         Catch ex As SqlClient.SqlException
-            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) & _
+            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            MessageBox.Show("Error." & Chr(13) & _
+            MessageBox.Show("Error." & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             If CnnSigamet.State = ConnectionState.Open Then
@@ -1283,10 +1510,10 @@ Public Class Llamada
             End If
 
         Catch ex As SqlClient.SqlException
-            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) & _
+            MessageBox.Show("Error no." & CStr(ex.Number) & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            MessageBox.Show("Error." & Chr(13) & _
+            MessageBox.Show("Error." & Chr(13) &
                                                 ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             If CnnSigamet.State = ConnectionState.Open Then
@@ -1309,20 +1536,53 @@ Public Class Llamada
                     Dim MGRutinas As New MobileGas.MobileGas(GLOBAL_ConString, GLOBAL_MGConnectionString)
                     Dim PedRegistrado As Boolean = MGRutinas.InsertaPedidoMobileGas(_Pedido, _Cliente, _FCompromiso, _UsuarioMovil, _AutoTanque, _RutaBoletin, _FAlta)
                     If PedRegistrado = False Then
-                        MessageBox.Show("No fué posible enviar el pedido al sistema Móvil Gas," & vbCrLf & _
-                        "no se registrará el boletín en SIGAMET." & vbCrLf & _
-                        "No es posible boletinar pedidos de otros días.", _
+                        MessageBox.Show("No fué posible enviar el pedido al sistema Móvil Gas," & vbCrLf &
+                        "no se registrará el boletín en SIGAMET." & vbCrLf &
+                        "No es posible boletinar pedidos de otros días.",
                         "Error enviando pedido", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Me.Cursor = Cursors.Default
                         Return
                     End If
                 Catch ex As Exception
-                    MessageBox.Show("No fué posible enviar el pedido al sistema Móvil Gas," & vbCrLf & _
-                        "no se registrará el boletín en SIGAMET." & vbCrLf & _
-                        ex.Message, _
+                    MessageBox.Show("No fué posible enviar el pedido al sistema Móvil Gas," & vbCrLf &
+                        "no se registrará el boletín en SIGAMET." & vbCrLf &
+                        ex.Message,
                         "Error enviando pedido", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End Try
+
+                'EVH .   2018/07/23 Se agrega la funcionalidad para boletinar un pedido de Portàtil . 
+                If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+
+                    Try
+                        Dim objGateway As RTGMGateway.RTGMActualizarPedido = New RTGMGateway.RTGMActualizarPedido(_Modulo, _CadenaConexion)
+                        objGateway.URLServicio = _URLGateway
+                        Dim lstPedido As List(Of RTGMCore.Pedido) = New List(Of RTGMCore.Pedido)()
+                        lstPedido.Add(New RTGMCore.PedidoCRMSaldo With {
+                                    .IDPedido = _Pedido,
+                                    .IDZona = _Celula,
+                                    .AnioPed = _Anio,
+                                    .PedidoReferencia = _Pedido
+            })
+                        Dim Solicitud As RTGMGateway.SolicitudActualizarPedido = New RTGMGateway.SolicitudActualizarPedido With {
+                                    .Pedidos = lstPedido,
+                                    .Portatil = True,
+                                    .TipoActualizacion = RTGMCore.TipoActualizacion.Boletin,
+                                    .Usuario = "ROPIMA"
+            }
+
+                        Dim ListaRespuesta As List(Of RTGMCore.Pedido) = objGateway.ActualizarPedido(Solicitud)
+
+                    Catch ex As Exception
+
+
+                    End Try
+
+
+                End If
+
+
+
             Else
                 _AutoTanque = CInt(cmbAutoTanque.SelectedValue)
                 Dim cmd As New SqlCommand("spCCPedidoPortatilStatus", CnnSigamet)
@@ -1405,13 +1665,17 @@ Public Class Llamada
             Else
                 cmdCAutoTanque.Parameters("@Ruta").Value = RutaConsulta
             End If
-
-            daAutotanque.Fill(Me.DsLlamada.Autotanque)            
-            Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
-            Me.cmbAutoTanque.DisplayMember = "Autotanque"
-            Me.cmbAutoTanque.ValueMember = "Autotanque"
+            daAutotanque.Fill(Me.DsLlamada.Autotanque)
         End If
-            daMotivo.Fill(DsLlamada, "Motivo")
+
+		'If Me.cmbAutoTanque.Items.Count > 0 Then
+		'	Me.cmbAutoTanque.DataSource = Me.DsLlamada.Autotanque
+		'	Me.cmbAutoTanque.DisplayMember = "Autotanque"
+		'	Me.cmbAutoTanque.ValueMember = "Autotanque"
+		'End If
+
+		' 17/10/2018 RM - Siempre cargar la tabla Motivo
+		daMotivo.Fill(DsLlamada, "Motivo")
     End Sub
 
     Private Sub ConsultaCelulas()
@@ -1425,7 +1689,7 @@ Public Class Llamada
             cmdCelula.CommandText = "Select Celula,Descripcion from Celula where Comercial=1 and Celula<>0 order by Celula "
         End If
 
-        Dim daCelula As New SqlDataAdapter(cmdCelula)        
+        Dim daCelula As New SqlDataAdapter(cmdCelula)
         Dim dtCelula As New DataTable()
 
         AbreConexion()

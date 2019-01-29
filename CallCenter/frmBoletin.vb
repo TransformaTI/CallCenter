@@ -1,4 +1,8 @@
 Imports System.Data.SqlClient
+Imports System.Collections.Generic
+Imports System
+Imports System.Linq
+Imports System.Text
 
 Public Class frmBoletin
     Inherits System.Windows.Forms.Form
@@ -18,6 +22,12 @@ Public Class frmBoletin
     Private _FCompromiso As Date    
     Private _Autotanque As Integer = 0
     Private _FAlta As Date
+    Public _URLGateway As String = ""
+    Private _PedidosRTGM As List(Of RTGMCore.Pedido)
+
+    ' Variable para enviar el pedido a la plataforma SGCWeb     - RM 03/10/2018
+    Private _SGCWebHabilitado As Boolean
+    Private _FuenteGateway As String
     Friend WithEvents btnCerrar As System.Windows.Forms.ToolBarButton
     Friend WithEvents btnSep2 As System.Windows.Forms.ToolBarButton
     Friend WithEvents btnRefrescar As System.Windows.Forms.ToolBarButton
@@ -33,18 +43,46 @@ Public Class frmBoletin
     Friend WithEvents btnActualizaStatusMG As System.Windows.Forms.ToolBarButton
     Friend WithEvents DsTipoFactura1 As Sigamet.dsTipoFactura
     Friend WithEvents btnReasignar As System.Windows.Forms.ToolBarButton
+    Friend WithEvents urlcrm As ColumnHeader
+    Friend WithEvents SeleccionCalleColonia1 As SigaMetClasses.SeleccionCalleColonia
     Friend WithEvents tbBarra As System.Windows.Forms.ToolBar
+
 
 
 
 
 #Region " Windows Form Designer generated code "
 
-    Public Sub New()
+    Public Sub New(Optional ByVal URLGateway As String = Nothing,
+                   Optional ByVal SGCWebHabilitado As Boolean = False,
+                   Optional ByVal FuenteGateway As String = "")
         MyBase.New()
 
         'This call is required by the Windows Form Designer.
         InitializeComponent()
+
+        _URLGateway = URLGateway
+        _SGCWebHabilitado = SGCWebHabilitado
+        _FuenteGateway = FuenteGateway
+
+        SeleccionCalleColonia1.URLGateway = _URLGateway
+        SeleccionCalleColonia1.CadenaConexion = GLOBAL_ConString
+        SeleccionCalleColonia1.Modulo = GLOBAL_Modulo
+
+        Dim _CelulaCarga As Byte
+        Dim FechaDtp As Date
+
+        FechaDtp = dtpFecha.Value.Date
+
+        If CType(cboUsuarioCelula.SelectedValue, Byte) <> 0 Then
+            _CelulaCarga = CType(cboUsuarioCelula.SelectedValue, Byte)
+        Else
+            _CelulaCarga = Main.GLOBAL_Celula
+        End If
+
+        'Dim ListaPedidos As List(Of RTGMCore.Pedido)
+        'objPedidoGateway.URLServicio = _URLGateway
+        'ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
 
         'Add any initialization after the InitializeComponent() call
         chkPortatil.Visible = GLOBAL_ManejarClientesPortatil
@@ -92,7 +130,6 @@ Public Class frmBoletin
     Friend WithEvents grdcolMotivo As System.Windows.Forms.DataGridTextBoxColumn
     Friend WithEvents grdcolObservaciones As System.Windows.Forms.DataGridTextBoxColumn
     Friend WithEvents colStatus As System.Windows.Forms.ColumnHeader
-    Friend WithEvents SeleccionCalleColonia As SigaMetClasses.SeleccionCalleColonia
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
@@ -158,6 +195,7 @@ Public Class frmBoletin
         Me.colTelCasa = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colObservaciones = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colRAF = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.urlcrm = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colEstadoSGC = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colEstadoMG = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colAutotanqueMG = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -171,7 +209,6 @@ Public Class frmBoletin
         Me.grdcolUsuario = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.grdcolObservaciones = New System.Windows.Forms.DataGridTextBoxColumn()
         Me.txtLlamadaObservaciones = New System.Windows.Forms.TextBox()
-        Me.SeleccionCalleColonia = New SigaMetClasses.SeleccionCalleColonia()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.grpDatos = New System.Windows.Forms.GroupBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -186,7 +223,6 @@ Public Class frmBoletin
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.cboStatusBoletin = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.cboRuta = New SigaMetClasses.Combos.ComboRutaBoletin()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.chkTodasLasRutas = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -212,8 +248,10 @@ Public Class frmBoletin
         Me.btnLlamadaOperador = New System.Windows.Forms.ToolBarButton()
         Me.btnActualizaStatusMG = New System.Windows.Forms.ToolBarButton()
         Me.tbBarra = New System.Windows.Forms.ToolBar()
-        Me.DsTipoFactura1 = New Sigamet.dsTipoFactura()
         Me.btnReasignar = New System.Windows.Forms.ToolBarButton()
+        Me.DsTipoFactura1 = New Sigamet.dsTipoFactura()
+        Me.cboRuta = New SigaMetClasses.Combos.ComboRutaBoletin()
+        Me.SeleccionCalleColonia1 = New SigaMetClasses.SeleccionCalleColonia()
         CType(Me.grdLlamada, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.grpDatos.SuspendLayout()
@@ -249,7 +287,7 @@ Public Class frmBoletin
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lvwBoletin.BackColor = System.Drawing.Color.Honeydew
-        Me.lvwBoletin.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colPedidoReferencia, Me.colAñoPed, Me.colCelula, Me.colPedido, Me.colRuta, Me.colRutaDescripcion, Me.colRutaBoletin, Me.colRutaBoletinDescripcion, Me.colHora, Me.colFCompromiso, Me.colCliente, Me.colNombre, Me.colDireccion, Me.colPrioridad, Me.colUsuario, Me.colStatus, Me.colInsistente, Me.colTelCasa, Me.colObservaciones, Me.colRAF})
+        Me.lvwBoletin.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colPedidoReferencia, Me.colAñoPed, Me.colCelula, Me.colPedido, Me.colRuta, Me.colRutaDescripcion, Me.colRutaBoletin, Me.colRutaBoletinDescripcion, Me.colHora, Me.colFCompromiso, Me.colCliente, Me.colNombre, Me.colDireccion, Me.colPrioridad, Me.colUsuario, Me.colStatus, Me.colInsistente, Me.colTelCasa, Me.colObservaciones, Me.colRAF, Me.urlcrm})
         Me.lvwBoletin.FullRowSelect = True
         Me.lvwBoletin.GridLines = True
         Me.lvwBoletin.HideSelection = False
@@ -264,7 +302,7 @@ Public Class frmBoletin
         '
         'colPedidoReferencia
         '
-        Me.colPedidoReferencia.Text = "Pedido"
+        Me.colPedidoReferencia.Text = "PedidoReferencia"
         Me.colPedidoReferencia.Width = 100
         '
         'colAñoPed
@@ -280,7 +318,7 @@ Public Class frmBoletin
         'colPedido
         '
         Me.colPedido.Text = "Pedido"
-        Me.colPedido.Width = 0
+        Me.colPedido.Width = 50
         '
         'colRuta
         '
@@ -353,11 +391,15 @@ Public Class frmBoletin
         'colObservaciones
         '
         Me.colObservaciones.Text = "Observaciones"
-        Me.colObservaciones.Width = 0
         '
         'colRAF
         '
         Me.colRAF.Text = "Reporte RAF"
+        '
+        'urlcrm
+        '
+        Me.urlcrm.Text = "URLCRM"
+        Me.urlcrm.Width = 0
         '
         'colEstadoSGC
         '
@@ -470,17 +512,6 @@ Public Class frmBoletin
         Me.txtLlamadaObservaciones.Size = New System.Drawing.Size(416, 72)
         Me.txtLlamadaObservaciones.TabIndex = 5
         '
-        'SeleccionCalleColonia
-        '
-        Me.SeleccionCalleColonia.AltaCalleColonia = True
-        Me.SeleccionCalleColonia.Calle = 0
-        Me.SeleccionCalleColonia.Colonia = 0
-        Me.SeleccionCalleColonia.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SeleccionCalleColonia.Location = New System.Drawing.Point(8, 72)
-        Me.SeleccionCalleColonia.Name = "SeleccionCalleColonia"
-        Me.SeleccionCalleColonia.Size = New System.Drawing.Size(536, 144)
-        Me.SeleccionCalleColonia.TabIndex = 0
-        '
         'Panel1
         '
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
@@ -497,6 +528,7 @@ Public Class frmBoletin
         '
         'grpDatos
         '
+        Me.grpDatos.Controls.Add(Me.SeleccionCalleColonia1)
         Me.grpDatos.Controls.Add(Me.Label7)
         Me.grpDatos.Controls.Add(Me.lblNombre)
         Me.grpDatos.Controls.Add(Me.lblObservacionesPedido)
@@ -505,7 +537,6 @@ Public Class frmBoletin
         Me.grpDatos.Controls.Add(Me.Label2)
         Me.grpDatos.Controls.Add(Me.Label3)
         Me.grpDatos.Controls.Add(Me.lblCliente)
-        Me.grpDatos.Controls.Add(Me.SeleccionCalleColonia)
         Me.grpDatos.Location = New System.Drawing.Point(16, 8)
         Me.grpDatos.Name = "grpDatos"
         Me.grpDatos.Size = New System.Drawing.Size(568, 280)
@@ -636,16 +667,6 @@ Public Class frmBoletin
         Me.Label1.Size = New System.Drawing.Size(47, 13)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "Estatus:"
-        '
-        'cboRuta
-        '
-        Me.cboRuta.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboRuta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboRuta.Enabled = False
-        Me.cboRuta.Location = New System.Drawing.Point(848, 21)
-        Me.cboRuta.Name = "cboRuta"
-        Me.cboRuta.Size = New System.Drawing.Size(96, 21)
-        Me.cboRuta.TabIndex = 12
         '
         'Label6
         '
@@ -877,12 +898,6 @@ Public Class frmBoletin
         Me.tbBarra.Size = New System.Drawing.Size(1008, 42)
         Me.tbBarra.TabIndex = 0
         '
-        'DsTipoFactura1
-        '
-        Me.DsTipoFactura1.DataSetName = "dsTipoFactura"
-        Me.DsTipoFactura1.Locale = New System.Globalization.CultureInfo("es-MX")
-        Me.DsTipoFactura1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'btnReasignar
         '
         Me.btnReasignar.ImageIndex = 14
@@ -890,6 +905,35 @@ Public Class frmBoletin
         Me.btnReasignar.Tag = "ReasignarPedidos"
         Me.btnReasignar.Text = "Reasignar pedidos"
         Me.btnReasignar.ToolTipText = "Reasignar pedidos boletinados"
+        '
+        'DsTipoFactura1
+        '
+        Me.DsTipoFactura1.DataSetName = "dsTipoFactura"
+        Me.DsTipoFactura1.Locale = New System.Globalization.CultureInfo("es-MX")
+        Me.DsTipoFactura1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'cboRuta
+        '
+        Me.cboRuta.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboRuta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboRuta.Enabled = False
+        Me.cboRuta.Location = New System.Drawing.Point(848, 21)
+        Me.cboRuta.Name = "cboRuta"
+        Me.cboRuta.Size = New System.Drawing.Size(96, 21)
+        Me.cboRuta.TabIndex = 12
+        '
+        'SeleccionCalleColonia1
+        '
+        Me.SeleccionCalleColonia1.AltaCalleColonia = True
+        Me.SeleccionCalleColonia1.CadenaConexion = Nothing
+        Me.SeleccionCalleColonia1.Calle = 0
+        Me.SeleccionCalleColonia1.Colonia = 0
+        Me.SeleccionCalleColonia1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SeleccionCalleColonia1.Location = New System.Drawing.Point(8, 66)
+        Me.SeleccionCalleColonia1.Modulo = CType(0, Byte)
+        Me.SeleccionCalleColonia1.Name = "SeleccionCalleColonia1"
+        Me.SeleccionCalleColonia1.Size = New System.Drawing.Size(536, 144)
+        Me.SeleccionCalleColonia1.TabIndex = 13
         '
         'frmBoletin
         '
@@ -956,161 +1000,359 @@ Public Class frmBoletin
         End If
         Cursor = Cursors.WaitCursor
         Dim frmPedido As New Pedido()
-        frmPedido.Entrada(_Cliente, _Nombre, Me.SeleccionCalleColonia.CP, _Ruta, 0, _Celula, _Ruta.ToString, 1)
+        frmPedido.Entrada(_Cliente, _Nombre, Me.SeleccionCalleColonia1.CP, _Ruta, 0, _Celula, _Ruta.ToString, 1)
         'frmPedido.Entrada(_Cliente, _Nombre, Me.SeleccionCalleColonia.CP, _Ruta, "", _Celula, _Ruta.ToString, 1)
         frmPedido.Dispose()
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub CargaBoletin()
-        If chkPortatil.Checked Then
+    'Private Function ConsultaClientesBoletinCRM(ByVal Pedidos As List(Of RTGMCore.Pedido)) As Integer
+
+    '    Dim objPedido As New RTGMCore.Pedido
+    '    Dim cliente As New Integer
+    '    Dim oSolicitud As RTGMGateway.SolicitudGateway
+    '    Dim oDireccionEntrega As RTGMCore.DireccionEntrega
+    '    Dim oGateway As New RTGMGateway.RTGMGateway(GLOBAL_Modulo, GLOBAL_ConString)
+
+    '    lvwBoletin.Items.Clear()
+
+    '    For Each objPedido In Pedidos
+    '        cliente = objPedido.IDDireccionEntrega
+    '        oSolicitud = New RTGMGateway.SolicitudGateway
+    '        'oSolicitud.Fuente = RTGMCore.Fuente.Sigamet
+    '        'oSolicitud.IDEmpresa = SigaMetClasses.GLOBAL_Empresa
+
+    '        oSolicitud.IDCliente = cliente
+    '        oGateway.URLServicio = _URLGateway
+    '        oDireccionEntrega = oGateway.buscarDireccionEntrega(oSolicitud)
+    '        objPedido.DireccionEntrega.Nombre = oDireccionEntrega.Nombre
+
+    '        Dim oItem As ListViewItem
+    '        Dim tipo As Integer = 0
+
+    '        oItem = New ListViewItem(CType(objPedido.PedidoReferencia, String).Trim, tipo) '0
+    '        oItem.SubItems.Add(CType(objPedido.AnioPed, Short).ToString) '1
+    '        oItem.SubItems.Add(CType(objPedido.IDZona, Byte).ToString) '2
+    '        oItem.SubItems.Add(CType(objPedido.IDPedido, Integer).ToString) '3
+    '        oItem.SubItems.Add(CType(objPedido.RutaOrigen.NumeroRuta, Short).ToString) '4
+    '        oItem.SubItems.Add(CType(objPedido.RutaOrigen.Descripcion, String).Trim) '5
+    '        oItem.SubItems.Add(CType(objPedido.RutaOrigen.NumeroRuta, Short).ToString) '6
+    '        oItem.SubItems.Add(CType(objPedido.RutaBoletin.Descripcion, String).Trim) '7
+    '        oItem.SubItems.Add(CType(objPedido.FAlta, Date).ToString) '8
+    '        oItem.SubItems.Add(CType(objPedido.FCompromiso, Date).ToShortDateString) '9
+    '        oItem.SubItems.Add(CType(objPedido.IDDireccionEntrega, String).Trim) '10
+    '        oItem.SubItems.Add(CType(oDireccionEntrega.Nombre, String).Trim) '11
+    '        oItem.SubItems.Add(CType(oDireccionEntrega.DireccionCompleta, String).Trim) '12
+    '        oItem.SubItems.Add(CType(objPedido.PrioridadPedido, String).Trim) '13
+    '        oItem.SubItems.Add(CType(objPedido.IDUsuarioAlta, String).Trim) '14
+    '        oItem.SubItems.Add(CType(objPedido.EstatusBoletin, String).Trim) '15
+    '        oItem.SubItems.Add(CType(objPedido.LlamadaInsistente, String).Trim) '16
+    '        oItem.SubItems.Add(CType(oDireccionEntrega.Telefono1, String).Trim) '17
+    '        oItem.SubItems.Add(CType(oDireccionEntrega.Observaciones, String).Trim) '18
+
+
+    '        lvwBoletin.Items.Add(oItem)
+    '    Next
+
+    '    Return 0
+
+
+    'End Function
+
+    Private Sub CargarLvwBoletin_PedidosCRM(ByVal Pedidos As List(Of RTGMCore.Pedido))
+        Dim objPedido As New RTGMCore.Pedido
+
+        Try
+            lvwBoletin.Items.Clear()
+
+            ' Agregar la columna EstadoSGC
+            If Not lvwBoletin.Columns.Contains(colEstadoSGC) Then
+                lvwBoletin.Columns.Add(colEstadoSGC)
+            End If
+
+            For Each objPedido In Pedidos
+                Dim oItem As ListViewItem
+				Dim tipo As Integer = 0
+				If (IsNothing(objPedido.Message)) Then
+
+					oItem = New ListViewItem(CType(If(objPedido.PedidoReferencia, ""), String).Trim, tipo) '0
+					oItem.SubItems.Add(CType(If(objPedido.AnioPed, 0), Short).ToString) '1
+					oItem.SubItems.Add(CType(If(objPedido.IDZona, 0), Byte).ToString) '2
+					oItem.SubItems.Add(CType(If(objPedido.IDPedido, 0), Integer).ToString) '3
+					If Not IsNothing(objPedido.RutaOrigen) Then
+						oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '4
+						'oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.Descripcion, ""), String).Trim) '5
+						oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Ruta.Descripcion.Trim, ""), String).Trim) '5
+						oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '6
+					Else
+						oItem.SubItems.Add(0) '4
+						oItem.SubItems.Add("") '5
+						oItem.SubItems.Add(0) '6
+					End If
+					If Not IsNothing(objPedido.RutaBoletin) Then
+						oItem.SubItems.Add(CType(If(objPedido.RutaBoletin.Descripcion, ""), String).Trim) '7
+					Else
+						oItem.SubItems.Add("") '7
+					End If
+					oItem.SubItems.Add(CType(If(objPedido.FAlta, Date.Now), Date).ToShortDateString) '8
+					oItem.SubItems.Add(CType(If(objPedido.FCompromiso, Date.Now), Date).ToShortDateString) '9
+					oItem.SubItems.Add(CType(objPedido.IDDireccionEntrega, String).Trim) '10
+					If Not IsNothing(objPedido.DireccionEntrega) Then
+						oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Nombre, ""), String).Trim) '11
+						oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.DireccionCompleta, ""), String).Trim) '12
+					Else
+						oItem.SubItems.Add("") '11
+						oItem.SubItems.Add("") '12
+					End If
+					oItem.SubItems.Add(CType(If(objPedido.PrioridadPedido, ""), String).Trim) '13
+					oItem.SubItems.Add(CType(If(objPedido.IDUsuarioAlta, ""), String).Trim) '14
+					oItem.SubItems.Add(CType(If(objPedido.EstatusBoletin, ""), String).Trim) '15
+					oItem.SubItems.Add(CType(If(objPedido.LlamadaInsistente, ""), String).Trim) '16
+					If Not IsNothing(objPedido.DireccionEntrega) Then
+						oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Telefono1, ""), String).Trim) '17
+					Else
+						oItem.SubItems.Add("") '17
+					End If
+					oItem.SubItems.Add(CType(If(objPedido.Observaciones, ""), String).Trim) '18
+					oItem.SubItems.Add(objPedido.ReporteRAF) '19
+
+					oItem.SubItems.Add(objPedido.URLCRM) '20
+
+					oItem.SubItems.Add(objPedido.EstatusMovil) '21 EstadoSGC
+
+					lvwBoletin.Items.Add(oItem)
+				End If
+			Next
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub CargaBoletin(Optional ByVal URLGateway As String = "")
+		' chkPortatil.Checked = True
+		SeleccionCalleColonia1.LimpiaTodo()
+		grdLlamada.DataSource = Nothing
+		txtLlamadaObservaciones.Text = ""
+		lblCliente.Text = ""
+		lblNombre.Text = ""
+
+		lblObservacionesPedido.Text = ""
+		If chkPortatil.Checked Then
             CargaBoletinPortatil()
             Exit Sub
         End If
         Cursor = Cursors.WaitCursor
 
-
-
-        If lvwBoletin.Columns.Contains(colEstadoMG) Then            
-            lvwBoletin.Columns.Remove(colPedidoMG)
-            lvwBoletin.Columns.Remove(colAutotanqueMG)
-            lvwBoletin.Columns.Remove(colEstadoMG)
-            lvwBoletin.Columns.Remove(colFStatusMG)
-        End If
-
-        btnLlamadaOperador.Enabled = False
-        btnConfirmacionCliente.Enabled = False
-        btnCambioCompromiso.Enabled = False
-        btnConsultaCliente.Enabled = False
-
-        LimpiaVariables()
-
-        grpDatos.Visible = False
-
-        lvwBoletin.Items.Clear()
-        grdLlamada.DataSource = Nothing
-        txtLlamadaObservaciones.Text = ""
-        lblChofer.Text = String.Empty
-
         Dim _CelulaCarga As Byte
+        Dim FechaDtp As Date
+
+        FechaDtp = dtpFecha.Value.Date
+
         If CType(cboUsuarioCelula.SelectedValue, Byte) <> 0 Then
             _CelulaCarga = CType(cboUsuarioCelula.SelectedValue, Byte)
         Else
             _CelulaCarga = Main.GLOBAL_Celula
         End If
 
-        Dim cmd As New SqlCommand("spCCConsultaBoletinDia", CnnSigamet)
-        With cmd
-            .CommandTimeout = 90
-            .CommandType = CommandType.StoredProcedure
-            .Parameters.Add("@Celula", SqlDbType.TinyInt).Value = _CelulaCarga
-            .Parameters.Add("@FCompromiso", SqlDbType.DateTime).Value = dtpFecha.Value.Date
-            .Parameters.Add("@StatusBoletin", SqlDbType.VarChar).Value = cboStatusBoletin.Text
-            If Not chkTodasLasRutas.Checked Then
-                .Parameters.Add("@Ruta", SqlDbType.SmallInt).Value = cboRuta.Ruta
-            End If
-        End With
-
-        Dim dr As SqlDataReader
-
-        Try
-            AbreConexion()
-
+        If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
             Try
-                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection)
-            Catch ex As Exception
-                MessageBox.Show("La base de datos está ocupada.  Por favor intente de nuevo.", _Titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                CierraConexion()
+                Dim FechaInicio As Date
+                If _FuenteGateway = "CRM" Then
+                    FechaInicio = FechaDtp.AddDays(-30)
+                Else
+                    FechaInicio = FechaDtp
+                End If
+
+                Dim FechaFin As Date = FechaDtp.AddSeconds(-1).AddDays(1)
+
+                Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
+                Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
+                _PedidosRTGM = New List(Of RTGMCore.Pedido)
+                objPedidoGateway.URLServicio = _URLGateway
+
+                '   Boletín
+                SolicitudPedidoGateway.IDZona = _CelulaCarga
+                SolicitudPedidoGateway.EstatusBoletin = cboStatusBoletin.SelectedItem
+                SolicitudPedidoGateway.TipoConsultaPedido = RTGMCore.TipoConsultaPedido.Boletin
+                SolicitudPedidoGateway.FechaCompromisoInicio = FechaInicio
+                SolicitudPedidoGateway.FechaCompromisoFin = FechaFin
+                If Not chkTodasLasRutas.Checked Then
+                    SolicitudPedidoGateway.IDRutaOrigen = cboRuta.Ruta
+                End If
+
+                _PedidosRTGM = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
+				'Consulta los pedidos que vienen como respuesta del Web Service 
+
+				' RM_09_08_2018
+				' Se comenta este método; los pedidos ya traen información del cliente en la propiedad
+				' Pedido.DireccionEntrega. Se agrega el método CargarLvwBoletin_PedidosCRM()
+				'ConsultaClientesBoletinCRM(ListaPedidos)
+				CargarLvwBoletin_PedidosCRM(_PedidosRTGM)
+
+				lblBoletines.Text = ""
+				lblChofer.Text = String.Empty
+
+				If chkTodasLasRutas.Checked Then
+					lblBoletines.Text &= cboUsuarioCelula.Text.Trim
+				Else
+					lblBoletines.Text &= cboRuta.Descripcion
+				End If
+				'lblBoletines.Text &= " con el estatus " & Me.cboStatusBoletin.Text.Trim & " (" & lvwBoletin.Items.Count.ToString & " en total)"
+				lblBoletines.Text &= " - Status " & Me.cboStatusBoletin.Text.Trim & " (" & lvwBoletin.Items.Count.ToString & " en total)"
+
+				If Not chkTodasLasRutas.Checked Then
+					ConsultaChoferes()
+				End If
+
+			Catch ex As Exception
+                MessageBox.Show("Error consultando los pedidos en CRM." & vbCrLf & ex.Message,
+                            ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
                 Cursor = Cursors.Default
-                Exit Sub
             End Try
-
-            Dim ixc As Integer
-            Dim showSGCStatus As Boolean
-
-            If Not lvwBoletin.Columns.Contains(colEstadoSGC) Then
-                For ixc = 0 To dr.FieldCount - 1
-                    If dr.GetName(ixc).Equals("StatusSGC") Then
-                        lvwBoletin.Columns.Add(colEstadoSGC)
-                        showSGCStatus = True
-                        Exit For
-                    End If
-                Next
-            Else
-                showSGCStatus = True
+        Else
+            If lvwBoletin.Columns.Contains(colEstadoMG) Then
+                lvwBoletin.Columns.Remove(colPedidoMG)
+                lvwBoletin.Columns.Remove(colAutotanqueMG)
+                lvwBoletin.Columns.Remove(colEstadoMG)
+                lvwBoletin.Columns.Remove(colFStatusMG)
             End If
 
-            Dim oItem As ListViewItem
+            btnLlamadaOperador.Enabled = False
+            btnConfirmacionCliente.Enabled = False
+            btnCambioCompromiso.Enabled = False
+            btnConsultaCliente.Enabled = False
 
-            While dr.Read
-                Dim tipo As Integer = 0
+            LimpiaVariables()
 
-                If CType(dr("Tipo"), String).Trim.ToUpper = "I" Then
-                    tipo = 8
-                Else
-                    tipo = 6
-                End If
+            grpDatos.Visible = False
 
-                oItem = New ListViewItem(CType(dr("PedidoReferencia"), String).Trim, tipo) '0
-                oItem.SubItems.Add(CType(dr("AñoPed"), Short).ToString) '1
-                oItem.SubItems.Add(CType(dr("Celula"), Byte).ToString) '2
-                oItem.SubItems.Add(CType(dr("Pedido"), Integer).ToString) '3
-                oItem.SubItems.Add(CType(dr("Ruta"), Short).ToString) '4
-                oItem.SubItems.Add(CType(dr("RutaDescripcion"), String).Trim) '5
-                oItem.SubItems.Add(CType(dr("RutaBoletin"), Short).ToString) '6
-                oItem.SubItems.Add(CType(dr("RutaDescripcionBoletin"), String).Trim) '7
-                oItem.SubItems.Add(CType(dr("FAlta"), Date).ToString) '8
-                oItem.SubItems.Add(CType(dr("FCompromiso"), Date).ToShortDateString) '9
-                oItem.SubItems.Add(CType(dr("Cliente"), String)) '10
-                oItem.SubItems.Add(CType(dr("Nombre"), String).Trim) '11
-                oItem.SubItems.Add(CType(dr("DireccionCompleta"), String).Trim) '12
-                oItem.SubItems.Add(CType(dr("PrioridadPedidoDescripcion"), String).Trim) '13
-                oItem.SubItems.Add(CType(dr("Usuario"), String).Trim) '14
-                oItem.SubItems.Add(CType(dr("StatusBoletin"), String).Trim) '15
-                oItem.SubItems.Add(CType(dr("Insistente"), String).Trim) '16
-                oItem.SubItems.Add(CType(dr("TelCasa"), String).Trim) '17
-                oItem.SubItems.Add(CType(dr("Observaciones"), String).Trim) '18
-
-                If CType(dr("RutaBoletin"), Short) = 0 Then '19
-                    oItem.SubItems.Add(CType(dr("ReporteRAF"), String).ToString)
-                Else
-                    oItem.SubItems.Add(CType(dr("ReporteRAFBoletin"), String).ToString)
-                End If
-
-                If showSGCStatus Then
-                    oItem.SubItems.Add(CType(IIf(dr("StatusSGC") Is DBNull.Value, String.Empty, dr("StatusSGC")), String).Trim.ToUpper) '20
-                End If
-
-                lvwBoletin.Items.Add(oItem)
-            End While
-            If Not Global_MuestraRutaBoletin Then
-                lvwBoletin.Columns(6).Width = 0
-                lvwBoletin.Columns(7).Width = 0
-            End If
-            'Desactivado 16/11/2004
-            'lblBoletines.Text = "Boletines de: "
-            lblBoletines.Text = ""
+            lvwBoletin.Items.Clear()
+            grdLlamada.DataSource = Nothing
+            txtLlamadaObservaciones.Text = ""
             lblChofer.Text = String.Empty
 
-            If chkTodasLasRutas.Checked Then
-                lblBoletines.Text &= cboUsuarioCelula.Text.Trim
+
+            If CType(cboUsuarioCelula.SelectedValue, Byte) <> 0 Then
+                _CelulaCarga = CType(cboUsuarioCelula.SelectedValue, Byte)
             Else
-                lblBoletines.Text &= cboRuta.Descripcion
+                _CelulaCarga = Main.GLOBAL_Celula
             End If
-            'lblBoletines.Text &= " con el estatus " & Me.cboStatusBoletin.Text.Trim & " (" & lvwBoletin.Items.Count.ToString & " en total)"
-            lblBoletines.Text &= " - Status " & Me.cboStatusBoletin.Text.Trim & " (" & lvwBoletin.Items.Count.ToString & " en total)"
 
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            CierraConexion()
-            cmd.Dispose()
-            Cursor = Cursors.Default
+            Dim cmd As New SqlCommand("spCCConsultaBoletinDia", CnnSigamet)
+            With cmd
+                .CommandTimeout = 90
+                .CommandType = CommandType.StoredProcedure
+                .Parameters.Add("@Celula", SqlDbType.TinyInt).Value = _CelulaCarga
+                .Parameters.Add("@FCompromiso", SqlDbType.DateTime).Value = dtpFecha.Value.Date
+                .Parameters.Add("@StatusBoletin", SqlDbType.VarChar).Value = cboStatusBoletin.Text
+                If Not chkTodasLasRutas.Checked Then
+                    .Parameters.Add("@Ruta", SqlDbType.SmallInt).Value = cboRuta.Ruta
+                End If
+            End With
 
-        End Try
+            Dim dr As SqlDataReader
 
-        If Not chkTodasLasRutas.Checked Then
-            ConsultaChoferes()
+            Try
+                AbreConexion()
+
+                Try
+                    dr = cmd.ExecuteReader(CommandBehavior.CloseConnection)
+                Catch ex As Exception
+                    MessageBox.Show("La base de datos está ocupada.  Por favor intente de nuevo.", _Titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    CierraConexion()
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End Try
+
+                Dim ixc As Integer
+                Dim showSGCStatus As Boolean
+
+                If Not lvwBoletin.Columns.Contains(colEstadoSGC) Then
+                    For ixc = 0 To dr.FieldCount - 1
+                        If dr.GetName(ixc).Equals("StatusSGC") Then
+                            lvwBoletin.Columns.Add(colEstadoSGC)
+                            showSGCStatus = True
+                            Exit For
+                        End If
+                    Next
+                Else
+                    showSGCStatus = True
+                End If
+
+                Dim oItem As ListViewItem
+
+                While dr.Read
+                    Dim tipo As Integer = 0
+
+                    If CType(dr("Tipo"), String).Trim.ToUpper = "I" Then
+                        tipo = 8
+                    Else
+                        tipo = 6
+                    End If
+
+                    oItem = New ListViewItem(CType(dr("PedidoReferencia"), String).Trim, tipo) '0
+                    oItem.SubItems.Add(CType(dr("AñoPed"), Short).ToString) '1
+                    oItem.SubItems.Add(CType(dr("Celula"), Byte).ToString) '2
+                    oItem.SubItems.Add(CType(dr("Pedido"), Integer).ToString) '3
+                    oItem.SubItems.Add(CType(dr("Ruta"), Short).ToString) '4
+                    oItem.SubItems.Add(CType(dr("RutaDescripcion"), String).Trim) '5
+                    oItem.SubItems.Add(CType(dr("RutaBoletin"), Short).ToString) '6
+                    oItem.SubItems.Add(CType(dr("RutaDescripcionBoletin"), String).Trim) '7
+                    oItem.SubItems.Add(CType(dr("FAlta"), Date).ToString) '8
+                    oItem.SubItems.Add(CType(dr("FCompromiso"), Date).ToShortDateString) '9
+                    oItem.SubItems.Add(CType(dr("Cliente"), String)) '10
+                    oItem.SubItems.Add(CType(dr("Nombre"), String).Trim) '11
+                    oItem.SubItems.Add(CType(dr("DireccionCompleta"), String).Trim) '12
+                    oItem.SubItems.Add(CType(dr("PrioridadPedidoDescripcion"), String).Trim) '13
+                    oItem.SubItems.Add(CType(dr("Usuario"), String).Trim) '14
+                    oItem.SubItems.Add(CType(dr("StatusBoletin"), String).Trim) '15
+                    oItem.SubItems.Add(CType(dr("Insistente"), String).Trim) '16
+                    oItem.SubItems.Add(CType(dr("TelCasa"), String).Trim) '17
+                    oItem.SubItems.Add(CType(dr("Observaciones"), String).Trim) '18
+
+                    If CType(dr("RutaBoletin"), Short) = 0 Then '19
+                        oItem.SubItems.Add(CType(dr("ReporteRAF"), String).ToString)
+                    Else
+                        oItem.SubItems.Add(CType(dr("ReporteRAFBoletin"), String).ToString)
+                    End If
+
+                    If showSGCStatus Then
+                        oItem.SubItems.Add(CType(IIf(dr("StatusSGC") Is DBNull.Value, String.Empty, dr("StatusSGC")), String).Trim.ToUpper) '20
+                    End If
+
+                    lvwBoletin.Items.Add(oItem)
+                End While
+
+                If Not Global_MuestraRutaBoletin Then
+                    lvwBoletin.Columns(6).Width = 0
+                    lvwBoletin.Columns(7).Width = 0
+                End If
+                'Desactivado 16/11/2004
+                'lblBoletines.Text = "Boletines de: "
+                lblBoletines.Text = ""
+                lblChofer.Text = String.Empty
+
+                If chkTodasLasRutas.Checked Then
+                    lblBoletines.Text &= cboUsuarioCelula.Text.Trim
+                Else
+                    lblBoletines.Text &= cboRuta.Descripcion
+                End If
+                'lblBoletines.Text &= " con el estatus " & Me.cboStatusBoletin.Text.Trim & " (" & lvwBoletin.Items.Count.ToString & " en total)"
+                lblBoletines.Text &= " - Status " & Me.cboStatusBoletin.Text.Trim & " (" & lvwBoletin.Items.Count.ToString & " en total)"
+
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                CierraConexion()
+                cmd.Dispose()
+                Cursor = Cursors.Default
+
+            End Try
+
+            If Not chkTodasLasRutas.Checked Then
+                ConsultaChoferes()
+            End If
         End If
     End Sub
 
@@ -1131,8 +1373,8 @@ Public Class frmBoletin
             AbreConexion()
             dr = cmd.ExecuteReader(CommandBehavior.CloseConnection)
             While dr.Read
-                lblChofer.Text = "AT: " & CType(dr("Autotanque"), String) & _
-                    " OP: " & CType(dr("Operador"), String) & _
+                lblChofer.Text = "AT: " & CType(dr("Autotanque"), String) &
+                    " OP: " & CType(dr("Operador"), String) &
                     "/" & CType(dr("Ayudante"), String) & " "
             End While
         Catch ex As Exception
@@ -1147,12 +1389,12 @@ Public Class frmBoletin
     'Integración de funcionalidades de portatil desarrolladas por transforma 25012012
     ' Visualiza la carga a realizar del pedido portatil CAGP20111122
     Private Sub CargaPedido()
-        Dim oCargar As New ClienteZonaEconomica.frmMovimientoAlmacenPedidos(dtpFecha.Value.Date, GLOBAL_Servidor, GLOBAL_Database, GLOBAL_Usuario, GLOBAL_Password, _
+        Dim oCargar As New ClienteZonaEconomica.frmMovimientoAlmacenPedidos(dtpFecha.Value.Date, GLOBAL_Servidor, GLOBAL_Database, GLOBAL_Usuario, GLOBAL_Password,
             GLOBAL_RutaReportes, CnnSigamet)
         oCargar.ShowDialog()
     End Sub
 
-    Private Enum enumTipoLlamada
+    Public Enum enumTipoLlamada
         Operador = 1
         Cliente = 2
         Suministro = 3
@@ -1177,7 +1419,17 @@ Public Class frmBoletin
                 End If
             Next
 
-            Dim frmLlamada As New Llamada(pedidoReferencia, rutaPedido, dtpFecha.Value.Date, DtCel)
+            Dim frmLlamada As New Llamada(pedidoReferencia,
+                                          rutaPedido,
+                                          dtpFecha.Value.Date,
+                                          DtCel,
+                                          _URLGateway,
+                                          GLOBAL_Modulo,
+                                          GLOBAL_ConString,
+                                          SGCWebHabilitado:=_SGCWebHabilitado,
+                                          FuenteGateway:=_FuenteGateway)
+            frmLlamada.CadenaConexion = GLOBAL_ConString
+            frmLlamada.URLGateway = _URLGateway
             frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, False, _FAlta)
             'Dim frmLlamada As New Llamada("20148118689", rutaPedido, dtpFecha.Value.Date, DtCel)
             'frmLlamada.Entrada(_Cliente, _Nombre, 8, 118689, lblTelCasa.Text, _Ruta, 2014, TipoLlamada)
@@ -1194,7 +1446,11 @@ Public Class frmBoletin
 
         Else
             Dim frmLlamada As New Llamada()
-            frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, False, _FAlta)
+            frmLlamada.CadenaConexion = GLOBAL_ConString
+            frmLlamada.URLGateway = _URLGateway
+			frmLlamada.FuenteGateway = _FuenteGateway
+			frmLlamada.ConsultaAutotanquesPorDia(_Ruta, True)
+			frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, False, _FAlta)
             frmLlamada.Dispose()
         End If
         'TODO Debería validar si sí se dió de alta la llamada o no
@@ -1240,7 +1496,7 @@ Public Class frmBoletin
 
     Private Sub ConsultaCliente()
         Cursor = Cursors.WaitCursor
-        Dim oConsultaCliente As New SigaMetClasses.frmConsultaCliente(_Cliente, PermiteCapturarNotas:=False)
+        Dim oConsultaCliente As New SigaMetClasses.frmConsultaCliente(_Cliente, GLOBAL_Usuario, SoloDocumentosACredito:=False, SoloDocumentosSurtidos:=True, PermiteSeleccionarDocumento:=False, PermiteModificarDatosCredito:=False, PermiteModificarDatosCliente:=False, PermiteCapturarNotas:=False, PermiteCambioEmpleadoNomina:=False, PermiteCambioCtePadre:=False, DSCatalogos:=Nothing, LinkQueja:=True, URLGateway:=_URLGateway, CadenaCon:=GLOBAL_ConString, Modulo:=GLOBAL_Modulo)
         oConsultaCliente.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -1271,7 +1527,7 @@ Public Class frmBoletin
         For Each oItem In lvwBoletin.Items
             If oItem.Selected Then
                 'strMensaje &= "Ruta: " & oItem.SubItems(4).Text & " Cliente: " & oItem.SubItems(6).Text & " " & oItem.SubItems(7).Text & " Dirección: " & oItem.SubItems(10).Text & Chr(13)
-                strMensaje &= "Ruta: " & oItem.SubItems(4).Text & " Cliente: " & oItem.SubItems(8).Text & " " & oItem.SubItems(9).Text & _
+                strMensaje &= "Ruta: " & oItem.SubItems(4).Text & " Cliente: " & oItem.SubItems(8).Text & " " & oItem.SubItems(9).Text &
                     " Dirección: " & oItem.SubItems(10).Text & Chr(13)
                 TotalSeleccionados += 1
             End If
@@ -1389,6 +1645,29 @@ Public Class frmBoletin
         End Try
     End Sub
 
+    Private Function ConsultarDetallePedidoCRM(ByVal objPedidoParam As RTGMCore.Pedido) As RTGMCore.Pedido
+
+        Dim cliente As New Integer
+        Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
+        Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
+        SolicitudPedidoGateway.PedidoReferencia = objPedidoParam.PedidoReferencia
+        SolicitudPedidoGateway.IDZona = objPedidoParam.IDZona
+        SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
+        SolicitudPedidoGateway.FechaCompromisoInicio = objPedidoParam.FCompromiso
+
+        Dim ListaPedidos As List(Of RTGMCore.Pedido)
+        objPedidoGateway.URLServicio = _URLGateway
+        ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
+
+        If ListaPedidos.Count > 0 Then
+            Return ListaPedidos(0)
+        Else
+            Return objPedidoParam
+        End If
+
+
+    End Function
+
     Private Sub lvwBoletin_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles lvwBoletin.SelectedIndexChanged
         Dim dt As DataTable
         Try
@@ -1405,20 +1684,50 @@ Public Class frmBoletin
                 _LlevaLaNota = CType(lvwBoletin.FocusedItem.SubItems(16).Text, String).Trim
                 _FCompromiso = CType(lvwBoletin.FocusedItem.SubItems(9).Text, Date)
                 _FAlta = CType(lvwBoletin.FocusedItem.SubItems(8).Text, Date)
-                If chkPortatil.Checked Then
-                    _Autotanque = CType(lvwBoletin.FocusedItem.SubItems(21).Text, Integer)                    
+				If chkPortatil.Checked Then
+					_Autotanque = CType(lvwBoletin.FocusedItem.SubItems(21).Text, Integer)
+				End If
+
+                'Dim numero As Integer = lvwBoletin.FocusedItem.Index
+
+
+                If _URLGateway = "" Then
+                    lblCliente.Text = _Cliente.ToString
+                    lblNombre.Text = _Nombre
+                    If chkPortatil.Checked Then
+                        SeleccionCalleColonia1.CargaDatosClientePortatilSoloLectura(_Cliente)
+                    Else
+                        SeleccionCalleColonia1.CargaDatosClienteSoloLectura(_Cliente)
+                    End If
+                Else
+					Dim drEntrega As RTGMCore.Pedido = _PedidosRTGM.FirstOrDefault(Function(x) x.PedidoReferencia.Trim() = _PedidoReferencia)
+					lblCliente.Text = drEntrega.DireccionEntrega.IDDireccionEntrega '_PedidosRTGM(numero).DireccionEntrega.IDDireccionEntrega
+                    lblNombre.Text = drEntrega.DireccionEntrega.Nombre '_PedidosRTGM(numero).DireccionEntrega.Nombre
+                    SeleccionCalleColonia1.CargaPorDireccionDeEntrega(drEntrega) '(_PedidosRTGM(numero))
                 End If
 
-                lblCliente.Text = _Cliente.ToString
-                lblNombre.Text = _Nombre
-                lblTelCasa.Text = SigaMetClasses.FormatoTelefono(CType(lvwBoletin.FocusedItem.SubItems(17).Text, String).Trim)
+				lblTelCasa.Text = SigaMetClasses.FormatoTelefono(CType(lvwBoletin.FocusedItem.SubItems(17).Text, String).Trim)
+
+                'Se agrega funcionalidad para ir al Web Service a consultar el detalle del pedido o del cliente . 
+
+                'Dim objPedido As New RTGMCore.Pedido
+                'objPedido.IDEmpresa = GLOBAL_Corporativo
+                'objPedido.FCompromiso = _FCompromiso
+                'objPedido.IDZona = _Celula
+                'objPedido.EstatusBoletin = "BOLETIN"
+                'objPedido.PedidoReferencia = _PedidoReferencia
+                'objPedido = ConsultarDetallePedidoCRM(objPedido)
+                'lblCliente.Text = objPedido.DireccionEntrega.IDDireccionEntrega
+                'lblNombre.Text = objPedido.DireccionEntrega.Nombre
+                'lblTelCasa.Text = objPedido.DireccionEntrega.Telefono1
+
                 lblObservacionesPedido.Text = CType(lvwBoletin.FocusedItem.SubItems(18).Text, String).Trim
-                If chkPortatil.Checked Then
-                    SeleccionCalleColonia.CargaDatosClientePortatilSoloLectura(_Cliente)
-                Else
-                    SeleccionCalleColonia.CargaDatosClienteSoloLectura(_Cliente)
-                End If
-                If Not grpDatos.Visible Then grpDatos.Visible = True
+
+
+
+
+
+				If Not grpDatos.Visible Then grpDatos.Visible = True
 
                 txtLlamadaObservaciones.Text = ""
                 If chkPortatil.Checked Then
@@ -1542,7 +1851,7 @@ Public Class frmBoletin
             Me.lvwBoletin.MultiSelect = False
         End If
 
-       
+
         Dim cmdCelula As New SqlCommand
 
         cmdCelula.Connection = CnnSigamet
@@ -1582,7 +1891,7 @@ Public Class frmBoletin
         'cboRuta.CargaDatos(Celula:=Main.GLOBAL_Celula)
 
         'TODO: Filtro de ruta por portatil y estaconario
-        cboRuta.CargaDatos(Celula:=GLOBAL_Celula, ActivarFiltro:=GLOBAL_ManejarClientesPortatil, _
+        cboRuta.CargaDatos(Celula:=GLOBAL_Celula, ActivarFiltro:=GLOBAL_ManejarClientesPortatil,
                 MostrarPortatil:=chkPortatil.Checked)
         If cboRuta.Items.Count > 0 Then
             cboRuta.SelectedIndex = 0
@@ -1617,11 +1926,36 @@ Public Class frmBoletin
 
 
     Private Sub lvwBoletin_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lvwBoletin.DoubleClick
-        Cursor = Cursors.WaitCursor
-        Dim oCallCenter As New frmCallCenter(_Cliente, chkPortatil.Checked)
-        oCallCenter.Show()
-        Cursor = Cursors.Default
+        Dim URLFrontendCRM As String
+        Try
+			'El módulo de callcenter se encuentra conectado al módulo de CRM
+			If Not String.IsNullOrEmpty(_URLGateway) And _FuenteGateway = "SIGAMET" Then
+				Cursor = Cursors.WaitCursor
+				Dim oCallCenter As New frmCallCenter(_Cliente, chkPortatil.Checked)
+				Cursor = Cursors.Default
+				oCallCenter.Show()
+			End If
 
+			If Not String.IsNullOrEmpty(_URLGateway) And _FuenteGateway = "CRM" Then
+                URLFrontendCRM = lvwBoletin.SelectedItems(lvwBoletin.SelectedIndices.IndexOf(lvwBoletin.FocusedItem.Index)).SubItems(20).Text
+                If (URLFrontendCRM.Trim <> "" And URLFrontendCRM <> String.Empty) Then
+                    System.Diagnostics.Process.Start(lvwBoletin.SelectedItems(lvwBoletin.SelectedIndices.IndexOf(lvwBoletin.FocusedItem.Index)).SubItems(20).Text)
+                Else
+                    Throw New Exception("El sistema CRM devolvió una dirección a una de sus páginas vacía, por favor reporte al equipo de soporte.")
+                End If
+            End If
+
+            'El módulo de callcenter no se encuentra conectado al módulo de CRM
+            If String.IsNullOrEmpty(_URLGateway) Then
+                Cursor = Cursors.WaitCursor
+                Dim oCallCenter As New frmCallCenter(_Cliente, chkPortatil.Checked)
+                Cursor = Cursors.Default
+                oCallCenter.Show()
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Ocurrió un error al consultar el  pedido" + ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub habilitaCambioCompromiso()
@@ -1648,9 +1982,17 @@ Public Class frmBoletin
         CargaBoletinPortatil()
         Cursor = Cursors.Default
     End Sub
-    Private Sub CargaBoletinPortatil()
-        Cursor = Cursors.WaitCursor
 
+    Private Sub CargaBoletinPortatil(Optional ByVal URLGateway As String = Nothing)
+
+        Dim objPedido As New RTGMCore.Pedido
+        Dim cliente As New Integer
+        'Dim oGateway As New RTGMGateway.RTGMGateway(SigaMetClasses.GLOBAL_Modulo, GLOBAL_ConString)
+        Dim SolicitudPedidoGateway As RTGMGateway.SolicitudPedidoGateway
+        Dim objPedidoGateway As New RTGMGateway.RTGMPedidoGateway(GLOBAL_Modulo, GLOBAL_ConString)
+        Dim FechaDtp As Date
+
+        Cursor = Cursors.WaitCursor
         btnLlamadaOperador.Enabled = False
         btnConfirmacionCliente.Enabled = False
         btnCambioCompromiso.Enabled = False
@@ -1666,6 +2008,7 @@ Public Class frmBoletin
         grdLlamada.DataSource = Nothing
         txtLlamadaObservaciones.Text = ""
 
+        FechaDtp = dtpFecha.Value.Date
         Dim _CelulaCarga As Byte
         If CType(cboUsuarioCelula.SelectedValue, Byte) <> 0 Then
             _CelulaCarga = CType(cboUsuarioCelula.SelectedValue, Byte)
@@ -1673,126 +2016,158 @@ Public Class frmBoletin
             _CelulaCarga = Main.GLOBAL_Celula
         End If
 
-        Dim cmd As New SqlCommand("spCCConsultaBoletinPortatil", CnnSigamet)
+        If Not (_URLGateway Is String.Empty Or _URLGateway Is Nothing) Then
+            'oGateway = New RTGMGateway.RTGMGateway(SigaMetClasses.GLOBAL_Modulo, GLOBAL_ConString)
+            'oGateway.URLServicio = _URLGateway
 
-        With cmd
-            .CommandTimeout = 90
-            .CommandType = CommandType.StoredProcedure
-            .Parameters.Add("@Celula", SqlDbType.TinyInt).Value = _CelulaCarga
-            .Parameters.Add("@FCompromiso", SqlDbType.DateTime).Value = dtpFecha.Value.Date
-            .Parameters.Add("@Status", SqlDbType.VarChar).Value = cboStatusBoletin.Text
-            If Not chkTodasLasRutas.Checked Then
-                .Parameters.Add("@Ruta", SqlDbType.SmallInt).Value = cboRuta.Ruta
-            End If
-        End With
+            SolicitudPedidoGateway.FechaCompromisoInicio = FechaDtp
+            SolicitudPedidoGateway.IDZona = _CelulaCarga
+            SolicitudPedidoGateway.EstatusBoletin = "BOLETIN"
+            'SolicitudPedidoGateway.FuenteDatos = RTGMCore.Fuente.Sigamet
+            Dim ListaPedidos As List(Of RTGMCore.Pedido)
+            objPedidoGateway.URLServicio = _URLGateway
+            ListaPedidos = objPedidoGateway.buscarPedidos(SolicitudPedidoGateway)
+            'Consulta los pedidos que vienen como respuesta del Web Service 
 
-        Dim dr As SqlDataReader
+            ' RM_09_08_2018
+            ' Se comenta este método; los pedidos ya traen información del cliente en la propiedad
+            ' Pedido.DireccionEntrega. Se agrega el método CargarLvwBoletin_PedidosCRM()
+            'ConsultaClientesBoletinCRM(ListaPedidos)
+            CargarLvwBoletin_PedidosCRM(ListaPedidos)
 
-        Try
-            AbreConexion()
+            Cursor = Cursors.Default
+
+        Else
+            Dim cmd As New SqlCommand("spCCConsultaBoletinPortatil", CnnSigamet)
+
+            With cmd
+                .CommandTimeout = 90
+                .CommandType = CommandType.StoredProcedure
+                .Parameters.Add("@Celula", SqlDbType.TinyInt).Value = _CelulaCarga
+                .Parameters.Add("@FCompromiso", SqlDbType.DateTime).Value = dtpFecha.Value.Date
+                .Parameters.Add("@Status", SqlDbType.VarChar).Value = cboStatusBoletin.Text
+                If Not chkTodasLasRutas.Checked Then
+                    .Parameters.Add("@Ruta", SqlDbType.SmallInt).Value = cboRuta.Ruta
+                End If
+            End With
+
+            Dim dr As SqlDataReader
 
             Try
-                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection)
+                AbreConexion()
+
+                Try
+                    dr = cmd.ExecuteReader(CommandBehavior.CloseConnection)
+                Catch ex As Exception
+                    MessageBox.Show("La base de datos está ocupada.  Por favor intente de nuevo.", _Titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    CierraConexion()
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End Try
+
+                Dim ixc As Integer
+                Dim showMGStatus As Boolean
+
+                'If GLOBAL_UsarMobileGas Then
+                If lvwBoletin.Columns.Contains(colEstadoSGC) Then
+                    lvwBoletin.Columns.Remove(colEstadoSGC)
+                End If
+
+                If Not lvwBoletin.Columns.Contains(colEstadoMG) Then
+                    For ixc = 0 To dr.FieldCount - 1
+                        If dr.GetName(ixc).Equals("StatusMG") Then
+                            lvwBoletin.Columns.Add(colPedidoMG)
+                            lvwBoletin.Columns.Add(colAutotanqueMG)
+                            lvwBoletin.Columns.Add(colEstadoMG)
+                            lvwBoletin.Columns.Add(colFStatusMG)
+                            showMGStatus = True
+                            Exit For
+                        End If
+                    Next
+                Else
+                    showMGStatus = True
+                End If
+                'End If
+
+                Dim oItem As ListViewItem
+
+                While dr.Read
+                    oItem = New ListViewItem(CType(dr("PedidoReferencia"), String).Trim, 6) '0
+                    oItem.SubItems.Add(CType(dr("AñoPed"), Short).ToString) '1
+                    oItem.SubItems.Add(CType(dr("Celula"), Byte).ToString) '2
+                    oItem.SubItems.Add(CType(dr("Pedido"), Integer).ToString) '3
+                    oItem.SubItems.Add(CType(dr("Ruta"), Short).ToString) '4
+                    oItem.SubItems.Add(CType(dr("RutaDescripcion"), String).Trim) '5
+                    oItem.SubItems.Add(CType(dr("RutaBoletin"), Short).ToString) '6
+                    oItem.SubItems.Add(CType(dr("RutaDescripcionBoletin"), String).Trim) '7
+                    oItem.SubItems.Add(CType(dr("FAlta"), Date).ToString) '8
+                    oItem.SubItems.Add(CType(dr("FCompromiso"), Date).ToShortDateString) '9
+                    oItem.SubItems.Add(CType(dr("Cliente"), String)) '10
+                    oItem.SubItems.Add(CType(dr("Nombre"), String).Trim) '11
+                    oItem.SubItems.Add(CType(dr("DireccionCompleta"), String).Trim) '12
+                    oItem.SubItems.Add(CType(dr("PrioridadPedidoDescripcion"), String).Trim) '13
+                    oItem.SubItems.Add(CType(dr("Usuario"), String).Trim) '14
+                    oItem.SubItems.Add(CType(dr("StatusBoletin"), String).Trim) '15
+                    oItem.SubItems.Add(CType(dr("Insistente"), String).Trim) '16
+                    oItem.SubItems.Add(CType(dr("TelCasa"), String).Trim) '17
+                    oItem.SubItems.Add(CType(dr("Observaciones"), String).Trim) '18
+
+                    If CType(dr("RutaBoletin"), Short) = 0 Then '19
+                        oItem.SubItems.Add(CType(dr("ReporteRAF"), String))
+                    Else
+                        oItem.SubItems.Add(CType(dr("ReporteRAFBoletin"), String))
+                    End If
+
+                    oItem.SubItems.Add(CType(dr("PedidoMG"), Integer).ToString) '20
+                    oItem.SubItems.Add(CType(dr("AutotanqueMG"), Integer).ToString) '21
+
+                    If showMGStatus Then
+                        oItem.SubItems.Add(CType(IIf(dr("StatusMG") Is DBNull.Value, String.Empty, dr("StatusMG")), String).Trim.ToUpper) '22
+                        oItem.SubItems.Add(CType(IIf(dr("FStatusMG") Is DBNull.Value, String.Empty, dr("FStatusMG")), String).Trim.ToUpper) '23
+                    End If
+
+                    lvwBoletin.Items.Add(oItem)
+                End While
+
+                'If Not Global_MuestraRutaBoletin Then
+                '    lvwBoletin.Columns(6).Width = 0
+                '    lvwBoletin.Columns(7).Width = 0
+                'End If
+
+                lblBoletines.Text = "Boletines de: "
+                If chkTodasLasRutas.Checked Then
+                    lblBoletines.Text &= cboUsuarioCelula.Text.Trim
+                Else
+                    lblBoletines.Text &= cboRuta.Descripcion
+                End If
+                lblBoletines.Text &= " con el estatus " & Me.cboStatusBoletin.Text.Trim & " (" & lvwBoletin.Items.Count.ToString & " en total)"
+
             Catch ex As Exception
-                MessageBox.Show("La base de datos está ocupada.  Por favor intente de nuevo.", _Titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
                 CierraConexion()
+                cmd.Dispose()
                 Cursor = Cursors.Default
-                Exit Sub
             End Try
 
-            Dim ixc As Integer
-            Dim showMGStatus As Boolean
-
-            'If GLOBAL_UsarMobileGas Then
-            If lvwBoletin.Columns.Contains(colEstadoSGC) Then
-                lvwBoletin.Columns.Remove(colEstadoSGC)
+            If GLOBAL_VersionMovilGas = 1 And cboStatusBoletin.Text = "BOLETIN" Then
+                ConsultaPedidosPortatilCanceladosSigamet()
             End If
 
-            If Not lvwBoletin.Columns.Contains(colEstadoMG) Then
-                For ixc = 0 To dr.FieldCount - 1
-                    If dr.GetName(ixc).Equals("StatusMG") Then
-                        lvwBoletin.Columns.Add(colPedidoMG)
-                        lvwBoletin.Columns.Add(colAutotanqueMG)
-                        lvwBoletin.Columns.Add(colEstadoMG)
-                        lvwBoletin.Columns.Add(colFStatusMG)
-                        showMGStatus = True
-                        Exit For
-                    End If
-                Next
-            Else
-                showMGStatus = True
-            End If
-            'End If
 
-            Dim oItem As ListViewItem
-
-            While dr.Read
-                oItem = New ListViewItem(CType(dr("PedidoReferencia"), String).Trim, 6) '0
-                oItem.SubItems.Add(CType(dr("AñoPed"), Short).ToString) '1
-                oItem.SubItems.Add(CType(dr("Celula"), Byte).ToString) '2
-                oItem.SubItems.Add(CType(dr("Pedido"), Integer).ToString) '3
-                oItem.SubItems.Add(CType(dr("Ruta"), Short).ToString) '4
-                oItem.SubItems.Add(CType(dr("RutaDescripcion"), String).Trim) '5
-                oItem.SubItems.Add(CType(dr("RutaBoletin"), Short).ToString) '6
-                oItem.SubItems.Add(CType(dr("RutaDescripcionBoletin"), String).Trim) '7
-                oItem.SubItems.Add(CType(dr("FAlta"), Date).ToString) '8
-                oItem.SubItems.Add(CType(dr("FCompromiso"), Date).ToShortDateString) '9
-                oItem.SubItems.Add(CType(dr("Cliente"), String)) '10
-                oItem.SubItems.Add(CType(dr("Nombre"), String).Trim) '11
-                oItem.SubItems.Add(CType(dr("DireccionCompleta"), String).Trim) '12
-                oItem.SubItems.Add(CType(dr("PrioridadPedidoDescripcion"), String).Trim) '13
-                oItem.SubItems.Add(CType(dr("Usuario"), String).Trim) '14
-                oItem.SubItems.Add(CType(dr("StatusBoletin"), String).Trim) '15
-                oItem.SubItems.Add(CType(dr("Insistente"), String).Trim) '16
-                oItem.SubItems.Add(CType(dr("TelCasa"), String).Trim) '17
-                oItem.SubItems.Add(CType(dr("Observaciones"), String).Trim) '18
-
-                If CType(dr("RutaBoletin"), Short) = 0 Then '19
-                    oItem.SubItems.Add(CType(dr("ReporteRAF"), String))
-                Else
-                    oItem.SubItems.Add(CType(dr("ReporteRAFBoletin"), String))
-                End If
-
-                oItem.SubItems.Add(CType(dr("PedidoMG"), Integer).ToString) '20
-                oItem.SubItems.Add(CType(dr("AutotanqueMG"), Integer).ToString) '21
-
-                If showMGStatus Then
-                    oItem.SubItems.Add(CType(IIf(dr("StatusMG") Is DBNull.Value, String.Empty, dr("StatusMG")), String).Trim.ToUpper) '22
-                    oItem.SubItems.Add(CType(IIf(dr("FStatusMG") Is DBNull.Value, String.Empty, dr("FStatusMG")), String).Trim.ToUpper) '23
-                End If
-
-                lvwBoletin.Items.Add(oItem)
-            End While
-
-            'If Not Global_MuestraRutaBoletin Then
-            '    lvwBoletin.Columns(6).Width = 0
-            '    lvwBoletin.Columns(7).Width = 0
-            'End If
-
-            lblBoletines.Text = "Boletines de: "
-            If chkTodasLasRutas.Checked Then
-                lblBoletines.Text &= cboUsuarioCelula.Text.Trim
-            Else
-                lblBoletines.Text &= cboRuta.Descripcion
-            End If
-            lblBoletines.Text &= " con el estatus " & Me.cboStatusBoletin.Text.Trim & " (" & lvwBoletin.Items.Count.ToString & " en total)"
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            CierraConexion()
-            cmd.Dispose()
-            Cursor = Cursors.Default
-        End Try
-
-        If GLOBAL_VersionMovilGas = 1 And cboStatusBoletin.Text = "BOLETIN" Then
-            ConsultaPedidosPortatilCanceladosSigamet()
         End If
+
+
+
+
+
 
     End Sub
     Private Sub LlamadaPortatil(ByVal TipoLlamada As enumTipoLlamada)
         Cursor = Cursors.WaitCursor
         Dim frmLlamada As New Llamada()
+        frmLlamada.CadenaConexion = GLOBAL_ConString
+        frmLlamada.URLGateway = _URLGateway
         frmLlamada.Entrada(_Cliente, _Nombre, _Celula, _Pedido, lblTelCasa.Text, _Ruta, _AñoPed, TipoLlamada, _FCompromiso, True, _FAlta)
 
         'LUSATE se traslada esta parte del código al formulario Llamada para registro de campos adicionales

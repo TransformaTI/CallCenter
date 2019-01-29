@@ -61,7 +61,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <DebugSymbols>true</DebugSymbols>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
@@ -97,7 +97,7 @@
     </COMReference>
     <Reference Include="AdmEdificios, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\AdmEdificios.dll</HintPath>
+      <HintPath>..\..\Librerias\AdmEdificios\bin\AdmEdificios.dll</HintPath>
     </Reference>
     <Reference Include="admEdificiosComisionAdm, Version=1.0.3562.31791, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -173,7 +173,7 @@
     </Reference>
     <Reference Include="Contactos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Contactos.dll</HintPath>
+      <HintPath>..\..\Librerias\Contactos\bin\Debug\Contactos.dll</HintPath>
     </Reference>
     <Reference Include="ContactosDL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -271,6 +271,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\EDFAsignacionDataLayer.dll</HintPath>
     </Reference>
+    <Reference Include="EDFConfiguracionConexion, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EDFConfiguracionConexion.dll</HintPath>
+    </Reference>
+    <Reference Include="EDFExportacion, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EDFExportacion.dll</HintPath>
+    </Reference>
     <Reference Include="EDFImportacion, Version=1.0.5695.25268, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\EDFImportacion.dll</HintPath>
@@ -281,11 +289,14 @@
     </Reference>
     <Reference Include="ExportacionDirectaReportes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\ExportacionDirectaReportes.dll</HintPath>
+      <HintPath>..\..\SigametLibrerias\ExportacionDirectaReportes\bin\Debug\ExportacionDirectaReportes.dll</HintPath>
+    </Reference>
+    <Reference Include="FormasPago">
+      <HintPath>..\..\Caja\FormasPago\FormasPago\FormasPago\bin\Debug\FormasPago.dll</HintPath>
     </Reference>
     <Reference Include="GeneraCiclosAutomaticos, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\GeneraCiclosAutomaticos.dll</HintPath>
+      <HintPath>..\..\SigametLibrerias\GeneraCiclosAutomaticos VS2010\bin\Debug\GeneraCiclosAutomaticos.dll</HintPath>
     </Reference>
     <Reference Include="GeneracionAsignacion, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -337,7 +348,7 @@
     </Reference>
     <Reference Include="LiquidacionSTN, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\LiquidacionSTN.dll</HintPath>
+      <HintPath>..\..\Librerias\LiquidacionSTN VS2010\bin\Debug\LiquidacionSTN.dll</HintPath>
     </Reference>
     <Reference Include="Llamadas, Version=1.0.5919.27935, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -349,6 +360,10 @@
     </Reference>
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
+    </Reference>
+    <Reference Include="MobileGas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MobileGas.dll</HintPath>
     </Reference>
     <Reference Include="MRMDevKit">
       <Name>MRMDevKit</Name>
@@ -368,7 +383,7 @@
     </Reference>
     <Reference Include="PortatilClasses, Version=1.7.0.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\PortatilClasses.dll</HintPath>
+      <HintPath>..\..\Librerias\PortatilClasses\bin\PortatilClasses.dll</HintPath>
     </Reference>
     <Reference Include="PresupuestoST, Version=1.0.5681.32897, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -416,19 +431,26 @@
     </Reference>
     <Reference Include="ReporteDinamico, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\ReporteDinamico.dll</HintPath>
+      <HintPath>..\..\SigametLibrerias\ReporteDinamico\bin\ReporteDinamico.dll</HintPath>
     </Reference>
     <Reference Include="RI500, Version=1.0.1588.17989, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\RI500.dll</HintPath>
     </Reference>
+    <Reference Include="RTGMGateway">
+      <HintPath>..\..\RTGMGateway\RTGMGateway\bin\Debug\RTGMGateway.dll</HintPath>
+    </Reference>
     <Reference Include="SGDAC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\SGDAC.dll</HintPath>
     </Reference>
+    <Reference Include="sgExportaArchivo, Version=1.0.5605.17309, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\sgExportaArchivo.dll</HintPath>
+    </Reference>
     <Reference Include="SigaMetClasses, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\SigaMetClasses.dll</HintPath>
+      <HintPath>..\..\Librerias\SigaMetClasses\bin\SigaMetClasses.dll</HintPath>
     </Reference>
     <Reference Include="SIGAMETSecurity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -440,11 +462,11 @@
     </Reference>
     <Reference Include="SigametST, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\SigametST.dll</HintPath>
+      <HintPath>..\..\Librerias\SigametST\bin\SigametST.dll</HintPath>
     </Reference>
     <Reference Include="STClienteEquipo, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\STClienteEquipo.dll</HintPath>
+      <HintPath>..\..\Librerias\STClienteEquipo\bin\STClienteEquipo.dll</HintPath>
     </Reference>
     <Reference Include="SVCC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -476,6 +498,18 @@
     </Reference>
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="Telerik.WinControls, Version=2012.3.1017.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2012.3.1017.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2012.3.1017.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\TelerikCommon.dll</HintPath>
     </Reference>
     <Reference Include="Timer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1358,12 +1392,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Librerias\MobileGas\MobileGas.vbproj">
-      <Project>{EA452C17-37AC-4E9D-BA80-B43E77731812}</Project>
-      <Name>MobileGas</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
