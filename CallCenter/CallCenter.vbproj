@@ -97,7 +97,7 @@
     </COMReference>
     <Reference Include="AdmEdificios, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\AdmEdificios.dll</HintPath>
+      <HintPath>..\..\Librerias\AdmEdificios\bin\AdmEdificios.dll</HintPath>
     </Reference>
     <Reference Include="admEdificiosComisionAdm, Version=1.0.3562.31791, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
