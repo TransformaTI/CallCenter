@@ -1034,29 +1034,29 @@ Public Class Llamada
                 Exit Sub
             End If
 
-            '04/09/2014: Se separa esta sección del código para evitar ingresar a la transacción si falla el proceso de pegasus
-            '03/10/2018: Se agrega validación de la variable _SGCWebHabilitado  - RM
-            If (boletinEnLinea AndAlso _SGCWebHabilitado) Then
-                Try
-                    Dim servicioPedido As New desarrollogm.Pedido()
-                    servicioPedido.Url = GLOBAL_URLWebserviceBoletin
+			'04/09/2014: Se separa esta sección del código para evitar ingresar a la transacción si falla el proceso de pegasus
+			'03/10/2018: Se agrega validación de la variable _SGCWebHabilitado  - RM
+			If (boletinEnLinea AndAlso _SGCWebHabilitado AndAlso Not _FuenteGateway.Equals("CRM")) Then
+				Try
+					Dim servicioPedido As New desarrollogm.Pedido()
+					servicioPedido.Url = GLOBAL_URLWebserviceBoletin
 
-                    If chkNoValidarGPS.Checked Then
-                        servicioPedido.AltaPedidoConfiguracionAnulada(Main.GLOBAL_Estacion, "GPS", _Celula, _Anio, _Pedido, GLOBAL_Usuario, String.Empty)
-                    End If
+					If chkNoValidarGPS.Checked Then
+						servicioPedido.AltaPedidoConfiguracionAnulada(Main.GLOBAL_Estacion, "GPS", _Celula, _Anio, _Pedido, GLOBAL_Usuario, String.Empty)
+					End If
 
-                    servicioPedido.BoletinarPedido(Main.GLOBAL_Estacion, GLOBAL_Usuario, pedidoReferencia,
-                        False, Convert.ToInt32(cmbAutoTanque.SelectedValue), idPlantaSGC, txtObservaciones.Text)
-                Catch ex As Exception
-                    MessageBox.Show("No fué posible enviar el pedido al sistema SGCWEB," & vbCrLf &
-                        "no se registrará el boletín en SIGAMET." & vbCrLf &
-                        ex.Message,
-                        "Error enviando pedido", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return
-                End Try
+					servicioPedido.BoletinarPedido(Main.GLOBAL_Estacion, GLOBAL_Usuario, pedidoReferencia,
+						False, Convert.ToInt32(cmbAutoTanque.SelectedValue), idPlantaSGC, txtObservaciones.Text)
+				Catch ex As Exception
+					MessageBox.Show("No fué posible enviar el pedido al sistema SGCWEB," & vbCrLf &
+						"no se registrará el boletín en SIGAMET." & vbCrLf &
+						ex.Message,
+						"Error enviando pedido", MessageBoxButtons.OK, MessageBoxIcon.Error)
+					Return
+				End Try
 
-            ElseIf _FuenteGateway.Equals("CRM") AndAlso _Boletin = frmBoletin.enumTipoLlamada.Cliente Then
-                Try
+			ElseIf _FuenteGateway.Equals("CRM") AndAlso _Boletin = frmBoletin.enumTipoLlamada.Cliente Then
+				Try
                     BoletinarPedidoEnCRM(_Pedido, _Celula)
                 Catch ex As Exception
                     MessageBox.Show("No fue posible boletinar el pedido en CRM," & vbCrLf &
