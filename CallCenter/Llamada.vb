@@ -1036,7 +1036,7 @@ Public Class Llamada
 
 			'04/09/2014: Se separa esta sección del código para evitar ingresar a la transacción si falla el proceso de pegasus
 			'03/10/2018: Se agrega validación de la variable _SGCWebHabilitado  - RM
-			If (boletinEnLinea AndAlso _SGCWebHabilitado AndAlso Not _FuenteGateway.Equals("CRM")) Then
+			If (_SGCWebHabilitado) Then
 				Try
 					Dim servicioPedido As New desarrollogm.Pedido()
 					servicioPedido.Url = GLOBAL_URLWebserviceBoletin
@@ -1055,7 +1055,7 @@ Public Class Llamada
 					Return
 				End Try
 
-			ElseIf _FuenteGateway.Equals("CRM") AndAlso _Boletin = frmBoletin.enumTipoLlamada.Cliente Then
+			ElseIf _Boletin = frmBoletin.enumTipoLlamada.Cliente Then
 				Try
                     BoletinarPedidoEnCRM(_Pedido, _Celula)
                 Catch ex As Exception
