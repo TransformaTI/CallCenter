@@ -1070,62 +1070,69 @@ Public Class frmBoletin
                 lvwBoletin.Columns.Add(colEstadoSGC)
             End If
 
-            For Each objPedido In Pedidos
-                Dim oItem As ListViewItem
-				Dim tipo As Integer = 0
-				If (IsNothing(objPedido.Message)) Then
+			For Each objPedido In Pedidos
+				If (Not IsNothing(objPedido)) Then
+					Dim oItem As ListViewItem
+					Dim tipo As Integer = 0
+					If (IsNothing(objPedido.Message)) Then
 
-					oItem = New ListViewItem(CType(If(objPedido.PedidoReferencia, ""), String).Trim, tipo) '0
-					oItem.SubItems.Add(CType(If(objPedido.AnioPed, 0), Short).ToString) '1
-					oItem.SubItems.Add(CType(If(objPedido.IDZona, 0), Byte).ToString) '2
-					oItem.SubItems.Add(CType(If(objPedido.IDPedido, 0), Integer).ToString) '3
-					If Not IsNothing(objPedido.RutaOrigen) Then
-						oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '4
-						'oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.Descripcion, ""), String).Trim) '5
-						oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Ruta.Descripcion.Trim, ""), String).Trim) '5
-						oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '6
-					Else
-						oItem.SubItems.Add(0) '4
-						oItem.SubItems.Add("") '5
-						oItem.SubItems.Add(0) '6
-					End If
-					If Not IsNothing(objPedido.RutaBoletin) Then
-						oItem.SubItems.Add(CType(If(objPedido.RutaBoletin.Descripcion, ""), String).Trim) '7
-					Else
-						oItem.SubItems.Add("") '7
-					End If
-					oItem.SubItems.Add(CType(If(objPedido.FAlta, Date.Now), Date).ToShortDateString) '8
-					oItem.SubItems.Add(CType(If(objPedido.FCompromiso, Date.Now), Date).ToShortDateString) '9
-					oItem.SubItems.Add(CType(objPedido.IDDireccionEntrega, String).Trim) '10
-					If Not IsNothing(objPedido.DireccionEntrega) Then
-						oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Nombre, ""), String).Trim) '11
-						oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.DireccionCompleta, ""), String).Trim) '12
-					Else
-						oItem.SubItems.Add("") '11
-						oItem.SubItems.Add("") '12
-					End If
-					oItem.SubItems.Add(CType(If(objPedido.PrioridadPedido, ""), String).Trim) '13
-					oItem.SubItems.Add(CType(If(objPedido.IDUsuarioAlta, ""), String).Trim) '14
-					oItem.SubItems.Add(CType(If(objPedido.EstatusBoletin, ""), String).Trim) '15
-					oItem.SubItems.Add(CType(If(objPedido.LlamadaInsistente, ""), String).Trim) '16
-					If Not IsNothing(objPedido.DireccionEntrega) Then
-						oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Telefono1, ""), String).Trim) '17
-					Else
-						oItem.SubItems.Add("") '17
-					End If
-					oItem.SubItems.Add(CType(If(objPedido.Observaciones, ""), String).Trim) '18
-					oItem.SubItems.Add(objPedido.ReporteRAF) '19
+						oItem = New ListViewItem(CType(If(objPedido.PedidoReferencia, ""), String).Trim, tipo) '0
+						oItem.SubItems.Add(CType(If(objPedido.AnioPed, 0), Short).ToString) '1
+						oItem.SubItems.Add(CType(If(objPedido.IDZona, 0), Byte).ToString) '2
+						oItem.SubItems.Add(CType(If(objPedido.IDPedido, 0), Integer).ToString) '3
+						If Not IsNothing(objPedido.RutaOrigen) Then
+							oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '4
+							'oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.Descripcion, ""), String).Trim) '5
+							Try
+								oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Ruta.Descripcion.Trim, ""), String).Trim) '5
+							Catch
+								oItem.SubItems.Add("") '5
+							End Try
+							oItem.SubItems.Add(CType(If(objPedido.RutaOrigen.NumeroRuta, 0), Short).ToString) '6
+						Else
+							oItem.SubItems.Add(0) '4
+							oItem.SubItems.Add("") '5
+							oItem.SubItems.Add(0) '6
+						End If
+						If Not IsNothing(objPedido.RutaBoletin) Then
+							oItem.SubItems.Add(CType(If(objPedido.RutaBoletin.Descripcion, ""), String).Trim) '7
+						Else
+							oItem.SubItems.Add("") '7
+						End If
+						oItem.SubItems.Add(CType(If(objPedido.FAlta, Date.Now), Date).ToShortDateString) '8
+						oItem.SubItems.Add(CType(If(objPedido.FCompromiso, Date.Now), Date).ToShortDateString) '9
+						oItem.SubItems.Add(CType(objPedido.IDDireccionEntrega, String).Trim) '10
+						If Not IsNothing(objPedido.DireccionEntrega) Then
+							oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Nombre, ""), String).Trim) '11
+							oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.DireccionCompleta, ""), String).Trim) '12
+						Else
+							oItem.SubItems.Add("") '11
+							oItem.SubItems.Add("") '12
+						End If
+						oItem.SubItems.Add(CType(If(objPedido.PrioridadPedido, ""), String).Trim) '13
+						oItem.SubItems.Add(CType(If(objPedido.IDUsuarioAlta, ""), String).Trim) '14
+						oItem.SubItems.Add(CType(If(objPedido.EstatusBoletin, ""), String).Trim) '15
+						oItem.SubItems.Add(CType(If(objPedido.LlamadaInsistente, ""), String).Trim) '16
 
-					oItem.SubItems.Add(objPedido.URLCRM) '20
+						If Not IsNothing(objPedido.DireccionEntrega) Then
+							oItem.SubItems.Add(CType(If(objPedido.DireccionEntrega.Telefono1, ""), String).Trim) '17
+						Else
+							oItem.SubItems.Add("") '17
+						End If
+						oItem.SubItems.Add(CType(If(objPedido.Observaciones, ""), String).Trim) '18
+						oItem.SubItems.Add(objPedido.ReporteRAF) '19
 
-					oItem.SubItems.Add(objPedido.EstatusMovil) '21 EstadoSGC
+						oItem.SubItems.Add(objPedido.URLCRM) '20
 
-					lvwBoletin.Items.Add(oItem)
+						oItem.SubItems.Add(objPedido.EstatusMovil) '21 EstadoSGC
+
+						lvwBoletin.Items.Add(oItem)
+					End If
 				End If
 			Next
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+		Catch ex As Exception
+			MessageBox.Show("Error al leer la información de los pedidos:" & ex.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
+		End Try
     End Sub
 
     Private Sub CargaBoletin(Optional ByVal URLGateway As String = "")
@@ -1282,8 +1289,8 @@ Public Class frmBoletin
 
                 Dim oItem As ListViewItem
 
-                While dr.Read
-                    Dim tipo As Integer = 0
+				While dr.Read
+					Dim tipo As Integer = 0
 
                     If CType(dr("Tipo"), String).Trim.ToUpper = "I" Then
                         tipo = 8
@@ -1342,8 +1349,8 @@ Public Class frmBoletin
                 lblBoletines.Text &= " - Status " & Me.cboStatusBoletin.Text.Trim & " (" & lvwBoletin.Items.Count.ToString & " en total)"
 
             Catch ex As Exception
-                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Finally
+				MessageBox.Show("Error al consultar boletín día :" & ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+			Finally
                 CierraConexion()
                 cmd.Dispose()
                 Cursor = Cursors.Default
