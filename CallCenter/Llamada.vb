@@ -218,6 +218,8 @@ Public Class Llamada
 						celula = Convert.ToByte(cmbCelula.SelectedValue)
 					End If
 				End If
+				LlenaListaAutotanques(_Ruta, False)
+				ConsultaAutotanquesPorDia(_Ruta, True)
 			Else
 				cmbCelula.Visible = False
 				cmbRuta.Visible = False
@@ -226,7 +228,9 @@ Public Class Llamada
 				boletinEnLinea = False
 				lblMensaje.Text = ""
 
+
 				LlenaListaAutotanques(_Ruta, False)
+				ConsultaAutotanquesPorDia(_Ruta, True)
 			End If
 		End If
 
@@ -236,7 +240,14 @@ Public Class Llamada
         If Not cmbRuta.SelectedIndex = -1 Then
 			If CInt(cmbRuta.Ruta) <> 0 Then
 				LlenaListaAutotanques(cmbRuta.Ruta, False)
+
+				If Not GLOBAL_UsarSigametServices Then
+
+					ConsultaAutotanquesPorDia(_Ruta, True)
+				End If
 			End If
+
+
 		End If
         'LUSATE
         If Me.LlenaHorarios Then
@@ -369,11 +380,15 @@ Public Class Llamada
 
         ConsultacoloniasPorcliente()
 
-        If Global_MuestraNoValidarGPS Then
-            chkNoValidarGPS.Visible = True
-        End If
+		If Global_MuestraNoValidarGPS Then
+			chkNoValidarGPS.Visible = True
+		End If
 
-        Me.ShowDialog()
+		If Not GLOBAL_UsarSigametServices Then
+			ConsultaAutotanquesPorDia(_Ruta, True)
+		End If
+
+		Me.ShowDialog()
 
     End Sub
 
