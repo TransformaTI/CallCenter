@@ -1414,31 +1414,37 @@ Public Class Llamada
     End Sub
 
     Private Sub cmbAutoTanque_SelectedIndexChanged_1(sender As System.Object, e As System.EventArgs) Handles cmbAutoTanque.SelectedIndexChanged
-        If GLOBAL_VersionMovilGas = 1 And cmbAutoTanque.SelectedIndex <> -1 And _Portatil Then
-            _UsuarioMovil = 0
-            cmbOperador.SelectedValue = cmbAutoTanque.SelectedValue
-        ElseIf GLOBAL_VersionMovilGas = 3 And cmbAutoTanque.SelectedIndex <> -1 And _Portatil Then
-            cmbOperador.SelectedIndex = cmbAutoTanque.SelectedIndex
-        End If
 
-        'LUSATE Consulta RAF por autotanque
-        If cmbAutoTanque.SelectedIndex <> -1 Then
-            ConsultaRAFPorRutaAutotanque(cmbAutoTanque.SelectedValue)
-            If RAF <> "" Then
-                lnkAlertaRAF.Text = RAF
-                lnkAlertaRAF.Visible = True
-            Else
-                lnkAlertaRAF.Visible = False
-            End If
+		Try
+			If GLOBAL_VersionMovilGas = 1 And cmbAutoTanque.SelectedIndex <> -1 And _Portatil Then
+				_UsuarioMovil = 0
+				cmbOperador.SelectedValue = cmbAutoTanque.SelectedValue
+			ElseIf GLOBAL_VersionMovilGas = 3 And cmbAutoTanque.SelectedIndex <> -1 And _Portatil Then
+				cmbOperador.SelectedIndex = cmbAutoTanque.SelectedIndex
+			End If
 
-            'LUSATE Consulta Fin de día por autotanque
-            ConsultaFinDeDia(cmbAutoTanque.SelectedValue)
-        Else
-            lnkAlertaRAF.Visible = False
-            lnkAlertaFinDeDia.Visible = False
-        End If
+			'LUSATE Consulta RAF por autotanque
+			If cmbAutoTanque.SelectedIndex <> -1 Then
+				ConsultaRAFPorRutaAutotanque(cmbAutoTanque.SelectedValue)
+				If RAF <> "" Then
+					lnkAlertaRAF.Text = RAF
+					lnkAlertaRAF.Visible = True
+				Else
+					lnkAlertaRAF.Visible = False
+				End If
 
-    End Sub
+				'LUSATE Consulta Fin de día por autotanque
+				ConsultaFinDeDia(cmbAutoTanque.SelectedValue)
+			Else
+				lnkAlertaRAF.Visible = False
+				lnkAlertaFinDeDia.Visible = False
+			End If
+		Catch ex As Exception
+
+		End Try
+
+
+	End Sub
     Private Sub ConsultaRAFPorRutaAutotanque(ByVal AutotanqueRAF As Integer)
         Cursor = Cursors.WaitCursor
         Dim ExisteRAF As String = ""
