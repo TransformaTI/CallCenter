@@ -74,7 +74,10 @@ Public Class Llamada
 
 		Dim servicioPedido As New desarrollogm.Pedido()
 
-		servicioPedido.Url = GLOBAL_URLWebserviceBoletin
+		If GLOBAL_UsarSigametServices Then
+
+			servicioPedido.Url = GLOBAL_URLWebserviceBoletin
+		End If
 
 		Dim dtAutotanquesDia As New DataTable()
 
@@ -1445,35 +1448,35 @@ Public Class Llamada
 
 
 	End Sub
-    Private Sub ConsultaRAFPorRutaAutotanque(ByVal AutotanqueRAF As Integer)
-        Cursor = Cursors.WaitCursor
-        Dim ExisteRAF As String = ""
-        Dim cmdRAF As New SqlCommand("spCCConsultaRAFPorRuta", CnnSigamet)
-        Dim drRAF As SqlDataReader
+	Private Sub ConsultaRAFPorRutaAutotanque(ByVal AutotanqueRAF As Integer)
+		Cursor = Cursors.WaitCursor
+		Dim ExisteRAF As String = ""
+		Dim cmdRAF As New SqlCommand("spCCConsultaRAFPorRuta", CnnSigamet)
+		Dim drRAF As SqlDataReader
 
-        RAF = ""
-        RAFPuedeContinuar = True
+		RAF = ""
+		RAFPuedeContinuar = True
 
-        cmdRAF.CommandType = CommandType.StoredProcedure
-        cmdRAF.Parameters.Add("@Autotanque", SqlDbType.Int).Value = AutotanqueRAF
-        Try
-            AbreConexion()
-            drRAF = cmdRAF.ExecuteReader()
-            If drRAF.HasRows Then
-                drRAF.Read()
-                RAF = CType(drRAF("PuedeOperar"), String)
-                RAFPuedeContinuar = CType(drRAF("EnCondicionesParaOperar"), Boolean)
-            End If
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            CierraConexion()
-            cmdRAF.Dispose()
-            Cursor = Cursors.Default
-        End Try
-    End Sub
+		cmdRAF.CommandType = CommandType.StoredProcedure
+		cmdRAF.Parameters.Add("@Autotanque", SqlDbType.Int).Value = AutotanqueRAF
+		Try
+			AbreConexion()
+			drRAF = cmdRAF.ExecuteReader()
+			If drRAF.HasRows Then
+				drRAF.Read()
+				RAF = CType(drRAF("PuedeOperar"), String)
+				RAFPuedeContinuar = CType(drRAF("EnCondicionesParaOperar"), Boolean)
+			End If
+		Catch ex As Exception
+			MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+		Finally
+			CierraConexion()
+			cmdRAF.Dispose()
+			Cursor = Cursors.Default
+		End Try
+	End Sub
 
-    Private Sub ConsultaFinDeDia(AutotanqueFinDeDia)
+	Private Sub ConsultaFinDeDia(AutotanqueFinDeDia)
         Dim cmdSelect As New SqlClient.SqlCommand()
         cmdSelect.CommandText = "spConsultaFinDeDia"
         cmdSelect.CommandType = CommandType.StoredProcedure
